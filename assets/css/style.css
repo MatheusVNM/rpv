@@ -1,0 +1,21 @@
+.top-header {
+  background: #3c4851 !important
+}
+.top-header .nav-link{
+    color: #fff !important;
+    font-weight: 600
+}
+
+.bottom-header{
+  background: #5c81bc !important
+}
+
+.bottom-header .nav-link{
+  color: #000 !important;
+  font-weight: 600
+}
+
+.bs-placeholder, .datepickerinit {
+  font-size: 0.8rem !important;
+  height: 100%
+}
