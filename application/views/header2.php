@@ -86,4 +86,4 @@ $this->load->helper('url');
                 </button>
             </nav>
 
-            <div class="container-fluid mt-3 overflow-auto position-static flex-shrink-1" > 
+            <div class="container-fluid pt-3 overflow-auto position-static flex-shrink-1" > 

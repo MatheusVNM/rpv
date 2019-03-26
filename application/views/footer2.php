@@ -34,11 +34,6 @@ $this->load->helper('url');
        $(this).parent().find("#navbar-collapse-icon").removeClass("fa-arrow-circle-up").addClass("fa-arrow-circle-down");
     });
 
-    // $("#navbar-toggler-btn").click(function(e) {
-    //     e.preventDefault();
-    //     $("#navbar-toggler-btn").toggleClass("fa-arrow-circle-down")
-    //     $("#navbar-toggler-btn").toggleClass("fa-arrow-circle-up")
-    //     });
 </script>
 
 </body>
