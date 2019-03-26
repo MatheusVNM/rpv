@@ -25,6 +25,15 @@ $this->load->helper('url');
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
+
+    $('.dual-collapse').on('shown.bs.collapse', function (e) {
+       $(this).parent().find("#navbar-collapse-icon").removeClass("fa-arrow-circle-down").addClass("fa-arrow-circle-up");
+    });
+
+    $('.dual-collapse').on('hidden.bs.collapse', function () {
+       $(this).parent().find("#navbar-collapse-icon").removeClass("fa-arrow-circle-up").addClass("fa-arrow-circle-down");
+    });
+
 </script>
 
 </body>

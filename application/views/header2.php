@@ -39,10 +39,10 @@ $this->load->helper('url');
 
 <body>
 
-    <div class="d-flex" id="wrapper">
+    <div class="d-flex position-fixed" id="wrapper">
 
         <!-- Sidebar -->
-        <div class="navbar-dark border-right sidebar" id="sidebar-wrapper">
+        <div class="navbar-dark border-right sidebar shown" id="sidebar-wrapper">
             <div class="sidebar-heading font-weight-bold d-flex justify-content-center align-center">
                 <div class="align-self-center">
                     <img src="<?php echo base_url("assets/images/title-text.svg"); ?>" width=150 />
@@ -60,7 +60,7 @@ $this->load->helper('url');
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
-        <div id="page-content-wrapper">
+        <div id="page-content-wrapper" class="d-flex flex-column h-100" style="max-height: 100vh">
             <nav class="navbar navbar-expand-md navbar-dark bg-dark top-header border-bottom">
                 <div class=" order-0">
                     <button class="mr-md-3 m-sm-0 btn " id="menu-toggle" alt="Toggle Menu" title="Abrir Menu">
@@ -82,8 +82,8 @@ $this->load->helper('url');
                     </ul>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse">
-                    <i class="fa fa-arrow-circle-down"></i>
+                    <i id="navbar-collapse-icon" class="fa fa-arrow-circle-down" id="navbar-toggler-btn"></i>
                 </button>
             </nav>
 
-            <div class="container-fluid mt-3"> 
+            <div class="container-fluid pt-3 overflow-auto position-static flex-shrink-1" > 
