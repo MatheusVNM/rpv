@@ -123,13 +123,14 @@ $this->load->view("header2");
                     </div>
                     <form>
                         <div class="col-auto">
-                            <div class="form-group">
-                                <label for="exampleFormControlFile1">Insira o Termo de Ajustamento de Conduta:</label>
-                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                            <div class="custom-file my-3">
+                                <input type="file" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Documento TAC</label>
                             </div>
                         </div>
                     </form>
                 </form>
+                <i>*TAC: </i><b>Termo de Ajustamento de Conduta.</b><br>
                 <i>Prazo para qualquer alteração é de 76h após clicar em <b>Salvar.</b><br></i>
             </div>
         </div>
