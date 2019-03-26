@@ -19,3 +19,78 @@
   font-size: 0.8rem !important;
   height: 100%
 }
+
+
+body {
+  overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+}
+
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+      margin-left: 0;
+  }
+
+  #page-content-wrapper {
+      min-width: 0;
+      width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+      margin-left: -15rem;
+  }
+}
+
+#menu-toggle{
+  background: #45818e
+}
+.sidebar > .sidebar-heading {
+  font-size: 1.2rem;
+  height: 64px;
+  background: #3c4851 !important;
+  color: #fff !important;
+
+
+}
+
+.sidebar, .sidebar > .list-group > .list-group-item{
+  background: #dddddd !important;
+  color: #000 !important;
+}
+.sidebar {
+
+}
+
+
+
+
+
+
+
+
+/*<!-- Hoover CSS Edit-->*/
+
+.hvr-underline-reveal::before{
+  background: #3c4851 !important
+}
