@@ -39,7 +39,7 @@ $this->load->helper('url');
 
 <body>
 
-    <div class="d-flex position-fixed" id="wrapper">
+    <div class="d-flex position-fixed w-100" id="wrapper">
 
         <!-- Sidebar -->
         <div class="navbar-dark border-right sidebar shown" id="sidebar-wrapper">
@@ -60,7 +60,7 @@ $this->load->helper('url');
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
-        <div id="page-content-wrapper" class="d-flex flex-column h-100" style="max-height: 100vh">
+        <div id="page-content-wrapper" class="d-flex flex-column" style=" height: 100vh">
             <nav class="navbar navbar-expand-md navbar-dark bg-dark top-header border-bottom">
                 <div class=" order-0">
                     <button class="mr-md-3 m-sm-0 btn " id="menu-toggle" alt="Toggle Menu" title="Abrir Menu">
@@ -86,4 +86,4 @@ $this->load->helper('url');
                 </button>
             </nav>
 
-            <div class="container-fluid pt-3 overflow-auto position-static flex-shrink-1" > 
+            <div class="container-fluid pt-3 overflow-auto flex-grow-1 d-flex" > 
