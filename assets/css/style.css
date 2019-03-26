@@ -78,13 +78,23 @@ body {
 .sidebar, .sidebar > .list-group > .list-group-item{
   background: #dddddd !important;
   color: #000 !important;
+
 }
+
+h5{
+  font-family: Helvetica, Arial, sans-serif;
+  
+}
+
+
 .sidebar {
 
 }
 
 
-
+.containerFormularioRota{
+  background: #000;
+}
 
 
 
