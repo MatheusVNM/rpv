@@ -103,7 +103,15 @@ h5{
 
 
 /*<!-- Hoover CSS Edit-->*/
-
-.hvr-underline-reveal::before {
-	background: #3c4851 !important;
+.hvr-underline-reveal{
+  transition-duration: .1s
 }
+.hvr-underline-reveal::before {
+background: #3c4851 !important;
+}
+.sidebar > .list-group > .list-group-item:hover{
+  color: #fff !important
+}
+.hvr-sweep-to-right::before {
+  background: #3c4851 !important;
+  }

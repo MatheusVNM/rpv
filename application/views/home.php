@@ -70,19 +70,16 @@ $this->load->view('header')
         <div class="carousel-inner" style="height: 70vh">
             <div class="carousel-item active">
                 <center>
-
                     <img class="carousel-image mx-auto" src="<?php echo base_url('assets/images/temps/la.jpg'); ?>" />
                 </center>
             </div>
             <div class="carousel-item">
                 <center>
-
                     <img class="carousel-image mx-auto" src="<?php echo base_url('assets/images/temps/chicago.jpg'); ?>" />
                 </center>
             </div>
             <div class="carousel-item">
                 <center>
-
                     <img class="carousel-image " src="<?php echo base_url('assets/images/temps/ny.jpg'); ?>" />
                 </center>
             </div>
