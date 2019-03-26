@@ -75,7 +75,8 @@ $this->load->helper('url');
                 <div class="navbar-collapse collapse w-100 order-1 dual-collapse mt-lg-0 mt-sm-3 ">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item text-light d-flex align-center ml-3">
-                            <a href="#" class="nav-link d-flex row"><i class="fa fa-user-circle fa-2x my-auto"></i>
+                            <a href="#" class="nav-link d-flex row">
+                            <i class="fa fa-user-circle fa-2x my-auto"></i>
                                 <div class="px-2 py-1">José Alencar</div>
                             </a>
                         </li>
@@ -85,5 +86,4 @@ $this->load->helper('url');
                     <i id="navbar-collapse-icon" class="fa fa-arrow-circle-down" id="navbar-toggler-btn"></i>
                 </button>
             </nav>
-
-            <div class="container-fluid pt-3 overflow-auto flex-grow-1 d-flex" > 
+            <div class="container-fluid pt-3 overflow-auto position-static flex-shrink-1" > 

@@ -32,36 +32,36 @@ $this->load->helper('url');
     </style>
 </head>
 
-<body>
+<body >
     <!-- Inicio do cabeçado superior -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark top-header">
-        <div class="navbar-collapse collapse w-100 order-3 order-md-0 dual-collapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a href="#" class="nav-link"><i class="fa fa-phone"></i> (55) 9xxxx-xxxx</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-envelope"></i> grupobom@gmail.com</a>
-                </li>
-                <li class="nav-item">
-                    <div class="nav-link d-flex align-items-center">
-                        <i class="fa fa-clock-o"></i>
-                        <div class="ml-1" id="clock">Sun o</div>
-                    </div>
-                </li>
-            </ul>
-        </div>
         <div class="mx-auto order-0">
             <a class="navbar-brand mx-lg-auto" href="#">
-                <img src="<?php echo base_url('assets/images/logo.png'); ?>" style="max-width: 150px" />
+            <img src="<?php echo base_url('assets/images/logo.png'); ?>" style="max-width: 150px" />
             </a>
         </div>
         <div class="navbar-collapse collapse w-100 order-1 dual-collapse">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item text-light d-flex align-center ml-3">
-                    <a href="#" class="nav-link d-flex row"><i class="fa fa-user-circle fa-2x my-auto"></i>
-                        <div class="px-2 py-1">José Alencar</div>
-                    </a>
+            <ul class="ml-auto navbar-nav ">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Home</a>
+
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Sobre Nós</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Nossa Frota</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Area de Atuação</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Entrar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Cadastrar-se</a>
                 </li>
             </ul>
         </div>
@@ -70,3 +70,41 @@ $this->load->helper('url');
         </button>
     </nav>
     <!-- Fim do cabeçalho superior-->
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Efetuar Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label for="tipoUsuario">Tipo de Usuário:</label>
+
+                    <select class="form-control mb-2" id="tipoUsuario" name="tipoUsuario">
+                        <option>Cliente</option>
+                        <option>Administrador</option>
+                        <option>Administrador Local</option>
+                        <option>Secretário</option>
+                        <option>Contador</option>
+                        <option>Gerente de RH</option>
+                    </select>
+
+                    <label for="email">Email:</label>
+                    <input class="form-control mb-2" type="text" name="email" id="email" />
+                    <label for="password">Senha:</label>
+                    <input class="form-control mb-2" type="password" name="password" id="password" />
+                    <a href="#" class="btn btn-link">Não possui cadastro? Cadastrar-se</a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Entrar</button>
+                </div>
+            </div>
+        </div>
+    </div> 
