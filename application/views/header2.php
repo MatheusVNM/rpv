@@ -39,7 +39,7 @@ $this->load->helper('url');
 
 <body>
 
-    <div class="d-flex position-fixed" id="wrapper">
+    <div class="d-flex position-fixed w-100" id="wrapper">
 
         <!-- Sidebar -->
         <div class="navbar-dark border-right sidebar shown" id="sidebar-wrapper">
@@ -49,18 +49,18 @@ $this->load->helper('url');
                 </div>
             </div>
             <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action bg-light hvr-underline-reveal hvr-icon-grow"><i class="hvr-icon fa fa-home mr-1"></i> Home</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light hvr-underline-reveal hvr-icon-grow"><i class="hvr-icon fa fa-money mr-1"></i> Gerenciar Tarifas</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light hvr-underline-reveal hvr-icon-grow"><i class="hvr-icon fa fa-road mr-1"></i> Gerenciar Trajetos Urbanos</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light hvr-underline-reveal hvr-icon-grow"><i class="hvr-icon fa fa-hand-paper-o mr-1"></i> Gerenciar Paradas</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light hvr-underline-reveal hvr-icon-grow"><i class="hvr-icon fa fa-bus mr-1"></i> Gerenciar Registro de Frotas</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light hvr-underline-reveal hvr-icon-grow"><i class="hvr-icon fa fa-group mr-1"></i> Gerenciar Categorias de Passageiros</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-home mr-1"></i> Home</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-money mr-1"></i> Gerenciar Tarifas</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-road mr-1"></i> Gerenciar Trajetos Urbanos</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-hand-paper-o mr-1"></i> Gerenciar Paradas</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-bus mr-1"></i> Gerenciar Registro de Frotas</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-group mr-1"></i> Gerenciar Categorias de Passageiros</a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
-        <div id="page-content-wrapper" class="d-flex flex-column h-100" style="max-height: 100vh">
+        <div id="page-content-wrapper" class="d-flex flex-column" style=" height: 100vh">
             <nav class="navbar navbar-expand-md navbar-dark bg-dark top-header border-bottom">
                 <div class=" order-0">
                     <button class="mr-md-3 m-sm-0 btn " id="menu-toggle" alt="Toggle Menu" title="Abrir Menu">
@@ -75,7 +75,8 @@ $this->load->helper('url');
                 <div class="navbar-collapse collapse w-100 order-1 dual-collapse mt-lg-0 mt-sm-3 ">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item text-light d-flex align-center ml-3">
-                            <a href="#" class="nav-link d-flex row"><i class="fa fa-user-circle fa-2x my-auto"></i>
+                            <a href="#" class="nav-link d-flex row">
+                            <i class="fa fa-user-circle fa-2x my-auto"></i>
                                 <div class="px-2 py-1">José Alencar</div>
                             </a>
                         </li>
@@ -85,5 +86,4 @@ $this->load->helper('url');
                     <i id="navbar-collapse-icon" class="fa fa-arrow-circle-down" id="navbar-toggler-btn"></i>
                 </button>
             </nav>
-
             <div class="container-fluid pt-3 overflow-auto position-static flex-shrink-1" > 
