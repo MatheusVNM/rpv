@@ -10,15 +10,17 @@ $this->load->view("header2");
         <div class="card-header border-0 d-flex justify-content-between">
             <h3 class="mb-0 justify-content-center">Rotas Urbanas</h3>
             <div>
-            <a class="btn text-dark btn-icon-only text-dark d-flex align-center" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-plus-circle fa-2x"> </i> <h3>Criar Rota</h3>
-            </a>
+                <a class="btn text-dark btn-icon-only text-dark d-flex align-center" href="#" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-plus-circle fa-2x"> </i>
+                    <h3>Criar Rota</h3>
+                </a>
             </div>
         </div>
         <div class="card-body ">
             <div class="tableParaExistentes col-md-12">
                 <table class="table table-striped table-bordered table-hover align-items-center table-flush">
-                    <thead class = "thead-light">
+                    <thead class="thead-light">
                     <tr>
                         <th>Cidade</th>
                         <th>Ponto de Partida</th>
@@ -38,21 +40,20 @@ $this->load->view("header2");
                         <td>22:00H</td>
                         <td>Ativo</td>
                         <td class="text-right">
-                                <a class="btn btn-sm btn-icon-only text-dark d-flex justify-content-center" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-ellipsis-v"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="#">Editar</a>
-                                    <a class="dropdown-item" href="#">Excluir</a>
-                                    <a class="dropdown-item" href="#">Desativar</a>
-                                    <a class="dropdown-item" href="#">Ativar</a>
-                                </div>
+                            <a class="btn btn-sm btn-icon-only text-dark d-flex justify-content-center" href="#"
+                               role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-ellipsis-v"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                <a class="dropdown-item" href="#">Editar</a>
+                                <a class="dropdown-item" href="#">Excluir</a>
+                                <a class="dropdown-item" href="#">Desativar</a>
+                                <a class="dropdown-item" href="#">Ativar</a>
                             </div>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-            </div>
             </div>
         </div>
     </div>
@@ -63,8 +64,6 @@ $this->load->view("header2");
         <button type="button" class="btn btn-danger ">Cancelar</button>
     </div>
 </div>
-
-
 
 
 <!-- Body end -->
