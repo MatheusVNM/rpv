@@ -5,7 +5,7 @@ $this->load->view("header2");
 ?>
 
 <!-- Body init -->
-<div class="container-fluid flex-shrink-1 d-flex justify-content-center ">
+<div class="container-fluid flex-shrink-1 d-flex justify-content-center">
     <div class="col-sm-2 my-auto">
         <div class="card shadow-sm">
             <div class="card-body">

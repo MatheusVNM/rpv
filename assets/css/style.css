@@ -310,10 +310,9 @@ body {
 		margin-left: 0;
 	}
 
-	#page-content-wrapper {
-		min-width: 0;
-		width: 100%;
-	}
+  #page-content-wrapper {
+      width: 100%;
+  }
 
 	#wrapper.toggled #sidebar-wrapper {
 		margin-left: -15rem;
@@ -339,9 +338,20 @@ body {
 	color: #000 !important;
 }
 
+	font-family: Helvetica, Arial, sans-serif;
+}
 h5 {
 	font-family: Helvetica, Arial, sans-serif;
 }
+.trajetos_exist h3, h4, h5{
+  font-family: Helvetica, Arial, sans-serif;
+
+}
+.divTitulo, .tableParaExistentes, .tableParaAtuais {
+  margin-left: 0;
+  padding: 0;
+}
+
 
 .sidebar {
 }
