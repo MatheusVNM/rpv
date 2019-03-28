@@ -86,4 +86,4 @@ $this->load->helper('url');
                     <i id="navbar-collapse-icon" class="fa fa-arrow-circle-down" id="navbar-toggler-btn"></i>
                 </button>
             </nav>
-            <div class="container-fluid pt-3 overflow-auto position-static flex-shrink-1" > 
+            <div class="container-fluid pt-3 overflow-auto h-100 flex-shrink-1" > 

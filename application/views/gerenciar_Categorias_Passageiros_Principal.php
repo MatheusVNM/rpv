@@ -5,159 +5,23 @@ $this->load->view("header2");
 ?>
 
 <!-- Body init -->
-<div class="jumbotron">
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Tituloooooo</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
+
+<div class="container-fluid d-flex justify-content-center flex-column">
+<div class="mx-auto">
+        <i class="fa fa-group fa-5x mt-3 text-primary"></i>
     </div>
-</div><div class="jumbotron">
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Tituloooooo</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
+    <div class="mx-auto my-3">
+        <h1 class="text-center">Gerenciar Categorias<Br>de Passageiros</h1>
     </div>
-</div><div class="jumbotron">
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Tituloooooo</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
+    <div class="mx-auto">
+    <button class="btn btn-primary h-100">Categorias</button>
+    <button class="btn btn-primary h-100"><span class="fa fa-plus-circle mr-2 h-100"></span><span class="h-100 text-wrap">
+
+        Adicionar Categoria
+    </span>
+</button>
         </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div><div class="jumbotron">
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Tituloooooo</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div><div class="jumbotron">
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Tituloooooo</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go away</a>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
-
-
 
 <!-- Body end -->
 <?php
