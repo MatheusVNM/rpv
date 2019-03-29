@@ -136,7 +136,7 @@ $this->load->view('header')
 
     <div class="container-fluid my-3 p-5 row">
         <div class="col-md-6">
-        <h1 class="font-weight-bold">Faça parte dessa familida</h1>
+        <h1 class="font-weight-bold">Faça parte dessa linda familia</h1>
 
             Aqui vai algo falando da empresa, tipo
 
