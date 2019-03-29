@@ -5,6 +5,7 @@ $this->load->view("header2");
 ?>
 
 <!-- Body init -->
+<h2 class="text-center">Lista de Trajetos</h2>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -17,7 +18,7 @@ $this->load->view("header2");
         </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr class="table-primary">
             <th scope="row">1</th>
             <td>542518</td>
             <td>2008</td>
@@ -25,7 +26,7 @@ $this->load->view("header2");
             <td>Alegrete-Quaraí</td>
             <td>Vigente</td>
         </tr>
-        <tr>
+        <tr class="table-danger">
             <th scope="row">2</th>
             <td>545215</td>
             <td>2010</td>
@@ -33,7 +34,7 @@ $this->load->view("header2");
             <td>Alegrete-Uruguaiana</td>
             <td>Cancelado</td>
         </tr>
-        <tr>
+        <tr class="table-danger">
             <th scope="row">3</th>
             <td>585263</td>
             <td>2001</td>
