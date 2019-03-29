@@ -26,8 +26,6 @@ $this->load->view("header2");
                         <th>ID</th>
                         <th>Ponto de Partida</th>
                         <th>Tempo Médio</th>
-                        <th>Hora Inicial</th>
-                        <th>Hora Final</th>
                         <th>Status</th>
                         <th>Ações</th>
                     </tr>
@@ -37,8 +35,6 @@ $this->load->view("header2");
                         <td>00001</td>
                         <td>Terminal 1</td>
                         <td>1h</td>
-                        <td>8:00H</td>
-                        <td>22:00H</td>
                         <td>Ativo</td>
                         <td class="text-right">
                             <a class="btn btn-sm btn-icon-only text-dark d-flex justify-content-center" href="#"
