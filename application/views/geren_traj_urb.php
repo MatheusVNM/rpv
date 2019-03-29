@@ -17,12 +17,13 @@ $this->load->view("header2");
                 </a>
             </div>
         </div>
-        <div class="card-body ">
-            <div class="tableParaExistentes col-md-12">
+        <div class="card-body">
+            <input type="text" class="form-control" placeholder="Filtrar"/>
+            <div class="overflow-auto mt-2" style="max-height: 75vh" >
                 <table class="table table-striped table-bordered table-hover align-items-center table-flush">
-                    <thead class="thead-light">
+                    <thead>
                     <tr>
-                        <th>Cidade</th>
+                        <th>ID</th>
                         <th>Ponto de Partida</th>
                         <th>Tempo Médio</th>
                         <th>Hora Inicial</th>
@@ -33,7 +34,7 @@ $this->load->view("header2");
                     </thead>
                     <tbody>
                     <tr>
-                        <td>Alegrete</td>
+                        <td>00001</td>
                         <td>Terminal 1</td>
                         <td>1h</td>
                         <td>8:00H</td>
@@ -58,12 +59,21 @@ $this->load->view("header2");
         </div>
     </div>
 </div>
+
+
+
+
 <div class="row col-md-10 d-flex justify-content-end my-1">
     <div>
         <button type="button" class="btn btn-success ">Salvar</button>
         <button type="button" class="btn btn-danger ">Cancelar</button>
     </div>
 </div>
+
+
+
+
+
 
 
 <!-- Body end -->

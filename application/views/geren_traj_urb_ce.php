@@ -11,107 +11,267 @@ $this->load->view("header2");
 ?>
 
 <!-- Body init -->
-<div class='container pb-5'>
-    <div class="col-md-7">
-        <div class="infoTrajUrb card">
-            <div class="card-header border-0">
-                <h4 class="mb-0">Informações do Trajeto</h4>
+<div class='container col-md-12 pb-5'>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="infoTrajUrb card">
+                <div class="card-header">
+                    <h4 class="mb-0">Informações do Trajeto</h4>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <label for="TempoMédioPerc">Tempo médio de percurso:
+                            <input type="time" class="form-control" id="usr"></label><br>
+                        <label for="hrInicial">Hora Inicial:
+                            <input type="time" class="form-control" id="usr"></label><br>
+                        <label for="hrFinal">Hora Final:
+                            <input type="time" class="form-control" id="usr"></label><br>
+                        <label for="status">Status:
+                            <select class="form-control" id="sel1">
+                                <option>Ativo</option>
+                                <option>Desativado</option>
+                            </select></label>
+                        <label for="tarifas"> Tarifa:
+                            <select class="form-control" id="sel1">
+                                <option>300</option>
+                            </select></label>
+                        <div class="custom-file my-3">
+                            <input type="file" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" for="customFile">Selecione a Concessão</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer"></div>
             </div>
-            <div class="card-body">
-                <form>
-                    <label for="TempoMédioPerc">Tempo médio de percurso:</label>
-                    <input type="time" class="form-control" id="usr">
-                    <label for="hrInicial">Hora Inicial:</label>
-                    <input type="time" class="form-control" id="usr">
-                    <label for="hrFinal">Hora Final:</label>
-                    <input type="time" class="form-control" id="usr">
-                    <label for="status">Status:</label>
-                    <select class="form-control" id="sel1">
-                        <option>Ativo</option>
-                        <option>Desativado</option>
-                    </select>
-                    <div class="custom-file my-3">
-                        <input type="file" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile">Selecione a Concessão</label>
+            <div class="card mt-2">
+                <div class="card-header">
+                    <h4 class="mb-0">Informações da Parada</h4>
+                </div>
+                <div class="card-body">
+                    <label for="Parada">Parada:
+                        <input disabled type="text" class="form-control" value="Av. Ibirapuitã, Avestruz"/></label>
+                    <label for="ProxParada">Proxima parada:
+                        <input disabled type="text" class="form-control" value="Av. Ibirapuitã, 124"/></label>
+                    <label for="ProxParada">Tempo até a próxima:
+                        <input type="text" class="form-control"/></label>
+                    <label for="ProxParada">Hora de chegada na parada:
+                        <input type="text" class="form-control"/></label>
+                    <div class="row d-flex justify-content-end mx-1">
+                        <div>
+                            <button type="button" class="btn btn-success ">Finalizar</button>
+                            <button type="button" class="btn btn-info ">Adicionar</button>
+
+                        </div>
                     </div>
-                </form>
+                </div>
+                <div class="card-footer"></div>
             </div>
         </div>
 
+        <div class="possParadas col-md-7" style="padding-right: 30px">
+            <div class="card">
+                <div class="card-header"><h4 class="mb-0">Possiveis Paradas</h4></div>
+                <div class="card-body" >
+                    <input type="text" class="form-control" placeholder="Filtrar"/>
+                    <div class="overflow-auto mt-2" style="max-height: 75vh" >
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Primeira Parada</th>
+                                <th scope="col">Próxima Parada</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row"></th>
+                                <td>Av. Ibirapuitã, 124</td>
+                                <td>
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                        Selecionar Parada
+                                    </label>
+                                </td>
+                                <td>
+                                    <button class="btn btn-info">Selecionar como proxima parada</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"></th>
+                                <td>Av. Ibirapuitã, 1312312</td>
+                                <td>
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                        Selecionar Parada
+                                    </label>
+                                </td>
+                                <td>
+                                    <button class="btn btn-info">Selecionar como proxima parada</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"></th>
+                                <td>Av. Ibirapuitã, 1312312</td>
+                                <td>
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                        Selecionar Parada
+                                    </label>
+                                </td>
+                                <td>
+                                    <button class="btn btn-info">Selecionar como proxima parada</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"></th>
+                                <td>Av. Ibirapuitã, 1312312</td>
+                                <td>
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                        Selecionar Parada
+                                    </label>
+                                </td>
+                                <td>
+                                    <button class="btn btn-info">Selecionar como proxima parada</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"></th>
+                                <td>Av. Ibirapuitã, 1312312</td>
+                                <td>
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                        Selecionar Parada
+                                    </label>
+                                </td>
+                                <td>
+                                    <button class="btn btn-info">Selecionar como proxima parada</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"></th>
+                                <td>Av. Ibirapuitã, 1312312</td>
+                                <td>
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                        Selecionar Parada
+                                    </label>
+                                </td>
+                                <td>
+                                    <button class="btn btn-info">Selecionar como proxima parada</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"></th>
+                                <td>Av. Ibirapuitã, 1312312</td>
+                                <td>
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                        Selecionar Parada
+                                    </label>
+                                </td>
+                                <td>
+                                    <button class="btn btn-info">Selecionar como proxima parada</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"></th>
+                                <td>Av. Ibirapuitã, 12412314</td>
+                                <td>
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                        Selecionar Parada
+                                    </label>
+                                </td>
+                                <td>
+                                    <button class="btn btn-info">Selecionar como proxima parada</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"></th>
+                                <td>Av. Ibirapuitã, q341124</td>
+                                <td>
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                        Selecionar Parada
+                                    </label>
+                                </td>
+                                <td>
+                                    <button class="btn btn-info">Selecionar como proxima parada</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"></th>
+                                <td>Av. Ibirapuitã, Avestruz</td>
+                                <td>
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                        Selecionar Parada
+                                    </label>
+                                </td>
+                                <td>
+                                    <button class="btn btn-info">Selecionar como proxima parada</button>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer"></div>
+            </div>
+        </div>
     </div>
 
-
-    <div class="col-md-10 my-lg-5" >
+    <div class="col-md-12 my-lg-3" style="padding-left: 0">
         <div class="card">
-            <div class="card-header border-0">
-                <h4 class="mb-0">Possiveis Paradas</h4>
-            </div>
-            <div class="card-body ">
-                <div class="tableParaExistentes col-md-12">
-                    <table class="tableGerenTrajUrb table table-striped table-bordered table-hover">
+            <div class="card-header"><h4 class="mb-0">Possiveis Paradas</h4></div>
+            <div class="card-body">
+                <input type="text" class="form-control" placeholder="Filtrar"/>
+                <div class="overflow-auto" style="height: 30vh">
+                    <table class="table table-striped table-bordered table-hover">
                         <thead>
                         <tr>
+                            <th scope="col"></th>
                             <th>Rua</th>
                             <th>Número</th>
                             <th>Bairro</th>
+                            <th>Próxima Parada</th>
+                            <th>Tempo até a Próxima</th>
+                            <th>Hora de Chegada</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
+                            <td></td>
                             <td>Maxímiliano Marinho</td>
                             <td>493</td>
                             <td>Vera Cruz</td>
+                            <td>Bairro Macedo
+                            <td>30min
+                            </td>
+                            <td>00:30
+                            </td>
                         </tr>
                         </tbody>
                     </table>
-                    <div class="d-flex justify-content-end">
-                        <button type="button" class="btn btn-dark">Adicionar Parada</button>
-                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-danger">Excluir</button>
                 </div>
             </div>
-        </div>
-
-    </div>
-
-    <div class="col-md-10 my-lg-3">
-        <div class="card" >
-            <div class="card-header border-0" >
-                <h4 class="mb-0">Paradas deste trajeto</h4>
-            </div>
-            <div class="card-body ">
-                <div class="tableParaExistentes col-md-12">
-                    <table class="tableGerenTrajUrb table table-striped table-bordered table-hover">
-                        <thead>
-                        <tr>
-                            <th>Rua</th>
-                            <th>Número</th>
-                            <th>Bairro</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Maxímiliano Marinho</td>
-                            <td>493</td>
-                            <td>Vera Cruz</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div class="d-flex justify-content-end">
-                        <button type="button" class="btn btn-danger">Excluir</button>
-                    </div>
-                </div>
-            </div>
+            <div class="card-footer"></div>
         </div>
     </div>
-    <div class="row col-md-10 d-flex justify-content-end">
+    <div class="row col-md-12 d-flex justify-content-end">
         <div>
             <button type="button" class="btn btn-success ">Salvar</button>
             <button type="button" class="btn btn-danger ">Cancelar</button>
+
         </div>
     </div>
 </div>
-
-
 
 <script>
     // Add the following code if you want the name of the file appear on select
