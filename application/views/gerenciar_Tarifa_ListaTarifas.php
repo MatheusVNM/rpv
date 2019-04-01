@@ -5,7 +5,7 @@ $this->load->view("header2");
 ?>
 
 <!-- Body init -->
-<h2 class="text-center">Lista de Trajetos</h2>
+<h2 class="text-center">Lista de Tarifas</h2>
 <table class="table table-hover">
     <thead>
         <tr>

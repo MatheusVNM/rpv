@@ -378,3 +378,15 @@ h5 {
 .hvr-sweep-to-right::before {
 	background: #3c4851 !important;
 }
+#opcoesConcessaoExcluir:hover{
+	background-color: rgb(204, 41, 0);
+	color: white;
+	cursor: pointer;
+}
+#opcoesConcessaoEditar:hover{
+	background-color: rgb(51, 153, 255);
+	color: white;
+	cursor: pointer;
+}
+
+
