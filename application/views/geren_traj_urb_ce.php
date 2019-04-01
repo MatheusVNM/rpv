@@ -11,7 +11,6 @@ $this->load->view("header2");
 ?>
 
 <!-- Body init -->
-<div class='container col-md-12 pb-5'>
     <div class="row">
         <div class="col-md-5">
             <div class="infoTrajUrb card">
@@ -21,10 +20,6 @@ $this->load->view("header2");
                 <div class="card-body">
                     <form>
                         <label for="TempoMédioPerc">Tempo médio de percurso:
-                            <input type="time" class="form-control" id="usr"></label><br>
-                        <label for="hrInicial">Hora Inicial:
-                            <input type="time" class="form-control" id="usr"></label><br>
-                        <label for="hrFinal">Hora Final:
                             <input type="time" class="form-control" id="usr"></label><br>
                         <label for="status">Status:
                             <select class="form-control" id="sel1">
@@ -68,16 +63,15 @@ $this->load->view("header2");
             </div>
         </div>
 
-        <div class="possParadas col-md-7" style="padding-right: 30px">
+        <div class="possParadas col-md-7">
             <div class="card">
                 <div class="card-header"><h4 class="mb-0">Possiveis Paradas</h4></div>
-                <div class="card-body" >
+                <div class="card-body">
                     <input type="text" class="form-control" placeholder="Filtrar"/>
-                    <div class="overflow-auto mt-2" style="max-height: 75vh" >
+                    <div class="overflow-auto mt-2" style="max-height: 75vh">
                         <table class="table table-striped table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th scope="col"></th>
                                 <th scope="col">Nome</th>
                                 <th scope="col">Primeira Parada</th>
                                 <th scope="col">Próxima Parada</th>
@@ -85,7 +79,6 @@ $this->load->view("header2");
                             </thead>
                             <tbody>
                             <tr>
-                                <th scope="row"></th>
                                 <td>Av. Ibirapuitã, 124</td>
                                 <td>
                                     <label class="btn btn-secondary">
@@ -98,7 +91,6 @@ $this->load->view("header2");
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row"></th>
                                 <td>Av. Ibirapuitã, 1312312</td>
                                 <td>
                                     <label class="btn btn-secondary">
@@ -111,7 +103,6 @@ $this->load->view("header2");
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row"></th>
                                 <td>Av. Ibirapuitã, 1312312</td>
                                 <td>
                                     <label class="btn btn-secondary">
@@ -124,7 +115,6 @@ $this->load->view("header2");
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row"></th>
                                 <td>Av. Ibirapuitã, 1312312</td>
                                 <td>
                                     <label class="btn btn-secondary">
@@ -137,7 +127,6 @@ $this->load->view("header2");
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row"></th>
                                 <td>Av. Ibirapuitã, 1312312</td>
                                 <td>
                                     <label class="btn btn-secondary">
@@ -150,7 +139,7 @@ $this->load->view("header2");
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row"></th>
+
                                 <td>Av. Ibirapuitã, 1312312</td>
                                 <td>
                                     <label class="btn btn-secondary">
@@ -163,7 +152,6 @@ $this->load->view("header2");
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row"></th>
                                 <td>Av. Ibirapuitã, 1312312</td>
                                 <td>
                                     <label class="btn btn-secondary">
@@ -176,7 +164,6 @@ $this->load->view("header2");
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row"></th>
                                 <td>Av. Ibirapuitã, 12412314</td>
                                 <td>
                                     <label class="btn btn-secondary">
@@ -189,7 +176,6 @@ $this->load->view("header2");
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row"></th>
                                 <td>Av. Ibirapuitã, q341124</td>
                                 <td>
                                     <label class="btn btn-secondary">
@@ -202,7 +188,6 @@ $this->load->view("header2");
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row"></th>
                                 <td>Av. Ibirapuitã, Avestruz</td>
                                 <td>
                                     <label class="btn btn-secondary">
@@ -233,45 +218,51 @@ $this->load->view("header2");
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th scope="col"></th>
                             <th>Rua</th>
                             <th>Número</th>
                             <th>Bairro</th>
                             <th>Próxima Parada</th>
                             <th>Tempo até a Próxima</th>
                             <th>Hora de Chegada</th>
+                            <th>Ações</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td></td>
                             <td>Maxímiliano Marinho</td>
                             <td>493</td>
                             <td>Vera Cruz</td>
-                            <td>Bairro Macedo
-                            <td>30min
-                            </td>
-                            <td>00:30
-                            </td>
+                            <td>Bairro Macedo</td>
+                            <td>30min</td>
+                            <td>00:30</td>
+                                <td class="text-right">
+                                <a class="btn btn-sm btn-icon-only text-dark d-flex justify-content-center" href="#"
+                                   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-arrow">
+                                    <a class="dropdown-item" href="#">Excluir</a>
+                                </div></td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="d-flex justify-content-end">
-                    <button type="button" class="btn btn-danger">Excluir</button>
                 </div>
             </div>
             <div class="card-footer"></div>
         </div>
     </div>
-    <div class="row col-md-12 d-flex justify-content-end">
+
+
+    <div class="row col-md-12 d-flex justify-content-end mt-3 mb-4">
         <div>
             <button type="button" class="btn btn-success ">Salvar</button>
             <button type="button" class="btn btn-danger ">Cancelar</button>
 
         </div>
     </div>
-</div>
+
 
 <script>
     // Add the following code if you want the name of the file appear on select
