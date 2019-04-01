@@ -256,9 +256,8 @@
 	--black: #000000;
 	--white: #ffffff;
 }
-body{
-	font-family: helvetica arial sans-serif;
-}
+
+
 .top-header {
 	background: #3c4851 !important;
 }
@@ -283,6 +282,7 @@ body{
 }
 
 body {
+	font-family: Helvetica, Arial sans-serif;
 	overflow-x: hidden;
 }
 
@@ -337,13 +337,7 @@ body {
 	color: #000 !important;
 }
 
-h5 {
-	font-family: Helvetica, Arial, sans-serif;
-}
-.trajetos_exist h3, h4, h5{
-  font-family: Helvetica, Arial, sans-serif;
 
-}
 .divTitulo, .tableParaExistentes, .tableParaAtuais {
   margin-left: 0;
   padding: 0;
