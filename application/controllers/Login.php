@@ -1,0 +1,83 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+
+class Login extends CI_Controller
+{
+  function __construct()
+  {
+    parent::__construct();
+    $this->load->model('login_model');
+  }
+
+
+  function auth()
+  {
+    $email    = $this->input->post('email', true);
+    $password = md5($this->input->post('password', true));
+    $tipo = $this->input->post('tipoUsuario', true);
+    $validate = $this->login_model->validate($email, $password, $tipo);
+
+    // if($validate->num_rows() > 0){
+    if (sizeof($validate) > 0) {
+
+      //$data  = $validate->row_array();
+      $data = $validate;
+      $name  = $data['user_name'];
+      $email = $data['user_email'];
+      $level = $data['user_level'];
+      $sesdata = array(
+        'username'  => $name,
+        'email'     => $email,
+        'level'     => $level,
+        'logged_in' => true
+      );
+      $this->session->set_userdata($sesdata);
+
+      // cliente
+      // adm
+      // admLocal
+      // secretario
+      // contador
+      // rh
+      if ($level === 'cliente') {
+        echo '<br><br><div style="font-size: 16pt; background: #f55; padding: 10px; border-radius: 16px;" >Logged as role: cliente. Hello, ' . $name . '. Your email is: ' . $email . '</div>';
+        redirect('pager/cliente');
+      
+      } elseif ($level === 'adm') {
+        echo '<br><br><div style="font-size: 16pt; background: #f55; padding: 10px; border-radius: 16px;" >Logged as role: adm. Hello, ' . $name . '. Your email is: ' . $email . '</div>';
+        redirect('pager/dashboardAdm');
+      
+      } elseif ($level === 'admlocal') {
+        echo '<br><br><div style="font-size: 16pt; background: #f55; padding: 10px; border-radius: 16px;" >Logged as role: admLocal. Hello, ' . $name . '. Your email is: ' . $email . '</div>';
+        redirect('pager/dashboardAdmLocal');
+
+      } elseif ($level === 'secretario') {
+        echo '<br><br><div style="font-size: 16pt; background: #f55; padding: 10px; border-radius: 16px;" >Logged as role: secretario. Hello, ' . $name . '. Your email is: ' . $email . '</div>';
+        redirect('pager/dashboardSecretario');
+
+      } elseif ($level === 'contador') {
+        echo '<br><br><div style="font-size: 16pt; background: #f55; padding: 10px; border-radius: 16px;" >Logged as role: contador. Hello, ' . $name . '. Your email is: ' . $email . '</div>';
+        redirect('pager/dashboardContador');
+
+      } elseif ($level === 'rh') {
+        echo '<br><br><div style="font-size: 16pt; background: #f55; padding: 10px; border-radius: 16px;" >Logged as role: rh. Hello, ' . $name . '. Your email is: ' . $email . '</div>';
+        redirect('pager/dashboardrh');
+
+      } else {
+        echo $level;
+        echo "HACKER";
+      }
+    } else {
+      echo $this->session->set_flashdata('msg', 'Username or Password is Wrong');
+      echo 'Login Error';
+      // redirect('login');
+    }
+  }
+
+  function logout()
+  {
+    $this->session->sess_destroy();
+    redirect('');
+  }
+}
