@@ -131,7 +131,7 @@ $this->load->helper('url');
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <!-- <button type="button" form="loginForm" class="btn btn-primary" type="submit">Entrar</button> -->
-                    <?= form_submit('mysubmit', 'Submit Post!', 'class="btn btn-primary"'); ?>
+                    <?= form_submit('mysubmit', 'Entrar', 'class="btn btn-primary"'); ?>
                 </div>
                 <?= form_close() ?>
             </div>

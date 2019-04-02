@@ -5,103 +5,58 @@ $this->load->view("header2");
 ?>
 
 <!-- Body init -->
+
+<?= form_open('tarifas/create') ?>
 <div class="container-fluid flex-shrink-1 d-flex justify-content-left">
-    <div class="col-sm-4">
+    <div class="col-sm-5 ml-md-auto">
         <div class="card">
             <div class="card-body">
                 <form>
                     <div class="form-group">
                         <div class="col-auto">
                             <label for="exampleFormControlInput1">Nome do Administrador:</label>
-                            <input type="text" class="form-control" disabled id="exampleFormControlInput1"
-                                placeholder="Paulo Soares">
+                            <input type="text" class="form-control" disabled id="exampleFormControlInput1" value=" <?= $this->session->userdata('username') ?>">
+
                         </div>
                     </div>
                     <div class="col-auto">
                         <div class="form-group">
                             <label for="exampleFormControlInput1">CPF:</label>
-                            <input type="text" class="form-control" disabled id="exampleFormControlInput1"
-                                placeholder="201.514.880-63">
+                            <input type="text" class="form-control" disabled id="exampleFormControlInput1" value=" <?= $this->session->userdata('cpf') ?>">
+
                         </div>
                     </div>
                     <div class="col-auto">
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Identidade:</label>
-                            <input type="text" class="form-control" disabled id="exampleFormControlInput1"
-                                placeholder="19.999.933-8">
+                            <input type="text" class="form-control" disabled id="exampleFormControlInput1" value=" <?= $this->session->userdata('identidade') ?>">
                         </div>
                     </div>
                     <div class="col-auto">
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Data de Criação:</label>
-                            <input type="date" class="form-control" disabled id="exampleFormControlInput1"
-                                placeholder="">
+                            <input type="date" class="form-control" disabled id="exampleFormControlInput1" value="<?= date('Y-m-d'); ?>">
                         </div>
                     </div>
                     <div class="col-auto">
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Hora de Criação:</label>
-                            <input type="time" class="form-control" disabled id="exampleFormControlInput1"
-                                placeholder="">
+                            <input type="time" class="form-control" disabled id="exampleFormControlInput1" placeholder="">
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <div class="col-sm-4">
-        <div class="card">
-            <div class="card-body">
-                <form>
-                    <div class="col-auto">
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Buscar Trajeto:<i
-                                    class="fa fa-search ml-2"></i></label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1"
-                                placeholder="Consultar...">
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Distância da rota (Em km):</label>
-                            <input type="email" class="form-control" disabled id="exampleFormControlInput1"
-                                placeholder="300">
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Horário de Início:</label>
-                            <input type="time" class="form-control" disabled id="exampleFormControlInput1"
-                                placeholder="">
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Horário de Final:</label>
-                            <input type="time" class="form-control" disabled id="exampleFormControlInput1"
-                                placeholder="">
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Documento de Concessão:</label>
-                            <input type="text" class="form-control" disabled id="exampleFormControlInput1"
-                                placeholder="19.999.933-8">
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
+
+    <div class="col-sm-5 mr-md-auto">
         <div class="card">
             <div class="card-body">
                 <form>
                     <div class="col-auto">
                         <div class="form-group ">
                             <label for="exampleFormControlInput1">Nro do Contrato com a prefeitura:</label>
-                            <input type="email" class="form-control " id="exampleFormControlInput1"
-                                placeholder="51565245">
+                            <input type="email" class="form-control " id="exampleFormControlInput1" placeholder="51565245">
                         </div>
                     </div>
                     <div class="col-auto">
@@ -117,8 +72,7 @@ $this->load->view("header2");
                     <div class="col-auto">
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Data vigencia do contrato:</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1"
-                                placeholder="10/05/2006 - 10/05/2007">
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="10/05/2006 - 10/05/2007">
                         </div>
                     </div>
                     <form>
@@ -135,16 +89,17 @@ $this->load->view("header2");
             </div>
         </div>
         <div class="row pt-3 justify-content-end">
-            <button class="btn btn-success">
+            <button type="submit" class="btn btn-success text-light">
                 Salvar
             </button>
-            <button class="btn btn-danger mx-2">
+            <a class="btn btn-danger mx-2 text-light" href="<?= site_url('dashboard/tarifas') ?>">
                 Cancelar
-            </button>
+            </a>
         </div>
     </div>
 </div>
+<?= form_close() ?>
 <!-- Body end -->
 <?php
 $this->load->view("footer2.php")
-?>
+?> 

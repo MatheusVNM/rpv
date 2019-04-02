@@ -2,9 +2,9 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 $this->load->helper('url');
 
-if($this->session->userdata('logged_in')!==true || $this->session->userdata('level')==='cliente' )
+if ($this->session->userdata('logged_in') !== true || $this->session->userdata('level') === 'cliente')
     redirect('')
-?>
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -97,16 +97,16 @@ if($this->session->userdata('logged_in')!==true || $this->session->userdata('lev
                 <div class="navbar-collapse collapse w-100 order-1 dual-collapse mt-lg-0 mt-sm-3 ">
                     <ul class="navbar-nav ml-auto">
                         <li class="dropdown shownav-item text-light d-flex align-center ml-3">
-                                <a href="#" class="nav-link d-flex row  " role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-user-circle fa-2x my-auto"></i>
-                                    <div class="px-2 py-1">
-                                        <?= $this->session->userdata('username') ?>
-                                    </div>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="<?= site_url('logout'); ?>">Sair</a>
+                            <a href="#" class="nav-link d-flex row  " role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user-circle fa-2x my-auto"></i>
+                                <div class="px-2 py-1">
+                                    <?= $this->session->userdata('username') ?>
                                 </div>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="<?= site_url('logout'); ?>">Sair</a>
+                            </div>
 
 
                             <!-- <a href="#" class="nav-link d-flex row">
@@ -122,4 +122,4 @@ if($this->session->userdata('logged_in')!==true || $this->session->userdata('lev
                     <i id="navbar-collapse-icon" class="fa fa-arrow-circle-down" id="navbar-toggler-btn"></i>
                 </button>
             </nav>
-            <div class="container-fluid pt-3 overflow-auto h-100 flex-shrink-1"> 
+            <div class="container-fluid pt-3 overflow-auto h-100 flex-shrink-1">
