@@ -14,7 +14,7 @@ $this->load->view("header2");
     </div>
     <div class="mx-auto my-3">
         <h4 class="text-center"><b>Gerenciar Categorias</b><Br><b>de Passageiros</b></h4>
-
+    
         <h4 class="text-center text-logo-color"><b><br>Deficientes</b></h4>
     </div>
 
