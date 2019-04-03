@@ -7,7 +7,7 @@ $this->load->view("header2");
 <!-- Body init -->
 <h2 class="text-center">Lista de Concessões de Trajetos</h2>
 <button type="button" class="btn btn-success btn-circle" data-toggle="modal" data-target="#addConcessaoModal">
-    <i class="fa fa-plus-circle" title="Adicionar nova concessão"></i>
+    <i class="fa fa-plus-circle" data-toggle="tooltip" data-placement="bottom" title="Adicione uma nova concessão."></i>
 </button>
 <table class="table table-hover">
     <thead>
@@ -128,6 +128,16 @@ $this->load->view("header2");
         </div>
     </div>
 </div>
+
+<!--Script area -->
+<script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.3.1.min.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
+
+<script>
+$(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
 <!-- Body end -->
 <?php
 $this->load->view("footer2.php")
