@@ -384,3 +384,13 @@ body {
 
 }
 
+.text-logo-color{
+	color: #5c81bc !important;
+}
+
+
+.bg-logo-color{
+	background: #5c81bc !important;
+	color: var(--white)
+}
+
