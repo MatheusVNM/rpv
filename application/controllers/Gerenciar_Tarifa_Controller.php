@@ -14,7 +14,7 @@ class Gerenciar_Tarifa_Controller extends CI_Controller
     {
 
         $data['tarifas'] = $this->tarifa_model->getTarifas();
-
+        $data['seila'] = 'foo';
 
         $this->load->view('gerenciar_tarifa/gerenciar_Tarifa_Opcao', $data);
     }
