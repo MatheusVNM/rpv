@@ -6,6 +6,9 @@ $this->load->view("header2");
 
 <!-- Body init -->
 <h2 class="text-center">Lista de Concessões de Trajetos</h2>
+<button type="button" class="btn btn-success btn-circle" data-toggle="modal" data-target="#addConcessaoModal">
+    <i class="fa fa-plus-circle" title="Adicionar nova concessão"></i>
+</button>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -25,12 +28,17 @@ $this->load->view("header2");
             <td>Alegrete</td>
             <td>Vigente</td>
             <td>
-                <button type="button" class="btn btn-default btn-sm" title="Atulizar arquivo"
+                <button type="button" class="btn btn-default btn-sm" title="Editar concessão"
                     id="opcoesConcessaoEditar">
-                    <span class="hvr-icon fa fa-refresh mr-1"></span> Atualizar
+                    <span class="hvr-icon fa fa-edit mr-1"></span> Editar
                 </button>
                 <label>/</label>
-                <button type="button" class="btn btn-default btn-sm" title="Excluir arquivo"
+                <button type="button" class="btn btn-default btn-sm" title="Download do documento de concessão"
+                    id="opcoesConcessaoDownload">
+                    <span class="hvr-icon fa fa-download mr-1"></span>Download
+                </button>
+                <label>/</label>
+                <button type="button" class="btn btn-default btn-sm" title="Excluir concessão"
                     id="opcoesConcessaoExcluir">
                     <span class="hvr-icon fa fa-trash mr-1"></span>Excluir
                 </button>
@@ -43,12 +51,17 @@ $this->load->view("header2");
             <td>Alegrete</td>
             <td>Cancelado</td>
             <td>
-                <button type="button" class="btn btn-default btn-sm" title="Atulizar arquivo"
-                    id="opcoesConcessaoEditar" disabled>
-                    <span class="hvr-icon fa fa-refresh mr-1"></span> Atualizar
+                <button type="button" class="btn btn-default btn-sm" title="Editar concessão" id="opcoesConcessaoEditar"
+                    disabled>
+                    <span class="hvr-icon fa fa-edit mr-1"></span> Editar
                 </button>
                 <label>/</label>
-                <button type="button" class="btn btn-default btn-sm" title="Excluir arquivo"
+                <button type="button" class="btn btn-default btn-sm" title="Download do documento de concessão"
+                    id="opcoesConcessaoDownload">
+                    <span class="hvr-icon fa fa-download mr-1"></span>Download
+                </button>
+                <label>/</label>
+                <button type="button" class="btn btn-default btn-sm" title="Excluir concessão"
                     id="opcoesConcessaoExcluir">
                     <span class="hvr-icon fa fa-trash mr-1"></span> Excluir
                 </button>
@@ -61,12 +74,17 @@ $this->load->view("header2");
             <td>Alegrete</td>
             <td>Cancelado</td>
             <td>
-                <button type="button" class="btn btn-default btn-sm" title="Atulizar arquivo"
-                    id="opcoesConcessaoEditar" disabled>
-                    <span class="hvr-icon fa fa-refresh mr-1"></span> Atualizar
+                <button type="button" class="btn btn-default btn-sm" title="Editar concessão" id="opcoesConcessaoEditar"
+                    disabled>
+                    <span class="hvr-icon fa fa-edit mr-1"></span> Editar
                 </button>
                 <label>/</label>
-                <button type="button" class="btn btn-default btn-sm" title="Excluir arquivo"
+                <button type="button" class="btn btn-default btn-sm" title="Download do documento de concessão"
+                    id="opcoesConcessaoDownload">
+                    <span class="hvr-icon fa fa-download mr-1"></span>Download
+                </button>
+                <label>/</label>
+                <button type="button" class="btn btn-default btn-sm" title="Excluir concessão"
                     id="opcoesConcessaoExcluir">
                     <span class="hvr-icon fa fa-trash mr-1"></span> Excluir
                 </button>
@@ -74,6 +92,42 @@ $this->load->view("header2");
         </tr>
     </tbody>
 </table>
+<!-- Modal -->
+<div class="modal fade" id="addConcessaoModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Adicionar uma nova concessão.</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form-row align-items-center">
+                    <div class="form-group col-md-6">
+                        <label for="exampleFormControlInput1">Protocolo da Concessão</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputStatus">Status</label>
+                        <select id="inputStatus" class="form-control">
+                            <option selected>Vigente</option>
+                            <option>Cancelado</option>
+                        </select>
+                    </div>
+                    <div class="custom-file col-md-8 mx-1">
+                        <input type="file" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Documento de Concessão</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Body end -->
 <?php
 $this->load->view("footer2.php")

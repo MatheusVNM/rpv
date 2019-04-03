@@ -39,7 +39,7 @@ $this->load->helper('url');
 
 <body>
 
-    <div class="d-flex position-fixed w-100" id="wrapper">
+    <div class="d-flex w-100" id="wrapper">
 
         <!-- Sidebar -->
         <div class="navbar-dark border-right sidebar shown" id="sidebar-wrapper">
