@@ -10,24 +10,26 @@ $this->load->view("header2");
 
 
     <div class="mx-auto">
-        <i class="fa fa-group fa-5x mt-3 text-primary"></i>
+        <i class="fa fa-group fa-5x mt-3 text-logo-color"></i>
     </div>
     <div class="mx-auto my-3">
         <h4 class="text-center"><b>Gerenciar Categorias</b><Br><b>de Passageiros</b></h4>
     </div>
 
     <ul class="list-group">
-        <li class="list-group-item "><i class="hrv-icon fa fa-book mr-1 "></i>Estudantes<i class="hrv-icon fa fa-edit mr-1 d-flex justify-content-end align-items-center"></i></li>
-        <li class="list-group-item">Idosos</li>
-        <li class="list-group-item"><i class="hrv-icon fa fa-child mr-1 "></i>Crianças</li>
-        <li class="list-group-item"><i class="hrv-icon fa fa-wheelchair mr-1 "></i>Deficientes</li>
+        <li class="list-group-item font-weight-bold"><i class="hrv-icon fa fa-2x fa-book mr-2 "></i>Estudantes<i
+                class="fa fa-edit float-right mr-1 fa-2x"></i></li>
+        <li class="list-group-item font-weight-bold"><i class='fa-male fa fa-2x mr-2'></i>Idosos<i class="fa fa-edit float-right mr-1 fa-2x"></i></li>
+        <li class="list-group-item font-weight-bold"><i class="hrv-icon fa fa-2x fa-child mr-2 "></i>Crianças<i
+                class="fa fa-edit float-right mr-1 fa-2x"></i></li>
+        <li class="list-group-item font-weight-bold"><i class="hrv-icon fa fa-2x fa-wheelchair mr-1 "></i>Deficientes<i
+                class="fa fa-edit float-right mr-1 fa-2x"></i></li>
 
     </ul>
 </div>
 <div class="mx-auto row pt-3 justify-content-end">
-    <button class="btn btn-primary h-100-left"><span class="fa fa-plus-circle mr-2 h-100"></span><span
+    <button class="btn btn-success h-100-left"><span class="fa fa-plus-circle mr-2 h-100"></span><span
             class="h-100 text-wrap">
-
             Adicionar Categoria
         </span>
     </button>

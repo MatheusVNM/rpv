@@ -110,12 +110,13 @@ $this->load->helper('url');
                 </div>
                 <?= form_open('login/auth', 'id="loginForm"'); ?>
                 <div class="modal-body">
+                    <?= $this->session->flashdata('loginerror') ?> </p>
                     <label for="tipoUsuario">Tipo de Usuário:</label>
 
                     <select class="form-control mb-2" id="tipoUsuario" name="tipoUsuario">
                         <option value="cliente">Cliente</option>
                         <option value="adm">Administrador</option>
-                        <option value="admLocal">Administrador Local</option>
+                        <option value="admlocal">Administrador Local</option>
                         <option value="secretario">Secretário</option>
                         <option value="contador">Contador</option>
                         <option value="rh">Gerente de RH</option>
