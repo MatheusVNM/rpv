@@ -5,10 +5,13 @@ $this->load->view("header2");
 ?>
 
 <!-- Body init -->
+
 <h2 class="text-center">Lista de Concessões de Trajetos</h2>
-<button type="button" class="btn btn-success btn-circle" data-toggle="modal" data-target="#addConcessaoModal">
+<button type="button" class="btn btn-success btn-circle mx-4" data-toggle="modal" data-target="#addConcessaoModal">
     <i class="fa fa-plus-circle" data-toggle="tooltip" data-placement="bottom" title="Adicione uma nova concessão."></i>
 </button>
+
+<!-- Table init -->
 <table class="table table-hover">
     <thead>
         <tr>
@@ -92,7 +95,9 @@ $this->load->view("header2");
         </tr>
     </tbody>
 </table>
-<!-- Modal -->
+<!-- Table end -->
+
+<!-- Modal init-->
 <div class="modal fade" id="addConcessaoModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -128,16 +133,21 @@ $this->load->view("header2");
         </div>
     </div>
 </div>
+<!-- Modal End -->
 
-<!--Script area -->
+<!-- Script init -->
 <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.3.1.min.js"); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
 
 <script>
 $(function() {
     $('[data-toggle="tooltip"]').tooltip();
+    $('.alert').alert();
 });
 </script>
+<!-- Script end -->
+
+
 <!-- Body end -->
 <?php
 $this->load->view("footer2.php")
