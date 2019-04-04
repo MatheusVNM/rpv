@@ -1,77 +1,7 @@
 <?php
 class Tarifa_model extends CI_Model
 {
-    var $tarifas = array(
-        0 => array(
-            'tarifa_id' => 0,
-            'tarifa_codigo' => 'TF001',
-            'tarifa_nome' => 'Tarifa Simples',
-            'tarifa_ultimaatt' => '21/07/2017',
-            'tarifa_status' => 'Vigente',
-            'tarifas'
-        ),
-        1 => array(
-            'tarifa_id' => 1,
-            'tarifa_codigo' => 'TF002',
-            'tarifa_nome' => 'Tarifa Interior',
-            'tarifa_ultimaatt' => '14/09/2018',
-            'tarifa_status' => 'Vingente',
-        ),
-        2 => array(
-            'tarifa_id' => 2,
-            'tarifa_codigo' => 'TF003',
-            'tarifa_nome' => 'Tarifa BR',
-            'tarifa_ultimaatt' => '17/01/2012',
-            'tarifa_status' => 'Não Vigente',
-        )
-    );
-
-    var $valores = array(
-        0 => array(
-            'valores_id_tarifa' => 0,
-            'valores_data_homolgacao' => '27/11/2012',
-            'valores_is_vigente' => false,
-            'valores_valor' => 1.5,
-            'anexo' => 'dir'
-        ),
-        2 => array(
-            'valores_id_tarifa' => 0,
-            'valores_data_homolgacao' => '27/11/2013',
-            'valores_is_vigente' => false,
-            'valores_valor' => 2.1,
-            'anexo' => 'dir'
-        ),
-        3 => array(
-            'valores_id_tarifa' => 0,
-            'valores_data_homolgacao' => '27/11/2014',
-            'valores_is_vigente' => false,
-            'valores_valor' => 2.5,
-            'anexo' => 'dir'
-        ),
-
-
-        4 => array(
-            'valores_id_tarifa' => 0,
-            'valores_data_homolgacao' => '21/07/2017',
-            'valores_is_vigente' => true,
-            'valores_valor' => 2.7,
-            'anexo' => 'dir'
-        ),
-        5 => array(
-            'valores_id_tarifa' => 1,
-            'valores_data_homolgacao' => '14/09/2018',
-            'valores_is_vigente' => true,
-            'valores_valor' => 4,
-            'anexo' => 'dir'
-        ),
-        6 => array(
-            'valores_id_tarifa' => 2,
-            'valores_data_homolgacao' => '17/01/2012',
-            'valores_is_vigente' => false,
-            'valores_valor' => 5,
-            'anexo' => 'dir'
-        )
-    );
+    
 
     function getTarifas()
     {
@@ -98,7 +28,7 @@ class Tarifa_model extends CI_Model
         $where = array('valores_id_tarifa' => $id, 'valores_is_vigente' => true);
         $values = $this->db->get_where('valorestarifa', $where)->result_array();
         if (sizeof($values) === 0) {
-            $this->db->where('valores_id_tarifa', $id);
+            // $this->db->where('valores_id_tarifa', $id);
             $this->db->select('*');
             $where = array('valores_id_tarifa' => $id);
             $this->db->limit(1);
@@ -110,7 +40,67 @@ class Tarifa_model extends CI_Model
         return $values[0];
     }
 
-    function updateTarifa(){
-        echo 'ok';
+    function updateTarifa($id, $valor, $dataHomologacao){
+        $data = array(
+            'valores_is_vigente'=>false,
+        );
+    
+    $this->db->where('valores_id_tarifa', $id);
+    $this->db->update('valorestarifa', $data);
+    
+    $resultUpload=   $this->uploadFile();
+    if($resultUpload['success']){
+
+        $uploadedDownloadDir =$resultUpload['path'];
+        
+        $data = array(
+            'valores_id_tarifa' => $id,
+            'valores_data_homologacao' => $dataHomologacao,
+            'valores_is_vigente' => true,
+            'valores_valor' => $valor,
+            'valores_anexo' => $uploadedDownloadDir
+        );
+        
+        $this->db->insert('valorestarifa', $data);
+
+        return true  ;
+    }else{
+        return false;
     }
+    }
+
+    
+    private function uploadFile(){
+
+    // set path to store uploaded files
+    $config['upload_path'] = realpath(FCPATH.'files');
+
+    $new_name = str_replace('.pdf','',$_FILES["concessao"]['name']).md5(time()).'.pdf';
+    $config['file_name'] = $new_name;
+    // set allowed file types
+    $config['allowed_types'] = 'pdf';
+    // set upload limit, set 0 for no limit
+    $config['max_size']    = 0;
+
+    // load upload library with custom config settings
+    $this->load->library('upload', $config);
+
+     // if upload failed , display errors
+    if (!$this->upload->do_upload('concessao'))
+    {
+        $data['success'] = false;
+        $this->session->set_flashdata('error', $this->upload->display_errors());
+        return $data;
+     }
+    else
+    {
+        $data['success'] = true;
+            $path = str_replace($this->upload->data()['file_path'],base_url('/files/'), $this->upload->data()['full_path']);
+         $data['path']=$path;
+    }
+return $data;
+        
+
+    }   
+
 }

@@ -46,7 +46,7 @@ class Login extends CI_Controller
         echo '<br><br><div style="font-size: 16pt; background: #f55; padding: 10px; border-radius: 16px;" >Logged as role: cliente. Hello, ' . $name . '. Your email is: ' . $email . '</div>';
         redirect('pager/cliente');
       } elseif ($level === 'adm') {
-        echo '<br><br><div style="font-size: 16pt; background: #f55; padding: 10px; border-radius: 16px;" >Logged as role: adm. Hello, ' . $name . '. Your email is: ' . $email . '</div>';
+        echo '<br><br><div style="fo  nt-size: 16pt; background: #f55; padding: 10px; border-radius: 16px;" >Logged as role: adm. Hello, ' . $name . '. Your email is: ' . $email . '</div>';
         redirect('pager/dashboardAdm');
       } elseif ($level === 'admlocal') {
         echo '<br><br><div style="font-size: 16pt; background: #f55; padding: 10px; border-radius: 16px;" >Logged as role: admLocal. Hello, ' . $name . '. Your email is: ' . $email . '</div>';

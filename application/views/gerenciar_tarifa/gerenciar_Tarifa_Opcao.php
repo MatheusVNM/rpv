@@ -6,14 +6,9 @@ $this->load->view("header2");
 
 <!-- Body init -->
 
-<?php 
-if (isset($sucessocadastro))
-    echo $sucessocadastro;
-if (isset($sucessoatt))
-    echo $sucessoatt;
-if (isset($error))
-    echo $error;
-?>
+<?= $this->session->flashdata('error'); ?>
+<?= $this->session->flashdata('success'); ?>
+
 <h2 class="text-center">Tarifas</h2>
 
 <div class="text-right my-2"><a href="<?= site_url('dashboard/tarifas/cadastrar') ?>" class="btn btn-info"><i class="fa fa-plus-circle mr-1"></i>Nova Tarifa</a></div>
