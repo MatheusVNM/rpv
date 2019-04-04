@@ -62,6 +62,8 @@ $route['tarifas/create'] = 'gerenciar_tarifa_controller/catastrarNovaTarifa';
 $route['dashboard/tarifas/editar'] = 'gerenciar_tarifa_controller/editarTarifa';
 $route['dashboard/tarifas'] = 'gerenciar_tarifa_controller';
 $route['dashboard/tarifas/cadastrar'] = 'gerenciar_tarifa_controller/cadastrartarifaview';
+
+
 // $route['dashboard/tarifas/listar'] = 'gerenciar_tarifa_controller/listartarifasview';
 // $route['dashboard/tarifas/listar'] = 'gerenciar_tarifa_controller/listartarifasview';
 
