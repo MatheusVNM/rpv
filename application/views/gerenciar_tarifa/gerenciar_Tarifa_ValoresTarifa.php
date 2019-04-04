@@ -12,31 +12,33 @@ $this->load->view("header2");
         <div class="card-header">
             Novo valor da Tarifa
         </div>
-    <?= form_open('tarifas/update')?> 
-            <div class="card-body">
-                <div class="form-group">
-                    <label for="valor">Valor da Tarifa</label>
-                    <input name="valor" id="valor" class=" form-control" type="number" step="0.01" value="<?= $tarifaAtual['valores_valor'] ?>">
-                </div>
-                <div class="form-group ">
-                    <label for="">Data</label>
-                    <input name="data" id="data" class="form-control" type="text" disabled value="<?= date('d/m/y') ?>" />
-                </div>
-                <div class="form-group">
-                    <label for="consessao">Consessão</label>
-                    <div class=" custom-file">
-                        <input type="file" class="custom-file-input" id="consessao" required>
-                        <label class="custom-file-label" for="consessao">Escolha um arquivo</label>
-                        <div class="invalid-feedback">Example invalid custom file feedback</div>
-                    </div>
-                </div>
+        <?= form_open('tarifas/update') ?>
 
+        <?= form_hidden('id', $tarifaAtual['valores_id_tarifa']); ?>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="valor">Valor da Tarifa</label>
+                <input name="valor" id="valor" class=" form-control" type="number" step="0.01" value="<?= $tarifaAtual['valores_valor'] ?>">
             </div>
-            <div class="card-footer">
+            <div class="form-group ">
+                <label for="">Data</label>
+                <input name="data" id="data" class="form-control" type="text" disabled value="<?= date('d/m/y') ?>" />
+            </div>
+            <div class="form-group">
+                <label for="consessao">Consessão</label>
+                <div class=" custom-file">
+                    <input type="file" class="custom-file-input" id="consessao" name="concessao"required>
+                    <label class="custom-file-label" for="consessao">Escolha um arquivo</label>
+                    <div class="invalid-feedback">Example invalid custom file feedback</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-footer">
             <div class="text-right">
                 <button class="btn btn-success">Confirmar</button>
             </div>
-            </div>
+        </div>
         </form>
     </div>
 
@@ -52,19 +54,19 @@ $this->load->view("header2");
     </thead>
     <tbody>
         <?php foreach ($valores as $valor) : ?>
-        <tr class="">
-            <td><?= $valor['valores_valor'] ?></td>
-            <td><?= $valor['valores_data_homolgacao'] ?></td>
-            <td><?php if ($valor['valores_is_vigente'] == true)
-                    echo "Vigente";
-                else echo "Não Vigente";
-                ?></td>
-            <td><?= $valor['anexo'] ?></td>
-        </tr>
-        <?php endforeach; ?>
+                                                                                                            <tr class="">
+                                                                                                                <td><?= $valor['valores_valor'] ?></td>
+                                                                                                            <td><?= $valor['valores_data_homologacao'] ?></td>
+                                                                                                            <td><?php if ($valor['valores_is_vigente'] == true)
+                                                                                                                echo "Vigente";
+                                                                                                            else echo "Não Vigente";
+                                                                                                            ?></td>
+                                                                                                            <td><?= $valor['valores_anexo'] ?></td>
+                                                                                                            </tr>
+                                                                                                                                                                                                            <?php endforeach; ?>
     </tbody>
 </table>
 <!-- Body end -->
 <?php
-$this->load->view("footer2.php")
-?> 
+                                                                                                        $this->load->view("footer2.php")
+                                                                                                        ?>

@@ -37,7 +37,9 @@ if (isset($error))
             <th scope="row"><?= $tarifa['tarifa_codigo'] ?></th>
             <td><?= $tarifa['tarifa_nome'] ?></td>
             <td><?= $tarifa['tarifa_ultimaatt'] ?></td>
-            <td><?= $tarifa['tarifa_status'] ?></td>
+            <td><?php if ($tarifa['tarifa_vigente'])
+            echo "Vigente";
+            else echo "Não Vigente"; ?></td>
             <td>
                 <?php $hidden = array('tarifa_id' => $tarifa['tarifa_id']);
                 echo form_open('dashboard/tarifas/editar', 'id="formEdit' . $tarifa['tarifa_id'] . '" class="d-none"', $hidden);

@@ -1,7 +1,7 @@
 <?php
 class Tarifa_model extends CI_Model
 {
-     var $tarifas = array(
+    var $tarifas = array(
         0 => array(
             'tarifa_id' => 0,
             'tarifa_codigo' => 'TF001',
@@ -26,7 +26,7 @@ class Tarifa_model extends CI_Model
         )
     );
 
-     var $valores = array(
+    var $valores = array(
         0 => array(
             'valores_id_tarifa' => 0,
             'valores_data_homolgacao' => '27/11/2012',
@@ -48,6 +48,8 @@ class Tarifa_model extends CI_Model
             'valores_valor' => 2.5,
             'anexo' => 'dir'
         ),
+
+
         4 => array(
             'valores_id_tarifa' => 0,
             'valores_data_homolgacao' => '21/07/2017',
@@ -73,20 +75,42 @@ class Tarifa_model extends CI_Model
 
     function getTarifas()
     {
-
-        return $this->tarifas;
+        $this->db->select('tarifa_id, tarifa_nome, tarifa_codigo, tarifa_vigente, max(valores_data_homologacao) as tarifa_ultimaatt');
+        $this->db->from('tarifa');
+        $this->db->join('valorestarifa', 'valorestarifa.valores_id_tarifa = tarifa.tarifa_id');
+        $this->db->group_by('tarifa_id');
+        // echo $this->db->get_compiled_select();
+        $result = $this->db->get()->result_array();
+        return $result;
     }
 
 
-    function getValoresTarifa($id=-1)
+    function getValoresTarifa($id = -1)
     {
-        $values = array();
-        foreach ($this->valores as $valor) {
-            if ($valor['valores_id_tarifa'] == $id) {
-                array_push($values, $valor);
-            }
-        }
+        $where = array('valores_id_tarifa' => $id);
 
+        $values = $this->db->get_where('valorestarifa', $where)->result_array();
         return $values;
+    }
+
+    function getValorTarifaVigente($id = -1)
+    {
+        $where = array('valores_id_tarifa' => $id, 'valores_is_vigente' => true);
+        $values = $this->db->get_where('valorestarifa', $where)->result_array();
+        if (sizeof($values) === 0) {
+            $this->db->where('valores_id_tarifa', $id);
+            $this->db->select('*');
+            $where = array('valores_id_tarifa' => $id);
+            $this->db->limit(1);
+            $this->db->order_by('valores_data_homologacao', 'desc');
+            $values = $this->db->get_where('valorestarifa', $where)->result_array();
+            // $this->db->from('valorestarifa');
+            
+        }
+        return $values[0];
+    }
+
+    function updateTarifa(){
+        echo 'ok';
     }
 }
