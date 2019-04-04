@@ -8,27 +8,29 @@
 
 class Parada_model extends CI_Model
 {
-    var $paradas = array(
-        0 => array(
-            'parada_id' => 1,
-            'parada_rua' => 'Cruz',
-            'parada_numero' => '3200',
-            'parada_bairro' => 'Macedo',
-        ),
-        1 => array(
-            'parada_id' => 2,
-            'parada_rua' => 'Maximiliano',
-            'parada_numero' => '302',
-            'parada_bairro' => 'Vera Cruz',
-        )
-    );
+    private $paradas;
 
     /**
      * @return array
      */
     public function getParadas()
     {
-        return $this->paradas;
+        $query = $this->db->get('paradas');
+        return $query->result_array();
     }
 
+    public function salvar($bairro, $rua, $nmr)
+    {
+        $data = array(
+            'parada_bairro' => $bairro,
+            'parada_rua' => $rua,
+            'parada_numero' => $nmr
+        );
+        $this->db->insert('paradas', $data);
+    }
+
+    public function delete($id)
+    {
+        $this->db->delete('paradas', array('id' => $id));
+    }
 }
