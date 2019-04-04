@@ -7,6 +7,14 @@ $this->load->view("header2");
 <!-- Body init -->
 
 <h2 class="text-center">Lista de Concessões de Trajetos</h2>
+<div class="form-group col-md-2">
+    <label for="inputStatus">Filtrar</label>
+    <select id="inputStatus" class="form-control">
+        <option>Vigente</option>
+        <option>Não vigente</option>
+        <option>Concessões excluidas</option>
+    </select>
+</div>
 <button type="button" class="btn btn-success btn-circle mx-4" data-toggle="modal" data-target="#addConcessaoModal">
     <i class="fa fa-plus-circle" data-toggle="tooltip" data-placement="bottom" title="Adicione uma nova concessão."></i>
 </button>
@@ -31,18 +39,18 @@ $this->load->view("header2");
             <td>Alegrete</td>
             <td>Vigente</td>
             <td>
-                <button type="button" class="btn btn-default btn-sm" title="Editar concessão"
-                    id="opcoesConcessaoEditar">
+                <button type="button" class="btn btn-default btn-sm" id="opcoesConcessaoEditar" data-toggle="tooltip"
+                    data-placement="top" title="Editar concessão">
                     <span class="hvr-icon fa fa-edit mr-1"></span> Editar
                 </button>
                 <label>/</label>
                 <button type="button" class="btn btn-default btn-sm" title="Download do documento de concessão"
-                    id="opcoesConcessaoDownload">
+                    id="opcoesConcessaoDownload" data-toggle="tooltip" data-placement="top">
                     <span class="hvr-icon fa fa-download mr-1"></span>Download
                 </button>
                 <label>/</label>
-                <button type="button" class="btn btn-default btn-sm" title="Excluir concessão"
-                    id="opcoesConcessaoExcluir">
+                <button type="button" class="btn btn-default btn-sm" title="Exclui concessão apenas da lista e não permanentemente."
+                    id="opcoesConcessaoExcluir" data-toggle="tooltip" data-placement="top">
                     <span class="hvr-icon fa fa-trash mr-1"></span>Excluir
                 </button>
             </td>
@@ -52,20 +60,17 @@ $this->load->view("header2");
             <td>545215</td>
             <td>2010</td>
             <td>Alegrete</td>
-            <td>Cancelado</td>
+            <td>Não vigente</td>
             <td>
-                <button type="button" class="btn btn-default btn-sm" title="Editar concessão" id="opcoesConcessaoEditar"
-                    disabled>
+                <button type="button" class="btn btn-default btn-sm" id="opcoesConcessaoEditar">
                     <span class="hvr-icon fa fa-edit mr-1"></span> Editar
                 </button>
                 <label>/</label>
-                <button type="button" class="btn btn-default btn-sm" title="Download do documento de concessão"
-                    id="opcoesConcessaoDownload">
+                <button type="button" class="btn btn-default btn-sm" id="opcoesConcessaoDownload">
                     <span class="hvr-icon fa fa-download mr-1"></span>Download
                 </button>
                 <label>/</label>
-                <button type="button" class="btn btn-default btn-sm" title="Excluir concessão"
-                    id="opcoesConcessaoExcluir">
+                <button type="button" class="btn btn-default btn-sm" id="opcoesConcessaoExcluir">
                     <span class="hvr-icon fa fa-trash mr-1"></span> Excluir
                 </button>
             </td>
@@ -75,20 +80,17 @@ $this->load->view("header2");
             <td>585263</td>
             <td>2001</td>
             <td>Alegrete</td>
-            <td>Cancelado</td>
+            <td>Não vigente</td>
             <td>
-                <button type="button" class="btn btn-default btn-sm" title="Editar concessão" id="opcoesConcessaoEditar"
-                    disabled>
+                <button type="button" class="btn btn-default btn-sm" title="Editar concessão" id="opcoesConcessaoEditar">
                     <span class="hvr-icon fa fa-edit mr-1"></span> Editar
                 </button>
                 <label>/</label>
-                <button type="button" class="btn btn-default btn-sm" title="Download do documento de concessão"
-                    id="opcoesConcessaoDownload">
+                <button type="button" class="btn btn-default btn-sm" id="opcoesConcessaoDownload">
                     <span class="hvr-icon fa fa-download mr-1"></span>Download
                 </button>
                 <label>/</label>
-                <button type="button" class="btn btn-default btn-sm" title="Excluir concessão"
-                    id="opcoesConcessaoExcluir">
+                <button type="button" class="btn btn-default btn-sm" id="opcoesConcessaoExcluir">
                     <span class="hvr-icon fa fa-trash mr-1"></span> Excluir
                 </button>
             </td>
@@ -117,7 +119,7 @@ $this->load->view("header2");
                         <label for="inputStatus">Status</label>
                         <select id="inputStatus" class="form-control">
                             <option selected>Vigente</option>
-                            <option>Cancelado</option>
+                            <option>Não vigente</option>
                         </select>
                     </div>
                     <div class="custom-file col-md-8 mx-1">
