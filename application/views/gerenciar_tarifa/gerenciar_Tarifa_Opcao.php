@@ -6,14 +6,9 @@ $this->load->view("header2");
 
 <!-- Body init -->
 
-<?php 
-if (isset($sucessocadastro))
-    echo $sucessocadastro;
-if (isset($sucessoatt))
-    echo $sucessoatt;
-if (isset($error))
-    echo $error;
-?>
+<?= $this->session->flashdata('error'); ?>
+<?= $this->session->flashdata('success'); ?>
+
 <h2 class="text-center">Tarifas</h2>
 
 <div class="text-right my-2"><a href="<?= site_url('dashboard/tarifas/cadastrar') ?>" class="btn btn-info"><i class="fa fa-plus-circle mr-1"></i>Nova Tarifa</a></div>
@@ -37,7 +32,9 @@ if (isset($error))
             <th scope="row"><?= $tarifa['tarifa_codigo'] ?></th>
             <td><?= $tarifa['tarifa_nome'] ?></td>
             <td><?= $tarifa['tarifa_ultimaatt'] ?></td>
-            <td><?= $tarifa['tarifa_status'] ?></td>
+            <td><?php if ($tarifa['tarifa_vigente'])
+            echo "Vigente";
+            else echo "Não Vigente"; ?></td>
             <td>
                 <?php $hidden = array('tarifa_id' => $tarifa['tarifa_id']);
                 echo form_open('dashboard/tarifas/editar', 'id="formEdit' . $tarifa['tarifa_id'] . '" class="d-none"', $hidden);

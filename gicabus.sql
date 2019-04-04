@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2019 at 02:39 AM
+-- Generation Time: Apr 04, 2019 at 08:40 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.27
 
@@ -31,13 +31,11 @@ USE `gicabus`;
 --
 
 DROP TABLE IF EXISTS `cidade`;
-CREATE TABLE IF NOT EXISTS `cidade` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `cidade` (
+  `id` int(11) NOT NULL,
   `nome` varchar(120) DEFAULT NULL,
-  `estado` int(5) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_Cidade_estado` (`estado`)
-) ENGINE=InnoDB AUTO_INCREMENT=5565 DEFAULT CHARSET=latin1;
+  `estado` int(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `cidade`
@@ -2110,7 +2108,8 @@ INSERT INTO `cidade` (`id`, `nome`, `estado`) VALUES
 (2064, 'Monte Sião', 11),
 (2065, 'Montes Claros', 11),
 (2066, 'Montezuma', 11),
-(2067, 'Morada Nova de Minas', 11),
+(2067, 'Morada Nova de Minas', 11);
+INSERT INTO `cidade` (`id`, `nome`, `estado`) VALUES
 (2068, 'Morro da Garça', 11),
 (2069, 'Morro do Pilar', 11),
 (2070, 'Munhoz', 11),
@@ -4019,7 +4018,8 @@ INSERT INTO `cidade` (`id`, `nome`, `estado`) VALUES
 (3973, 'Cristal do Sul', 23),
 (3974, 'Cruz Alta', 23),
 (3975, 'Cruzaltense', 23),
-(3976, 'Cruzeiro do Sul', 23),
+(3976, 'Cruzeiro do Sul', 23);
+INSERT INTO `cidade` (`id`, `nome`, `estado`) VALUES
 (3977, 'David Canabarro', 23),
 (3978, 'Derrubadas', 23),
 (3979, 'Dezesseis de Novembro', 23),
@@ -5616,12 +5616,11 @@ INSERT INTO `cidade` (`id`, `nome`, `estado`) VALUES
 --
 
 DROP TABLE IF EXISTS `estado`;
-CREATE TABLE IF NOT EXISTS `estado` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `estado` (
+  `id` int(11) NOT NULL,
   `nome` varchar(75) COLLATE utf8_bin DEFAULT NULL,
-  `uf` varchar(5) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `uf` varchar(5) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `estado`
@@ -5663,12 +5662,11 @@ INSERT INTO `estado` (`id`, `nome`, `uf`) VALUES
 --
 
 DROP TABLE IF EXISTS `paradas`;
-CREATE TABLE IF NOT EXISTS `paradas` (
-  `parada_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `paradas` (
+  `parada_id` int(11) NOT NULL,
   `parada_rua` varchar(255) COLLATE utf8_bin NOT NULL,
   `parada_numero` int(11) NOT NULL,
-  `parada_bairro` varchar(255) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`parada_id`)
+  `parada_bairro` varchar(255) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -5678,13 +5676,21 @@ CREATE TABLE IF NOT EXISTS `paradas` (
 --
 
 DROP TABLE IF EXISTS `tarifa`;
-CREATE TABLE IF NOT EXISTS `tarifa` (
-  `tarifa_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tarifa` (
+  `tarifa_id` int(11) NOT NULL,
   `tarifa_nome` varchar(255) COLLATE utf8_bin NOT NULL,
   `tarifa_codigo` varchar(10) COLLATE utf8_bin NOT NULL,
-  `tarifa_vigente` tinyint(1) NOT NULL,
-  PRIMARY KEY (`tarifa_id`)
+  `tarifa_vigente` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `tarifa`
+--
+
+INSERT INTO `tarifa` (`tarifa_id`, `tarifa_nome`, `tarifa_codigo`, `tarifa_vigente`) VALUES
+(1, 'Tarifa Simples', 'TF001', 1),
+(2, 'Tarifa Interior', 'TF002', 1),
+(3, 'Tarifa BR', 'TF003', 0);
 
 -- --------------------------------------------------------
 
@@ -5693,14 +5699,13 @@ CREATE TABLE IF NOT EXISTS `tarifa` (
 --
 
 DROP TABLE IF EXISTS `usuarios`;
-CREATE TABLE IF NOT EXISTS `usuarios` (
-  `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `usuarios` (
+  `user_id` int(10) UNSIGNED NOT NULL,
   `user_nome` varchar(255) COLLATE utf8_bin NOT NULL,
   `user_email` varchar(255) COLLATE utf8_bin NOT NULL,
   `user_password` varchar(255) COLLATE utf8_bin NOT NULL,
-  `user_level` varchar(20) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `user_level` varchar(20) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `usuarios`
@@ -5712,29 +5717,122 @@ INSERT INTO `usuarios` (`user_id`, `user_nome`, `user_email`, `user_password`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `valorestarifas`
+-- Table structure for table `valorestarifa`
 --
 
-DROP TABLE IF EXISTS `valorestarifas`;
-CREATE TABLE IF NOT EXISTS `valorestarifas` (
+DROP TABLE IF EXISTS `valorestarifa`;
+CREATE TABLE `valorestarifa` (
   `valores_id` int(11) NOT NULL,
   `valores_id_tarifa` int(11) NOT NULL,
-  `valores_data_homologacao` varchar(255) COLLATE utf8_bin NOT NULL,
+  `valores_data_homologacao` date NOT NULL,
   `valores_is_vigente` tinyint(1) NOT NULL,
   `valores_valor` decimal(5,2) NOT NULL,
-  `valores_anexo` varchar(255) COLLATE utf8_bin NOT NULL,
-  KEY `valores_id_tarifa` (`valores_id_tarifa`)
+  `valores_anexo` varchar(255) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `valorestarifa`
+--
+
+INSERT INTO `valorestarifa` (`valores_id`, `valores_id_tarifa`, `valores_data_homologacao`, `valores_is_vigente`, `valores_valor`, `valores_anexo`) VALUES
+(1, 1, '2012-11-27', 0, '1.50', 'https://localhost/rpv/files/comprovanteMatricula2f9de009e3602b8dd48d50cd501e5d8d.pdf'),
+(2, 1, '2013-11-27', 0, '2.10', 'https://localhost/rpv/files/comprovanteMatricula2f9de009e3602b8dd48d50cd501e5d8d.pdf'),
+(3, 1, '2014-11-27', 0, '2.50', 'https://localhost/rpv/files/comprovanteMatricula2f9de009e3602b8dd48d50cd501e5d8d.pdf'),
+(4, 1, '2017-07-21', 0, '2.70', 'https://localhost/rpv/files/comprovanteMatricula2f9de009e3602b8dd48d50cd501e5d8d.pdf'),
+(5, 2, '2018-09-14', 1, '4.00', 'https://localhost/rpv/files/comprovanteMatricula2f9de009e3602b8dd48d50cd501e5d8d.pdf'),
+(6, 3, '2012-01-17', 0, '5.00', 'https://localhost/rpv/files/comprovanteMatricula2f9de009e3602b8dd48d50cd501e5d8d.pdf');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `cidade`
+--
+ALTER TABLE `cidade`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_Cidade_estado` (`estado`);
+
+--
+-- Indexes for table `estado`
+--
+ALTER TABLE `estado`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `paradas`
+--
+ALTER TABLE `paradas`
+  ADD PRIMARY KEY (`parada_id`);
+
+--
+-- Indexes for table `tarifa`
+--
+ALTER TABLE `tarifa`
+  ADD PRIMARY KEY (`tarifa_id`);
+
+--
+-- Indexes for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`user_id`);
+
+--
+-- Indexes for table `valorestarifa`
+--
+ALTER TABLE `valorestarifa`
+  ADD PRIMARY KEY (`valores_id`),
+  ADD KEY `valores_id_tarifa` (`valores_id_tarifa`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `cidade`
+--
+ALTER TABLE `cidade`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5565;
+
+--
+-- AUTO_INCREMENT for table `estado`
+--
+ALTER TABLE `estado`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `paradas`
+--
+ALTER TABLE `paradas`
+  MODIFY `parada_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tarifa`
+--
+ALTER TABLE `tarifa`
+  MODIFY `tarifa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `valorestarifa`
+--
+ALTER TABLE `valorestarifa`
+  MODIFY `valores_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `valorestarifas`
+-- Constraints for table `valorestarifa`
 --
-ALTER TABLE `valorestarifas`
-  ADD CONSTRAINT `valorestarifas_ibfk_1` FOREIGN KEY (`valores_id_tarifa`) REFERENCES `tarifa` (`tarifa_id`);
+ALTER TABLE `valorestarifa`
+  ADD CONSTRAINT `valorestarifa_ibfk_1` FOREIGN KEY (`valores_id_tarifa`) REFERENCES `tarifa` (`tarifa_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
