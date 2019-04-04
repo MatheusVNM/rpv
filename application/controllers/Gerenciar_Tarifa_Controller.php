@@ -60,8 +60,36 @@ class Gerenciar_Tarifa_Controller extends CI_Controller
     public function catastrarNovaTarifa()
     {
         // $this->tarifa_model->create();
-        $this->session->set_flashdata('success' ,'<div class="alert alert-success m-2">FAKE: Tarifa cadastrada com sucesso</div>');
-        $this->index();
+
+        $this->form_validation->set_rules('valor', 'Valor', 'required');
+        $this->form_validation->set_rules('name', 'Nome', 'required');
+
+
+        if ($this->form_validation->run() !== false) {
+            $name  = $this->input->post('name', true);
+            $valor  = $this->input->post('valor', true);
+            $date  = date('Y-m-d');
+            
+            $result = $this->tarifa_model->createTarifa($name, $valor, $date );
+            print_r($result);
+            if($result['success']){
+               $this->session->set_flashdata('success' , '<div class="alert alert-success m-2">Tarifa cadastrada com sucesso</div>');
+                $this->index();
+            }else{
+                $this->session->set_flashdata('error' ,  '<div class="alert alert-danger mt-3 mx-auto">Erro ao cadastrar a tarifa: '.$result['error'].'</div>');
+                $this->catastrarNovaTarifa();                
+            }
+            
+        }else{
+            $this->session->set_flashdata('error' ,   '<div class="alert alert-danger mt-3 mx-auto">Erro ao cadastrar a tarifa: Algum campo ficou em branco</div>');
+            $this->catastrarNovaTarifa();                
+        }
+
+
+
+
+        // $this->session->set_flashdata('success' ,'<div class="alert alert-success m-2">FAKE: Tarifa cadastrada com sucesso</div>');
+        // $this->index();
     }
 
     public function atualizarValorTarifa()
@@ -85,7 +113,7 @@ class Gerenciar_Tarifa_Controller extends CI_Controller
             }
             
         }else{
-            $this->session->set_flashdata('error' ,   '<div class="alert alert-danger mt-3 mx-auto">Erro ao atualizar as tarifas: Algum campo ficou em branco</div>');
+            $this->session->set_flashdata('error' ,   '<div class="alert alert-danger mt-3 mx-auto">Erro ao atualizar as tarifas: Algum campo não foi preenchido corretamente</div>');
             $this->editarTarifa();                
         }
     }
