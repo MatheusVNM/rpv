@@ -64,9 +64,9 @@ class Tarifa_model extends CI_Model
 
             $this->db->insert('valorestarifa', $data);
 
-            return array(`success` => true);
+            return array('success' => true);
         } else {
-            return array(`success` => false, 'error' => $resultUpload['error']);
+            return array('success' => false, 'error' => $resultUpload['error']);
         }
     }
 
@@ -75,7 +75,7 @@ class Tarifa_model extends CI_Model
         $resultUpload =   $this->uploadFile('concessao');
         if ($resultUpload['success']) {
             $this->db->select('IFNULL(MAX(`tarifa_id`), 0) AS `maxid`', false);
-            $tarifa_codigo = sprintf('TF%03d', $this->db->get('tarifa', 1)->result_array()[0]['maxid']);
+            $tarifa_codigo = sprintf('TF%03d', ($this->db->get('tarifa', 1)->result_array()[0]['maxid']+1));
 
             $data = array(
                 'tarifa_nome' => $tarifa_nome,

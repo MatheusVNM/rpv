@@ -71,7 +71,6 @@ class Gerenciar_Tarifa_Controller extends CI_Controller
             $date  = date('Y-m-d');
             
             $result = $this->tarifa_model->createTarifa($name, $valor, $date );
-            print_r($result);
             if($result['success']){
                $this->session->set_flashdata('success' , '<div class="alert alert-success m-2">Tarifa cadastrada com sucesso</div>');
                 $this->index();
