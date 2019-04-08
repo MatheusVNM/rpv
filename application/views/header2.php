@@ -61,7 +61,7 @@ if ($this->session->userdata('logged_in') !== true || $this->session->userdata('
                 <?php elseif ($this->session->userdata('level') === 'admlocal') : ?>
 
                 <a href="<?= site_url('dashboard/tarifas') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-money mr-1"></i> Gerenciar Tarifas</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-road mr-1"></i> Gerenciar Trajetos Urbanos</a>
+                <a href="<?= site_url('dashboard/trajetos/urbanos') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-road mr-1"></i> Gerenciar Trajetos Urbanos</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-hand-paper-o mr-1"></i> Gerenciar Paradas</a>
 
                 <?php elseif ($this->session->userdata('level') === 'secretario') : ?>

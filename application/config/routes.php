@@ -64,6 +64,10 @@ $route['dashboard/tarifas'] = 'gerenciar_tarifa_controller';
 $route['dashboard/tarifas/cadastrar'] = 'gerenciar_tarifa_controller/cadastrartarifaview';
 
 
+
+$route['dashboard/trajetos/urbanos'] = 'gerenciar_trajetos_urbanos_controller';
+$route['dashboard/trajetos/urbanos/cadastrar'] = 'gerenciar_trajetos_urbanos_controller/cadastrarnovotrajeto';
+
 // $route['dashboard/tarifas/listar'] = 'gerenciar_tarifa_controller/listartarifasview';
 // $route['dashboard/tarifas/listar'] = 'gerenciar_tarifa_controller/listartarifasview';
 
