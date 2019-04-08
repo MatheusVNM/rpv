@@ -39,7 +39,7 @@ class Parada_model extends CI_Model
     public function save($bairro, $rua, $nmr)
     {
         $this->db->select('IFNULL(MAX(`parada_id`), 0) AS `maxid`', false);
-        $parada_codigo = sprintf('TF%03d', $this->db->get('paradas', 1)->result_array()[0]['maxid']);
+        $parada_codigo = sprintf('PR%03d', $this->db->get('paradas', 1)->result_array()[0]['maxid']);
         $data = array(
             'parada_status' => true,
             'parada_bairro' => $bairro,
