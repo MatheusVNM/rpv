@@ -7,7 +7,7 @@ $this->load->view("header2");
 <div class="trajetos_exist col-md-12">
     <div class="card">
         <div class="card-header border-0 d-flex justify-content-between">
-            <h3 class="mb-0 justify-content-center">Rotas Urbanas</h3>
+            <h3 class="mb-0 justify-content-center">Trajetos Urbanos</h3>
             <div>
                 <a class="btn text-dark btn-icon-only text-dark d-flex align-center" href="#" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -24,6 +24,7 @@ $this->load->view("header2");
                     <tr>
                         <th>ID</th>
                         <th>Ponto de Partida</th>
+                        <th>Ponto de Chegada</th>
                         <th>Tempo Médio</th>
                         <th>Status</th>
                         <th>Ações</th>
@@ -33,6 +34,7 @@ $this->load->view("header2");
                     <tr>
                         <td>00001</td>
                         <td>Terminal 1</td>
+                        <td>Centro</td>
                         <td>1h</td>
                         <td>Ativo</td>
                         <td>

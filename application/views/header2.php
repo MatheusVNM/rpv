@@ -1,7 +1,10 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 $this->load->helper('url');
-?>
+
+if ($this->session->userdata('logged_in') !== true || $this->session->userdata('level') === 'cliente')
+    redirect('')
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,13 +52,32 @@ $this->load->helper('url');
                 </div>
             </div>
             <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-home mr-1"></i> Home</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-money mr-1"></i> Gerenciar Tarifas</a>
+                <a href="<?= site_url('dashboard') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-home mr-1"></i> Home</a>
+
+                <?php if ($this->session->userdata('level') === 'adm') : ?>
+                <a href="#" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-group mr-1"></i> Gerenciar Categorias de Passageiros</a>
+
+
+                <?php elseif ($this->session->userdata('level') === 'admlocal') : ?>
+
+                <a href="<?= site_url('dashboard/tarifas') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-money mr-1"></i> Gerenciar Tarifas</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-road mr-1"></i> Gerenciar Trajetos Urbanos</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-hand-paper-o mr-1"></i> Gerenciar Paradas</a>
+
+                <?php elseif ($this->session->userdata('level') === 'secretario') : ?>
+                <a href="#" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-bus mr-1"></i> Gerenciar Registro de Frotas</a>
+
+                <?php endif; ?>
+
+                <!-- <a href="<?= site_url('tarifas') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-money mr-1"></i> Gerenciar Tarifas</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-road mr-1"></i> Gerenciar Trajetos Urbanos</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-hand-paper-o mr-1"></i> Gerenciar Paradas</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-bus mr-1"></i> Gerenciar Registro de Frotas</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-group mr-1"></i> Gerenciar Categorias de Passageiros</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-file mr-1"></i> Gerenciar Concessões de Trajetos</a>
+           -->
+
+
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -75,11 +97,25 @@ $this->load->helper('url');
                 </div>
                 <div class="navbar-collapse collapse w-100 order-1 dual-collapse mt-lg-0 mt-sm-3 ">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item text-light d-flex align-center ml-3">
-                            <a href="#" class="nav-link d-flex row">
-                            <i class="fa fa-user-circle fa-2x my-auto"></i>
-                                <div class="px-2 py-1">José Alencar</div>
+                        <li class="dropdown shownav-item text-light d-flex align-center ml-3">
+                            <a href="#" class="nav-link d-flex row  " role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user-circle fa-2x my-auto"></i>
+                                <div class="px-2 py-1">
+                                    <?= $this->session->userdata('username') ?>
+                                </div>
                             </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="<?= site_url('logout'); ?>">Sair</a>
+                            </div>
+
+
+                            <!-- <a href="#" class="nav-link d-flex row">
+                                <i class="fa fa-user-circle fa-2x my-auto"></i>
+                                <div class="px-2 py-1">
+                                    <?= $this->session->userdata('username') ?>
+                                </div>
+                            </a> -->
                         </li>
                     </ul>
                 </div>
@@ -87,4 +123,4 @@ $this->load->helper('url');
                     <i id="navbar-collapse-icon" class="fa fa-arrow-circle-down" id="navbar-toggler-btn"></i>
                 </button>
             </nav>
-            <div class="container-fluid pt-3 overflow-auto h-100 flex-shrink-1" > 
+            <div class="container-fluid pt-3 overflow-auto h-100 flex-shrink-1">
