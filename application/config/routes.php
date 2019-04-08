@@ -53,3 +53,18 @@ header('Access-Control-Allow-Origin: *');
 $route['default_controller'] = 'home';
 $route['translate_uri_dashes'] = FALSE;
 $route['view/(:any)'] = 'views/loadview/$1';
+
+$route['logout'] = 'login/logout';
+
+$route['dashboard'] = 'dashboard';
+$route['tarifas/update'] = 'gerenciar_tarifa_controller/atualizarValorTarifa';
+$route['tarifas/create'] = 'gerenciar_tarifa_controller/catastrarNovaTarifa';
+$route['dashboard/tarifas/editar'] = 'gerenciar_tarifa_controller/editarTarifa';
+$route['dashboard/tarifas'] = 'gerenciar_tarifa_controller';
+$route['dashboard/tarifas/cadastrar'] = 'gerenciar_tarifa_controller/cadastrartarifaview';
+
+
+// $route['dashboard/tarifas/listar'] = 'gerenciar_tarifa_controller/listartarifasview';
+// $route['dashboard/tarifas/listar'] = 'gerenciar_tarifa_controller/listartarifasview';
+
+// cadastrarTarifaView
