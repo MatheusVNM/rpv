@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-$id;
 
-class Paradas_Controller extends CI_Controller
+
+class Gerenciar_Paradas_Controller extends CI_Controller
 {
 
 
@@ -16,7 +16,7 @@ class Paradas_Controller extends CI_Controller
     public function index($data = array())
     {
         $data['paradas'] = $this->parada_model->getParadas();
-        $this->load->view('geren_paradas', $data);
+        $this->load->view('gerenciar_paradas', $data);
     }
 
     public function criarParada()
@@ -33,20 +33,20 @@ class Paradas_Controller extends CI_Controller
             $rua = $this->input->post('name_rua', true);
             $nmr = $this->input->post('name_nmr', true);
             $this->parada_model->save($bairro, $rua, $nmr);
-            redirect('paradas_controller');
+            redirect('gerenciar_paradas_controller');
         } else {
-            redirect('paradas_controller');
+            redirect('gerenciar_paradas_controller');
         }
 
 
     }
 
-    public function statusParada()
+    public function alterarStatusParada()
     {
         $id = $this->input->post('id', true);
         $data['parada'] = $this->parada_model->getParadaEspecifica($id);
         $this->parada_model->updateStatus($data['parada'][0]['parada_id'], $data['parada'][0]['parada_status'] );
-        redirect('paradas_controller');
+        redirect('gerenciar_paradas_controller');
 
 
 
@@ -56,7 +56,7 @@ class Paradas_Controller extends CI_Controller
     {
         $id = $this->input->post('id', true);
         $data['parada'] = $this->parada_model->getParadaEspecifica($id);
-        $this->load->view('geren_paradas_editar', $data);
+        $this->load->view('gerenciar_paradas_editar', $data);
     }
 
 
@@ -74,18 +74,13 @@ class Paradas_Controller extends CI_Controller
             $nmr = $this->input->post('name_nmr', true);
             $id = $this->input->post('id', true);
             $this->parada_model->update($id, $bairro, $rua, $nmr);
-            redirect('paradas_controller');
+            redirect('gerenciar_paradas_controller');
         } else {
-            redirect('paradas_controller');
+            redirect('gerenciar_paradas_controller');
         }
 
     }
 
-    public function cancelar()
-    {
-
-
-    }
 
 
 }

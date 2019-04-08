@@ -8,7 +8,7 @@ $this->load->view("header2");
     <div class="trajetos_exist col-md-12">
         <div class="card">
             <div class="card-header border-0 d-flex justify-content-between">
-                <h3 class="mb-0 justify-content-center">Categoria Urbanas</h3>
+                <h3 class="mb-0 justify-content-center">Paradas Urbanas</h3>
             </div>
             <div class="card-body">
                 <input id="id_form" name="name_form" type="text" class="form-control" placeholder="Filtrar"/>
@@ -18,23 +18,25 @@ $this->load->view("header2");
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Tipo de Veículo</th>
-                            <th>Preço por KM</th>
+                            <th>Bairro</th>
+                            <th>Rua/Avenida</th>
+                            <th>Número</th>
                             <th>Status</th>
                             <th>Ações</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($onibus as $row) : ?>
-                            <td><?= $row['catOnibus_codigo'] ?></td>
-                            <td><?= $row['catOnibus_bairro'] ?></td>
-                            <td><?= $row['catOnibus_rua'] ?></td>
-                            <td><?php if ($row['catOnibus_status'] == 1): echo "Ativa" ?>
-                            <?php elseif ($row['catOnibus_status'] == 0): echo "Inativa" ?>
+                        <?php foreach ($paradas as $row) : ?>
+                            <td><?= $row['parada_codigo'] ?></td>
+                            <td><?= $row['parada_bairro'] ?></td>
+                            <td><?= $row['parada_rua'] ?></td>
+                            <td><?= $row['parada_numero'] ?></td>
+                            <td><?php if ($row['parada_status'] == 1): echo "Ativa" ?>
+                            <?php elseif ($row['parada_status'] == 0): echo "Inativa" ?>
                                 </td>
                             <?php endif; ?>
                             <td>
-                                <?= form_open('paradas_controller\editarParada', 'class="d-none" id = "form_edit' . $row['parada_id'] . '"') ?>
+                                <?= form_open('gerenciar_paradas_controller\editarParada', 'class="d-none" id = "form_edit' . $row['parada_id'] . '"') ?>
                                 <?= form_hidden('id', $row['parada_id']) ?>
                                 <?= form_close(); ?>
 
@@ -42,7 +44,7 @@ $this->load->view("header2");
                                     <i class="fa fa-edit"></i>
                                 </button>
 
-                                <?= form_open('paradas_controller\statusParada', 'class="d-none" id = "form_active' . $row['parada_id'] . '"') ?>
+                                <?= form_open('gerenciar_paradas_controller\alterarStatusParada', 'class="d-none" id = "form_active' . $row['parada_id'] . '"') ?>
                                 <?= form_hidden('id', $row['parada_id']) ?>
                                 <?= form_close(); ?>
                                 <button form="form_active<?= $row['parada_id'] ?>" class="text-dark btn btn-hover">
@@ -77,7 +79,7 @@ $this->load->view("header2");
                         </button>
                     </div>
                     <div class="modal-body">
-                        <?= form_open('paradas_controller/criarParada', array('id' => 'paradas_form')) ?>
+                        <?= form_open('gerenciar_paradas_controller/criarParada', array('id' => 'paradas_form')) ?>
                         <div class="ml-3 mb-2">
                             <label for="bairro">Bairro:
                                 <input id="id_bairro" name="name_bairro" type=text class="form-control"></label><br>

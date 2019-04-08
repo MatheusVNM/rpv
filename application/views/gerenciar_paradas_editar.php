@@ -8,7 +8,7 @@ $this->load->view("header2");
             <h4 class="mb-0">Informações do Trajeto</h4>
         </div>
         <div class="card-body">
-            <?= form_open('paradas_controller/atualizarParada', array('id' => 'paradas_form')) ?>
+            <?= form_open('gerenciar_paradas_controller/atualizarParada', array('id' => 'paradas_form')) ?>
 
             <?= form_hidden('id', $parada[0]['parada_id']) ?>
             <label for="bairro">Bairro:
