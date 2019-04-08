@@ -22,12 +22,9 @@ class Gerenciar_Paradas_Controller extends CI_Controller
     public function criarParada()
     {
 
-        $this->form_validation->set_rules('name_bairro', 'Bairro', 'required|alpha_numeric_spaces', array('required' => 'Erro! O campo bairro é obrigatório',
-            'alpha_numeric_spaces' => 'Use apenas caractéres alpha númericos.'));
-        $this->form_validation->set_rules('name_rua', 'Rua', 'required|alpha_numeric_spaces', array('required' => 'Erro! O campo rua é obrigatório',
-            'alpha_numeric_spaces' => 'Use apenas caractéres alpha númericos.'));
-        $this->form_validation->set_rules('name_nmr', 'Rua', 'required|numeric', array('required' => 'Erro! O campo número é obrigatório',
-            'numeric' => 'Use apenas caractéres númericos.'));
+        $this->form_validation->set_rules('name_bairro', 'Bairro', 'required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('name_rua', 'Rua', 'required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('name_nmr', 'Rua', 'required|numeric');
         if ($this->form_validation->run() !== false) {
             $bairro = $this->input->post('name_bairro', true);
             $rua = $this->input->post('name_rua', true);
@@ -48,8 +45,6 @@ class Gerenciar_Paradas_Controller extends CI_Controller
         $this->parada_model->updateStatus($data['parada'][0]['parada_id'], $data['parada'][0]['parada_status'] );
         redirect('gerenciar_paradas_controller');
 
-
-
     }
 
     public function editarParada()
@@ -62,12 +57,9 @@ class Gerenciar_Paradas_Controller extends CI_Controller
 
     public function atualizarParada()
     {
-        $this->form_validation->set_rules('name_bairro', 'Bairro', 'required|alpha_numeric_spaces', array('required' => 'Erro! O campo bairro é obrigatório',
-            'alpha_numeric_spaces' => 'Use apenas caractéres alpha númericos.'));
-        $this->form_validation->set_rules('name_rua', 'Rua', 'required|alpha_numeric_spaces', array('required' => 'Erro! O campo rua é obrigatório',
-            'alpha_numeric_spaces' => 'Use apenas caractéres alpha númericos.'));
-        $this->form_validation->set_rules('name_nmr', 'Rua', 'required|numeric', array('required' => 'Erro! O campo número é obrigatório',
-            'numeric' => 'Use apenas caractéres númericos.'));
+        $this->form_validation->set_rules('name_bairro', 'Bairro', 'required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('name_rua', 'Rua', 'required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('name_nmr', 'Rua', 'required|numeric');
         if ($this->form_validation->run() !== false) {
             $bairro = $this->input->post('name_bairro', true);
             $rua = $this->input->post('name_rua', true);

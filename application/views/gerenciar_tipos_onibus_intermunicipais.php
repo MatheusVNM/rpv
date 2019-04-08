@@ -18,14 +18,14 @@ $this->load->view("header2");
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Tipo de Veículo</th>
+                            <th>Tipo de Ônibus</th>
                             <th>Preço por KM</th>
                             <th>Status</th>
                             <th>Ações</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($tipo_onibus as $row) : ?>
+                        <?php foreach ($cat_onibus as $row) : ?>
                             <td><?= $row['catOnibus_codigo'] ?></td>
                             <td><?= $row['catOnibus_nome'] ?></td>
                             <td><?= $row['catOnibus_precokm'] ?></td>
@@ -42,7 +42,7 @@ $this->load->view("header2");
                                     <i class="fa fa-edit"></i>
                                 </button>
 
-                                <?= form_open('paradas_controller\statusParada', 'class="d-none" id = "form_active' . $row['catOnibus_id'] . '"') ?>
+                                <?= form_open('gerenciar_tipos_onibus_controller\alterarStatusTipoOnibus', 'class="d-none" id = "form_active' . $row['catOnibus_id'] . '"') ?>
                                 <?= form_hidden('id', $row['catOnibus_id']) ?>
                                 <?= form_close(); ?>
                                 <button form="form_active<?= $row['catOnibus_id'] ?>" class="text-dark btn btn-hover">
@@ -80,7 +80,7 @@ $this->load->view("header2");
                         <?= form_open('gerenciar_tipos_onibus_controller/criarTipoOnibus', array('id' => 'tipoOnibus_form')) ?>
                         <div class="ml-3 mb-2">
                             <label for="bairro">Tipo Onibus:
-                                <input id="id_bairro" name="name_precokm" type=text class="form-control"></label><br>
+                                <input id="id_nome" name="name_nome" type=text class="form-control"></label><br>
                             <label for="numero">Preco por KM:
                                 <input id="id_precokm" name="name_precokm" type="text" class="form-control"></label><br>
                             <?= form_close() ?>

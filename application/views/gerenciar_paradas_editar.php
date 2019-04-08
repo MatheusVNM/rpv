@@ -4,21 +4,24 @@ $this->load->helper('url');
 $this->load->view("header2");
 ?>
     <div class="card col-md-5">
-        <div class="card-header">
+        <div class="modal-header">
             <h4 class="mb-0">Informações do Trajeto</h4>
         </div>
         <div class="card-body">
             <?= form_open('gerenciar_paradas_controller/atualizarParada', array('id' => 'paradas_form')) ?>
 
             <?= form_hidden('id', $parada[0]['parada_id']) ?>
-            <label for="bairro">Bairro:
-                <input id="id_bairro" name="name_bairro" type=text class="form-control" value="<?=$parada[0]['parada_bairro']?>"></label><br>
-            <label for="rua">Rua/Avenida:
-                <input id="id_rua" name="name_rua" type="text" class="form-control" value="<?=$parada[0]['parada_rua']?>"></label><br>
-            <label for="numero">Número:
-                <input id="id_nmr" name="name_nmr" type="text" class="form-control" value="<?=$parada[0]['parada_numero']?>"></label><br>
-            <?= form_close() ?>
-            <div class="card-footer d-flex justify-content-end">
+            <div class = "col-md-7 ml-0 mb-2 pl-0">
+            <label for="id_bairro" class="mb-1">Bairro:</label>
+                <input id="id_bairro" name="name_bairro" type=text class="form-control" value="<?=$parada[0]['parada_bairro']?>">
+            <label for="id_rua" class="mb-1">Rua/Avenida:</label>
+                <input id="id_rua" name="name_rua" type="text" class="form-control" value="<?=$parada[0]['parada_rua']?>">
+            <label for="id_nmr" class="mb-1">Número:</label>
+                <input id="id_nmr" name="name_nmr" type="text" class="form-control" value="<?=$parada[0]['parada_numero']?>">
+            </div>
+                <?= form_close() ?>
+
+            <div class="modal-footer d-flex justify-content-end pr-0">
                 <button type="button" class="btn btn-secondary mr-2">
                     Fechar
                 </button>
