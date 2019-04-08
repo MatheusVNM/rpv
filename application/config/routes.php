@@ -59,11 +59,15 @@ $route['logout'] = 'login/logout';
 $route['dashboard'] = 'dashboard';
 $route['tarifas/update'] = 'gerenciar_tarifa_controller/atualizarValorTarifa';
 $route['tarifas/create'] = 'gerenciar_tarifa_controller/catastrarNovaTarifa';
+
+$route['trajetos/urbanos/create'] = 'gerenciar_trajetos_urbanos_controller/createTrajeto';
+
 $route['dashboard/tarifas/editar'] = 'gerenciar_tarifa_controller/editarTarifa';
 $route['dashboard/tarifas'] = 'gerenciar_tarifa_controller';
 $route['dashboard/tarifas/cadastrar'] = 'gerenciar_tarifa_controller/cadastrartarifaview';
 
-
+$route['dashboard/paradas'] = 'gerenciar_paradas_controller';
+$route['dashboard/paradas/editar'] = 'gerenciar_paradas_controller/editarParada';
 
 $route['dashboard/trajetos/urbanos'] = 'gerenciar_trajetos_urbanos_controller';
 $route['dashboard/trajetos/urbanos/cadastrar'] = 'gerenciar_trajetos_urbanos_controller/cadastrarnovotrajeto';
