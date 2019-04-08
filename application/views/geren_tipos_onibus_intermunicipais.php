@@ -8,7 +8,7 @@ $this->load->view("header2");
     <div class="trajetos_exist col-md-12">
         <div class="card">
             <div class="card-header border-0 d-flex justify-content-between">
-                <h3 class="mb-0 justify-content-center">Paradas Urbanas</h3>
+                <h3 class="mb-0 justify-content-center">Categoria Urbanas</h3>
             </div>
             <div class="card-body">
                 <input id="id_form" name="name_form" type="text" class="form-control" placeholder="Filtrar"/>
@@ -18,21 +18,19 @@ $this->load->view("header2");
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Bairro</th>
-                            <th>Rua/Avenida</th>
-                            <th>Número</th>
+                            <th>Tipo de Veículo</th>
+                            <th>Preço por KM</th>
                             <th>Status</th>
                             <th>Ações</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($paradas as $row) : ?>
-                            <td><?= $row['parada_codigo'] ?></td>
-                            <td><?= $row['parada_bairro'] ?></td>
-                            <td><?= $row['parada_rua'] ?></td>
-                            <td><?= $row['parada_numero'] ?></td>
-                            <td><?php if ($row['parada_status'] == 1): echo "Ativa" ?>
-                            <?php elseif ($row['parada_status'] == 0): echo "Inativa" ?>
+                        <?php foreach ($onibus as $row) : ?>
+                            <td><?= $row['catOnibus_codigo'] ?></td>
+                            <td><?= $row['catOnibus_bairro'] ?></td>
+                            <td><?= $row['catOnibus_rua'] ?></td>
+                            <td><?php if ($row['catOnibus_status'] == 1): echo "Ativa" ?>
+                            <?php elseif ($row['catOnibus_status'] == 0): echo "Inativa" ?>
                                 </td>
                             <?php endif; ?>
                             <td>

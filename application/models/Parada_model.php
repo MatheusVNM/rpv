@@ -8,9 +8,9 @@
 
 class Parada_model extends CI_Model
 {
-    private $paradas;
 
-    /**
+
+    /** Retorna a paradas do banco de dados
      * @return array
      */
     public function getParadas()
@@ -19,18 +19,70 @@ class Parada_model extends CI_Model
         return $query->result_array();
     }
 
-    public function salvar($bairro, $rua, $nmr)
+    /** Retorna uma parada especifica de acordo com o id
+     * @param $id
+     * @return array
+     */
+    public function getParadaEspecifica($id)
+    {
+        $query = $this->db->get_where('paradas', array('parada_id' => $id));
+        return $query->result_array();
+    }
+
+    /** Salva informações de uma nova parada
+     * @param $bairro
+     * @param $rua
+     * @param $nmr
+     * @return void
+     */
+
+    public function save($bairro, $rua, $nmr)
+    {
+        $this->db->select('IFNULL(MAX(`parada_id`), 0) AS `maxid`', false);
+        $parada_codigo = sprintf('TF%03d', $this->db->get('paradas', 1)->result_array()[0]['maxid']);
+        $data = array(
+            'parada_status' => true,
+            'parada_bairro' => $bairro,
+            'parada_rua' => $rua,
+            'parada_numero' => $nmr,
+            'parada_codigo' => $parada_codigo
+        );
+        $this->db->insert('paradas', $data);
+
+    }
+
+    /** Atualiza parada que contem o id passado
+     * @param $id
+     * @param $bairro
+     * @param $rua
+     * @param $nmr
+     * @return void
+     */
+    public function update($id, $bairro, $rua, $nmr)
     {
         $data = array(
             'parada_bairro' => $bairro,
             'parada_rua' => $rua,
             'parada_numero' => $nmr
         );
-        $this->db->insert('paradas', $data);
+        $this->db->where('parada_id', $id);
+        $this->db->update('paradas', $data);
     }
 
-    public function delete($id)
+    /** Atualiza status para ativo ou inativo da parada com id passado.
+     * @param $id
+     * @param $status
+     * @return void
+     */
+    public function updateStatus($id, $status)
     {
-        $this->db->delete('paradas', array('id' => $id));
+        if ($status == 0) {
+            $status = 1;
+        } else {
+            $status = 0;
+        }
+        $this->db->where('parada_id', $id);
+        $this->db->update('paradas', array('parada_status' => $status));
     }
+
 }
