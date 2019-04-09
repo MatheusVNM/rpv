@@ -78,10 +78,33 @@ $this->load->view("header2");
                         </button>
                     </div>
                     <div class="modal-body">
-                        <?= form_open('gerenciar_categoria_onibus_controller/criarTipoOnibus', array('id' => 'tipoOnibus_form')) ?>
+                        <?= form_open('gerenciar_categoria_onibus_controller', array('id' => 'tipoOnibus_form')) ?>
                         <div class="col-md-6 ml-3 mb-2">
                             <label for="id_nome" class="mb-1">Tipo de Ônibus:</label>
                                 <input id="id_nome" name="name_nome" type=text class="form-control">
+                            <div class="invalid-feedback">
+                                Please choose a username.
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             <label for="id_precokm" class="mb-1">Preco por KM:</label>
                                 <input id="id_precokm" name="name_precokm" type="text" class="form-control">
                             <?= form_close() ?>
@@ -104,6 +127,28 @@ $this->load->view("header2");
             </div>
         </div>
     </div>
+
+    <script>
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+
+
 
     <!-- Body end -->
 <?php

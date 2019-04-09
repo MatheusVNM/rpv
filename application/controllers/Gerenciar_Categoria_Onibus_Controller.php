@@ -17,22 +17,22 @@ class Gerenciar_Categoria_Onibus_Controller extends CI_Controller
         $this->load->view('gerenciar_categoria_onibus_intermunicipais', $data);
     }
 
-    public function criarTipoOnibus()
-    {
-
-        $this->form_validation->set_rules('name_nome', 'Bairro', 'required');
-        $this->form_validation->set_rules('name_precokm', 'Rua', 'required|decimal');
-        if ($this->form_validation->run() !== false) {
-            $nome = $this->input->post('name_nome', true);
-            $precokm = $this->input->post('name_precokm', true);
-            $this->categoriaonibus_model->save($nome, $precokm);
-            $this->session->set_flashdata('success', '<div class="alert alert-success mt-3 mx-auto">Edição feita com sucesso</div>');
-            redirect('Gerenciar_Categoria_Onibus_Controller');
-        } else {
-            $this->session->set_flashdata('error', '<div class="alert alert-danger mt-3 mx-auto">Preencha o formulario corretamente</div>');
-            redirect('Gerenciar_Categoria_Onibus_Controller');
-        }
-    }
+//    public function criarTipoOnibus()
+//    {
+//
+//        $this->form_validation->set_rules('name_nome', 'Bairro', 'required');
+//        $this->form_validation->set_rules('name_precokm', 'Rua', 'required|decimal');
+//        if ($this->form_validation->run() !== false) {
+//            $nome = $this->input->post('name_nome', true);
+//            $precokm = $this->input->post('name_precokm', true);
+//            $this->categoriaonibus_model->save($nome, $precokm);
+//            $this->session->set_flashdata('success', '<div class="alert alert-success mt-3 mx-auto">Edição feita com sucesso</div>');
+//            redirect('Gerenciar_Categoria_Onibus_Controller');
+//        } else {
+//            $this->session->set_flashdata('error', '<div class="alert alert-danger mt-3 mx-auto">Preencha o formulario corretamente</div>');
+//            redirect('Gerenciar_Categoria_Onibus_Controller');
+//        }
+//    }
 
     public function alterarStatusTipoOnibus()
     {
