@@ -30,8 +30,10 @@ class Gerenciar_Paradas_Controller extends CI_Controller
             $rua = $this->input->post('name_rua', true);
             $nmr = $this->input->post('name_nmr', true);
             $this->parada_model->save($bairro, $rua, $nmr);
+            $this->session->set_flashdata('success', '<div class="alert alert-success mt-3 mx-auto">Criação feita com sucesso</div>');
             redirect('gerenciar_paradas_controller');
         } else {
+            $this->session->set_flashdata('error', '<div class="alert alert-danger mt-3 mx-auto">Preencha o formulario corretamente</div>');
             redirect('gerenciar_paradas_controller');
         }
 
@@ -42,7 +44,7 @@ class Gerenciar_Paradas_Controller extends CI_Controller
     {
         $id = $this->input->post('id', true);
         $data['parada'] = $this->parada_model->getParadaEspecifica($id);
-        $this->parada_model->updateStatus($data['parada'][0]['parada_id'], $data['parada'][0]['parada_status'] );
+        $this->parada_model->updateStatus($data['parada'][0]['parada_id'], $data['parada'][0]['parada_status']);
         redirect('gerenciar_paradas_controller');
 
     }
@@ -66,8 +68,10 @@ class Gerenciar_Paradas_Controller extends CI_Controller
             $nmr = $this->input->post('name_nmr', true);
             $id = $this->input->post('id', true);
             $this->parada_model->update($id, $bairro, $rua, $nmr);
+            $this->session->set_flashdata('success', '<div class="alert alert-success mt-3 mx-auto">Edição feita com sucesso</div>');
             redirect('gerenciar_paradas_controller');
         } else {
+            $this->session->set_flashdata('error', '<div class="alert alert-danger mt-3 mx-auto">Não foi possivel salvar a edição. Por favor preencha o formulario corretamente</div>');
             redirect('gerenciar_paradas_controller');
         }
 

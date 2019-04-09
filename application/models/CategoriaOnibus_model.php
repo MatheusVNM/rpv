@@ -14,6 +14,7 @@ class CategoriaOnibus_model extends CI_Model
         $query = $this->db->get('categoriaonibus');
         return $query->result_array();
     }
+
     public function getCatOnibusEspecifica($id)
     {
         $query = $this->db->get_where('categoriaonibus', array('catOnibus_id' => $id));
@@ -43,6 +44,16 @@ class CategoriaOnibus_model extends CI_Model
         }
         $this->db->where('catOnibus_id', $id);
         $this->db->update('categoriaonibus', array('catOnibus_status' => $status));
+    }
+
+    public function update($id, $nome, $precokm)
+    {
+        $data = array(
+            'catOnibus_nome' => $nome,
+            'catOnibus_precokm' => $precokm,
+        );
+        $this->db->where('catOnibus_id', $id);
+        $this->db->update('categoriaonibus', $data);
     }
 
 }

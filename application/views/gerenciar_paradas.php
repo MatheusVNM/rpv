@@ -3,6 +3,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $this->load->helper('url');
 $this->load->view("header2");
 ?>
+<?= $this->session->flashdata('error'); ?>
+<?= $this->session->flashdata('success'); ?>
+
     <!-- Body init -->
     <div class="row">
     <div class="trajetos_exist col-md-12">
