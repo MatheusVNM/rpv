@@ -80,13 +80,13 @@ $this->load->view("header2");
                     </div>
                     <div class="modal-body">
                         <?= form_open('gerenciar_paradas_controller/criarParada', array('id' => 'paradas_form')) ?>
-                        <div class="ml-3 mb-2">
-                            <label for="bairro">Bairro:
-                                <input id="id_bairro" name="name_bairro" type=text class="form-control"></label><br>
-                            <label for="rua">Rua/Avenida:
-                                <input id="id_rua" name="name_rua" type="text" class="form-control"></label><br>
-                            <label for="numero">Número:
-                                <input id="id_nmr" name="name_nmr" type="text" class="form-control"></label><br>
+                        <div class="col-md-7 ml-3 mb-2">
+                            <label for="id_bairro" class="mb-1">Bairro:</label>
+                                <input id="id_bairro" name="name_bairro" type=text class="form-control">
+                            <label for="id_rua" class="mb-1">Rua/Avenida:</label>
+                                <input id="id_rua" name="name_rua" type="text" class="form-control">
+                            <label for="id_nmr" class="mb-1">Número:</label>
+                                <input id="id_nmr" name="name_nmr" type="text" class="form-control">
                             <?= form_close() ?>
                         </div>
                         <div class="modal-footer">
