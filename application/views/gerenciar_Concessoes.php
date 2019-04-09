@@ -54,10 +54,10 @@ $this->load->view("header2");
                     <span class="hvr-icon fa fa-edit mr-1"></span> Editar
                 </button>
                 <label>/</label>
-                <button type="button" class="btn btn-default btn-sm" title="Download do documento de concessão"
-                    id="opcoesConcessaoDownload" data-toggle="tooltip" data-placement="top">
+                <a type="button" class="btn btn-default btn-sm" title="Download do documento de concessão"
+                    id="opcoesConcessaoDownload" data-toggle="tooltip" data-placement="top" href="<?= $concessao['anexo_Concessao']?>">
                     <span class="hvr-icon fa fa-download mr-1"></span>Download
-                </button>
+                </a>
                 <?php if(!$concessao['statusConcessao']) : ?>
                 <label>/</label>
                 <?php $hidden = array('concessao_id' => $concessao['id_Concessao']);
