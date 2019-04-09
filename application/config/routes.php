@@ -59,16 +59,10 @@ $route['logout'] = 'login/logout';
 $route['dashboard'] = 'dashboard';
 $route['tarifas/update'] = 'gerenciar_tarifa_controller/atualizarValorTarifa';
 $route['tarifas/create'] = 'gerenciar_tarifa_controller/catastrarNovaTarifa';
-
-$route['concessoes/create'] = 'gerenciar_concessoes_controller/createConcessao';
-$route['concessoes/update'] = 'gerenciar_concessoes_controller/updateConcessao';
-
-
 $route['dashboard/tarifas/editar'] = 'gerenciar_tarifa_controller/editarTarifa';
 $route['dashboard/tarifas'] = 'gerenciar_tarifa_controller';
 $route['dashboard/tarifas/cadastrar'] = 'gerenciar_tarifa_controller/cadastrartarifaview';
 
-$route['dashboard/concessoes'] = 'gerenciar_concessoes_controller';
 
 // $route['dashboard/tarifas/listar'] = 'gerenciar_tarifa_controller/listartarifasview';
 // $route['dashboard/tarifas/listar'] = 'gerenciar_tarifa_controller/listartarifasview';
