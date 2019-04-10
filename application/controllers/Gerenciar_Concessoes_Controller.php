@@ -11,6 +11,7 @@ class Gerenciar_Concessoes_Controller extends CI_Controller
 
     public function index($data = array()){
         $data['concessoes'] = $this->concessao_model->getConcessoes();
+        $data['concessoesExcluidas'] = $this->concessao_model->getConcessoesExcluidas();
         $this->load->view('gerenciar_Concessoes', $data);
     }
 
@@ -46,5 +47,8 @@ class Gerenciar_Concessoes_Controller extends CI_Controller
         $this->output->enable_profiler(true);
         $this->concessao_model->updateStatus($id, $status);
         redirect('dashboard/concessoes');
+    }
+    public function getExcluidas(){
+        $this->concessao_model->getConcessoesExcluidas();
     }
 }

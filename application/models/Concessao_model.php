@@ -2,6 +2,7 @@
 class Concessao_model extends CI_model{
     
     public function getConcessoes(){
+        $this->db->where('statusConcessao !=' , 2);
         $query = $this->db->get('concessao');
         return $query->result_array();
     }
@@ -65,5 +66,10 @@ class Concessao_model extends CI_model{
              $data['path'] = $path;
          }
          return $data;
+        }
+        public function getConcessoesExcluidas(){
+            $this->db->where('statusConcessao', 2);
+            $query = $this->db->get('concessao');
+            return $query->result_array();
         }
 }
