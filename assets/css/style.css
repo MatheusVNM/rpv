@@ -1,4 +1,8 @@
 :root {
+	--color-primary: #014289;
+	--color-secundary: #0570E8;
+	--color-accent: #009ac0;
+	
 	--red-lighten-5: #ffebee;
 	--red-lighten-4: #ffcdd2;
 	--red-lighten-3: #ef9a9a;
@@ -259,7 +263,8 @@
 
 
 .top-header {
-	background: #3c4851 !important;
+	/* background: #1d1e4f!important; */
+	background: var(--color-primary) !important;
 }
 .top-header .nav-link {
 	color: #fff !important;
@@ -267,7 +272,7 @@
 }
 
 .bottom-header {
-	background: #5c81bc !important;
+	background: var(--color-secundary) !important;
 }
 
 .bottom-header .nav-link {
@@ -319,12 +324,12 @@ body {
 }
 
 #menu-toggle {
-	background: #45818e;
+	background: #009ac0;
 }
 .sidebar > .sidebar-heading {
 	font-size: 1.2rem;
 	height: 64px;
-	background: #3c4851 !important;
+	background: #014289 !important;
 	color: #fff !important;
 }
 #sidebar-wrapper.sidebar.shown {

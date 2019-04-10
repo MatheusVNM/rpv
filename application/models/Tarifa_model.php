@@ -14,6 +14,18 @@ class Tarifa_model extends CI_Model
         return $result;
     }
 
+    function getTarifasAtivas()
+    {
+        $this->db->select('tarifa_id, tarifa_nome, tarifa_codigo, tarifa_vigente, max(valores_data_homologacao) as tarifa_ultimaatt');
+        $this->db->from('tarifa');
+        $this->db->where('tarifa_vigente', true);
+        $this->db->join('valorestarifa', 'valorestarifa.valores_id_tarifa = tarifa.tarifa_id');
+        $this->db->group_by('tarifa_id');
+        // echo $this->db->get_compiled_select();
+        $result = $this->db->get()->result_array();
+        return $result;
+    }
+
 
     function getValoresTarifa($id = -1)
     {

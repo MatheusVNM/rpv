@@ -52,11 +52,21 @@ $this->load->view("header2");
                                     ?>
                                 </td>
                                 <td>
-                                    <a class="btn btn-sm btn-icon-only text-dark d-flex justify-content-center" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    
+                                    <?php
+                                    $props = array('id'=> 'formTraj'.$trajeto['trajetourbano_id'], 'class="d-none"');
+                                    echo form_open('dashboard/trajetos/urbanos/editar', $props);
+                                    echo form_hidden('trajetourbano_id', $trajeto['trajetourbano_id']);
+                                    echo form_close() ?>
+
+                                    <button class="btn btn-sm btn-icon-only text-dark d-flex justify-content-center" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fa fa-ellipsis-v"></i>
-                                    </a>
+                                    </button>
+
+
+                                    
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Editar</a>
+                                        <button form="formTraj<?= $trajeto['trajetourbano_id'] ?>" class="dropdown-item" href="#">Editar</button>
                                         <a class="dropdown-item" href="#">Desativar</a>
                                         <a class="dropdown-item" href="#">Ativar</a>
                                     </div>

@@ -13,9 +13,9 @@ class Gerenciar_Trajetos_Urbanos_Controller extends CI_Controller
     }
 
     public function index()
-    {   
+    {
         $data['trajetos'] = $this->trajetos->getTrajetos();
-        for($i=0; $i < sizeof($data['trajetos']); $i++){
+        for ($i = 0; $i < sizeof($data['trajetos']); $i++) {
             $data['trajetos'][$i]['trajetourbano_nome_tarifa'] = $this->tarifas->getNomeTarifa($data['trajetos'][$i]['trajetourbano_tarifa'])[0]['tarifa_nome'];
         }
 
@@ -29,9 +29,26 @@ class Gerenciar_Trajetos_Urbanos_Controller extends CI_Controller
     {
 
         $data['possiveisParadas'] = $this->paradas->getParadas();
-        $data['tarifas'] = $this->tarifas->getTarifas();
+        $data['tarifas'] = $this->tarifas->getTarifasAtivas();
 
         $this->load->view('gerenciar_trajeto_urbano/gerenciar_trajeto_urbano_criar', $data);
+    }
+
+
+    public function editarTrajeto()
+    {
+        $this->output->enable_profiler(true);
+
+        // print_r($this->input->post());
+        // echo '<hr>';
+        $data['tarifas'] = $this->tarifas->getTarifasAtivas();
+
+        $data['trajeto'] = $trajeto =$this->trajetos->getTrajetoEspecifico($this->input->post('trajetourbano_id'));
+        $data['paradastrajeto'] = $paradastrajeto = $this->trajetos->getParadasVinculadasAoTrajeto($trajeto['trajetourbano_id']);
+       
+        $data['paradasnaovinculadas'] =  $paradasnaovinculadas = $this->trajetos->getParadasNaoVinculadasAoTrajeto($trajeto['trajetourbano_id']);
+
+        $this->load->view('gerenciar_trajeto_urbano/gerenciar_Trajeto_Urbano_Editar', $data);
     }
 
 
