@@ -138,7 +138,7 @@ $this->load->view("header2");
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="submit" form="concessao_form" class="btn btn-primary">Salvar</button>
+                <button type="submit" form="concessao_form" class="btn btn-primary">Salvar</button> 
             </div>
         </div>
     </div>
@@ -218,9 +218,8 @@ $("#idInputStatus").change(function() {
         $('#idListaConcessoesExcluidas').hide();
         $("#idListaConcessao tr").filter(function() {
             $(this).toggle($(this).text().toLowerCase().indexOf('') > -1)
-        }); 
-    }
-    else if (value === '2') {
+        });
+    } else if (value === '2') {
         $('#idListaConcessao').hide();
         $('#idListaConcessoesExcluidas').show();
         $("#idListaConcessoesExcluidas tr").filter(function() {
