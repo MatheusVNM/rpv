@@ -55,9 +55,7 @@ if ($this->session->userdata('logged_in') !== true || $this->session->userdata('
                 <a href="<?= site_url('dashboard') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-home mr-1"></i> Home</a>
 
                 <?php if ($this->session->userdata('level') === 'adm') : ?>
-                <a href="#" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-group mr-1"></i> Gerenciar Categorias de Passageiros</a>
-
-
+                <a href="<?= site_url('dashboard/categorias/passageiros') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-group mr-1"></i> Gerenciar Categorias de Passageiros</a>
                 <?php elseif ($this->session->userdata('level') === 'admlocal') : ?>
 
                 <a href="<?= site_url('dashboard/tarifas') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-money mr-1"></i> Gerenciar Tarifas</a>

@@ -59,11 +59,19 @@ $route['logout'] = 'login/logout';
 $route['dashboard'] = 'dashboard';
 $route['tarifas/update'] = 'gerenciar_tarifa_controller/atualizarValorTarifa';
 $route['tarifas/create'] = 'gerenciar_tarifa_controller/catastrarNovaTarifa';
+$route['categorias/passageiros/create'] = 'gerenciar_categoria_passageiros_controller/createCategoria';
+$route['categorias/passageiros/edit'] = 'gerenciar_categoria_passageiros_controller/editCategoria';
+
 $route['dashboard/tarifas/editar'] = 'gerenciar_tarifa_controller/editarTarifa';
 $route['dashboard/tarifas'] = 'gerenciar_tarifa_controller';
 $route['dashboard/tarifas/cadastrar'] = 'gerenciar_tarifa_controller/cadastrartarifaview';
 
+$route['dashboard/categorias/passageiros'] = 'gerenciar_categoria_passageiros_controller';
 
+$route['dashboard/categorias/passageiros/ver-categoria'] = 'gerenciar_categoria_passageiros_controller/verCategoria';
+$route['dashboard/categorias/passageiros/cadastrar'] = 'gerenciar_categoria_passageiros_controller/cadastrarTela';
+
+$route['dashboard/categorias/passageiros/editar'] = 'gerenciar_categoria_passageiros_controller/editarCategoriaPassageiro';
 // $route['dashboard/tarifas/listar'] = 'gerenciar_tarifa_controller/listartarifasview';
 // $route['dashboard/tarifas/listar'] = 'gerenciar_tarifa_controller/listartarifasview';
 
