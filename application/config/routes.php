@@ -67,12 +67,18 @@ $route['trajetos/urbanos/changeStatus'] = 'gerenciar_trajetos_urbanos_controller
 
 $route['dashboard'] = 'dashboard';
 
+
+$route['concessoes/create'] = 'gerenciar_concessoes_controller/createConcessao';
+$route['concessoes/update'] = 'gerenciar_concessoes_controller/updateConcessao';
+
+
 $route['dashboard/tarifas/editar'] = 'gerenciar_tarifa_controller/editarTarifa';
 $route['dashboard/tarifas'] = 'gerenciar_tarifa_controller';
 $route['dashboard/tarifas/cadastrar'] = 'gerenciar_tarifa_controller/cadastrartarifaview';
 
 $route['dashboard/paradas'] = 'gerenciar_paradas_controller';
 $route['dashboard/paradas/editar'] = 'gerenciar_paradas_controller/editarParada';
+$route['dashboard/concessoes'] = 'gerenciar_concessoes_controller';
 
 $route['dashboard/trajetos/urbanos'] = 'gerenciar_trajetos_urbanos_controller';
 $route['dashboard/trajetos/urbanos/cadastrar'] = 'gerenciar_trajetos_urbanos_controller/cadastrarnovotrajeto';
