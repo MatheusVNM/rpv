@@ -72,6 +72,9 @@ $route['concessoes/create'] = 'gerenciar_concessoes_controller/createConcessao';
 $route['concessoes/update'] = 'gerenciar_concessoes_controller/updateConcessao';
 
 
+$route['categorias/passageiros/create'] = 'gerenciar_categoria_passageiros_controller/createCategoria';
+$route['categorias/passageiros/edit'] = 'gerenciar_categoria_passageiros_controller/editCategoria';
+
 $route['dashboard/tarifas/editar'] = 'gerenciar_tarifa_controller/editarTarifa';
 $route['dashboard/tarifas'] = 'gerenciar_tarifa_controller';
 $route['dashboard/tarifas/cadastrar'] = 'gerenciar_tarifa_controller/cadastrartarifaview';
@@ -79,11 +82,16 @@ $route['dashboard/tarifas/cadastrar'] = 'gerenciar_tarifa_controller/cadastrarta
 $route['dashboard/paradas'] = 'gerenciar_paradas_controller';
 $route['dashboard/paradas/editar'] = 'gerenciar_paradas_controller/editarParada';
 $route['dashboard/concessoes'] = 'gerenciar_concessoes_controller';
+$route['dashboard/categorias/passageiros'] = 'gerenciar_categoria_passageiros_controller';
 
 $route['dashboard/trajetos/urbanos'] = 'gerenciar_trajetos_urbanos_controller';
 $route['dashboard/trajetos/urbanos/cadastrar'] = 'gerenciar_trajetos_urbanos_controller/cadastrarnovotrajeto';
 $route['dashboard/trajetos/urbanos/editar'] = 'gerenciar_trajetos_urbanos_controller/editarTrajeto';
 
+$route['dashboard/categorias/passageiros/ver-categoria'] = 'gerenciar_categoria_passageiros_controller/verCategoria';
+$route['dashboard/categorias/passageiros/cadastrar'] = 'gerenciar_categoria_passageiros_controller/cadastrarTela';
+
+$route['dashboard/categorias/passageiros/editar'] = 'gerenciar_categoria_passageiros_controller/editarCategoriaPassageiro';
 // $route['dashboard/tarifas/listar'] = 'gerenciar_tarifa_controller/listartarifasview';
 // $route['dashboard/tarifas/listar'] = 'gerenciar_tarifa_controller/listartarifasview';
 

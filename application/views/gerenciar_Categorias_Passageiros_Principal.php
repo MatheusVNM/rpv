@@ -17,22 +17,41 @@ $this->load->view("header2");
     </div>
 
     <ul class="list-group">
-        <li class="list-group-item font-weight-bold"><i class="hrv-icon fa fa-2x fa-book mr-2 "></i>Estudantes<i
-                class="fa fa-edit float-right mr-1 fa-2x"></i></li>
-        <li class="list-group-item font-weight-bold"><i class='fa-male fa fa-2x mr-2'></i>Idosos<i class="fa fa-edit float-right mr-1 fa-2x"></i></li>
-        <li class="list-group-item font-weight-bold"><i class="hrv-icon fa fa-2x fa-child mr-2 "></i>Crianças<i
-                class="fa fa-edit float-right mr-1 fa-2x"></i></li>
-        <li class="list-group-item font-weight-bold"><i class="hrv-icon fa fa-2x fa-wheelchair mr-1 "></i>Deficientes<i
-                class="fa fa-edit float-right mr-1 fa-2x"></i></li>
 
+
+        <?php foreach($categoriaPassageiros as $categoria) :?>
+        <li class="list-group-item font-weight-bold">
+            <?php 
+        $props = array('id'=> 'formCat'.$categoria['categoriapassageiro_id'], 'class'=>'d-none');
+        echo form_open('dashboard/categorias/passageiros/ver-categoria', $props);
+        echo form_hidden('categoriapassageiro_id', $categoria['categoriapassageiro_id']);
+        echo form_close();
+        ?>
+            <button class="btn btn-hover" type="submit" form="formCat<?= $categoria['categoriapassageiro_id'] ?>">
+                <i
+                    class="hrv-icon fa fa-2x mr-2 <?= $categoria['categoriapassageiro_icone'] ?> "></i><?= $categoria['categoriapassageiro_nome'] ?>
+            </button>
+
+            <?php 
+        $props = array('id'=> 'formEdit'.$categoria['categoriapassageiro_id'], 'class'=>'d-none');
+        echo form_open('dashboard/categorias/passageiros/editar', $props);
+        echo form_hidden('categoriapassageiro_id', $categoria['categoriapassageiro_id']);
+        echo form_close();
+        ?>
+            <button class="btn btn-hover  float-right mr-1" type="submit" form="formEdit<?= $categoria['categoriapassageiro_id']?>">
+                <i class="fa fa-edit fa-2x"></i>
+            </button>
+
+        </li>
+        <?php endforeach; ?>
     </ul>
 </div>
 <div class="mx-auto row pt-3 justify-content-end">
-    <button class="btn btn-success h-100-left"><span class="fa fa-plus-circle mr-2 h-100"></span><span
-            class="h-100 text-wrap">
+    <a href="<?= site_url('dashboard/categorias/passageiros/cadastrar')?>" class="btn btn-success h-100-left"><span
+            class="fa fa-plus-circle mr-2 h-100"></span><span class="h-100 text-wrap">
             Adicionar Categoria
         </span>
-    </button>
+    </a>
 </div>
 
 <!-- Body end -->
