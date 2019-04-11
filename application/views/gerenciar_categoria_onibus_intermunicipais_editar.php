@@ -17,7 +17,7 @@ $this->load->view("header2");
             <div class = "col-md-7 ml-0 mb-2 pl-0">
                 <label for="id_nome" class="mb-1">Tipo de Ônibus:</label>
                 <input id="id_nome" name="name_nome" type=text class="form-control" value="<?=$cat_onibus[0]['catOnibus_nome']?>">
-                <label for="id_precokm" class="mb-1">Rua/Avenida:</label>
+                <label for="id_precokm" class="mb-1">Valor do KM:</label>
                 <input id="id_precokm" name="name_precokm" type="text" class="form-control" value="<?=$cat_onibus[0]['catOnibus_precokm']?>">
             </div>
             <?= form_close() ?>

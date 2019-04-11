@@ -122,7 +122,7 @@ $this->load->view("header2");
                 </div>
                 <div class="custom-file col-md-8 mx-3" id="formCadastroConcessao">
                     <input type="file" class="custom-file-input" name="docconcessao" id="customFile">
-                    <label class="custom-file-label" for="customFile" id="nomeInputFile"></label>
+                    <label class="custom-file-label" for="customFile" id="customFile"></label>
                 </div>
                 <?= form_close() ?>
             </div>
@@ -240,12 +240,18 @@ $this->load->view("footer2.php")
 </script>
 
 <script>
-    $(document).ready(function() {
-        $('input[type="file"]').change(function(e) {
-            var fileName = e.target.files[0].name;
-            alert('The file "' + fileName + '" has been selected.');
-        });
+    $("#customFile").change(function() {
+        var fullPath = $(this).val();
+        if (fullPath) {
+            var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+            var filename = fullPath.substring(startIndex);
+            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                filename = filename.substring(1);
+            }
+        }
+        $("#fileLabel").html(filename);
     });
+
 
     // modal_edit_numero
     // id_ProtocoloConcessao
