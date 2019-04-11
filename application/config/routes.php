@@ -62,6 +62,8 @@ $route['tarifas/create'] = 'gerenciar_tarifa_controller/catastrarNovaTarifa';
 $route['tarifas/changeStatus'] = 'gerenciar_tarifa_controller/mudarStatusTarifa';
 
 $route['trajetos/urbanos/create'] = 'gerenciar_trajetos_urbanos_controller/createTrajeto';
+$route['trajetos/urbanos/edit'] = 'gerenciar_trajetos_urbanos_controller/editTrajeto';
+$route['trajetos/urbanos/changeStatus'] = 'gerenciar_trajetos_urbanos_controller/changeStatus';
 
 $route['dashboard'] = 'dashboard';
 

@@ -41,7 +41,7 @@ class Gerenciar_Tarifa_Controller extends CI_Controller
 
     private function erroValoresTarifas()
     {
-        $this->session->set_flashdata('error','<div class="alert alert-danger mt-3 mx-auto">Erro ao tentar buscar os valores da tarifa</div>');
+        $this->session->set_flashdata('error',errorAlert('Erro ao tentar buscar os valores da tarifa'));
         $this->index();
     }
 
@@ -63,10 +63,10 @@ class Gerenciar_Tarifa_Controller extends CI_Controller
         $id  = $this->input->post('tarifa_id', true);
 
         $result = $this->tarifa_model->changeStatusTarifa($id);
-        $this->session->set_flashdata('success' , '<div class="alert alert-success m-2">Status da tarifa alterado com sucesso</div>');
+        $this->session->set_flashdata('success' , successAlert('Status da tarifa alterado com sucesso'));
         redirect('/dashboard/tarifas');
     }else{
-        $this->session->set_flashdata('error' ,   '<div class="alert alert-danger mt-3 mx-auto">Erro ao mudar status da tarifa</div>');
+        $this->session->set_flashdata('error' ,   errorAlert('Erro ao mudar status da tarifa'));
         redirect('/dashboard/tarifas/');
     }
 
@@ -88,22 +88,22 @@ class Gerenciar_Tarifa_Controller extends CI_Controller
             
             $result = $this->tarifa_model->createTarifa($name, $valor, $date );
             if($result['success']){
-               $this->session->set_flashdata('success' , '<div class="alert alert-success m-2">Tarifa cadastrada com sucesso</div>');
+               $this->session->set_flashdata('success' , successAlert('Tarifa cadastrada com sucesso'));
                redirect('/dashboard/tarifas');
             }else{
-                $this->session->set_flashdata('error' ,  '<div class="alert alert-danger mt-3 mx-auto">Erro ao cadastrar a tarifa: '.$result['error'].'</div>');
+                $this->session->set_flashdata('error' ,  errorAlert('Erro ao cadastrar a tarifa: '.$result['error'].''));
                 redirect('/dashboard/tarifas/cadastrar');
             }
             
         }else{
-            $this->session->set_flashdata('error' ,   '<div class="alert alert-danger mt-3 mx-auto">Erro ao cadastrar a tarifa: Algum campo ficou em branco</div>');
+            $this->session->set_flashdata('error' ,   errorAlert('Erro ao cadastrar a tarifa: Algum campo ficou em branco'));
             redirect('/dashboard/tarifas/cadastrar');
         }
 
 
 
 
-        // $this->session->set_flashdata('success' ,'<div class="alert alert-success m-2">FAKE: Tarifa cadastrada com sucesso</div>');
+        // $this->session->set_flashdata('success' ,successAlert('FAKE: Tarifa cadastrada com sucesso'));
         // $this->index();
     }
 
@@ -120,15 +120,15 @@ class Gerenciar_Tarifa_Controller extends CI_Controller
             
             $result = $this->tarifa_model->updateTarifa($id, $valor, $date );
             if($result['success']){
-               $this->session->set_flashdata('success' , '<div class="alert alert-success m-2">Valor da tarifa atualizado com sucesso</div>');
+               $this->session->set_flashdata('success' , successAlert('Valor da tarifa atualizado com sucesso'));
                redirect('/dashboard/tarifas');
             }else{
-                $this->session->set_flashdata('error' ,  '<div class="alert alert-danger mt-3 mx-auto">Erro ao atualizar as tarifas: '.$result['error'].'</div>');
+                $this->session->set_flashdata('error' ,  errorAlert('Erro ao atualizar as tarifas: '.$result['error'].''));
                 $this->editarTarifa();                
             }
             
         }else{
-            $this->session->set_flashdata('error' ,   '<div class="alert alert-danger mt-3 mx-auto">Erro ao atualizar as tarifas: Algum campo não foi preenchido corretamente</div>');
+            $this->session->set_flashdata('error' ,   errorAlert('Erro ao atualizar as tarifas: Algum campo não foi preenchido corretamente'));
             $this->editarTarifa();                
         }
     }

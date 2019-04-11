@@ -5,10 +5,7 @@ $this->load->view("header2");
 ?>
 
 <!-- Body init -->
-
-<div class="alert alert-info mx-auto my-auto">dashboard</div>
-
-
+<?= primaryAlert('<h4>Dashboard</h4><hr>Aqui é pagina inicial do Dashboard, por enquanto, não tem anda de importante para ser exibido aqui')?>
 
 <!-- Body end -->
 <?php

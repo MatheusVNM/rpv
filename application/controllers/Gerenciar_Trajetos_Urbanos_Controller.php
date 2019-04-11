@@ -35,22 +35,31 @@ class Gerenciar_Trajetos_Urbanos_Controller extends CI_Controller
     }
 
 
-    public function editarTrajeto()
+    public function editarTrajeto($id = false)
     {
+
         $this->form_validation->set_rules('trajetourbano_id', 'ID', 'required');
         if ($this->form_validation->run() !== false) {
 
             $data['tarifas'] = $this->tarifas->getTarifasAtivas();
-
-            $data['trajeto'] = $trajeto = $this->trajetos->getTrajetoEspecifico($this->input->post('trajetourbano_id'));
+            if ($id === false) {
+                $id = $this->input->post('trajetourbano_id');
+            }
+            $data['trajeto'] = $trajeto = $this->trajetos->getTrajetoEspecifico($id);
             $data['paradastrajeto'] = $paradastrajeto = $this->trajetos->getParadasVinculadasAoTrajeto($trajeto['trajetourbano_id']);
 
 
             $data['paradasnaovinculadas'] =  $paradasnaovinculadas = $this->trajetos->getParadasNaoVinculadasAoTrajeto($trajeto['trajetourbano_id']);
 
-            $this->load->view('gerenciar_trajeto_urbano/gerenciar_Trajeto_Urbano_Editar', $data);
+            $data['todasparadas'] = $this->paradas->getParadas();
+            if (sizeof('trajeto') > 0) {
+                $this->load->view('gerenciar_trajeto_urbano/gerenciar_Trajeto_Urbano_Editar', $data);
+            } else {
+                $this->session->set_flashdata('error', errorAlert('Aconteceu algum rrro, tente novamente'));
+                redirect('dashboard/trajetos/urbanos');
+            }
         } else {
-            $this->session->set_flashdata('error', '<div class="alert alert-danger mt-3 mx-auto">Aconteceu Algum Erro, tente novamente</div>');
+            $this->session->set_flashdata('error', errorAlert('Aconteceu algum erro, tente novamente'));
             redirect('dashboard/trajetos/urbanos');
         }
     }
@@ -80,14 +89,14 @@ class Gerenciar_Trajetos_Urbanos_Controller extends CI_Controller
             $paradas = explode(',', $paradas);
             if (sizeof($paradas) >= 2) {
                 $this->trajetos->create($paradas, $nome, $tempomedio, $status, $tarifa);
-                $this->session->set_flashdata('success', '<div class="alert alert-success mt-3 mx-auto">Trajeto Cadastrado com Sucesso</div>');
+                $this->session->set_flashdata('success', successAlert('Trajeto Cadastrado com Sucesso'));
                 redirect('dashboard/trajetos/urbanos');
             } else {
-                $this->session->set_flashdata('error', '<div class="alert alert-danger mt-3 mx-auto">Deve-se ter ao menos duas paradas</div>');
+                $this->session->set_flashdata('error', errorAlert('Deve-se ter ao menos duas paradas'));
                 redirect('dashboard/trajetos/urbanos/cadastrar');
             }
         } else {
-            $this->session->set_flashdata('error', '<div class="alert alert-danger mt-3 mx-auto">Preencha o formulario corretamente</div>');
+            $this->session->set_flashdata('error', errorAlert('Preencha o formulario corretamente'));
             redirect('dashboard/trajetos/urbanos/cadastrar');
         }
     }
@@ -95,12 +104,14 @@ class Gerenciar_Trajetos_Urbanos_Controller extends CI_Controller
 
     public function editTrajeto()
     {
-
+        $this->form_validation->set_rules('id', 'ID', 'required');
         $this->form_validation->set_rules('paradas', 'Paradas', 'required');
         $this->form_validation->set_rules('nome', 'Nome', 'required');
         $this->form_validation->set_rules('tempomedio', 'Tempo Médio', 'required');
         $this->form_validation->set_rules('status', 'Status', 'required');
         $this->form_validation->set_rules('tarifa', 'Tarifa', 'required');
+        $id = $this->input->post('id');
+
         if ($this->form_validation->run() !== false) {
 
             $paradas = $this->input->post('paradas');
@@ -109,19 +120,40 @@ class Gerenciar_Trajetos_Urbanos_Controller extends CI_Controller
             $status = $this->input->post('status');
             $tarifa =  $this->input->post('tarifa');
 
+            echo "<pre>";
+            print_r($this->input->post());
+            echo "</pre>";
             //todo validate the explosion
             $paradas = explode(',', $paradas);
             if (sizeof($paradas) >= 2) {
-                $this->trajetos->create($paradas, $nome, $tempomedio, $status, $tarifa);
-                $this->session->set_flashdata('success', '<div class="alert alert-success mt-3 mx-auto">Trajeto Cadastrado com Sucesso</div>');
-                redirect('dashboard/trajetos/urbanos');
+                $this->trajetos->edit($paradas, $nome, $tempomedio, $status, $tarifa);
+                $this->session->set_flashdata('success', successAlert('Trajeto Cadastrado com Sucesso'));
+                // redirect('dashboard/trajetos/urbanos');
             } else {
-                $this->session->set_flashdata('error', '<div class="alert alert-danger mt-3 mx-auto">Deve-se ter ao menos duas paradas</div>');
-                redirect('dashboard/trajetos/urbanos/cadastrar');
+                $this->session->set_flashdata('error', errorAlert('Deve-se ter ao menos duas paradas'));
+                // redirect('dashboard/trajetos/urbanos/editar');
+                // $this->editarTrajeto($id);
             }
         } else {
-            $this->session->set_flashdata('error', '<div class="alert alert-danger mt-3 mx-auto">Preencha o formulario corretamente</div>');
-            redirect('dashboard/trajetos/urbanos/cadastrar');
+            $this->session->set_flashdata('error', errorAlert('Preencha o formulario corretamente'));
+            // redirect('dashboard/trajetos/urbanos/editar');
+            // $this->editarTrajeto($id);
         }
+    }
+
+    public function  changeStatus()
+    {
+        $this->form_validation->set_rules('trajetourbano_id', 'ID', 'required');
+
+        if ($this->form_validation->run() !== false) {
+            $id  = $this->input->post('trajetourbano_id', true);
+
+            $result = $this->trajetos->changeStatusTrajeto($id);
+            $this->session->set_flashdata('success',successAlert('Status do trajeto alterado com sucesso'));
+                redirect('dashboard/trajetos/urbanos');
+            } else {
+            $this->session->set_flashdata('error',   errorAlert('Erro ao mudar status do trajeto'));
+                redirect('dashboard/trajetos/urbanos');
+            }
     }
 }

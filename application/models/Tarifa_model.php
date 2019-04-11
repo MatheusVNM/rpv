@@ -88,11 +88,6 @@ class Tarifa_model extends CI_Model
         }
     }
 
-    public function changeStatusTarifa($id){
-        $this->db->set('tarifa_vigente', 'NOT tarifa_vigente', FALSE);
-        $this->db->where('tarifa_id', $id);
-        $this->db->update('tarifa');
-    }
 
     public function createTarifa($tarifa_nome, $valores_valor, $dataHomologacao)
     {
@@ -155,5 +150,12 @@ class Tarifa_model extends CI_Model
             $data['path'] = $path;
         }
         return $data;
+    }
+
+    
+    public function changeStatusTarifa($id){
+        $this->db->set('tarifa_vigente', 'NOT tarifa_vigente', FALSE);
+        $this->db->where('tarifa_id', $id);
+        $this->db->update('tarifa');
     }
 }

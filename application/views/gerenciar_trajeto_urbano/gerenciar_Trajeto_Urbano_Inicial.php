@@ -32,7 +32,7 @@ $this->load->view("header2");
                             <th>Ações</th>
                         </tr>
                     </thead>
-                    
+
                     <tbody>
 
                         <?php foreach ($trajetos as $trajeto) : ?>
@@ -42,7 +42,7 @@ $this->load->view("header2");
                                 <td><?= $trajeto['trajetourbano_nome'] ?></td>
                                 <td><?= $trajeto['trajetourbano_nome_tarifa'] ?></td>
                                 <td><?= $trajeto['trajetourbano_tempomedio'] ?></td>
-                                
+
                                 <td><?php
                                     if ($trajeto['trajetourbano_isativo'])
                                         echo 'Ativo';
@@ -51,26 +51,43 @@ $this->load->view("header2");
 
                                     ?>
                                 </td>
+
                                 <td>
-                                    
-                                    <?php
-                                    $props = array('id'=> 'formTraj'.$trajeto['trajetourbano_id'], 'class="d-none"');
+                                    <?php $props = array('id' => 'formEdit' . $trajeto['trajetourbano_id'], 'class' => "d-none");
                                     echo form_open('dashboard/trajetos/urbanos/editar', $props);
                                     echo form_hidden('trajetourbano_id', $trajeto['trajetourbano_id']);
                                     echo form_close() ?>
 
-                                    <button class="btn btn-sm btn-icon-only text-dark d-flex justify-content-center" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-v"></i>
-                                    </button>
+                                    <button href="#" form="formEdit<?= $trajeto['trajetourbano_id'] ?>" type="submit" name="submit" class="btn btn-mini p-1 text-dark"><i class="fa fa-edit fa-2x"></i></button>
+
+                                    <?php $props = array('id' => 'formChange' . $trajeto['trajetourbano_id'], 'class'=>"d-none");
+                                    echo form_open('trajetos/urbanos/changeStatus', $props);
+                                    echo form_hidden('trajetourbano_id', $trajeto['trajetourbano_id']);
+                                    echo form_close() ?>
+
+                                    <button href="#" form="formChange<?= $trajeto['trajetourbano_id'] ?>" type="submit" name="submit" class="btn btn-mini p-1 text-dark"><i class="fa fa-adjust fa-2x"></i></button>
+                                </td>
+
+                                <!-- <td>
+                                    
+                                            <?php
+                                            $props = array('id' => 'formTraj' . $trajeto['trajetourbano_id'], 'class="d-none"');
+                                            echo form_open('dashboard/trajetos/urbanos/editar', $props);
+                                            echo form_hidden('trajetourbano_id', $trajeto['trajetourbano_id']);
+                                            echo form_close() ?>
+
+                                            <button class="btn btn-sm btn-icon-only text-dark d-flex justify-content-center" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-ellipsis-v"></i>
+                                            </button>
 
 
                                     
-                                    <div class="dropdown-menu">
-                                        <button form="formTraj<?= $trajeto['trajetourbano_id'] ?>" class="dropdown-item" href="#">Editar</button>
-                                        <a class="dropdown-item" href="#">Desativar</a>
-                                        <a class="dropdown-item" href="#">Ativar</a>
-                                    </div>
-                                </td>
+                                            <div class="dropdown-menu">
+                                                <button form="formTraj<?= $trajeto['trajetourbano_id'] ?>" class="dropdown-item" href="#">Editar</button>
+                                                <a class="dropdown-item" href="#">Desativar</a>
+                                                <a class="dropdown-item" href="#">Ativar</a>
+                                            </div>
+                                        </td> -->
                             </tr>
                         <?php endforeach; ?>
 

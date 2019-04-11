@@ -8,7 +8,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 $this->load->helper('url');
 $this->load->view("header2");
-$js_array = json_encode($paradasnaovinculadas);
+$js_array = json_encode($todasparadas);
 ?>
 
 
@@ -31,7 +31,8 @@ $js_array = json_encode($paradasnaovinculadas);
             </div>
             <div class="card-body">
                 <?php $form_open_data = array('id' => 'formTrajetoUrbano', 'onsubmit' => "send_data()"); ?>
-                <?= form_open_multipart('trajetos/urbanos/create', $form_open_data) ?>
+                <?= form_open_multipart('trajetos/urbanos/edit', $form_open_data) ?>
+                <?= form_hidden('id', $trajeto['trajetourbano_id']) ?>
                 <?= form_input(array('name' => 'paradas', 'type' => 'hidden', 'id' => 'hidden')); ?>
                 <label for="TempoMédioPerc">Nome do Percurso: </label>
                 <input name="nome" type="text" class="form-control" id="nome" value="<?= $trajeto['trajetourbano_nome'] ?>">
@@ -82,9 +83,8 @@ $js_array = json_encode($paradasnaovinculadas);
 
                         <tbody id="maintable">
                             <?php
-                            $count = 0;
                             foreach ($paradasnaovinculadas as $possivelParada) : ?>
-                                <tr id="parada<?= $count ?>">
+                                <tr id="parada<?= $possivelParada['parada_id'] ?>">
                                     <td><?= $possivelParada['parada_codigo'] ?></td>
                                     <td><?= $possivelParada['parada_rua'] ?>
                                         ,
@@ -92,21 +92,20 @@ $js_array = json_encode($paradasnaovinculadas);
                                         <?= $possivelParada['parada_bairro'] ?>
                                     </td>
 
-                                    <td><button class="btn btn-info" onclick="selecionar(<?= $count ?>)"> Selecionar </button></td>
+                                    <td><button class="btn btn-info" onclick="selecionar(<?= $possivelParada['parada_id'] ?>)"> Selecionar </button></td>
 
                                     <!-- <td>
-                                                                                                                                                        <label class="btn btn-secondary">
-                                                                                                                                                            <input type="radio" name="options" id="option1" autocomplete="off" checked>
-                                                                                                                                                            Selecionar Parada
-                                                                                                                                                        </label>
-                                                                                                                                                    </td>
-                                                                                                                                                    <td>
-                                                                                                                                                        <button class="btn btn-info">Selecionar como proxima parada</button>
-                                                                                                                                                    </td> -->
+                                                                                                                                                                <label class="btn btn-secondary">
+                                                                                                                                                                    <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                                                                                                                                                    Selecionar Parada
+                                                                                                                                                                </label>
+                                                                                                                                                            </td>
+                                                                                                                                                            <td>
+                                                                                                                                                                <button class="btn btn-info">Selecionar como proxima parada</button>
+                                                                                                                                                            </td> -->
                                 </tr>
-                                <?php
-                                $count++;
-                            endforeach; ?>
+                            <?php
+                        endforeach; ?>
 
                         </tbody>
                     </table>
@@ -136,6 +135,7 @@ $js_array = json_encode($paradasnaovinculadas);
                         </tr>
                     </thead>
                     <tbody id="paradasfeitas">
+                        <?php $paradasSelecionadas = 0 ?>
                         <?php foreach ($paradastrajeto as $paradatrajeto) : ?>
                             <tr id="par<?= $paradatrajeto['parada_id'] ?>">
                                 <td> <?= $paradatrajeto['parada_codigo'] ?></td>
@@ -143,13 +143,13 @@ $js_array = json_encode($paradasnaovinculadas);
                                 <td> <?= $paradatrajeto['parada_numero'] ?> </td>
                                 <td> <?= $paradatrajeto['parada_bairro'] ?></td>
                                 <td class="text-right">
-                                    <a class="btn btn-sm btn-icon-only text-dark d-flex justify-content-center" href="#" onclick="removeParada(' + n + ',' + ids + ')">
+                                    <a class="btn btn-sm btn-icon-only text-dark d-flex justify-content-center" href="#" onclick="removeParada(<?= $paradatrajeto['parada_id'] ?>)">
                                         <!-- <a class="btn btn-sm btn-icon-only text-dark d-flex justify-content-center" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
                                         <i class="fa fa-2x fa-trash"></i>
                                     </a>
                                     <!-- <div class="dropdown-menu dropdown-menu-arrow">
-                                                       <a class="dropdown-item" href="#">Excluir</a>
-                                           </div> -->
+                                                               <a class="dropdown-item" href="#">Excluir</a>
+                                                   </div> -->
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -191,10 +191,15 @@ $this->load->view("footer2.php")
 
     function selecionar(id) {
         var p = possiveisparadas[id];
+        possiveisparadas.forEach(function(element) {
+            if (element['parada_id'] == id) {
+                p = element;
+                alert('aaa')
+            }
+        })
         paradasSelecionadas.push(p['parada_id']);
-        ids = paradasSelecionadas.length - 1;
         $('#paradasfeitas').append(
-            addParada(id, p['parada_codigo'], p['parada_rua'], p['parada_numero'], p['parada_bairro'], p['parada_id'], ids));
+            addParada(id, p['parada_codigo'], p['parada_rua'], p['parada_numero'], p['parada_bairro'], p['parada_id']));
         $('#parada' + id + '').remove();
 
         console.log(paradasSelecionadas)
@@ -205,8 +210,14 @@ $this->load->view("footer2.php")
         $('#hidden').val(paradasSelecionadas.toString());
     }
 
-    function removeParada(id, ids) {
+    function removeParada(id) {
         var possivelParada = possiveisparadas[id];
+        possiveisparadas.forEach(function(element) {
+            if (element['parada_id'] == id) {
+                possivelParada = element;
+                alert('aaa')
+            }
+        })
         $('#par' + id + '').remove();
         paradasSelecionadas.splice(paradasSelecionadas.indexOf(id), 1);
 
@@ -218,19 +229,19 @@ $this->load->view("footer2.php")
             '' + possivelParada['parada_bairro'] +
             '                </td>' +
 
-            '                <td><button class="btn btn-info" onclick="teste(' + id + ')"> Selecionar </button></td>' +
+            '                <td><button class="btn btn-info" onclick="selecionar(' + id + ')"> Selecionar </button></td>' +
             '                </tr>');
 
     }
 
-    function addParada(n, codigo, rua, numero, bairro, id, ids) {
+    function addParada(n, codigo, rua, numero, bairro, id) {
         return '<tr id="par' + n + '">' +
             '           <td>' + codigo + '</td>' +
             '           <td>' + rua + '</td>' +
             '           <td>' + numero + '</td>' +
             '           <td>' + bairro + '</td>' +
             '           <td class="text-right">' +
-            '               <a class="btn btn-sm btn-icon-only text-dark d-flex justify-content-center" href="#" onclick="removeParada(' + n + ',' + ids + ')">' +
+            '               <a class="btn btn-sm btn-icon-only text-dark d-flex justify-content-center" href="#" onclick="removeParada(' + n + ')">' +
             '                   <!-- <a class="btn btn-sm btn-icon-only text-dark d-flex justify-content-center" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->' +
             '                   <i class="fa fa-2x fa-trash"></i>' +
             '               </a>' +

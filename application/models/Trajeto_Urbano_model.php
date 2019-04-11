@@ -106,4 +106,10 @@ class Trajeto_Urbano_model extends CI_Model
 
         echo "<hr/>done";
     }
+
+    public function changeStatusTrajeto($id){
+        $this->db->set('trajetourbano_isativo', 'NOT trajetourbano_isativo', FALSE);
+        $this->db->where('trajetourbano_id', $id);
+        $this->db->update('trajetourbano');
+    }
 }
