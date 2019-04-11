@@ -10,7 +10,7 @@ $this->load->view("header2");
     <div class="trajetos_exist col-md-12">
         <div class="card">
             <div class="card-header border-0 d-flex justify-content-between">
-                <h3 class="mb-0 justify-content-center">Categorias Urbanas</h3>
+                <h3 class="mb-0 justify-content-center">Categorias Onibus Intermunicipais</h3>
             </div>
             <div class="card-body">
                 <input id="id_form" name="name_form" type="text" class="form-control" placeholder="Filtrar"/>
@@ -30,7 +30,7 @@ $this->load->view("header2");
                         <?php foreach ($cat_onibus as $row) : ?>
                             <td><?= $row['catOnibus_codigo'] ?></td>
                             <td><?= $row['catOnibus_nome'] ?></td>
-                            <td><?= $row['catOnibus_precokm']."R$"  ?></td>
+                            <td><?= "R$ ".$row['catOnibus_precokm']  ?></td>
                             <td><?php if ($row['catOnibus_status'] == 1): echo "Ativa" ?>
                             <?php elseif ($row['catOnibus_status'] == 0): echo "Inativa" ?>
                                 </td>
@@ -97,12 +97,7 @@ $this->load->view("header2");
             </div>
         </div>
 
-        <div class="row col-md-12 d-flex justify-content-end mt-3 mb-4">
-            <div>
-                <button type="button" class="btn btn-success ">Salvar</button>
-                <button type="button" class="btn btn-danger ">Cancelar</button>
-            </div>
-        </div>
+
     </div>
 
     <!-- Body end -->

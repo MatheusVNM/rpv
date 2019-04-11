@@ -87,12 +87,12 @@ class Gerenciar_Categoria_Passageiros_Controller extends CI_Controller
         $this->load->view('gerenciar_Categorias_Passageiros_informacoes', $data);
     }
 
-    public function editarCategoriaPassageiro($id =false)
+    public function editarCategoriaPassageiro($id =-1)
     {
 
         $id = $this->input->post('categoriapassageiro_id');
 
-        if ($id<0   ) {
+        if ($id>0) {
 
 
             $categoriaDoDB = $this->categorias->getCategoriaEspecifica($id);
@@ -104,7 +104,7 @@ class Gerenciar_Categoria_Passageiros_Controller extends CI_Controller
             $this->load->view('gerenciar_Editar_Categoria', $data);
         } else {
             $this->session->set_flashdata('error', '<div class="alert alert-danger">Ops! Algo não deu certo, por favor, tente novamente</div>');
-            redirect('dashboard/categorias/passageiros');
+            // redirect('dashboard/categorias/passageiros');
             //volta com erro
         }
     }
