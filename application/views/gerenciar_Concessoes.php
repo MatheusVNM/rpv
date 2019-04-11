@@ -70,7 +70,6 @@ $this->load->view("header2");
                     ?>
                 <?= form_close() ?>
                 <button type="submit" class="btn btn-default btn-sm" form="formDelete<?=$concessao['id_Concessao']?>"
-                    onclick="editar(<?= $concessao['id_Concessao'] ?>, <?= $concessao['statusConcessao'] ?>)"
                     title="Exclui concessão apenas da lista e não permanentemente." id="opcoesConcessaoExcluir"
                     data-toggle="tooltip" data-placement="top">
                     <span class="hvr-icon fa fa-trash mr-1"></span>Excluir
