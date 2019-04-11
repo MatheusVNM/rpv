@@ -110,8 +110,13 @@ $("#desconto").on("keypress keyup blur",function (event) {
             if ((event.which < 48 || event.which > 57)) {
                 event.preventDefault();
             }
+            if($(this).val()>100){
+                $(this).val(100)
+            }
+            if($(this).val()<0){
+                $(this).val(0)
+            }
         });
-
 function deletarCampo(campo) {
     $('#' + campo + '').remove();
 }

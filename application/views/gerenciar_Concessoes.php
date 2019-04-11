@@ -111,7 +111,7 @@ $this->load->view("header2");
                 <?= form_open_multipart('gerenciar_concessoes_Controller/createConcessao', array('id' => 'concessao_form')) ?>
                 <div class="form-group col-md-6">
                     <label for="protocoloConcessao">Protocolo da Concessão</label>
-                    <input name="name_nroProtocolo" type="number" maxlength="6" min="0" max="999999" class="form-control" id="id_ProtocoloConcessao">
+                    <input name="name_nroProtocolo" type="text" maxlength="6" min="0" max="999999" class="form-control" id="id_ProtocoloConcessao">
                 </div>
                 <div class="form-group col-md-5" id="formCadastroConcessao">
                     <label for="opcoesStatus">Status</label>
@@ -122,7 +122,7 @@ $this->load->view("header2");
                 </div>
                 <div class="custom-file col-md-8 mx-3" id="formCadastroConcessao">
                     <input type="file" class="custom-file-input" name="docconcessao" id="customFile">
-                    <label class="custom-file-label" for="customFile" id="customFile"></label>
+                    <label class="custom-file-label" for="customFile" id="fileLabel"></label>
                 </div>
                 <?= form_close() ?>
             </div>
@@ -152,7 +152,7 @@ $this->load->view("header2");
                 <div class="form-group col-md-6">
                     <label for="protocoloConcessao">Protocolo da Concessão</label>
                     <!-- here -->
-                    <input name="name_nroProtocoloEdit" type="number" maxlength="6" min="0" max="999999" class="form-control" id="modal_edit_numero">
+                    <input name="name_nroProtocoloEdit" type="text" maxlength="6" min="0" max="999999" class="form-control" id="modal_edit_numero">
                 </div>
                 <div class="form-group col-md-5">
                     <label for="opcoesStatus">Status</label>
@@ -256,12 +256,14 @@ $this->load->view("footer2.php")
     // modal_edit_numero
     // id_ProtocoloConcessao
 
-    $("#id_ProtocoloConcessao").on("keypress keyup blur", function(event) {
-        $(this).val($(this).val().replace(/[^\d].+/, ""));
-        if ((event.which < 48 || event.which > 57)) {
-            event.preventDefault();
-        }
-    });
+    $("#id_ProtocoloConcessao").on("keypress keyup blur",function (event) {    
+           $(this).val($(this).val().replace(/[^\d].+/, ""));
+            if ((event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+ 
+
+        });
     $("#modal_edit_numero").on("keypress keyup blur", function(event) {
         $(this).val($(this).val().replace(/[^\d].+/, ""));
         if ((event.which < 48 || event.which > 57)) {
