@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2019 at 07:14 PM
+-- Generation Time: Apr 11, 2019 at 09:43 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.27
 
@@ -32,10 +32,10 @@ USE `gicabus`;
 
 DROP TABLE IF EXISTS `categoriaonibus`;
 CREATE TABLE `categoriaonibus` (
-  `catOni_id` int(11) NOT NULL,
-  `catOni_nome` varchar(15) COLLATE utf8_bin NOT NULL,
-  `catOni_precokm` float(5,2) NOT NULL,
-  `catOni_status` tinyint(1) NOT NULL,
+  `catOnibus_id` int(11) NOT NULL,
+  `catOnibus_nome` varchar(15) COLLATE utf8_bin NOT NULL,
+  `catOnibus_precokm` float(5,2) NOT NULL,
+  `catOnibus_status` tinyint(1) NOT NULL,
   `catOnibus_codigo` varchar(15) COLLATE utf8_bin NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -43,7 +43,7 @@ CREATE TABLE `categoriaonibus` (
 -- Dumping data for table `categoriaonibus`
 --
 
-INSERT INTO `categoriaonibus` (`catOni_id`, `catOni_nome`, `catOni_precokm`, `catOni_status`, `catOnibus_codigo`) VALUES
+INSERT INTO `categoriaonibus` (`catOnibus_id`, `catOnibus_nome`, `catOnibus_precokm`, `catOnibus_status`, `catOnibus_codigo`) VALUES
 (1, 'Leito', 2.00, 1, 'TF001'),
 (2, 'Semi-leito', 1.50, 1, 'TF002'),
 (3, 'Comum', 1.00, 1, 'TF003');
@@ -67,12 +67,10 @@ CREATE TABLE `categoriapassageiro` (
 --
 
 INSERT INTO `categoriapassageiro` (`categoriapassageiro_id`, `categoriapassageiro_nome`, `categoriapassageiro_valordesconto`, `categoriapassageiro_icone`) VALUES
-(1, 'Estudantes', '50', 'fa-book'),
+(1, 'Estudante', '50', 'fa-book'),
 (2, 'Idoso', '100', 'fa-male'),
 (3, 'Criancas', '100', 'fa-child'),
-(4, 'Deficientes', '100', 'fa-wheelchair'),
-(6, 'teste', '50', ''),
-(7, 'teste', 'teste', '');
+(4, 'Deficientes', '100', 'fa-wheelchair');
 
 -- --------------------------------------------------------
 
@@ -5692,15 +5690,13 @@ CREATE TABLE `criterios` (
 --
 
 INSERT INTO `criterios` (`criterios_id`, `criterios_descricao`, `criterios_id_categoria`) VALUES
-(8, 'Comprovante de matricula 2', 1),
+(12, 'Comprovante de matricula', 1),
 (2, 'Carteira de Trabalho', 2),
 (3, 'Previdencia com anotacoes atualizadas', 2),
 (4, 'Contra-chegue do pagamento', 2),
 (5, 'Carne de contribuicao de inss', 2),
 (6, 'Ter no maximo 6 anos de idade', 3),
-(7, 'Obtencao de Passe Livre no Ministerio dos Transportes.', 4),
-(9, 'teste1', 6),
-(10, 'testestestestetstestestestestestetstestestestestestetstestestestestestetstestestestestestetstestestestestestetstestestestestestetstestestestestestetstestestestestestetstestestestestestetstestestestestestetstestestestestestetstestestestestestetstestestestestestetstestestestestestetstestestestestestetstestestestestestetstestestestestestetstestestestestestetstestestestestestetstestestestestestetstest', 7);
+(7, 'Obtencao de Passe Livre no Ministerio dos Transportes.', 4);
 
 -- --------------------------------------------------------
 
@@ -5769,12 +5765,12 @@ CREATE TABLE `paradas` (
 --
 
 INSERT INTO `paradas` (`parada_id`, `parada_rua`, `parada_numero`, `parada_bairro`, `parada_status`, `parada_codigo`) VALUES
-(6, 'RuaTesteEditar', 6, 'BairroTesteEditar', 1, 'PR005'),
-(7, 'lol', 7, 'vera teste', 1, 'PR006'),
-(8, 'Teste', 8, 'adwadwd', 1, 'PR007'),
-(9, 'Teste', 9, 'adwadwd', 1, 'PR008'),
-(10, 'Teste', 10, 'adwadwd', 1, 'PR009'),
-(15, 'uhul', 15, 'uhul', 1, 'TF0060');
+(6, 'RuaTesteEditar', 6, 'BairroTesteEditar', 1, 'PR006'),
+(7, 'lol', 7, 'vera teste', 1, 'PR007'),
+(8, 'Teste', 8, 'adwadwd', 1, 'PR008'),
+(9, 'Teste', 9, 'adwadwd', 1, 'PR009'),
+(10, 'Teste', 10, 'adwadwd', 1, 'PR010'),
+(15, 'uhul', 15, 'uhul', 1, 'TF0011');
 
 -- --------------------------------------------------------
 
@@ -5795,17 +5791,14 @@ CREATE TABLE `paradatrajeto` (
 --
 
 INSERT INTO `paradatrajeto` (`par_traj_id`, `par_traj_trajeto`, `par_traj_parada`, `par_traj_prox_parada`) VALUES
-(10, 7, 8, 7),
-(11, 7, 7, 6),
-(12, 7, 6, 8),
 (13, 8, 10, 6),
 (14, 8, 6, 10),
 (15, 9, 10, 9),
 (16, 9, 9, 10),
-(17, 10, 6, 7),
-(18, 10, 7, 8),
-(19, 10, 8, 15),
-(20, 10, 15, 6);
+(41, 7, 6, 8),
+(42, 7, 8, 10),
+(43, 7, 10, 15),
+(44, 7, 15, 6);
 
 -- --------------------------------------------------------
 
@@ -5832,7 +5825,10 @@ INSERT INTO `tarifa` (`tarifa_id`, `tarifa_nome`, `tarifa_codigo`, `tarifa_vigen
 (6, 'asdwa', 'TF006', 1),
 (7, 'asdwa', 'TF007', 1),
 (8, 'asdwa', 'TF008', 1),
-(9, '123', 'TF009', 1);
+(9, '123', 'TF009', 1),
+(10, 'asd', 'TF010', 1),
+(11, 'AA', 'TF011', 1),
+(12, 'ASD', 'TF012', 1);
 
 -- --------------------------------------------------------
 
@@ -5855,10 +5851,9 @@ CREATE TABLE `trajetourbano` (
 --
 
 INSERT INTO `trajetourbano` (`trajetourbano_id`, `trajetourbano_nome`, `trajetourbano_tarifa`, `trajetourbano_concessao`, `trajetourbano_isativo`, `trajetourbano_tempomedio`) VALUES
-(7, 'Trajeto de Teste', 2, NULL, 1, 50),
+(7, 'Trajeto de Teste', 2, NULL, 1, 51),
 (8, 'Rota Furiosa', 1, NULL, 1, 12313),
-(9, 'asdwa', 1, NULL, 1, 2),
-(10, 'Trajeto de Teste', 1, NULL, 1, 50);
+(9, 'asdwa', 1, NULL, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -5880,7 +5875,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`user_id`, `user_nome`, `user_email`, `user_password`, `user_level`) VALUES
-(1, 'José ADM Local', 'jose@teste.com', 'ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413', 'admlocal');
+(1, 'José ADM Local', 'jose@teste.com', 'ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413', 'admlocal'),
+(2, 'Maria ADM', 'maria@teste.com', 'ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413', 'adm');
 
 -- --------------------------------------------------------
 
@@ -5913,7 +5909,11 @@ INSERT INTO `valorestarifa` (`valores_id`, `valores_id_tarifa`, `valores_data_ho
 (10, 7, '2019-04-11', 1, '12.00', 'https://localhost/rpv/files/comprovanteMatricula0543dd0a8a84670676a659a21fb40674.pdf'),
 (11, 8, '2019-04-11', 1, '12.00', 'https://localhost/rpv/files/comprovanteMatricula13011800c753985b3c699d4b343dca86.pdf'),
 (12, 9, '2019-04-11', 0, '123.00', 'https://localhost/rpv/files/comprovanteMatriculab502591f001bcdea2ed28ae56f77fd17.pdf'),
-(13, 9, '2019-04-11', 1, '123.00', 'https://localhost/rpv/files/comprovanteMatricula8caaea7b15925ba915128e3070c6a18b.pdf');
+(13, 9, '2019-04-11', 1, '123.00', 'https://localhost/rpv/files/comprovanteMatricula8caaea7b15925ba915128e3070c6a18b.pdf'),
+(14, 10, '2019-04-11', 0, '123.00', 'http://localhost/rpv/files/testeee3e36e04f93535b399cbc7d4207ff261a.pdf'),
+(15, 10, '2019-04-11', 1, '999.99', 'http://localhost/rpv/files/comprovanteMatricula1a88249bfa2031d0ebd88d743df501e4.pdf'),
+(16, 11, '2019-04-11', 1, '999.99', 'http://localhost/rpv/files/testeeeaed9cae4a7bfffed2c8c79ec3c759258.pdf'),
+(17, 12, '2019-04-11', 1, '22.00', 'http://localhost/rpv/files/comprovanteMatricula990d8283638369862b17ceadfa8ba0ed.pdf');
 
 --
 -- Indexes for dumped tables
@@ -5923,7 +5923,7 @@ INSERT INTO `valorestarifa` (`valores_id`, `valores_id_tarifa`, `valores_data_ho
 -- Indexes for table `categoriaonibus`
 --
 ALTER TABLE `categoriaonibus`
-  ADD PRIMARY KEY (`catOni_id`);
+  ADD PRIMARY KEY (`catOnibus_id`);
 
 --
 -- Indexes for table `categoriapassageiro`
@@ -6007,13 +6007,13 @@ ALTER TABLE `valorestarifa`
 -- AUTO_INCREMENT for table `categoriaonibus`
 --
 ALTER TABLE `categoriaonibus`
-  MODIFY `catOni_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `catOnibus_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `categoriapassageiro`
 --
 ALTER TABLE `categoriapassageiro`
-  MODIFY `categoriapassageiro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `categoriapassageiro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `cidade`
@@ -6031,7 +6031,7 @@ ALTER TABLE `concessao`
 -- AUTO_INCREMENT for table `criterios`
 --
 ALTER TABLE `criterios`
-  MODIFY `criterios_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `criterios_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `estado`
@@ -6049,13 +6049,13 @@ ALTER TABLE `paradas`
 -- AUTO_INCREMENT for table `paradatrajeto`
 --
 ALTER TABLE `paradatrajeto`
-  MODIFY `par_traj_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `par_traj_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `tarifa`
 --
 ALTER TABLE `tarifa`
-  MODIFY `tarifa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `tarifa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `trajetourbano`
@@ -6067,13 +6067,13 @@ ALTER TABLE `trajetourbano`
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `valorestarifa`
 --
 ALTER TABLE `valorestarifa`
-  MODIFY `valores_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `valores_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
