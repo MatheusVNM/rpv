@@ -3,6 +3,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $this->load->helper('url');
 $this->load->view("header2");
 ?>
+<?= $this->session->flashdata('error'); ?>
+<?= $this->session->flashdata('success'); ?>
+
     <!-- Body init -->
     <div class="row">
     <div class="trajetos_exist col-md-12">
@@ -82,11 +85,11 @@ $this->load->view("header2");
                         <?= form_open('gerenciar_paradas_controller/criarParada', array('id' => 'paradas_form')) ?>
                         <div class="col-md-7 ml-3 mb-2">
                             <label for="id_bairro" class="mb-1">Bairro:</label>
-                                <input id="id_bairro" name="name_bairro" type=text class="form-control">
+                                <input id="id_bairro" name="name_bairro" type="text" class="form-control">
                             <label for="id_rua" class="mb-1">Rua/Avenida:</label>
                                 <input id="id_rua" name="name_rua" type="text" class="form-control">
                             <label for="id_nmr" class="mb-1">Número:</label>
-                                <input id="id_nmr" name="name_nmr" type="text" class="form-control">
+                                <input id="id_nmr" name="name_nmr" type="number" class="form-control">
                             <?= form_close() ?>
                         </div>
                         <div class="modal-footer">

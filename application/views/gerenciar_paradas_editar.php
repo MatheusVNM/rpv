@@ -3,6 +3,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $this->load->helper('url');
 $this->load->view("header2");
 ?>
+<?= $this->session->flashdata('error'); ?>
+<?= $this->session->flashdata('success'); ?>
+
     <div class="card col-md-5">
         <div class="modal-header">
             <h4 class="mb-0">Informações do Trajeto</h4>
