@@ -6,11 +6,12 @@ $this->load->view("header2");
 
 <!-- Body init -->
 
-<?= form_open('tarifas/create') ?>
 <div class="container-fluid flex-shrink-1 d-flex justify-content-left">
-
-
+    
     <div class="col-md-8 mx-auto">
+            
+            <?= $this->session->flashdata('error'); ?>
+            <?= $this->session->flashdata('success'); ?>
         <?= form_open_multipart('tarifas/create') ?>
         <div class="card">
             <div class="card-header">
@@ -22,7 +23,7 @@ $this->load->view("header2");
                     <label for="name">
                         Nome da tarifa:
                     </label>
-                    <input maxlength="254" placeholder="Ex: Tarifa Urbana Leste" type="text" class="form-control" name="name" id="name" />
+                    <input maxlength="254" placeholder="Ex: Tarifa Urbana Leste" type="text" class="form-control" name="name" id="name" required />
                 </div>
                 <div class="col-auto my-2">
                     <label for="valor">Valor: </label>
@@ -30,21 +31,19 @@ $this->load->view("header2");
                         <div class="input-group-prepend">
                             <span class="input-group-text">R$</span>
                         </div>
-                        <input name="valor" id=valor type="number" step="0.01" class="form-control" aria-label="Quantia" placeholder="Ex: 2.75" maxlength="6" />
+                        <input name="valor" id=valor type="text" step="0.01" class="form-control" aria-label="Quantia" placeholder="Ex: 2.75" maxlength="6" required/>
                         <div class="input-group-append">
                         </div>
                     </div>
                 </div>
 
-                <form>
                     <div class="col-auto my-2">
                         <label for="customFile">Documento TAC:</label>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="concessao" id="customFile">
+                            <input type="file" class="custom-file-input" name="concessao" id="customFile" required>
                             <label class="custom-file-label" for="customFile" id="fileLabel">Documento TAC</label>
                         </div>
                     </div>
-                </form>
                 </form>
                 <i>*TAC: </i><b>Termo de Ajustamento de Conduta.</b><br>
                 <i>Prazo para qualquer alteração é de 76h após clicar em <b>Salvar.</b><br></i>
@@ -78,4 +77,13 @@ $this->load->view('footer2');
         }
         $("#fileLabel").html(filename);
     });
+
+    $("#valor").on("keypress keyup blur",function (event) {
+            //this.value = this.value.replace(/[^0-9\.]/g,'');
+     $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
+
 </script>

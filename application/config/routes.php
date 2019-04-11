@@ -81,16 +81,17 @@ $route['dashboard/tarifas/cadastrar'] = 'gerenciar_tarifa_controller/cadastrarta
 
 $route['dashboard/paradas'] = 'gerenciar_paradas_controller';
 $route['dashboard/paradas/editar'] = 'gerenciar_paradas_controller/editarParada';
+
+
 $route['dashboard/concessoes'] = 'gerenciar_concessoes_controller';
-$route['dashboard/categorias/passageiros'] = 'gerenciar_categoria_passageiros_controller';
 
 $route['dashboard/trajetos/urbanos'] = 'gerenciar_trajetos_urbanos_controller';
 $route['dashboard/trajetos/urbanos/cadastrar'] = 'gerenciar_trajetos_urbanos_controller/cadastrarnovotrajeto';
 $route['dashboard/trajetos/urbanos/editar'] = 'gerenciar_trajetos_urbanos_controller/editarTrajeto';
 
+$route['dashboard/categorias/passageiros'] = 'gerenciar_categoria_passageiros_controller';
 $route['dashboard/categorias/passageiros/ver-categoria'] = 'gerenciar_categoria_passageiros_controller/verCategoria';
 $route['dashboard/categorias/passageiros/cadastrar'] = 'gerenciar_categoria_passageiros_controller/cadastrarTela';
-
 $route['dashboard/categorias/passageiros/editar'] = 'gerenciar_categoria_passageiros_controller/editarCategoriaPassageiro';
 // $route['dashboard/tarifas/listar'] = 'gerenciar_tarifa_controller/listartarifasview';
 // $route['dashboard/tarifas/listar'] = 'gerenciar_tarifa_controller/listartarifasview';

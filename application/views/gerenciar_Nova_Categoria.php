@@ -26,12 +26,12 @@ $this->load->view("header2");
                 <div class="form-group">
                     <div class="col-auto">
                         <label for="exampleFormControlInput1">Nome Categoria:</label>
-                        <input name="nome" type="text" class="form-control" id="exampleFormControlInput1">
+                        <input required maxlength="100" name="nome" type="text" class="form-control" id="exampleFormControlInput1">
                     </div>
                 </div>
                 <div class="col-auto">
                     <label for="exampleFormControlInput1">Valor Desconto:</label>
-                    <input name="desconto" type="text" class="form-control" id="exampleFormControlInput1">
+                    <input required maxlength="3" name="desconto" type="text" class="form-control" id="desconto">
                 </div>
 
                 <div class="col-auto">
@@ -46,7 +46,7 @@ $this->load->view("header2");
 
 
                         <div class="d-flex flex-row align-center my-1 justify-content-center">
-                            <input type="text" name="criterios[]" class="form-control" id="exampleFormControlInput1">
+                            <input required maxlength="255" type="text" name="criterios[]" class="form-control" id="exampleFormControlInput1">
                             <a href="" id="add" class="btn text-dark invisible">
                                 <i class="fa fa-trash my-auto ml-2 fa-2x input-group-icon"></i>
                             </a>
@@ -84,13 +84,26 @@ $('#add').click(function() {
     $('#camposCriterios').append(
         '<div id="crit' + lastInsert +
         '"class="d-flex flex-row align-center my-1 justify-content-center">' +
-        '<input type="text" name="criterios[]" class="form-control" id="exampleFormControlInput1">' +
+        '<input required maxlength="255" type="text" name="criterios[]" class="form-control" id="exampleFormControlInput1">' +
         '<button onclick="deletarCampo(\'crit'+lastInsert+'\')"type="button" id="add" class=" btn btn-hover text-dark">' +
         '<i class="fa fa-trash my-auto ml-2 fa-2x input-group-icon"></i>' +
         '</button>' +
         '</div>');
 
 });
+
+$("#desconto").on("keypress keyup blur",function (event) {    
+           $(this).val($(this).val().replace(/[^\d].+/, ""));
+            if ((event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+            if($(this).val()>100){
+                $(this).val(100)
+            }
+            if($(this).val()<0){
+                $(this).val(0)
+            }
+        });
 
 function deletarCampo(campo) {
     $('#' + campo + '').remove();

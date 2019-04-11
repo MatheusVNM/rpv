@@ -67,9 +67,7 @@ class Gerenciar_Trajetos_Urbanos_Controller extends CI_Controller
 
     public function createTrajeto()
     {
-        $post = $this->input->post();
-        print_r($post);
-        echo "<br>";
+
 
 
         $this->form_validation->set_rules('paradas', 'Paradas', 'required');
@@ -120,24 +118,21 @@ class Gerenciar_Trajetos_Urbanos_Controller extends CI_Controller
             $status = $this->input->post('status');
             $tarifa =  $this->input->post('tarifa');
 
-            echo "<pre>";
-            print_r($this->input->post());
-            echo "</pre>";
             //todo validate the explosion
             $paradas = explode(',', $paradas);
             if (sizeof($paradas) >= 2) {
-                $this->trajetos->edit($paradas, $nome, $tempomedio, $status, $tarifa);
+                $this->trajetos->edit($id, $paradas, $nome, $tempomedio, $status, $tarifa);
                 $this->session->set_flashdata('success', successAlert('Trajeto Cadastrado com Sucesso'));
-                // redirect('dashboard/trajetos/urbanos');
+                redirect('dashboard/trajetos/urbanos');
             } else {
                 $this->session->set_flashdata('error', errorAlert('Deve-se ter ao menos duas paradas'));
                 // redirect('dashboard/trajetos/urbanos/editar');
-                // $this->editarTrajeto($id);
+                $this->editarTrajeto($id);
             }
         } else {
             $this->session->set_flashdata('error', errorAlert('Preencha o formulario corretamente'));
             // redirect('dashboard/trajetos/urbanos/editar');
-            // $this->editarTrajeto($id);
+            $this->editarTrajeto($id);
         }
     }
 

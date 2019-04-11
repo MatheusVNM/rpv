@@ -29,7 +29,7 @@ $this->load->view("header2");
         ?>
             <button class="btn btn-hover" type="submit" form="formCat<?= $categoria['categoriapassageiro_id'] ?>">
                 <i
-                    class="hrv-icon fa fa-2x mr-2 <?= $categoria['categoriapassageiro_icone'] ?> "></i><?= $categoria['categoriapassageiro_nome'] ?>
+                    class="hrv-icon  "></i><?= $categoria['categoriapassageiro_nome'] ?>
             </button>
 
             <?php 

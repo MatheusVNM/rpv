@@ -56,6 +56,7 @@ if ($this->session->userdata('logged_in') !== true || $this->session->userdata('
 
                 <?php if ($this->session->userdata('level') === 'adm') : ?>
                 <a href="<?= site_url('dashboard/categorias/passageiros') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-group mr-1"></i> Gerenciar Categorias de Passageiros</a>
+                <a href="<?= site_url('gerenciar_categoria_onibus_controller') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-bus mr-1"></i> Gerenciar Categorias de Onibus Intermunicipais</a>
                 <?php elseif ($this->session->userdata('level') === 'admlocal') : ?>
 
                 <a href="<?= site_url('dashboard/tarifas') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-money mr-1"></i> Gerenciar Tarifas</a>

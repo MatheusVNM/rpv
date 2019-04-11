@@ -103,12 +103,7 @@ $this->load->view("header2");
             </div>
         </div>
 
-        <div class="row col-md-12 d-flex justify-content-end mt-3 mb-4">
-            <div>
-                <button type="button" class="btn btn-success ">Salvar</button>
-                <button type="button" class="btn btn-danger ">Cancelar</button>
-            </div>
-        </div>
+        
     </div>
 
     <!-- Body end -->

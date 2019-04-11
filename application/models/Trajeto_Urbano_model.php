@@ -65,8 +65,6 @@ class Trajeto_Urbano_model extends CI_Model
 
     public function create($paradas, $nome, $tempomedio, $status, $tarifa)
     {
-        echo "aa";
-        print_r($paradas);
 
         $data = array(
             'trajetourbano_nome' => $nome,
@@ -104,7 +102,53 @@ class Trajeto_Urbano_model extends CI_Model
         $this->db->insert_batch('paradatrajeto', $paradastrajeto);
 
 
-        echo "<hr/>done";
+    }
+
+
+
+    public function edit($trajeto_id, $paradas, $nome, $tempomedio, $status, $tarifa)
+    {
+
+        $data = array(
+            'trajetourbano_nome' => $nome,
+            'trajetourbano_tarifa' => $tarifa,
+            'trajetourbano_isativo' => $status,
+            'trajetourbano_tempomedio' => $tempomedio,
+        );
+        $this->db->where('trajetourbano_id', $trajeto_id);
+        $this->db->update('trajetourbano', $data);
+
+
+
+        $this->db->where('par_traj_trajeto', $trajeto_id);
+        $this->db->delete('paradatrajeto');
+
+
+        $paradastrajeto = array();
+        for ($i = 0; $i < sizeof($paradas); $i++) {
+            if ($i < sizeof($paradas) - 1)
+                array_push(
+                    $paradastrajeto,
+                    array(
+                        'par_traj_trajeto' => $trajeto_id,
+                        'par_traj_parada' => $paradas[$i],
+                        'par_traj_prox_parada' => $paradas[$i + 1]
+                    )
+                );
+            else {
+                array_push(
+                    $paradastrajeto,
+                    array(
+                        'par_traj_trajeto' => $trajeto_id,
+                        'par_traj_parada' => $paradas[$i],
+                        'par_traj_prox_parada' => $paradas[0]
+                    )
+                );
+            }
+        }
+        $this->db->insert_batch('paradatrajeto', $paradastrajeto);
+
+
     }
 
     public function changeStatusTrajeto($id){

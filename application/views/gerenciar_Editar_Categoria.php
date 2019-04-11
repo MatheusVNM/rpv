@@ -20,18 +20,18 @@ $this->load->view("header2");
         <div class="card">
             <!-- form aqui -->
             <?= form_open('categorias/passageiros/edit') ?>
-            <?= form_hidden('id', $categoria['categoriapassageiro_id'])?>
+            <?= form_hidden('categoriapassageiro_id', $categoria['categoriapassageiro_id'])?>
             <div class="card-body">
                 <div class="form-group">
                     <div class="col-auto">
                         <label for="exampleFormControlInput1">Nome Categoria:</label>
-                        <input name="nome" type="text" class="form-control" id="exampleFormControlInput1"
+                        <input required maxlength="100" name="nome" type="text" class="form-control" id="exampleFormControlInput1"
                             value="<?php echo $categoria['categoriapassageiro_nome'] ?>">
                     </div>
                 </div>
                 <div class="col-auto">
                     <label for="exampleFormControlInput1">Valor Desconto:</label>
-                    <input name="desconto" type="text" class="form-control" id="exampleFormControlInput1"
+                    <input required name="desconto" type="number" min="0" max="100" step="1" class="form-control" id="desconto"
                         value="<?php echo $categoria['categoriapassageiro_valordesconto'] ?>">
                 </div>
 
@@ -48,14 +48,14 @@ $this->load->view("header2");
                             </button>
                         </div>
                         <div class="d-flex flex-row align-center my-1 justify-content-center">
-                            <input type="text" name="criterios[]" class="form-control" id="exampleFormControlInput1" value="<?= $umCriterio['criterios_descricao'] ?>">
+                            <input maxlength="255" required type="text" name="criterios[]" class="form-control" id="exampleFormControlInput1" value="<?= $umCriterio['criterios_descricao'] ?>">
                             <a href="" id="add" class="btn text-dark invisible">
                                 <i class="fa fa-trash my-auto ml-2 fa-2x input-group-icon"></i>
                             </a>
                         </div>
                         <?php else: ?>
                         <div id="crit<?=$lastInsert?>" class="d-flex flex-row align-center my-1 justify-content-center">
-                            <input type="text" name="criterios[]" class="form-control" id="exampleFormControlInput1"  value="<?= $umCriterio['criterios_descricao'] ?>">
+                            <input maxlength="255" required type="text" name="criterios[]" class="form-control" id="exampleFormControlInput1"  value="<?= $umCriterio['criterios_descricao'] ?>">
                             <button onclick="deletarCampo('crit<?=$lastInsert ?>')" type="button" id="add"
                                 class=" btn btn-hover text-dark">
                                 <i class="fa fa-trash my-auto ml-2 fa-2x input-group-icon"></i>
@@ -104,6 +104,13 @@ $('#add').click(function() {
         '</div>');
 
 });
+
+$("#desconto").on("keypress keyup blur",function (event) {    
+           $(this).val($(this).val().replace(/[^\d].+/, ""));
+            if ((event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
 
 function deletarCampo(campo) {
     $('#' + campo + '').remove();

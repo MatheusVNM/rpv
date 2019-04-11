@@ -20,7 +20,7 @@ $this->load->view("header2");
         <div class="card-body">
             <div class="form-group">
                 <label for="valor">Valor da Tarifa</label>
-                <input name="valor" id="valor" class=" form-control" type="number" step="0.01" value="<?= $tarifaAtual['valores_valor'] ?>">
+                <input name="valor" id="valor" class=" form-control" type="text" step="0.01" value="<?= $tarifaAtual['valores_valor'] ?>" required>
             </div>
             <div class="form-group ">
                 <label for="date">Data</label>
@@ -96,5 +96,16 @@ $this->load->view('footer2');
         }
         $("#fileLabel").html(filename);
     });
+
+
+
+    $("#valor").on("keypress keyup blur",function (event) {
+            //this.value = this.value.replace(/[^0-9\.]/g,'');
+     $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
+
 </script>                                                                                                            $this->load->view("footer2.php")
                                                                                                             ?>

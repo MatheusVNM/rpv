@@ -35,10 +35,10 @@ $js_array = json_encode($todasparadas);
                 <?= form_hidden('id', $trajeto['trajetourbano_id']) ?>
                 <?= form_input(array('name' => 'paradas', 'type' => 'hidden', 'id' => 'hidden')); ?>
                 <label for="TempoMédioPerc">Nome do Percurso: </label>
-                <input name="nome" type="text" class="form-control" id="nome" value="<?= $trajeto['trajetourbano_nome'] ?>">
+                <input required name="nome" type="text" class="form-control" id="nome" value="<?= $trajeto['trajetourbano_nome'] ?>">
 
                 <label for="TempoMédioPerc">Tempo médio de percurso (em minutos): </label>
-                <input name="tempomedio" type="number" pattern="\d*" step="1" class="form-control" id="TempoMédioPerc" value="<?= $trajeto['trajetourbano_tempomedio'] ?>">
+                <input required name="tempomedio" type="number" pattern="\d*" step="1" class="form-control" id="tempomedio" value="<?= $trajeto['trajetourbano_tempomedio'] ?>">
 
                 <label for="status">Status: </label>
                 <select name="status" class="form-control" id="status" value="<?= $trajeto['trajetourbano_tarifa'] ?>">
@@ -194,7 +194,6 @@ $this->load->view("footer2.php")
         possiveisparadas.forEach(function(element) {
             if (element['parada_id'] == id) {
                 p = element;
-                alert('aaa')
             }
         })
         paradasSelecionadas.push(p['parada_id']);
@@ -215,7 +214,6 @@ $this->load->view("footer2.php")
         possiveisparadas.forEach(function(element) {
             if (element['parada_id'] == id) {
                 possivelParada = element;
-                alert('aaa')
             }
         })
         $('#par' + id + '').remove();
@@ -276,4 +274,10 @@ $this->load->view("footer2.php")
         });
 
     });
+    $("#tempomedio").on("keypress keyup blur",function (event) {    
+           $(this).val($(this).val().replace(/[^\d].+/, ""));
+            if ((event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
 </script>

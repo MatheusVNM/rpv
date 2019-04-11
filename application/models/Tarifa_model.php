@@ -128,8 +128,9 @@ class Tarifa_model extends CI_Model
 
         // set path to store uploaded files
         $config['upload_path'] = realpath(FCPATH . 'files');
+        print_r($_FILES);
 
-        $new_name = str_replace('.pdf', '', $_FILES["concessao"]['name']) . md5(time()) . '.pdf';
+        $new_name = str_replace('.pdf', '', $_FILES[$concessao]['name']) . md5(time()) . '.pdf';
         $config['file_name'] = $new_name;
         // set allowed file types
         $config['allowed_types'] = 'pdf';

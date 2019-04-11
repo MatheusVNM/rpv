@@ -24,7 +24,7 @@ class CategoriaOnibus_model extends CI_Model
     public function save($nome, $precokm)
     {
         $this->db->select('IFNULL(MAX(`catOnibus_id`), 0) AS `maxid`', false);
-        $catOnibus_codigo = sprintf('CO%03d', $this->db->get('categoriaonibus', 1)->result_array()[0]['maxid']);
+        $catOnibus_codigo = sprintf('CO%03d', $this->db->get('categoriaonibus', 1)->result_array()[0]['maxid']+1);
         $data = array(
             'catOnibus_status' => true,
             'catOnibus_nome' => $nome,
