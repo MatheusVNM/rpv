@@ -30,7 +30,7 @@ $this->load->view("header2");
                         </thead>
                         <tbody>
                         <?php foreach ($paradas as $row) : ?>
-                            <td><?= $row['parada_codigo'] ?></td>
+                            <td class = "font-weight-bold"><?= $row['parada_codigo'] ?></td>
                             <td><?= $row['parada_bairro'] ?></td>
                             <td><?= $row['parada_rua'] ?></td>
                             <td><?= $row['parada_numero'] ?></td>

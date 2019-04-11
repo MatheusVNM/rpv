@@ -28,7 +28,7 @@ $this->load->view("header2");
                         </thead>
                         <tbody>
                         <?php foreach ($cat_onibus as $row) : ?>
-                            <td><?= $row['catOnibus_codigo'] ?></td>
+                            <td class = "font-weight-bold"><?= $row['catOnibus_codigo'] ?></td>
                             <td><?= $row['catOnibus_nome'] ?></td>
                             <td><?= "R$ ".$row['catOnibus_precokm']  ?></td>
                             <td><?php if ($row['catOnibus_status'] == 1): echo "Ativa" ?>
