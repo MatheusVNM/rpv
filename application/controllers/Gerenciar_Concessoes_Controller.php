@@ -55,4 +55,10 @@ class Gerenciar_Concessoes_Controller extends CI_Controller
     public function getExcluidas(){
         $this->concessao_model->getConcessoesExcluidas();
     }
+    public function restaurarConcessao(){
+        $status='0';
+        $id = $this->input->post('concessao_id');
+        $this->concessao_model->updateStatus($id, $status);
+        redirect('dashboard/concessoes');
+    }
 }

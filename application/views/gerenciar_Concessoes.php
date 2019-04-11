@@ -92,12 +92,11 @@ $this->load->view("header2");
             <td>Não Vigente</td>
             <td>
                 <?php $hidden = array('concessao_id' => $concessaoExcluida['id_Concessao']);
-                    echo form_open('gerenciar_concessoes_Controller/updateStatusConcessao', 'id="formDelete' . $concessaoExcluida['id_Concessao'].'"class="d-none"', $hidden);
+                    echo form_open('gerenciar_concessoes_Controller/restaurarConcessao', 'id="formRestaura' . $concessaoExcluida['id_Concessao'].'"class="d-none"', $hidden);
                     ?>
                 <?= form_close() ?>
-                <button type="button" class="btn btn-default btn-sm"
-                    form="formDelete<?=$concessaoExcluida['id_Concessao']?>"
-                    onclick="editar(<?= $concessaoExcluida['id_Concessao'] ?>, <?= $concessaoExcluida['statusConcessao'] ?>)"
+                <button type="submit" class="btn btn-default btn-sm"
+                    form="formRestaura<?=$concessaoExcluida['id_Concessao']?>"
                     title="Restaura para a lista novamente." id="opcoesConcessaoRestaurar" data-toggle="tooltip"
                     data-placement="top">
                     <span class="hvr-icon fa fa-refresh mr-1"></span>Restaurar
@@ -123,9 +122,7 @@ $this->load->view("header2");
                 <?= form_open_multipart('gerenciar_concessoes_Controller/createConcessao', array('id' => 'concessao_form'))?>
                 <div class="form-group col-md-6">
                     <label for="protocoloConcessao">Protocolo da Concessão</label>
-                    <input name="name_nroProtocolo" type="text" class="form-control" id="id_ProtocoloConcessao"
-                        data-error="Bruh, that email address is invalid" required>
-                    <div class="help-block with-errors"></div>
+                    <input name="name_nroProtocolo" type="text" class="form-control" id="id_ProtocoloConcessao">
                 </div>
                 <div class="form-group col-md-5" id="formCadastroConcessao">
                     <label for="opcoesStatus">Status</label>
@@ -136,7 +133,7 @@ $this->load->view("header2");
                 </div>
                 <div class="custom-file col-md-8 mx-3" id="formCadastroConcessao">
                     <input type="file" class="custom-file-input" name="docconcessao" id="customFile">
-                    <label class="custom-file-label" for="customFile">Documento de Concessão</label>
+                    <label class="custom-file-label" for="customFile" id="nomeInputFile"></label>
                 </div>
                 <?= form_close() ?>
             </div>
@@ -253,4 +250,13 @@ function enviando() {
     $("#concessao_form").submit();
     $(selector).submit();
 }
+</script>
+
+<script>
+$(document).ready(function() {
+    $('input[type="file"]').change(function(e) {
+        var fileName = e.target.files[0].name;
+        alert('The file "' + fileName + '" has been selected.');
+    });
+});
 </script>
