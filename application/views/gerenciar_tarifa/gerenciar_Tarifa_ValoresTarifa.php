@@ -30,7 +30,7 @@ $this->load->view("header2");
                 <label for="consessao">Consessão</label>
                 <div class=" custom-file">
                     <input type="file" class="custom-file-input" id="consessao" name="concessao" required>
-                    <label class="custom-file-label" for="consessao">Escolha um arquivo</label>
+                    <label class="custom-file-label" for="consessao" id="fileLabel">Escolha um arquivo</label>
                     <div class="invalid-feedback">Example invalid custom file feedback</div>
                 </div>
             </div>
@@ -79,6 +79,22 @@ $this->load->view("header2");
     </div>
     <div class="card-footer"></div>
 </div>
+
 <?php
-                                                                                                            $this->load->view("footer2.php")
+$this->load->view('footer2');
+?>
+
+<script>
+    $("#consessao").change(function() {
+        var fullPath = $(this).val();
+        if (fullPath) {
+            var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+            var filename = fullPath.substring(startIndex);
+            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                filename = filename.substring(1);
+            }
+        }
+        $("#fileLabel").html(filename);
+    });
+</script>                                                                                                            $this->load->view("footer2.php")
                                                                                                             ?>

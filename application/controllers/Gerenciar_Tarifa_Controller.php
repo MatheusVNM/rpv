@@ -56,6 +56,22 @@ class Gerenciar_Tarifa_Controller extends CI_Controller
         $this->load->view('gerenciar_tarifa/gerenciar_Tarifa_ListaTarifas');
     }
 
+  public function  mudarStatusTarifa(){
+    $this->form_validation->set_rules('tarifa_id', 'ID', 'required');
+
+    if ($this->form_validation->run() !== false) {
+        $id  = $this->input->post('tarifa_id', true);
+
+        $result = $this->tarifa_model->changeStatusTarifa($id);
+        $this->session->set_flashdata('success' , '<div class="alert alert-success m-2">Status da tarifa alterado com sucesso</div>');
+        redirect('/dashboard/tarifas');
+    }else{
+        $this->session->set_flashdata('error' ,   '<div class="alert alert-danger mt-3 mx-auto">Erro ao mudar status da tarifa</div>');
+        redirect('/dashboard/tarifas/');
+    }
+
+
+  }
 
     public function catastrarNovaTarifa()
     {
@@ -73,15 +89,15 @@ class Gerenciar_Tarifa_Controller extends CI_Controller
             $result = $this->tarifa_model->createTarifa($name, $valor, $date );
             if($result['success']){
                $this->session->set_flashdata('success' , '<div class="alert alert-success m-2">Tarifa cadastrada com sucesso</div>');
-                $this->index();
+               redirect('/dashboard/tarifas');
             }else{
                 $this->session->set_flashdata('error' ,  '<div class="alert alert-danger mt-3 mx-auto">Erro ao cadastrar a tarifa: '.$result['error'].'</div>');
-                $this->catastrarNovaTarifa();                
+                redirect('/dashboard/tarifas/cadastrar');
             }
             
         }else{
             $this->session->set_flashdata('error' ,   '<div class="alert alert-danger mt-3 mx-auto">Erro ao cadastrar a tarifa: Algum campo ficou em branco</div>');
-            $this->catastrarNovaTarifa();                
+            redirect('/dashboard/tarifas/cadastrar');
         }
 
 
@@ -105,7 +121,7 @@ class Gerenciar_Tarifa_Controller extends CI_Controller
             $result = $this->tarifa_model->updateTarifa($id, $valor, $date );
             if($result['success']){
                $this->session->set_flashdata('success' , '<div class="alert alert-success m-2">Valor da tarifa atualizado com sucesso</div>');
-                $this->index();
+               redirect('/dashboard/tarifas');
             }else{
                 $this->session->set_flashdata('error' ,  '<div class="alert alert-danger mt-3 mx-auto">Erro ao atualizar as tarifas: '.$result['error'].'</div>');
                 $this->editarTarifa();                

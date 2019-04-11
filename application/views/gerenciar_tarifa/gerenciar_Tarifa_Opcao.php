@@ -43,11 +43,11 @@
                     <button href="#" form="formEdit<?= $tarifa['tarifa_id'] ?>" type="submit" name="submit" class="btn btn-mini p-1 text-dark"><i class="fa fa-edit fa-2x"></i></button>
 
                     <?php $hidden = array('tarifa_id' => $tarifa['tarifa_id']);
-                    echo form_open('dashboard/tarifas/trancar', 'id="formTrancar' . $tarifa['tarifa_id'] . '" class="d-none"', $hidden);
+                    echo form_open('/tarifas/changeStatus', 'id="formTrancar' . $tarifa['tarifa_id'] . '" class="d-none"', $hidden);
                     ?>
                     <?= form_close() ?>
 
-                    <button href="#" form="formTrancar<?= $tarifa['tarifa_id'] ?>" type="submit" name="submit" class="btn btn-mini p-1 text-dark"><i class="fa fa-xing fa-2x"></i></button>
+                    <button href="#" form="formTrancar<?= $tarifa['tarifa_id'] ?>" type="submit" name="submit" class="btn btn-mini p-1 text-dark"><i class="fa fa-adjust fa-2x"></i></button>
                 </td>
             </tr>
             <?php endforeach; ?>

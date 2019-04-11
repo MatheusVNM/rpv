@@ -92,17 +92,17 @@ $js_array = json_encode($paradasnaovinculadas);
                                         <?= $possivelParada['parada_bairro'] ?>
                                     </td>
 
-                                    <td><button class="btn btn-info" onclick="teste(<?= $count ?>)"> Selecionar </button></td>
+                                    <td><button class="btn btn-info" onclick="selecionar(<?= $count ?>)"> Selecionar </button></td>
 
                                     <!-- <td>
-                                                                                                                <label class="btn btn-secondary">
-                                                                                                                    <input type="radio" name="options" id="option1" autocomplete="off" checked>
-                                                                                                                    Selecionar Parada
-                                                                                                                </label>
-                                                                                                            </td>
-                                                                                                            <td>
-                                                                                                                <button class="btn btn-info">Selecionar como proxima parada</button>
-                                                                                                            </td> -->
+                                                                                                                                                        <label class="btn btn-secondary">
+                                                                                                                                                            <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                                                                                                                                            Selecionar Parada
+                                                                                                                                                        </label>
+                                                                                                                                                    </td>
+                                                                                                                                                    <td>
+                                                                                                                                                        <button class="btn btn-info">Selecionar como proxima parada</button>
+                                                                                                                                                    </td> -->
                                 </tr>
                                 <?php
                                 $count++;
@@ -136,21 +136,23 @@ $js_array = json_encode($paradasnaovinculadas);
                         </tr>
                     </thead>
                     <tbody id="paradasfeitas">
-                        '<tr id="par' + n + '">
-                            <td>' + codigo + '</td>
-                            <td>' + rua + '</td>
-                            <td>' + numero + '</td>
-                            <td>' + bairro + '</td>
-                            <td class="text-right">
-                                <a class="btn btn-sm btn-icon-only text-dark d-flex justify-content-center" href="#" onclick="removeParada(' + n + ',' + ids + ')">
-                                    <!-- <a class="btn btn-sm btn-icon-only text-dark d-flex justify-content-center" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
-                                    <i class="fa fa-2x fa-trash"></i>
-                                </a>
-                                <!-- <div class="dropdown-menu dropdown-menu-arrow">
-                                           <a class="dropdown-item" href="#">Excluir</a>
-                               </div> -->
-                            </td>
-                        </tr>'
+                        <?php foreach ($paradastrajeto as $paradatrajeto) : ?>
+                            <tr id="par<?= $paradatrajeto['parada_id'] ?>">
+                                <td> <?= $paradatrajeto['parada_codigo'] ?></td>
+                                <td> <?= $paradatrajeto['parada_rua'] ?> </td>
+                                <td> <?= $paradatrajeto['parada_numero'] ?> </td>
+                                <td> <?= $paradatrajeto['parada_bairro'] ?></td>
+                                <td class="text-right">
+                                    <a class="btn btn-sm btn-icon-only text-dark d-flex justify-content-center" href="#" onclick="removeParada(' + n + ',' + ids + ')">
+                                        <!-- <a class="btn btn-sm btn-icon-only text-dark d-flex justify-content-center" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
+                                        <i class="fa fa-2x fa-trash"></i>
+                                    </a>
+                                    <!-- <div class="dropdown-menu dropdown-menu-arrow">
+                                                       <a class="dropdown-item" href="#">Excluir</a>
+                                           </div> -->
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -180,9 +182,14 @@ $js_array = json_encode($paradasnaovinculadas);
 $this->load->view("footer2.php")
 ?>
 <script>
-    var paradasSelecionadas = new Array();
+    var paradasSelecionadas = new Array(
+        <?php foreach ($paradastrajeto as $paradatrajeto) {
+            echo $paradatrajeto['parada_id'] . ",";
+        } ?>
 
-    function teste(id) {
+    );
+
+    function selecionar(id) {
         var p = possiveisparadas[id];
         paradasSelecionadas.push(p['parada_id']);
         ids = paradasSelecionadas.length - 1;

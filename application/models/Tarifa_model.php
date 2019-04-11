@@ -88,12 +88,18 @@ class Tarifa_model extends CI_Model
         }
     }
 
+    public function changeStatusTarifa($id){
+        $this->db->set('tarifa_vigente', 'NOT tarifa_vigente', FALSE);
+        $this->db->where('tarifa_id', $id);
+        $this->db->update('tarifa');
+    }
+
     public function createTarifa($tarifa_nome, $valores_valor, $dataHomologacao)
     {
         $resultUpload =   $this->uploadFile('concessao');
         if ($resultUpload['success']) {
             $this->db->select('IFNULL(MAX(`tarifa_id`), 0) AS `maxid`', false);
-            $tarifa_codigo = sprintf('TF%03d', ($this->db->get('tarifa', 1)->result_array()[0]['m a xid'] + 1));
+            $tarifa_codigo = sprintf('TF%03d', ($this->db->get('tarifa', 1)->result_array()[0]['maxid'] + 1));
 
             $data = array(
                 'tarifa_nome' => $tarifa_nome,

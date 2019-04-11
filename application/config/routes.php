@@ -59,6 +59,7 @@ $route['logout'] = 'login/logout';
 
 $route['tarifas/update'] = 'gerenciar_tarifa_controller/atualizarValorTarifa';
 $route['tarifas/create'] = 'gerenciar_tarifa_controller/catastrarNovaTarifa';
+$route['tarifas/changeStatus'] = 'gerenciar_tarifa_controller/mudarStatusTarifa';
 
 $route['trajetos/urbanos/create'] = 'gerenciar_trajetos_urbanos_controller/createTrajeto';
 

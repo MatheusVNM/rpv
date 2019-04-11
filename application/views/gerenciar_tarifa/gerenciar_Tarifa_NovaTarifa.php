@@ -8,51 +8,9 @@ $this->load->view("header2");
 
 <?= form_open('tarifas/create') ?>
 <div class="container-fluid flex-shrink-1 d-flex justify-content-left">
-    <div class="col-sm-5 ml-md-auto">
-        <div class="card">
-            <div class="card-header">
-                Dados do Administrador Local
-            </div>
-            <div class="card-body">
-                <form>
-                    <div class="form-group">
-                        <div class="col-auto">
-                            <label for="exampleFormControlInput1">Nome do Administrador:</label>
-                            <input type="text" class="form-control" disabled id="exampleFormControlInput1" value=" <?= $this->session->userdata('username') ?>">
 
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">CPF:</label>
-                            <input type="text" class="form-control" disabled id="exampleFormControlInput1" value=" <?= $this->session->userdata('cpf') ?>">
 
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Identidade:</label>
-                            <input type="text" class="form-control" disabled id="exampleFormControlInput1" value=" <?= $this->session->userdata('identidade') ?>">
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Data de Criação:</label>
-                            <input type="date" class="form-control" disabled id="exampleFormControlInput1" value="<?= date('Y-m-d'); ?>">
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Hora de Criação:</label>
-                            <input type="time" class="form-control" disabled id="exampleFormControlInput1" placeholder="">
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-5 mr-md-auto">
+    <div class="col-md-8 mx-auto">
         <?= form_open_multipart('tarifas/create') ?>
         <div class="card">
             <div class="card-header">
@@ -64,7 +22,7 @@ $this->load->view("header2");
                     <label for="name">
                         Nome da tarifa:
                     </label>
-                    <input placeholder="Ex: Tarifa Urbana Leste" type="text" class="form-control" name="name" id="name" />
+                    <input maxlength="254" placeholder="Ex: Tarifa Urbana Leste" type="text" class="form-control" name="name" id="name" />
                 </div>
                 <div class="col-auto my-2">
                     <label for="valor">Valor: </label>
@@ -72,7 +30,7 @@ $this->load->view("header2");
                         <div class="input-group-prepend">
                             <span class="input-group-text">R$</span>
                         </div>
-                        <input name="valor" id=valor type="number" step="0.01" class="form-control" aria-label="Quantia" placeholder="2.75" />
+                        <input name="valor" id=valor type="number" step="0.01" class="form-control" aria-label="Quantia" placeholder="Ex: 2.75" maxlength="6" />
                         <div class="input-group-append">
                         </div>
                     </div>
@@ -83,7 +41,7 @@ $this->load->view("header2");
                         <label for="customFile">Documento TAC:</label>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" name="concessao" id="customFile">
-                            <label class="custom-file-label" for="customFile">Documento TAC</label>
+                            <label class="custom-file-label" for="customFile" id="fileLabel">Documento TAC</label>
                         </div>
                     </div>
                 </form>
@@ -105,5 +63,19 @@ $this->load->view("header2");
 </div>
 <!-- Body end -->
 <?php
-                                                                                                                    $this->load->view("footer2.php")
-                                                                                                                    ?>
+$this->load->view('footer2');
+?>
+
+<script>
+    $("#customFile").change(function() {
+        var fullPath = $(this).val();
+        if (fullPath) {
+            var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+            var filename = fullPath.substring(startIndex);
+            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                filename = filename.substring(1);
+            }
+        }
+        $("#fileLabel").html(filename);
+    });
+</script>
