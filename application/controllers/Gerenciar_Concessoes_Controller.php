@@ -27,8 +27,12 @@ class Gerenciar_Concessoes_Controller extends CI_Controller
                  redirect('dashboard/concessoes');
              }else{
                  $this->session->set_flashdata('error' ,  '<div class="alert alert-danger mt-3 mx-auto">Erro ao cadastrar a concessão: '.$result['error'].'</div>');            
-             }
-        }
+                 redirect('dashboard/concessoes');
+                }
+        }else{
+            $this->session->set_flashdata('error' ,  '<div class="alert alert-danger mt-3 mx-auto">Erro ao cadastrar a concessão: '.$result['error'].'</div>');            
+            redirect('dashboard/concessoes');
+           }
     }
     public function updateConcessao(){
         $this->form_validation->set_rules('name_nroProtocoloEdit', 'Protocolo', 'required');

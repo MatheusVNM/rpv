@@ -7,6 +7,8 @@ $this->load->view("header2");
 <!-- Body init -->
 
 <h2 class="text-center">Lista de Concessões de Trajetos</h2>
+<?= $this->session->flashdata('error');?>
+<?= $this->session->flashdata('success');?>
 <div class="form-group col-md-3">
     <label for="inputStatus">Filtrar</label>
     <select id="idInputStatus" class="form-control" name="opcoesFiltros">
@@ -56,10 +58,10 @@ $this->load->view("header2");
                     <span class="hvr-icon fa fa-edit mr-1"></span> Editar
                 </button>
                 <label>/</label>
-                <a type="button" class="btn btn-default btn-sm" title="Download do documento de concessão"
+                <a type="button" class="btn btn-default btn-sm" title="Documento de concessão"
                     id="opcoesConcessaoDownload" data-toggle="tooltip" data-placement="top"
                     href="<?= $concessao['anexo_Concessao']?>" target="_blank">
-                    <span class="hvr-icon fa fa-download mr-1"></span>Download
+                    <span class="hvr-icon fa fa-file-pdf-o mr-1"></span>PDF
                 </a>
                 <?php if(!$concessao['statusConcessao']) : ?>
                 <label>/</label>
@@ -96,7 +98,7 @@ $this->load->view("header2");
                 <button type="button" class="btn btn-default btn-sm"
                     form="formDelete<?=$concessaoExcluida['id_Concessao']?>"
                     onclick="editar(<?= $concessaoExcluida['id_Concessao'] ?>, <?= $concessaoExcluida['statusConcessao'] ?>)"
-                    title="Restaura para lista novamente." id="opcoesConcessaoRestaurar" data-toggle="tooltip"
+                    title="Restaura para a lista novamente." id="opcoesConcessaoRestaurar" data-toggle="tooltip"
                     data-placement="top">
                     <span class="hvr-icon fa fa-refresh mr-1"></span>Restaurar
                 </button>
@@ -121,16 +123,18 @@ $this->load->view("header2");
                 <?= form_open_multipart('gerenciar_concessoes_Controller/createConcessao', array('id' => 'concessao_form'))?>
                 <div class="form-group col-md-6">
                     <label for="protocoloConcessao">Protocolo da Concessão</label>
-                    <input name="name_nroProtocolo" type="text" class="form-control" id="id_ProtocoloConcessao">
+                    <input name="name_nroProtocolo" type="text" class="form-control" id="id_ProtocoloConcessao"
+                        data-error="Bruh, that email address is invalid" required>
+                    <div class="help-block with-errors"></div>
                 </div>
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-5" id="formCadastroConcessao">
                     <label for="opcoesStatus">Status</label>
                     <select id="id_opcoesStatus" class="form-control" name="name_opcoesstatus">
                         <option value="1" selected>Vigente</option>
                         <option value="0">Não Vigente</option>
                     </select>
                 </div>
-                <div class="custom-file col-md-8 mx-3">
+                <div class="custom-file col-md-8 mx-3" id="formCadastroConcessao">
                     <input type="file" class="custom-file-input" name="docconcessao" id="customFile">
                     <label class="custom-file-label" for="customFile">Documento de Concessão</label>
                 </div>
@@ -138,7 +142,8 @@ $this->load->view("header2");
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="submit" form="concessao_form" class="btn btn-primary">Salvar</button> 
+                <button type="button" onclick="enviando()" class="btn btn-success"
+                    id="idSalvarConcessao">Salvar</button>
             </div>
         </div>
     </div>
@@ -176,7 +181,8 @@ $this->load->view("header2");
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="submit" form="modal_edit_form" class="btn btn-primary">Salvar</button>
+                <button type="submit" form="modal_edit_form" class="btn btn-primary"
+                    id="idSalvarConcessao">Salvar</button>
             </div>
         </div>
     </div>
@@ -234,4 +240,17 @@ $("#idInputStatus").change(function() {
     }
 
 });
+</script>
+
+<script>
+function enviando() {
+    var item = '<span class="sr-only">Loading...</span>';
+    $("#idSalvarConcessao").attr("disabled", true);
+    $("#idSalvarConcessao").html(item);
+    $("#idSalvarConcessao").addClass("text-primary");
+    $("#idSalvarConcessao").addClass("spinner-grow");
+    $("#idSalvarConcessao").removeClass("btn-success");
+    $("#concessao_form").submit();
+    $(selector).submit();
+}
 </script>
