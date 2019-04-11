@@ -13,53 +13,54 @@ class Gerenciar_Categoria_Passageiros_Controller extends CI_Controller{
         $data['categoriaPassageiros'] = $this->categorias->getCatPassageiros();
         
         $this->load->view('gerenciar_Categorias_Passageiros_Principal', $data);
+        
     }
 
+    public function editCategoria(){
+      $this->form_validation->set_rules('nome', 'Nome', 'required');
+      $this->form_validation->set_rules('desconto', 'Desconto', 'required');
+      $this->form_validation->set_rules('criterios[]', 'Criterios', 'required');
+      $this->form_validation->set_rules('id', 'Id', 'required');
+      
+      if ($this->form_validation->run()!==false){
+            $nome = $this->input->post('nome');
+            $valorDesconto= $this->input->post('desconto');
+            $criterios= $this->input->post('criterios');
+            $id = $this->input->post('id');
+
+            $this->session->set_flashdata('success', '<div class="alert alert-sucess">Categoria editada com sucesso!</div>');
+            $this->categorias->editarCategoriaPassageiro($id, $nome, $valorDesconto, $criterios);
+            redirect('dashboard/categorias/passageiros');
+
+           
+    
+    }else{
+            $this->session->set_flashdata('error', '<div class="alert alert-danger">Por favor, preencha corretamente o formulário</div>');
+            redirect('dashboard/categorias/passageiros');
+           //todo redirecionar para/editar
+
+        }
+    }
     public function createCategoria(){
         
         $this->form_validation->set_rules('nome', 'Nome', 'required');
-        $this->form_validation->set_rules('valordesconto', 'Desconto', 'required' );
+        $this->form_validation->set_rules('desconto', 'Desconto', 'required' );
         $this->form_validation->set_rules('criterios[]', 'Criterios', 'required');
-
-        echo "<pre>";
-        print_r($this->input->post());
-        echo "</pre>";
+        
         if($this->form_validation->run()!==false){
 
-        $nome = $this->input->post('nome');
-        $valorDesconto= $this->input->post('desconto');
-        $criterios= $this->input->post('criterios');
+            $nome = $this->input->post('nome');
+            $valorDesconto= $this->input->post('desconto');
+            $criterios= $this->input->post('criterios');
         
-        //$this->session->set_flashdata('sucess', '<div class="alert alert-sucess">Categoria salva com sucesso!</div>');
-        //$this->categorias->createCategoria($nome, $valorDesconto, $criterios);
+            $this->session->set_flashdata('success', '<div class="alert alert-sucess">Categoria salva com sucesso!</div>');
+            $this->categorias->createCategoria($nome, $valorDesconto, $criterios);
+            redirect('dashboard/categorias/passageiros');
         }else{
             $this->session->set_flashdata('error', '<div class="alert alert-danger">Por favor, preencha corretamente o formulário</div>');
-           
-        }
+            redirect('dashboard/categorias/passageiros/cadastrar');
     }    
 
-    public function editCategoria(){
-        
-        $this->form_validation->set_rules('nome', 'Nome', 'required');
-        $this->form_validation->set_rules('valordesconto', 'Desconto', 'required' );
-        $this->form_validation->set_rules('criterios[]', 'Criterios', 'required');
-
-        echo "<pre>";
-        print_r($this->input->post());
-        echo "</pre>";
-        if($this->form_validation->run()!==false){
-
-        $nome = $this->input->post('nome');
-        $valorDesconto= $this->input->post('desconto');
-        $criterios= $this->input->post('criterios');
-        
-        //$this->session->set_flashdata('sucess', '<div class="alert alert-sucess">Categoria salva com sucesso!</div>');
-        //$this->categorias->createCategoria($nome, $valorDesconto, $criterios);
-        }else{
-            $this->session->set_flashdata('error', '<div class="alert alert-danger">Por favor, preencha corretamente o formulário</div>');
-           
-            
-    }
 }
 
  public function cadastrarTela(){
@@ -85,16 +86,26 @@ class Gerenciar_Categoria_Passageiros_Controller extends CI_Controller{
  }
 
     public function editarCategoriaPassageiro(){
+        
+        $this->form_validation->set_rules('categoriapassageiro_id', 'ID', 'required');
 
-        $id = $this->input->post('categoriapassageiro_id');
-        $categoriaDoDB = $this->categorias->getCategoriaEspecifica($id);
-        $data['categoria']= $categoriaDoDB; 
-    
-        $criteriosDoDB = $this->categorias->getCriterios($id);
-        $data['criterios'] = $criteriosDoDB;
+        if($this->form_validation->run()!==false){
 
-        $this->load->view( 'gerenciar_Editar_Categoria', $data);
+
+            $id = $this->input->post('categoriapassageiro_id');
+            $categoriaDoDB = $this->categorias->getCategoriaEspecifica($id);
+            $data['categoria']= $categoriaDoDB; 
     
+            $criteriosDoDB = $this->categorias->getCriterios($id);
+            $data['criterios'] = $criteriosDoDB;
+
+            $this->load->view( 'gerenciar_Editar_Categoria', $data);
+
+        }else{
+            $this->session->set_flashdata('error', '<div class="alert alert-danger">Ops! Algo não deu certo, por favor, tente novamente</div>');
+            $this->index();
+            //volta com erro
+        }
     }
 
 

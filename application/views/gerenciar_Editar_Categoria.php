@@ -19,9 +19,8 @@ $this->load->view("header2");
         <?= $this->session->flashdata('error') ?>
         <div class="card">
             <!-- form aqui -->
-
-
             <?= form_open('categorias/passageiros/edit') ?>
+            <?= form_hidden('id', $categoria['categoriapassageiro_id'])?>
             <div class="card-body">
                 <div class="form-group">
                     <div class="col-auto">
@@ -62,10 +61,7 @@ $this->load->view("header2");
                                 <i class="fa fa-trash my-auto ml-2 fa-2x input-group-icon"></i>
                             </button>
                         </div>
-
-
                         <?php endif; ?>
-
                         <?php $lastInsert++?>
                         <?php endforeach; ?>
                     </div>

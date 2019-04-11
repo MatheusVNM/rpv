@@ -18,10 +18,29 @@ $this->load->view("header2");
         <h4 class="text-center text-logo-color"><b><br><?= $categoria['categoriapassageiro_nome'] ?></b></h4>
     </div>
 
-    <ul class="list-group">
+
+    <!-- <div class="form-group col-md-2">
+        <label for="valorDesconto"><b>Valor Desconto:</b></label>
+        <input type="text" class="form-control" id="idCampoDesconto"
+            placeholder=<?= $categoria['categoriapassageiro_valordesconto']?>% readonly>
+    </div> -->
+
+
+    <ul class="list-group col-md-7 mx-auto">
+
+        <li class="list-group-item active text-center bg-logo-color">
+            <h5><b>Valor Desconto</b></h5>
+        </li>
+
+        <li class="list-group-item text-center">
+            <?= $categoria['categoriapassageiro_valordesconto']?>%
+        </li>
+
         <li class="list-group-item active text-center bg-logo-color">
             <h5><b>Critérios</b></h5>
         </li>
+
+
         <?php foreach($criterios as $umCriterio) : ?>
         <li class="list-group-item text-center"><?php echo $umCriterio['criterios_descricao'] ?></li>
         <?php endforeach; ?>

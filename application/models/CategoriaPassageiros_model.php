@@ -45,5 +45,34 @@ public function createCategoria($categoriapassageiro_nome, $categoriapassageiro_
    //         return array('success' => false);
      //   }
 
-    //public function updateCategoriaPassageiro    
+
+
+
+
+     public function editarCategoriaPassageiro($categoriapassageiro_id, 
+     $categoriapassageiro_nome, 
+     $categoriapassageiro_valordesconto, 
+     $criterios_descricao ){
+
+        $data = array(
+            'categoriapassageiro_nome' => $categoriapassageiro_nome,
+            'categoriapassageiro_valordesconto' => $categoriapassageiro_valordesconto,
+        );
+        $this->db->where('categoriapassageiro_id', $categoriapassageiro_id);
+        $this->db->update('categoriaPassageiro', $data);
+         
+
+        $this->db->where('criterios_id_categoria', $categoriapassageiro_id);
+        $this->db->delete('criterios');
+
+
+        foreach($criterios_descricao as $umcriterio){
+        $data = array(
+            'criterios_descricao' => $umcriterio,
+            'criterios_id_categoria ' => $categoriapassageiro_id
+        );
+        $this->db->insert('criterios', $data);
+        }
+    }
+
 }
