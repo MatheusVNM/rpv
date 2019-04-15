@@ -8,7 +8,7 @@ $this->load->helper('url');
 
 <head>
     <meta charset="utf-8">
-    <title>Welcome to CodeIgniter</title>
+    <title>GICABUS</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />

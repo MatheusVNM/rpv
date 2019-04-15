@@ -15,7 +15,7 @@ if ($this->session->userdata('logged_in') !== true || $this->session->userdata('
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <title>GICABUS</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo base_url('assets/css/bootstrap.css') ?>" rel="stylesheet">

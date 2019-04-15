@@ -24,7 +24,7 @@ class Gerenciar_Categoria_Passageiros_Controller extends CI_Controller
         $this->form_validation->set_rules('criterios[]', 'Criterios', 'required');
         $this->form_validation->set_rules('categoriapassageiro_id', 'Id', 'required');
 
-        $id = $this->input->post('id');
+        $id = $this->input->post('categoriapassageiro_id');
         if ($this->form_validation->run() !== false) {
             $nome = $this->input->post('nome');
             $valorDesconto = $this->input->post('desconto');
