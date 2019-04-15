@@ -53,7 +53,7 @@ class Gerenciar_Categoria_Onibus_Controller extends CI_Controller
 
     public function atualizarCatOnibus(){
         $this->form_validation->set_rules('name_nome', 'Bairro', 'required');
-        $this->form_validation->set_rules('name_precokm', 'Rua', 'required|decimal');
+        $this->form_validation->set_rules('name_precokm', 'Rua', 'required|');
         if ($this->form_validation->run() !== false) {
             $nome = $this->input->post('name_nome', true);
             $precokm = $this->input->post('name_precokm', true);
