@@ -75,7 +75,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => 'bfa9f85d8f6cfc:263649a0@us-cdbr-iron-east-02.cleardb.net',
 	'username' => 'root',
 	'password' => '',
 	'database' => 'gicabus',
