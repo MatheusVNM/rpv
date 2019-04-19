@@ -7,7 +7,7 @@ class Gerenciar_Categoria_Onibus_Controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('categoriaonibus_model');
+        $this->load->model('Categoria_Onibus_model');
 
     }
 
