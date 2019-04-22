@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -52,48 +52,58 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 header('Access-Control-Allow-Origin: *');
 $route['default_controller'] = 'Home';
 $route['translate_uri_dashes'] = FALSE;
-$route['view/(:any)'] = 'Views/loadview/$1';
+$route['view/(:any)'] = 'views/loadview/$1';
 
 $route['logout'] = 'login/logout';
 
 
-$route['tarifas/update'] = 'Gerenciar_Tarifa_Controller/atualizarValorTarifa';
-$route['tarifas/create'] = 'Gerenciar_Tarifa_Controller/catastrarNovaTarifa';
-$route['tarifas/changeStatus'] = 'Gerenciar_Tarifa_Controller/mudarStatusTarifa';
 
-$route['trajetos/urbanos/create'] = 'Gerenciar_Trajetos_Urbanos_Controller/createTrajeto';
-$route['trajetos/urbanos/edit'] = 'Gerenciar_Trajetos_Urbanos_Controller/editTrajeto';
-$route['trajetos/urbanos/changeStatus'] = 'Gerenciar_Trajetos_Urbanos_Controller/changeStatus';
+/*Rotas para métodos de controller que apenas inserem/atualizam algo no banco de dados. */
+$route['tarifas/update'] = 'gerenciar_tarifa_controller/atualizarValorTarifa';
+$route['tarifas/create'] = 'gerenciar_tarifa_controller/catastrarNovaTarifa';
+$route['tarifas/changeStatus'] = 'gerenciar_tarifa_controller/mudarStatusTarifa';
 
+$route['trajetos/urbanos/create'] = 'gerenciar_trajetos_urbanos_Controller/createTrajeto';
+$route['trajetos/urbanos/edit'] = 'gerenciar_trajetos_urbanos_Controller/editTrajeto';
+$route['trajetos/urbanos/changeStatus'] = 'gerenciar_trajetos_urbanos_Controller/changeStatus';
+
+
+
+$route['concessoes/create'] = 'gerenciar_concessoes_controller/createConcessao';
+$route['concessoes/update'] = 'gerenciar_concessoes_controller/updateConcessao';
+
+
+$route['categorias/passageiros/create'] = 'gerenciar_categoria_passageiros_Controller/createCategoria';
+$route['categorias/passageiros/edit'] = 'gerenciar_categoria_passageiros_Controller/editCategoria';
+
+$route['categorias/onibus/create'] = 'gerenciar_categoria_onibus_controller/_insertCategoriaOnibus';
+$route['categorias/onibus/changeStatus'] = 'gerenciar_categoria_onibus_controller/_updateStatusCategoriaOnibus';
+
+/*Rotas métodos de controller que exibem alguma tela, sem necessáriamente inserir/atualizar algo no banco de dados*/
 $route['dashboard'] = 'Dashboard';
 
+$route['dashboard/categorias/onibus'] = 'gerenciar_categoria_onibus_controller';
+$route['dashboard/categorias/onibus/editar'] = 'gerenciar_categoria_onibus_controller/editarCategoriaOnibus';
 
-$route['concessoes/create'] = 'Gerenciar_Concessoes_Controller/createConcessao';
-$route['concessoes/update'] = 'Gerenciar_Concessoes_Controller/updateConcessao';
+$route['dashboard/tarifas/editar'] = 'gerenciar_tarifa_controller/editarTarifa';
+$route['dashboard/tarifas'] = 'gerenciar_tarifa_controller';
+$route['dashboard/tarifas/cadastrar'] = 'gerenciar_tarifa_controller/cadastrartarifaview';
 
-
-$route['categorias/passageiros/create'] = 'Gerenciar_Categoria_Passageiros_Controller/createCategoria';
-$route['categorias/passageiros/edit'] = 'Gerenciar_Categoria_Passageiros_Controller/editCategoria';
-
-$route['dashboard/tarifas/editar'] = 'Gerenciar_Tarifa_Controller/editarTarifa';
-$route['dashboard/tarifas'] = 'Gerenciar_Tarifa_Controller';
-$route['dashboard/tarifas/cadastrar'] = 'Gerenciar_Tarifa_Controller/cadastrartarifaview';
-
-$route['dashboard/paradas'] = 'Gerenciar_Paradas_Controller';
-$route['dashboard/paradas/editar'] = 'Gerenciar_Paradas_Controller/editarParada';
+$route['dashboard/paradas'] = 'gerenciar_paradas_controller';
+$route['dashboard/paradas/editar'] = 'gerenciar_paradas_controller/editarParada';
 
 
-$route['dashboard/concessoes'] = 'Gerenciar_Concessoes_Controller';
+$route['dashboard/concessoes'] = 'gerenciar_concessoes_controller';
 
-$route['dashboard/trajetos/urbanos'] = 'Gerenciar_Trajetos_Urbanos_Controller';
-$route['dashboard/trajetos/urbanos/cadastrar'] = 'Gerenciar_Trajetos_Urbanos_Controller/cadastrarnovotrajeto';
-$route['dashboard/trajetos/urbanos/editar'] = 'Gerenciar_Trajetos_Urbanos_Controller/editarTrajeto';
+$route['dashboard/trajetos/urbanos'] = 'gerenciar_trajetos_urbanos_Controller';
+$route['dashboard/trajetos/urbanos/cadastrar'] = 'gerenciar_trajetos_urbanos_Controller/cadastrarnovotrajeto';
+$route['dashboard/trajetos/urbanos/editar'] = 'gerenciar_trajetos_urbanos_Controller/editarTrajeto';
 
-$route['dashboard/categorias/passageiros'] = 'Gerenciar_Categoria_Passageiros_Controller';
-$route['dashboard/categorias/passageiros/ver-categoria'] = 'Gerenciar_Categoria_Passageiros_Controller/verCategoria';
-$route['dashboard/categorias/passageiros/cadastrar'] = 'Gerenciar_Categoria_Passageiros_Controller/cadastrarTela';
-$route['dashboard/categorias/passageiros/editar'] = 'Gerenciar_Categoria_Passageiros_Controller/editarCategoriaPassageiro';
-// $route['dashboard/tarifas/listar'] = 'Gerenciar_Tarifa_Controller/listartarifasview';
-// $route['dashboard/tarifas/listar'] = 'Gerenciar_Tarifa_Controller/listartarifasview';
+$route['dashboard/categorias/passageiros'] = 'gerenciar_categoria_passageiros_Controller';
+$route['dashboard/categorias/passageiros/ver-categoria'] = 'gerenciar_categoria_passageiros_Controller/verCategoria';
+$route['dashboard/categorias/passageiros/cadastrar'] = 'gerenciar_categoria_passageiros_Controller/cadastrarTela';
+$route['dashboard/categorias/passageiros/editar'] = 'gerenciar_categoria_passageiros_Controller/editarCategoriaPassageiro';
+// $route['dashboard/tarifas/listar'] = 'gerenciar_tarifa_controller/listartarifasview';
+// $route['dashboard/tarifas/listar'] = 'gerenciar_tarifa_controller/listartarifasview';
 
 // cadastrarTarifaView
