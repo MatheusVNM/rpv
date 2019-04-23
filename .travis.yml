@@ -1,5 +1,6 @@
 language: php
 php:
+  - 7.1.27
   - 7.3.4
 deploy:
   provider: heroku
