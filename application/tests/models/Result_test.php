@@ -7,10 +7,6 @@ use PHPUnit\Framework\TestCase;
 class Result_test extends TestCase
 {
 
-    public function setUp(){
-        echo "setup";
-    }
-
     public function testAssert(){
         $output = '';
         $required = '';
