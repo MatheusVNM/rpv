@@ -12,4 +12,8 @@ class Views extends CI_Controller
 	{
 		$this->load->view($string);
 	}
+	public function loadviewwithfolder($folder, $view ){
+		$this->load->view($folder.'/'.$view);
+
+	}
 }
