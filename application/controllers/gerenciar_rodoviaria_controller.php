@@ -18,9 +18,13 @@ class gerenciar_rodoviaria_controller extends CI_Controller
     public function index()
     {
 
-        print_r($this->rodoviaria->insertRodoviaria('Do cu', 'Seu cu', 1, 'Cuelho',
-            999, 'rodo@cu.com', 69696969, 4,
+        print_r($this->rodoviaria->insertRodoviaria('tenso', 'teste', 1, 'Coelho',
+            999, 'rodo@teste.com', 69696969, 4,
             60000));
+    }
+
+    public function getRodoviarias(){
+
     }
 
 

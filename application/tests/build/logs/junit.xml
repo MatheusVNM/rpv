@@ -1,8 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="CodeIgniter Application Test Suite" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.000502">
-    <testsuite name="Result_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Result_test.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.000502">
-      <testcase name="testAssert" class="Result_test" classname="Result_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Result_test.php" line="10" assertions="1" time="0.000502"/>
+  <testsuite name="CodeIgniter Application Test Suite" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.012433">
+    <testsuite name="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.012433">
+      <testcase name="testGetRodoviariasTestIsNotEmpty" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="19" assertions="1" time="0.012433">
+        <system-out>&#13;
+A PHP Error was encountered&#13;
+&#13;
+Severity:    Warning
+Message:     Cannot modify header information - headers already sent by (output started at phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Util/Printer.php:109)
+Filename:    C:\Users\sandr\xampp\htdocs\rpv\application\config\routes.php
+Line Number: 52&#13;
+&#13;
+Backtrace:&#13;
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\config\routes.php
+	Line: 52
+	Function: header
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\replacing\core\Common.php
+	Line: 111
+	Function: __construct
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\functions.php
+	Line: 65
+	Function: load_class
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\CIPHPUnitTestCase.php
+	Line: 93
+	Function: reset_instance
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php
+	Line: 14
+	Function: resetInstance
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
+	Line: 838
+	Function: setUp
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestResult.php
+	Line: 687
+	Function: runBare
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
+	Line: 796
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
+	Line: 746
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
+	Line: 746
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/TestRunner.php
+	Line: 641
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
+	Line: 206
+	Function: doRun
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
+	Line: 162
+	Function: run
+
+	File: C:\Users\sandr\xampp\php\phpunit
+	Line: 614
+	Function: main
+
+&#13;
+</system-out>
+      </testcase>
     </testsuite>
   </testsuite>
 </testsuites>
