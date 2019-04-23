@@ -10,4 +10,4 @@ deploy:
 install:
   - composer install --no-interaction
 
-script: phpunit --configuration .\application\tests\ --coverage-text
+script: phpunit --configuration ./application/tests/ --coverage-text
