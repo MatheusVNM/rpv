@@ -27,27 +27,27 @@ $this->load->view("header2");
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($cat_onibus as $row) : ?>
-                            <td class = "font-weight-bold"><?= $row['catOnibus_codigo'] ?></td>
-                            <td><?= $row['catOnibus_nome'] ?></td>
-                            <td><?= "R$ ".$row['catOnibus_precokm']  ?></td>
-                            <td><?php if ($row['catOnibus_status'] == 1): echo "Ativa" ?>
-                            <?php elseif ($row['catOnibus_status'] == 0): echo "Inativa" ?>
+                        <?php foreach ($categoriaonibus as $row) : ?>
+                            <td class = "font-weight-bold"><?= $row['categoriaonibus_codigo'] ?></td>
+                            <td><?= $row['categoriaonibus_nome'] ?></td>
+                            <td><?= "R$ ".$row['categoriaonibus_precokm']  ?></td>
+                            <td><?php if ($row['categoriaonibus_status'] == 1): echo "Ativa" ?>
+                            <?php elseif ($row['categoriaonibus_status'] == 0): echo "Inativa" ?>
                                 </td>
                             <?php endif; ?>
                             <td>
-                                <?= form_open('gerenciar_categoria_onibus_controller\editarTipoOnibus', 'class="d-none" id = "form_edit' . $row['catOnibus_id'] . '"') ?>
-                                <?= form_hidden('id', $row['catOnibus_id']) ?>
+                                <?= form_open('dashboard/categorias/onibus/editar', 'class="d-none" id = "form_edit' . $row['categoriaonibus_id'] . '"') ?>
+                                <?= form_hidden('id', $row['categoriaonibus_id']) ?>
                                 <?= form_close(); ?>
 
-                                <button form="form_edit<?= $row['catOnibus_id'] ?>" class="text-dark btn btn-hover">
+                                <button form="form_edit<?= $row['categoriaonibus_id'] ?>" class="text-dark btn btn-hover">
                                     <i class="fa fa-edit"></i>
                                 </button>
 
-                                <?= form_open('gerenciar_categoria_onibus_controller\alterarStatusTipoOnibus', 'class="d-none" id = "form_active' . $row['catOnibus_id'] . '"') ?>
-                                <?= form_hidden('id', $row['catOnibus_id']) ?>
+                                <?= form_open('categorias/onibus/changeStatus', 'class="d-none" id = "form_active' . $row['categoriaonibus_id'] . '"') ?>
+                                <?= form_hidden('id', $row['categoriaonibus_id']) ?>
                                 <?= form_close(); ?>
-                                <button form="form_active<?= $row['catOnibus_id'] ?>" class="text-dark btn btn-hover">
+                                <button form="form_active<?= $row['categoriaonibus_id'] ?>" class="text-dark btn btn-hover">
                                     <i class="fa fa-adjust"></i>
                                 </button>
 

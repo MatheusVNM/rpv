@@ -77,10 +77,10 @@ $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
 $db['default'] = array(
     'dsn'	=> '',
-    'hostname' => "us-cdbr-iron-east-02.cleardb.net",
-    'username' => "bfa9f85d8f6cfc",
-    'password' => "263649a0",
-    'database' => "heroku_3ed0899447c5e90",
+    'hostname' => "localhost",
+    'username' => "root",
+    'password' => "",
+    'database' => "gicabus",
     'dbdriver' => 'mysqli',
     'dbprefix' => '',
     'pconnect' => FALSE,

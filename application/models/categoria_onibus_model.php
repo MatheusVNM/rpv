@@ -6,53 +6,49 @@
  * Time: 10:49 AM
  */
 
-class CategoriaOnibus_model extends CI_Model
+class categoria_onibus_model extends CI_Model
 {
 
-    public function getCatOnibus()
+    public function getcategoriaonibus()
     {
         $query = $this->db->get('categoriaonibus');
         return $query->result_array();
     }
 
-    public function getCatOnibusEspecifica($id)
+    public function getcategoriaonibusEspecifica($id)
     {
-        $query = $this->db->get_where('categoriaonibus', array('catOnibus_id' => $id));
+        $query = $this->db->get_where('categoriaonibus', array('categoriaonibus_id' => $id));
         return $query->result_array();
     }
 
     public function save($nome, $precokm)
     {
-        $this->db->select('IFNULL(MAX(`catOnibus_id`), 0) AS `maxid`', false);
-        $catOnibus_codigo = sprintf('CO%03d', $this->db->get('categoriaonibus', 1)->result_array()[0]['maxid']+1);
+        $this->db->select('IFNULL(MAX(`categoriaonibus_id`), 0) AS `maxid`', false);
+        $categoriaonibus_codigo = sprintf('CO%03d', $this->db->get('categoriaonibus', 1)->result_array()[0]['maxid']+1);
         $data = array(
-            'catOnibus_status' => true,
-            'catOnibus_nome' => $nome,
-            'catOnibus_precokm' => $precokm,
-            'catOnibus_codigo' => $catOnibus_codigo
+            'categoriaonibus_status' => true,
+            'categoriaonibus_nome' => $nome,
+            'categoriaonibus_precokm' => $precokm,
+            'categoriaonibus_codigo' => $categoriaonibus_codigo
         );
         $this->db->insert('categoriaonibus', $data);
 
     }
 
-    public function updateStatus($id, $status)
+    public function updateStatus($id)
     {
-        if ($status == 0) {
-            $status = 1;
-        } else {
-            $status = 0;
-        }
-        $this->db->where('catOnibus_id', $id);
-        $this->db->update('categoriaonibus', array('catOnibus_status' => $status));
+        $this->db->set('categoriaonibus_status', 'NOT categoriaonibus_status', FALSE);
+        $this->db->where('categoriaonibus_id', $id);
+        $this->db->update('categoriaonibus');
     }
 
     public function update($id, $nome, $precokm)
     {
         $data = array(
-            'catOnibus_nome' => $nome,
-            'catOnibus_precokm' => $precokm,
+            'categoriaonibus_nome' => $nome,
+            'categoriaonibus_precokm' => $precokm,
         );
-        $this->db->where('catOnibus_id', $id);
+        $this->db->where('categoriaonibus_id', $id);
         $this->db->update('categoriaonibus', $data);
     }
 

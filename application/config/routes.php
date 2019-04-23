@@ -63,9 +63,9 @@ $route['tarifas/update'] = 'gerenciar_tarifa_controller/atualizarValorTarifa';
 $route['tarifas/create'] = 'gerenciar_tarifa_controller/catastrarNovaTarifa';
 $route['tarifas/changeStatus'] = 'gerenciar_tarifa_controller/mudarStatusTarifa';
 
-$route['trajetos/urbanos/create'] = 'gerenciar_trajetos_urbanos_Controller/createTrajeto';
-$route['trajetos/urbanos/edit'] = 'gerenciar_trajetos_urbanos_Controller/editTrajeto';
-$route['trajetos/urbanos/changeStatus'] = 'gerenciar_trajetos_urbanos_Controller/changeStatus';
+$route['trajetos/urbanos/create'] = 'gerenciar_trajetos_urbanos_controller/createTrajeto';
+$route['trajetos/urbanos/edit'] = 'gerenciar_trajetos_urbanos_controller/editTrajeto';
+$route['trajetos/urbanos/changeStatus'] = 'gerenciar_trajetos_urbanos_controller/changeStatus';
 
 
 
@@ -77,7 +77,10 @@ $route['categorias/passageiros/create'] = 'gerenciar_categoria_passageiros_Contr
 $route['categorias/passageiros/edit'] = 'gerenciar_categoria_passageiros_Controller/editCategoria';
 
 $route['categorias/onibus/create'] = 'gerenciar_categoria_onibus_controller/_insertCategoriaOnibus';
-$route['categorias/onibus/changeStatus'] = 'gerenciar_categoria_onibus_controller/_updateStatusCategoriaOnibus';
+$route['categorias/onibus/changeStatus'] = 'gerenciar_categoria_onibus_controller/db_updateStatusCategoriaOnibus';
+$route['categorias/onibus/update'] = 'gerenciar_categoria_onibus_controller/_updateCategoriaOnibus';
+
+
 
 /*Rotas métodos de controller que exibem alguma tela, sem necessáriamente inserir/atualizar algo no banco de dados*/
 $route['dashboard'] = 'Dashboard';
@@ -95,9 +98,9 @@ $route['dashboard/paradas/editar'] = 'gerenciar_paradas_controller/editarParada'
 
 $route['dashboard/concessoes'] = 'gerenciar_concessoes_controller';
 
-$route['dashboard/trajetos/urbanos'] = 'gerenciar_trajetos_urbanos_Controller';
-$route['dashboard/trajetos/urbanos/cadastrar'] = 'gerenciar_trajetos_urbanos_Controller/cadastrarnovotrajeto';
-$route['dashboard/trajetos/urbanos/editar'] = 'gerenciar_trajetos_urbanos_Controller/editarTrajeto';
+$route['dashboard/trajetos/urbanos'] = 'gerenciar_trajetos_urbanos_controller';
+$route['dashboard/trajetos/urbanos/cadastrar'] = 'gerenciar_trajetos_urbanos_controller/cadastrarnovotrajeto';
+$route['dashboard/trajetos/urbanos/editar'] = 'gerenciar_trajetos_urbanos_controller/editarTrajeto';
 
 $route['dashboard/categorias/passageiros'] = 'gerenciar_categoria_passageiros_Controller';
 $route['dashboard/categorias/passageiros/ver-categoria'] = 'gerenciar_categoria_passageiros_Controller/verCategoria';
