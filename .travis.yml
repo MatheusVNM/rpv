@@ -8,7 +8,7 @@ deploy:
     secure: $HEROKU_API_KEY
     app: gicabus
 install:
-  -composer remove vendor/phpunit
+  - composer remove vendor/phpunit
   - composer install --no-interaction
   - composer update --no-interaction
 
