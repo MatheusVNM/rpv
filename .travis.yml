@@ -9,3 +9,5 @@ deploy:
     app: gicabus
 install:
   - composer install --no-interaction
+
+script: phpunit --configuration .\application\tests\ --coverage-text
