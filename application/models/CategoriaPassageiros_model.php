@@ -36,17 +36,6 @@ public function createCategoria($categoriapassageiro_nome, $categoriapassageiro_
         return $query->row_array();
     }
 
-    // tirar duvida com o mathias em relação a 3 tabela
-  //  $this
-    
-  //  return 
-//    array('success' => true);
- //       } else {
-   //         return array('success' => false);
-     //   }
-
-
-
 
 
      public function editarCategoriaPassageiro($categoriapassageiro_id, 
