@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="CodeIgniter Application Test Suite" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.003001">
+    <testsuite name="Result_test" file="C:\PHPProjects\rpv\application\tests\models\Result_test.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.003001">
+      <testcase name="testAssert" class="Result_test" classname="Result_test" file="C:\PHPProjects\rpv\application\tests\models\Result_test.php" line="14" assertions="1" time="0.003001">
+        <system-out>setup</system-out>
+      </testcase>
+    </testsuite>
+  </testsuite>
+</testsuites>
