@@ -1,9 +1,443 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
+  <testsuite name="CodeIgniter Application Test Suite" tests="6" assertions="35" errors="0" failures="2" skipped="0" time="0.254401">
+    <testsuite name="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" tests="6" assertions="35" errors="0" failures="2" skipped="0" time="0.254401">
+      <testcase name="testGetRodoviariasIsNotEmpty" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="19" assertions="1" time="0.022260">
+        <system-out>&#13;
+A PHP Error was encountered&#13;
+&#13;
+Severity:    Warning
+Message:     Cannot modify header information - headers already sent by (output started at C:\Users\sandr\xampp\htdocs\rpv\application\config\database.php:1)
 Filename:    C:\Users\sandr\xampp\htdocs\rpv\application\config\routes.php
-  <testsuite name="CodeIgniter Application Test Suite" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.001159">
-    <testsuite name="Result_test" file="C:\PHPProjects\rpv\application\tests\models\Result_test.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.001159">
-      <testcase name="testAssert" class="Result_test" classname="Result_test" file="C:\PHPProjects\rpv\application\tests\models\Result_test.php" line="10" assertions="1" time="0.001159"/>
+Line Number: 52&#13;
+&#13;
+Backtrace:&#13;
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\config\routes.php
+	Line: 52
+	Function: header
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\replacing\core\Common.php
+	Line: 111
+	Function: __construct
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\functions.php
+	Line: 65
+	Function: load_class
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\CIPHPUnitTestCase.php
+	Line: 93
+	Function: reset_instance
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php
+	Line: 14
+	Function: resetInstance
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
+	Line: 838
+	Function: setUp
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestResult.php
+	Line: 687
+	Function: runBare
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
+	Line: 796
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
+	Line: 746
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
+	Line: 746
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/TestRunner.php
+	Line: 641
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
+	Line: 206
+	Function: doRun
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
+	Line: 162
+	Function: run
+
+	File: C:\Users\sandr\xampp\php\phpunit
+	Line: 614
+	Function: main
+
+&#13;
+&#13;
+&#13;
+</system-out>
+      </testcase>
+      <testcase name="testGetRodoviariasCidadeTest" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="26" assertions="30" time="0.009103">
+        <system-out>&#13;
+A PHP Error was encountered&#13;
+&#13;
+Severity:    Warning
+Message:     Cannot modify header information - headers already sent by (output started at C:\Users\sandr\xampp\htdocs\rpv\application\config\database.php:1)
+Filename:    C:\Users\sandr\xampp\htdocs\rpv\application\config\routes.php
+Line Number: 52&#13;
+&#13;
+Backtrace:&#13;
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\config\routes.php
+	Line: 52
+	Function: header
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\replacing\core\Common.php
+	Line: 111
+	Function: __construct
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\functions.php
+	Line: 65
+	Function: load_class
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\CIPHPUnitTestCase.php
+	Line: 93
+	Function: reset_instance
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php
+	Line: 14
+	Function: resetInstance
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
+	Line: 838
+	Function: setUp
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestResult.php
+	Line: 687
+	Function: runBare
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
+	Line: 796
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
+	Line: 746
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
+	Line: 746
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/TestRunner.php
+	Line: 641
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
+	Line: 206
+	Function: doRun
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
+	Line: 162
+	Function: run
+
+	File: C:\Users\sandr\xampp\php\phpunit
+	Line: 614
+	Function: main
+
+&#13;
+&#13;
+&#13;
+</system-out>
+      </testcase>
+      <testcase name="testInsertionRodoviariaCidadeIncorreta" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="35" assertions="1" time="0.163107">
+        <system-out>&#13;
+A PHP Error was encountered&#13;
+&#13;
+Severity:    Warning
+Message:     Cannot modify header information - headers already sent by (output started at C:\Users\sandr\xampp\htdocs\rpv\application\config\database.php:1)
+Filename:    C:\Users\sandr\xampp\htdocs\rpv\application\config\routes.php
+Line Number: 52&#13;
+&#13;
+Backtrace:&#13;
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\config\routes.php
+	Line: 52
+	Function: header
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\replacing\core\Common.php
+	Line: 111
+	Function: __construct
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\functions.php
+	Line: 65
+	Function: load_class
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\CIPHPUnitTestCase.php
+	Line: 93
+	Function: reset_instance
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php
+	Line: 14
+	Function: resetInstance
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
+	Line: 838
+	Function: setUp
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestResult.php
+	Line: 687
+	Function: runBare
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
+	Line: 796
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
+	Line: 746
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
+	Line: 746
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/TestRunner.php
+	Line: 641
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
+	Line: 206
+	Function: doRun
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
+	Line: 162
+	Function: run
+
+	File: C:\Users\sandr\xampp\php\phpunit
+	Line: 614
+	Function: main
+
+&#13;
+&#13;
+&#13;
+</system-out>
+      </testcase>
+      <testcase name="testInsertionRodoviariaCidadeCorreta" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="44" assertions="1" time="0.023221">
+        <system-out>&#13;
+A PHP Error was encountered&#13;
+&#13;
+Severity:    Warning
+Message:     Cannot modify header information - headers already sent by (output started at C:\Users\sandr\xampp\htdocs\rpv\application\config\database.php:1)
+Filename:    C:\Users\sandr\xampp\htdocs\rpv\application\config\routes.php
+Line Number: 52&#13;
+&#13;
+Backtrace:&#13;
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\config\routes.php
+	Line: 52
+	Function: header
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\replacing\core\Common.php
+	Line: 111
+	Function: __construct
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\functions.php
+	Line: 65
+	Function: load_class
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\CIPHPUnitTestCase.php
+	Line: 93
+	Function: reset_instance
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php
+	Line: 14
+	Function: resetInstance
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
+	Line: 838
+	Function: setUp
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestResult.php
+	Line: 687
+	Function: runBare
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
+	Line: 796
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
+	Line: 746
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
+	Line: 746
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/TestRunner.php
+	Line: 641
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
+	Line: 206
+	Function: doRun
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
+	Line: 162
+	Function: run
+
+	File: C:\Users\sandr\xampp\php\phpunit
+	Line: 614
+	Function: main
+
+&#13;
+&#13;
+&#13;
+</system-out>
+      </testcase>
+      <testcase name="testOverflowInsertionRodoviaria" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="56" assertions="1" time="0.023740">
+        <failure type="PHPUnit\Framework\ExpectationFailedException">rodoviaria_model_test::testOverflowInsertionRodoviaria
+Failed asserting that 0 is not equal to 0.
+
+C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php:63
+</failure>
+        <system-out>&#13;
+A PHP Error was encountered&#13;
+&#13;
+Severity:    Warning
+Message:     Cannot modify header information - headers already sent by (output started at C:\Users\sandr\xampp\htdocs\rpv\application\config\database.php:1)
+Filename:    C:\Users\sandr\xampp\htdocs\rpv\application\config\routes.php
+Line Number: 52&#13;
+&#13;
+Backtrace:&#13;
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\config\routes.php
+	Line: 52
+	Function: header
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\replacing\core\Common.php
+	Line: 111
+	Function: __construct
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\functions.php
+	Line: 65
+	Function: load_class
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\CIPHPUnitTestCase.php
+	Line: 93
+	Function: reset_instance
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php
+	Line: 14
+	Function: resetInstance
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
+	Line: 838
+	Function: setUp
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestResult.php
+	Line: 687
+	Function: runBare
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
+	Line: 796
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
+	Line: 746
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
+	Line: 746
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/TestRunner.php
+	Line: 641
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
+	Line: 206
+	Function: doRun
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
+	Line: 162
+	Function: run
+
+	File: C:\Users\sandr\xampp\php\phpunit
+	Line: 614
+	Function: main
+
+&#13;
+&#13;
+&#13;
+</system-out>
+      </testcase>
+      <testcase name="testUnexpectedTypeInsertionRodoviaria" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="70" assertions="1" time="0.012970">
+        <failure type="PHPUnit\Framework\ExpectationFailedException">rodoviaria_model_test::testUnexpectedTypeInsertionRodoviaria
+Failed asserting that 0 is not equal to 0.
+
+C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php:74
+</failure>
+        <system-out>&#13;
+A PHP Error was encountered&#13;
+&#13;
+Severity:    Warning
+Message:     Cannot modify header information - headers already sent by (output started at C:\Users\sandr\xampp\htdocs\rpv\application\config\database.php:1)
+Filename:    C:\Users\sandr\xampp\htdocs\rpv\application\config\routes.php
+Line Number: 52&#13;
+&#13;
+Backtrace:&#13;
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\config\routes.php
+	Line: 52
+	Function: header
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\replacing\core\Common.php
+	Line: 111
+	Function: __construct
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\functions.php
+	Line: 65
+	Function: load_class
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\CIPHPUnitTestCase.php
+	Line: 93
+	Function: reset_instance
+
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php
+	Line: 14
+	Function: resetInstance
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
+	Line: 838
+	Function: setUp
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestResult.php
+	Line: 687
+	Function: runBare
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
+	Line: 796
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
+	Line: 746
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
+	Line: 746
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/TestRunner.php
+	Line: 641
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
+	Line: 206
+	Function: doRun
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
+	Line: 162
+	Function: run
+
+	File: C:\Users\sandr\xampp\php\phpunit
+	Line: 614
+	Function: main
+
+&#13;
+&#13;
+&#13;
+</system-out>
+      </testcase>
     </testsuite>
   </testsuite>
 </testsuites>

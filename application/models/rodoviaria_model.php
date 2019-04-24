@@ -12,7 +12,7 @@ class rodoviaria_model extends CI_Model
     {
         $this->db->select('rodoviaria.*, cidade.nome, estado.uf ');
         $this->db->join('cidade', 'rodoviaria.rodoviaria_cidade_id = cidade.id');
-        $this->db->join('estado', 'cidade.estado=estado.id');
+        $this->db->join('estado', 'cidade.estado = estado.id');
         $this->db->from('rodoviaria');
 
         return $this->db->get()->result_array();
