@@ -31,12 +31,13 @@ $this->load->view("header2");
     <tbody>
 
         <tr>
-            <th scope="row">1</th>
-            <td>Nome</td>
-            <td>Alegrete</td>
-            <td>RS</td>
-            <td>rodoviariateste@gmail.com</td>
-            <td>34262421</td>
+            <?php foreach ($rodoviarias as $row) : ?>
+            <th scope="row"><?= $row['rodoviaria_codigo'] ?></th>
+            <td><?= $row['rodoviaria_nome'] ?></td>
+            <td><?= $row['nome'] ?></td>
+            <td><?= $row['uf'] ?></td>
+            <td><?= $row['rodoviaria_email'] ?></td>
+            <td><?= $row['rodoviaria_telefone'] ?></td>
             <td>
                 <button type="button" onclick="editar()" class="btn btn-default btn-sm" id="opcoesConcessaoEditar"
                     data-toggle="tooltip" data-placement="top" title="Editar rodoviaria"
@@ -55,6 +56,7 @@ $this->load->view("header2");
                     <span class="hvr-icon fa fa-eye mr-1"></span>Info
                 </button>
             </td>
+            <?php endforeach; ?>
         </tr>
 
 

@@ -17,17 +17,13 @@ class gerenciar_rodoviaria_controller extends CI_Controller
 
     public function index()
     {
-
-//        $r = $this->rodoviaria->insertRodoviaria('\'ddsfdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\'', 'teste', "kkkk", 'Coelho',
-//           999, 'rodo@teste.com', 69696969, 4,
-//            1);
-//        print_r($r);
-
-    }
-
-    public function getRodoviarias(){
+//        $data['rodoviarias'] = $this->rodoviaria_model->getRodoviarias();
+//        $this->load->view('gerenciar_rodoviaria_view/tela_inicial', $data);
+        $r = $this->rodoviaria->getRodoviarias();
+        print_r($r);
 
     }
+
 
 
 }

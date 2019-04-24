@@ -55,7 +55,6 @@ $this->load->view("header2");
                                 </button>
 
                             </td>
-                            </tr>
                         <?php endforeach; ?>
                         </tbody>
                     </table>

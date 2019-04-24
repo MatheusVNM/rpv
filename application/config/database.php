@@ -78,6 +78,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
     'dsn'	=> '',
+// Maquina de Deploy DB
+//    'hostname' => "us-cdbr-iron-east-02.cleardb.net",
+//    'username' => "bfa9f85d8f6cfc",
+//    'password' => "263649a0",
+//    'database' => "heroku_3ed0899447c5e90",
     'hostname' => "localhost",
     'username' => "root",
     'password' => "",
