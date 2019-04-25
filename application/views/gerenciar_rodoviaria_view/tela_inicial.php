@@ -10,28 +10,29 @@ $this->load->view("header2");
 <?= $this->session->flashdata('error'); ?>
 <?= $this->session->flashdata('success'); ?>
 
-<button type="button" class="btn btn-success btn-circle mx-4" data-toggle="modal" data-target="#addRodoviariaModal">
-    <i class="fa fa-plus-circle" data-toggle="tooltip" data-placement="bottom" title="Adicione uma nova concessão."></i>
+<button type="button"
+        class="btn btn-success float-right mr-2 my-2" data-toggle="modal" data-target="#addRodoviariaModal" title="Adicione uma nova rodoviaria.">
+    <i class="fa fa-plus-circle" data-toggle="tooltip" data-placement="bottom"> </i> Adicionar rodoviária
 </button>
 
 <!-- Table init (Ao abrir a tela) -->
 <table class="table table-hover">
     <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Cidade</th>
-            <th scope="col">UF</th>
-            <th scope="col">Email</th>
-            <th scope="col">Telefone</th>
-            <th scope="col">Opções</th>
-        </tr>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Cidade</th>
+        <th scope="col">UF</th>
+        <th scope="col">Email</th>
+        <th scope="col">Telefone</th>
+        <th scope="col">Opções</th>
+    </tr>
     </thead>
     <!--Body concessões-->
     <tbody>
 
+    <?php foreach ($rodoviarias as $row) : ?>
         <tr>
-            <?php foreach ($rodoviarias as $row) : ?>
             <th scope="row"><?= $row['rodoviaria_codigo'] ?></th>
             <td><?= $row['rodoviaria_nome'] ?></td>
             <td><?= $row['nome'] ?></td>
@@ -40,43 +41,27 @@ $this->load->view("header2");
             <td><?= $row['rodoviaria_telefone'] ?></td>
             <td>
                 <button type="button" onclick="editar()" class="btn btn-default btn-sm" id="opcoesConcessaoEditar"
-                    data-toggle="tooltip" data-placement="top" title="Editar rodoviaria"
-                    data-target="#editRodoviariaModal">
+                        data-toggle="tooltip" data-placement="top" title="Editar rodoviaria"
+                        data-target="#editRodoviariaModal">
                     <span class="hvr-icon fa fa-edit mr-1"></span> Editar
                 </button>
-                <label>/</label>
                 <button type="submit" class="btn btn-default btn-sm" title="Oculta da lista."
-                    id="opcoesConcessaoExcluir" data-toggle="tooltip" data-placement="top">
+                        id="opcoesConcessaoExcluir" data-toggle="tooltip" data-placement="top">
                     <span class="hvr-icon fa fa-trash mr-1"></span>Ocultar
                 </button>
-                <label>/</label>
-                <button type="submit" onclick="info()" class="btn btn-primary btn-sm" 
-                title="Informacao Adicional." data-toggle="tooltip"
-                    data-placement="top" data-target="#infoRodoviariaModal">
+                <button type="submit" onclick="info()" class="btn btn-primary btn-sm"
+                        title="Informacao Adicional." data-toggle="tooltip"
+                        data-placement="top" data-target="#infoRodoviariaModal">
                     <span class="hvr-icon fa fa-eye mr-1"></span>Info
                 </button>
             </td>
-            <?php endforeach; ?>
         </tr>
+    <?php endforeach; ?>
 
 
     </tbody>
     <!--Body concessões excluidas-->
-    <tbody id="idListaConcessoesExcluidas" style="display: none;">
-        <tr>
-            <th scope="row">1</th>
-            <td></td>
-            <td></td>
-            <td>Alegrete</td>
-            <td>Não Vigente</td>
-            <td>
-                <button type="submit" class="btn btn-default btn-sm" title="Restaura para a lista novamente."
-                    id="opcoesConcessaoRestaurar" data-toggle="tooltip" data-placement="top">
-                    <span class="hvr-icon fa fa-refresh mr-1"></span>Restaurar
-                </button>
-            </td>
-        </tr>
-    </tbody>
+
 </table>
 <!-- Table end (Ao abrir a tela) -->
 
@@ -136,7 +121,8 @@ $this->load->view("header2");
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                 <button type="button" onclick="enviando()" class="btn btn-success"
-                    id="idSalvarConcessao">Salvar</button>
+                        id="idSalvarConcessao">Salvar
+                </button>
             </div>
         </div>
     </div>
@@ -201,7 +187,8 @@ $this->load->view("header2");
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                 <button type="submit" form="modal_edit_form" class="btn btn-primary"
-                    id="idSalvarConcessao">Salvar</button>
+                        id="idSalvarConcessao">Salvar
+                </button>
             </div>
         </div>
     </div>
@@ -270,10 +257,10 @@ $this->load->view("header2");
 <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
 
 <script>
-$(function() {
-    $('[data-toggle="tooltip"]').tooltip();
-    $('.alert').alert();
-});
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+        $('.alert').alert();
+    });
 </script>
 <!-- Script end -->
 
@@ -284,85 +271,85 @@ $this->load->view("footer2.php")
 ?>
 
 <script>
-function editar(id, status, numero) {
-    $('#editRodoviariaModal').modal('show')
-}
-</script>
-
-<script>
-function info() {
-    $('#infoRodoviariaModal').modal('show')
-}
-</script>
-
-<script>
-$("#idInputStatus").change(function() {
-    var value = $(this).val().toLowerCase();
-    if (value === '-1') {
-        $('#idListaConcessao').show();
-        $('#idListaConcessoesExcluidas').hide();
-        $("#idListaConcessao tr").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf('') > -1)
-        });
-    } else if (value === '2') {
-        $('#idListaConcessao').hide();
-        $('#idListaConcessoesExcluidas').show();
-        $("#idListaConcessoesExcluidas tr").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-    } else {
-        $('#idListaConcessao').show();
-        $('#idListaConcessoesExcluidas').hide();
-        $("#idListaConcessao tr").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
+    function editar(id, status, numero) {
+        $('#editRodoviariaModal').modal('show')
     }
-
-});
 </script>
 
 <script>
-function enviando() {
-    var item = '<span class="sr-only">Loading...</span>';
-    $("#idSalvarConcessao").attr("disabled", true);
-    $("#idSalvarConcessao").html(item);
-    $("#idSalvarConcessao").addClass("text-primary");
-    $("#idSalvarConcessao").addClass("spinner-grow");
-    $("#idSalvarConcessao").removeClass("btn-success");
-    $("#concessao_form").submit();
-    $(selector).submit();
-}
+    function info() {
+        $('#infoRodoviariaModal').modal('show')
+    }
 </script>
 
 <script>
-$("#customFile").change(function() {
-    var fullPath = $(this).val();
-    if (fullPath) {
-        var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
-        var filename = fullPath.substring(startIndex);
-        if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
-            filename = filename.substring(1);
+    $("#idInputStatus").change(function () {
+        var value = $(this).val().toLowerCase();
+        if (value === '-1') {
+            $('#idListaConcessao').show();
+            $('#idListaConcessoesExcluidas').hide();
+            $("#idListaConcessao tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf('') > -1)
+            });
+        } else if (value === '2') {
+            $('#idListaConcessao').hide();
+            $('#idListaConcessoesExcluidas').show();
+            $("#idListaConcessoesExcluidas tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        } else {
+            $('#idListaConcessao').show();
+            $('#idListaConcessoesExcluidas').hide();
+            $("#idListaConcessao tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
         }
+
+    });
+</script>
+
+<script>
+    function enviando() {
+        var item = '<span class="sr-only">Loading...</span>';
+        $("#idSalvarConcessao").attr("disabled", true);
+        $("#idSalvarConcessao").html(item);
+        $("#idSalvarConcessao").addClass("text-primary");
+        $("#idSalvarConcessao").addClass("spinner-grow");
+        $("#idSalvarConcessao").removeClass("btn-success");
+        $("#concessao_form").submit();
+        $(selector).submit();
     }
-    $("#fileLabel").html(filename);
-});
+</script>
+
+<script>
+    $("#customFile").change(function () {
+        var fullPath = $(this).val();
+        if (fullPath) {
+            var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+            var filename = fullPath.substring(startIndex);
+            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                filename = filename.substring(1);
+            }
+        }
+        $("#fileLabel").html(filename);
+    });
 
 
-// modal_edit_numero
-// id_ProtocoloConcessao
+    // modal_edit_numero
+    // id_ProtocoloConcessao
 
-$("#id_ProtocoloConcessao").on("keypress keyup blur", function(event) {
-    $(this).val($(this).val().replace(/[^\d].+/, ""));
-    if ((event.which < 48 || event.which > 57)) {
-        event.preventDefault();
-    }
+    $("#id_ProtocoloConcessao").on("keypress keyup blur", function (event) {
+        $(this).val($(this).val().replace(/[^\d].+/, ""));
+        if ((event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
 
 
-});
-$("#modal_edit_numero").on("keypress keyup blur", function(event) {
-    $(this).val($(this).val().replace(/[^\d].+/, ""));
-    if ((event.which < 48 || event.which > 57)) {
-        event.preventDefault();
-    }
-});
+    });
+    $("#modal_edit_numero").on("keypress keyup blur", function (event) {
+        $(this).val($(this).val().replace(/[^\d].+/, ""));
+        if ((event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
+    });
 </script>
