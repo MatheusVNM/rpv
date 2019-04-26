@@ -59,7 +59,20 @@ p {
 	<div id="container">
 		<h1><?php echo $heading; ?></h1>
 		<?php echo $message; ?>
-		OAAAAAAAAAAAA
+
+		<Hr>
+		<?php echo $this->router->fetch_class(); // class = controller ?>
+		<Br>
+		<?= $this->router->fetch_method(); ?>
+
+		<hr><hr>
+		<?php 
+			if(getenv("CLEARDB_DATABASE_URL"))
+			echo getenv("CLEARDB_DATABASE_URL");
+		else
+			echo "NO getenv(\"CLEARDB_DATABASE_URL\") SET";
+		;
+		?>
 	</div>
 </body>
 </html>
