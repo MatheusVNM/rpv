@@ -50,7 +50,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 header('Access-Control-Allow-Origin: *');
-$route['default_controller'] = 'Home';
+$route['default_controller'] = 'home';
 $route['translate_uri_dashes'] = FALSE;
 $route['view/(:any)'] = 'views/loadview/$1';
 $route['view/(:any)/(:any)'] = 'views/loadviewwithfolder/$1/$2';
