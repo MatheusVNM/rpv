@@ -1,7 +1,7 @@
 
 
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------
@@ -76,21 +76,37 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 
+//Get Heroku ClearDB connection information
+if (getenv("CLEARDB_DATABASE_URL"))
+    $url      = parse_url(getenv("CLEARDB_DATABASE_URL"));
+else
+    $url      = parse_url("mysql://root@localhost/gicabus?reconnect=true ");
+$hostname   = $url["host"];
+$username = $url["user"];
+$password = $url["pass"] ?? '';
+$database       = substr($url["path"], 1);
+
+
 $db['default'] = array(
-    'dsn'	=> '',
-// Maquina de Deploy DB
-//    'hostname' => "us-cdbr-iron-east-02.cleardb.net",
-//    'username' => "bfa9f85d8f6cfc",
-//    'password' => "263649a0",
-//    'database' => "heroku_3ed0899447c5e90",
-    'hostname' => "localhost",
-    'username' => "root",
-    'password' => "",
-    'database' => "gicabus",
+    'dsn'    => '',
+    // Maquina de Deploy DB
+    //    'hostname' => "us-cdbr-iron-east-02.cleardb.net",
+    //    'username' => "bfa9f85d8f6cfc",
+    //    'password' => "263649a0",
+    //    'database' => "heroku_3ed0899447c5e90",
+    // 'hostname' => "localhost",
+    // 'username' => "root",
+    // 'password' => "",
+    // 'database' => "gicabus",
+
+    'hostname' => $hostname,
+    'username' => $username,
+    'password' => $password,
+    'database' => $database,
     'dbdriver' => 'mysqli',
     'dbprefix' => '',
     'pconnect' => FALSE,
-//    'db_debug' => (ENVIRONMENT !== 'production'),
+    //    'db_debug' => (ENVIRONMENT !== 'production'),
     'db_debug' => FALSE,
     'cache_on' => FALSE,
     'cachedir' => '',
