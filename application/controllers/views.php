@@ -16,4 +16,12 @@ class Views extends CI_Controller
 		$this->load->view($folder.'/'.$view);
 
 	}
+
+	public function teste(){
+		if(getenv("CLEARDB_DATABASE_URL"))
+			echo "true";
+		else
+			echo "false";
+		;
+	}
 }
