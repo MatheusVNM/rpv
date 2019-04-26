@@ -9,7 +9,9 @@ $this->load->view("header2");
 <h2 class="text-center">Lista de Concessões de Trajetos</h2>
 <?= $this->session->flashdata('error'); ?>
 <?= $this->session->flashdata('success'); ?>
-<div class="form-group col-md-3">
+<div class="row col-md-12 pr-0">
+
+<div class="form-group col-md-3 ">
     <label for="inputStatus">Filtrar</label>
     <select id="idInputStatus" class="form-control" name="opcoesFiltros">
         <option value="-1">Todos</option>
@@ -18,9 +20,15 @@ $this->load->view("header2");
         <option value="2">Concessões excluidas</option>
     </select>
 </div>
-<button type="button" class="btn btn-success btn-circle mx-4" data-toggle="modal" data-target="#addConcessaoModal">
-    <i class="fa fa-plus-circle" data-toggle="tooltip" data-placement="bottom" title="Adicione uma nova concessão."></i>
+    
+    <button type="button" class="btn btn-success ml-auto  mt-auto mb-2 h-50" data-toggle="modal" data-target="#addConcessaoModal" title="Adicione uma nova concessão.">
+    <i class="fa fa-plus-circle" data-toggle="tooltip" data-placement="bottom" ></i> Adicionar Concessao
 </button>
+
+</div>
+
+
+
 
 <!-- Table init (Ao abrir a tela) -->
 <table class="table table-hover">
@@ -39,11 +47,11 @@ $this->load->view("header2");
         <?php foreach ($concessoes as $concessao) : ?>
             <tr>
                 <th scope="row">1</th>
-                <td><?= $concessao['protocolo_Contrato'] ?></td>
-                <td><?= $concessao['ano'] ?></td>
-                <td>Alegrete</td>
+                <td><?= $concessao['concessao_protocolo'] ?></td>
+                <td><?= $concessao['concessao_ano'] ?></td>
+                <td class="text-danger">TEM QUE POR A CIDADE AQUI</td>
                 <td class="status">
-                    <?php if ($concessao['statusConcessao']) : ?>
+                    <?php if ($concessao['concessao_status']) : ?>
                         Vigente
                     <?php else : ?>
                         Não Vigente
@@ -51,20 +59,20 @@ $this->load->view("header2");
 
                 </td>
                 <td>
-                    <button type="button" onclick="editar(<?= $concessao['id_Concessao'] ?>, <?= $concessao['statusConcessao'] ?>, <?= $concessao['protocolo_Contrato'] ?> )" class="btn btn-default btn-sm" id="opcoesConcessaoEditar" data-toggle="tooltip" data-placement="top" title="Editar concessão">
+                    <button type="button" onclick="editar(<?= $concessao['concessao_id'] ?>, <?= $concessao['concessao_status'] ?>, <?= $concessao['concessao_protocolo'] ?> )" class="btn btn-default btn-sm" id="opcoesConcessaoEditar" data-toggle="tooltip" data-placement="top" title="Editar concessão">
                         <span class="hvr-icon fa fa-edit mr-1"></span> Editar
                     </button>
                     <label>/</label>
-                    <a type="button" class="btn btn-default btn-sm" title="Documento de concessão" id="opcoesConcessaoDownload" data-toggle="tooltip" data-placement="top" href="<?= $concessao['anexo_Concessao'] ?>" target="_blank">
+                    <a type="button" class="btn btn-default btn-sm" title="Documento de concessão" id="opcoesConcessaoDownload" data-toggle="tooltip" data-placement="top" href="<?= $concessao['concessao_anexo'] ?>" target="_blank">
                         <span class="hvr-icon fa fa-file-pdf-o mr-1"></span>PDF
                     </a>
-                    <?php if (!$concessao['statusConcessao']) : ?>
+                    <?php if (!$concessao['concessao_status']) : ?>
                         <label>/</label>
-                        <?php $hidden = array('concessao_id' => $concessao['id_Concessao']);
-                        echo form_open('gerenciar_concessoes_Controller/updateStatusConcessao', 'id="formDelete' . $concessao['id_Concessao'] . '"class="d-none"', $hidden);
+                        <?php $hidden = array('concessao_id' => $concessao['concessao_id']);
+                        echo form_open('gerenciar_concessoes_Controller/updateconcessao_status', 'id="formDelete' . $concessao['concessao_id'] . '"class="d-none"', $hidden);
                         ?>
                         <?= form_close() ?>
-                        <button type="submit" class="btn btn-default btn-sm" form="formDelete<?= $concessao['id_Concessao'] ?>" title="Exclui concessão apenas da lista e não permanentemente." id="opcoesConcessaoExcluir" data-toggle="tooltip" data-placement="top">
+                        <button type="submit" class="btn btn-default btn-sm" form="formDelete<?= $concessao['concessao_id'] ?>" title="Exclui concessão apenas da lista e não permanentemente." id="opcoesConcessaoExcluir" data-toggle="tooltip" data-placement="top">
                             <span class="hvr-icon fa fa-trash mr-1"></span>Excluir
                         </button>
                     <?php endif; ?>
@@ -78,16 +86,16 @@ $this->load->view("header2");
         <?php foreach ($concessoesExcluidas as $concessaoExcluida) : ?>
             <tr>
                 <th scope="row">1</th>
-                <td><?= $concessaoExcluida['protocolo_Contrato'] ?></td>
-                <td><?= $concessaoExcluida['ano'] ?></td>
+                <td><?= $concessaoExcluida['concessao_protocolo'] ?></td>
+                <td><?= $concessaoExcluida['concessao_ano'] ?></td>
                 <td>Alegrete</td>
                 <td>Não Vigente</td>
                 <td>
-                    <?php $hidden = array('concessao_id' => $concessaoExcluida['id_Concessao']);
-                    echo form_open('gerenciar_concessoes_Controller/restaurarConcessao', 'id="formRestaura' . $concessaoExcluida['id_Concessao'] . '"class="d-none"', $hidden);
+                    <?php $hidden = array('concessao_id' => $concessaoExcluida['concessao_id']);
+                    echo form_open('gerenciar_concessoes_Controller/restaurarConcessao', 'id="formRestaura' . $concessaoExcluida['concessao_id'] . '"class="d-none"', $hidden);
                     ?>
                     <?= form_close() ?>
-                    <button type="submit" class="btn btn-default btn-sm" form="formRestaura<?= $concessaoExcluida['id_Concessao'] ?>" title="Restaura para a lista novamente." id="opcoesConcessaoRestaurar" data-toggle="tooltip" data-placement="top">
+                    <button type="submit" class="btn btn-default btn-sm" form="formRestaura<?= $concessaoExcluida['concessao_id'] ?>" title="Restaura para a lista novamente." id="opcoesConcessaoRestaurar" data-toggle="tooltip" data-placement="top">
                         <span class="hvr-icon fa fa-refresh mr-1"></span>Restaurar
                     </button>
                 </td>

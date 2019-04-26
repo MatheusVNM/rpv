@@ -12,7 +12,7 @@ class Gerenciar_Concessoes_Controller extends CI_Controller
     public function index($data = array()){
         $data['concessoes'] = $this->concessao_model->getConcessoes();
         $data['concessoesExcluidas'] = $this->concessao_model->getConcessoesExcluidas();
-        $this->load->view('gerenciar_Concessoes', $data);
+        $this->load->view('gerenciar_concessoes_view/tela_inicial', $data);
     }
 
     public function createConcessao(){

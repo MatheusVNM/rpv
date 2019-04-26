@@ -22,7 +22,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://localhost/rpv';
+if (getenv("HEROKU_APP_URL"))
+    $app_url      = getenv("HEROKU_APP_URL");
+else
+    $app_url      = "https://localhost/rpv";
+$config['base_url'] = $app_url;
+
+// $config['base_url'] = 'https://localhost/rpv';
 /*
 |--------------------------------------------------------------------------
 | Index File
@@ -49,7 +55,7 @@ $config['index_page'] = 'index.php';
 |
 | WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 */
-$config['uri_protocol']	= 'REQUEST_URI';
+$config['uri_protocol']	= 'AUTO';
 /*
 |--------------------------------------------------------------------------
 | URL suffix

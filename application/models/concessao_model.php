@@ -2,7 +2,7 @@
 class Concessao_model extends CI_model{
     
     public function getConcessoes(){
-        $this->db->where('statusConcessao !=' , 2);
+        $this->db->where('concessao_status !=' , 2);
         $query = $this->db->get('concessao');
         return $query->result_array();
     }
@@ -10,13 +10,13 @@ class Concessao_model extends CI_model{
     public function save($nroProtocolo, $status, $date){
         $resultUpload =   $this->uploadFile('docconcessao');
         if($resultUpload['success']){
-            $this->db->select('IFNULL(MAX(`id_Concessao`), 0) AS `maxid`', false);
+            //$this->db->select('IFNULL(MAX(`concessao_id`), 0) AS `maxid`', false);
             $uploadedDownloadDir = $resultUpload['path'];
             $data = array(
-                'protocolo_Contrato' => $nroProtocolo,
-                'statusConcessao' => $status,
-                'anexo_Concessao' => $uploadedDownloadDir,
-                'ano' =>  $date
+                'concessao_protocolo' => $nroProtocolo,
+                'concessao_status' => $status,
+                'concessao_anexo' => $uploadedDownloadDir,
+                'concessao_ano' =>  $date
             );
             $this->db->insert('concessao', $data);
             return array('success' => true);
@@ -26,20 +26,21 @@ class Concessao_model extends CI_model{
     }
     public function update($id ,$nroProtocolo, $status){
         $data = array(
-            'protocolo_Contrato' => $nroProtocolo,
-            'statusConcessao' => $status,
+            'concessao_protocolo' => $nroProtocolo,
+            'concessao_status' => $status,
         );
-            $this->db->where('id_Concessao', $id);
+            $this->db->where('concessao_id', $id);
             $this->db->update('concessao', $data);
         }
 
     public function updateStatus($id, $status){
         $data=array(
-            'statusConcessao' => $status
+            'concessao_status' => $status
         );
-        $this->db->where('id_Concessao', $id);
+        $this->db->where('concessao_id', $id);
         $this->db->update('concessao', $data);
     }
+    
     
     public function uploadFile($file){
          // set path to store uploaded files
@@ -68,7 +69,7 @@ class Concessao_model extends CI_model{
          return $data;
         }
         public function getConcessoesExcluidas(){
-            $this->db->where('statusConcessao', 2);
+            $this->db->where('concessao_status', 2);
             $query = $this->db->get('concessao');
             return $query->result_array();
         }
