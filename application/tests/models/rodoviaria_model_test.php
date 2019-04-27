@@ -18,20 +18,20 @@ class rodoviaria_model_test extends TestCase
 
     public function testGetRodoviariasIsNotEmpty()
     {
-        $data['rodoviaria'] = $this->rodoviaria->getRodoviarias();
-        $this->assertNotEquals(false, $data['rodoviaria']);
+        $data = $this->rodoviaria->getRodoviarias();
+        $this->assertNotEquals(false, $data);
 
     }
 
     public function testGetRodoviariasCidadeTest()
     {
-        $data['rodoviaria'] = $this->rodoviaria->getRodoviarias();
-        if ($data['rodoviaria']) {
-            for ($i = 0; $i < sizeof($data['rodoviaria']); $i++) {
-                $this->assertEquals(2, strlen($data['rodoviaria'][$i]['uf']));
+        $data = $this->rodoviaria->getRodoviarias();
+        if ($data) {
+            for ($i = 0; $i < sizeof($data); $i++) {
+                $this->assertEquals(2, strlen($data[$i]['uf']));
             }
         } else{
-            $this->assertFalse($data['rodoviaria']);
+            $this->assertFalse($data);
         }
     }
 
@@ -40,7 +40,7 @@ class rodoviaria_model_test extends TestCase
         $data = $this->rodoviaria->insertRodoviaria('Rodoviaria de Alegrete', 'Maximinio', 120, 'Segabinazzi', "97543-410"
             , 'teste@teste.com', "(55)997328105", 4,
             1);
-        $this->assertEquals(true, $data);
+        $this->assertTrue($data);
 
     }
 

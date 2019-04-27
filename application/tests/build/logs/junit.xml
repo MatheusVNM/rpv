@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="CodeIgniter Application Test Suite" tests="6" assertions="8" errors="0" failures="0" skipped="0" time="0.093914">
-    <testsuite name="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" tests="3" assertions="3" errors="0" failures="0" skipped="0" time="0.001050">
-      <testcase name="testIndex" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="13" assertions="1" time="0.000505"/>
-      <testcase name="testErrorMessenge" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="18" assertions="1" time="0.000299"/>
-      <testcase name="testSucessMessenge" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="22" assertions="1" time="0.000246"/>
+  <testsuite name="CodeIgniter Application Test Suite" tests="6" assertions="12" errors="0" failures="0" skipped="0" time="0.050031">
+    <testsuite name="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" tests="3" assertions="3" errors="0" failures="0" skipped="0" time="0.001427">
+      <testcase name="testIndex" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="13" assertions="1" time="0.000656"/>
+      <testcase name="testErrorMessenge" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="18" assertions="1" time="0.000472"/>
+      <testcase name="testSucessMessenge" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="22" assertions="1" time="0.000299"/>
     </testsuite>
-    <testsuite name="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" tests="3" assertions="5" errors="0" failures="0" skipped="0" time="0.092864">
-      <testcase name="testGetRodoviariasIsNotEmpty" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="19" assertions="1" time="0.019977">
+    <testsuite name="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" tests="3" assertions="9" errors="0" failures="0" skipped="0" time="0.048604">
+      <testcase name="testGetRodoviariasIsNotEmpty" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="19" assertions="1" time="0.022448">
         <system-out>&#13;
 &#13;
 </system-out>
       </testcase>
-      <testcase name="testGetRodoviariasCidadeTest" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="26" assertions="3" time="0.026626">
+      <testcase name="testGetRodoviariasCidadeTest" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="26" assertions="7" time="0.010353">
         <system-out>&#13;
 &#13;
 </system-out>
       </testcase>
-      <testcase name="testInsertionRodoviariaCidadeCorreta" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="38" assertions="1" time="0.046261">
+      <testcase name="testInsertionRodoviariaCidadeCorreta" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="38" assertions="1" time="0.015803">
         <system-out>&#13;
 &#13;
 </system-out>
