@@ -14,8 +14,8 @@ class Rodoviaria_model extends CI_Model
         $this->db->join('cidade', 'rodoviaria.rodoviaria_cidade_id = cidade.id');
         $this->db->join('estado', 'cidade.estado = estado.id');
         $this->db->from('rodoviaria');
-
-        return $this->db->get()->result_array();
+        $result = $this->db->get()->result_array();
+        return $result;
     }
 
     public function insertRodoviaria($rodoviaria_nome, $rodoviaria_rua, $rodoviaria_numero, $rodoviaria_bairro,
