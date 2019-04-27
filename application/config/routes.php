@@ -69,6 +69,10 @@ $route['trajetos/urbanos/edit'] = 'gerenciar_trajetos_urbanos_controller/editTra
 $route['trajetos/urbanos/changeStatus'] = 'gerenciar_trajetos_urbanos_controller/changeStatus';
 
 
+$route['rodoviarias/create'] = 'gerenciar_rodoviaria_controller/db_insert';
+$route['rodoviarias/edit'] = 'gerenciar_rodoviaria_controller/db_update';
+$route['rodoviarias/changeStatus'] = 'gerenciar_rodoviaria_controller/db_changeStatus';
+
 
 $route['concessoes/create'] = 'gerenciar_concessoes_controller/createConcessao';
 $route['concessoes/update'] = 'gerenciar_concessoes_controller/updateConcessao';

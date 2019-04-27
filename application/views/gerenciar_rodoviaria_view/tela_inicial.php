@@ -7,8 +7,8 @@ $this->load->view("header2");
 <!-- Body init -->
 
 <h2 class="text-center">Rodoviárias</h2>
-<?= $this->session->flashdata('error'); ?>
-<?= $this->session->flashdata('success'); ?>
+<?=$this->session->flashdata('error');?>
+<?=$this->session->flashdata('success');?>
 
 <button type="button" class="btn btn-success float-right mr-2 my-2" data-toggle="modal"
     data-target="#addRodoviariaModal" title="Adicione uma nova rodoviaria.">
@@ -30,15 +30,16 @@ $this->load->view("header2");
     </thead>
     <!--Body concessões-->
     <tbody>
-        <!-- 
-    <?php foreach ($rodoviarias as $row) : ?>
+
+    <?php if ($rodoviarias): ?>
+    <?php foreach ($rodoviarias as $row): ?>
         <tr>
-            <th scope="row"><?= $row['rodoviaria_codigo'] ?></th>
-            <td><?= $row['rodoviaria_nome'] ?></td>
-            <td><?= $row['nome'] ?></td>
-            <td><?= $row['uf'] ?></td>
-            <td><?= $row['rodoviaria_email'] ?></td>
-            <td><?= $row['rodoviaria_telefone'] ?></td>
+            <th scope="row"><?=$row['rodoviaria_codigo']?></th>
+            <td><?=$row['rodoviaria_nome']?></td>
+            <td><?=$row['nome']?></td>
+            <td><?=$row['uf']?></td>
+            <td><?=$row['rodoviaria_email']?></td>
+            <td><?=$row['rodoviaria_telefone']?></td>
             <td>
                 <button type="button" onclick="editar()" class="btn btn-default btn-sm" id="opcoesConcessaoEditar"
                         data-toggle="tooltip" data-placement="top" title="Editar rodoviaria"
@@ -56,8 +57,12 @@ $this->load->view("header2");
                 </button>
             </td>
         </tr>
-    <?php endforeach; ?>
--->
+    <?php endforeach;?>
+    <?php else: ?>
+    <tr>
+        <td colspan=100 class="text-bold text-center"> Nenhumaaa Rodoviaria Encontrada</td>
+    </tr>
+    <?php endif;?>
 
     </tbody>
     <!--Body concessões excluidas-->
