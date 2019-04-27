@@ -1,23 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="CodeIgniter Application Test Suite" tests="6" assertions="15" errors="0" failures="0" skipped="0" time="0.043139">
-    <testsuite name="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" tests="3" assertions="3" errors="0" failures="0" skipped="0" time="0.001019">
-      <testcase name="testIndex" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="13" assertions="1" time="0.000462"/>
-      <testcase name="testErrorMessenge" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="18" assertions="1" time="0.000304"/>
-      <testcase name="testSucessMessenge" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="22" assertions="1" time="0.000253"/>
+  <testsuite name="CodeIgniter Application Test Suite" tests="6" assertions="3" errors="3" failures="0" skipped="0" time="0.045274">
+    <testsuite name="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" tests="3" assertions="3" errors="0" failures="0" skipped="0" time="0.000985">
+      <testcase name="testIndex" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="13" assertions="1" time="0.000461"/>
+      <testcase name="testErrorMessenge" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="18" assertions="1" time="0.000293"/>
+      <testcase name="testSucessMessenge" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="22" assertions="1" time="0.000231"/>
     </testsuite>
-    <testsuite name="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" tests="3" assertions="12" errors="0" failures="0" skipped="0" time="0.042120">
-      <testcase name="testGetRodoviariasIsNotEmpty" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="19" assertions="1" time="0.010728">
+    <testsuite name="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" tests="3" assertions="0" errors="3" failures="0" skipped="0" time="0.044289">
+      <testcase name="testGetRodoviariasIsNotEmpty" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="19" assertions="0" time="0.020155">
+        <error type="LogicException">rodoviaria_model_test::testGetRodoviariasIsNotEmpty
+LogicException: No such property: load
+
+C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\CIPHPUnitTestCase.php:72
+C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php:15
+</error>
         <system-out>&#13;
 &#13;
 </system-out>
       </testcase>
-      <testcase name="testGetRodoviariasCidadeTest" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="26" assertions="10" time="0.008494">
+      <testcase name="testGetRodoviariasCidadeTest" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="26" assertions="0" time="0.017100">
+        <error type="LogicException">rodoviaria_model_test::testGetRodoviariasCidadeTest
+LogicException: No such property: load
+
+C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\CIPHPUnitTestCase.php:72
+C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php:15
+</error>
         <system-out>&#13;
 &#13;
 </system-out>
       </testcase>
-      <testcase name="testInsertionRodoviariaCidadeCorreta" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="38" assertions="1" time="0.022898">
+      <testcase name="testInsertionRodoviariaCidadeCorreta" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="38" assertions="0" time="0.007034">
+        <error type="LogicException">rodoviaria_model_test::testInsertionRodoviariaCidadeCorreta
+LogicException: No such property: load
+
+C:\Users\sandr\xampp\htdocs\rpv\application\tests\_ci_phpunit_test\CIPHPUnitTestCase.php:72
+C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php:15
+</error>
         <system-out>&#13;
 &#13;
 </system-out>
