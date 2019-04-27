@@ -27,7 +27,7 @@ class rodoviaria_model_test extends TestCase
     {
         $data['rodoviaria'] = $this->rodoviaria->getRodoviarias();
         if ($data['rodoviaria'] != false) {
-            for ($i = 0; $i < sizeof($data); $i++) {
+            for ($i = 0; $i < sizeof($data['rodoviaria']); $i++) {
                 $conta = strlen($data['rodoviaria'][$i]['uf']);
                 $this->assertEquals(2, $conta);
             }
