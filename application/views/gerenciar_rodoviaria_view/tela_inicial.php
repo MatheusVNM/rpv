@@ -81,12 +81,12 @@ $this->load->view("header2");
                         <label for="enderecoRodoviaria">Endereço</label>
                         <!-- here -->
                         <input name="rodoviaria_rua" type="text" maxlength="400" min="0" class="form-control"
-                            id="modal_campo_end">
+                            id="modal_create_end">
                     </div>
                     <div class="form-group col-md-2">
                         <label for="cidadeRodoviaria">Número</label>
                         <!-- here -->
-                        <input name="rodoviaria_numero" type="number" class="form-control" id="modal_edit_Cidade">
+                        <input name="rodoviaria_numero" type="number" class="form-control" id="modal_create_numero">
                     </div>
                 </div>
                 <div class="form-row">
@@ -94,12 +94,12 @@ $this->load->view("header2");
                         <label for="telefoneRodoviaria">Telefone</label>
                         <!-- here -->
                         <input name="rodoviaria_telefone" type="text" maxlength="11" min="0" max="999999999"
-                            class="form-control" id="modal_campo_telefone">
+                            class="form-control" id="modal_create_telefone">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="emailRodoviaria">Email</label>
                         <!-- here -->
-                        <input name="rodoviaria_email" type="text" class="form-control" id="modal_add_Email">
+                        <input name="rodoviaria_email" type="text" class="form-control" id="modal_create_email">
                     </div>
                 </div>
                 <div class="form-row">
@@ -107,13 +107,13 @@ $this->load->view("header2");
                         <label for="cepRodoviaria">CEP</label>
                         <!-- here -->
                         <input name="rodoviaria_cep" type="text" maxlength="8" min="0" max="99999999"
-                            class="form-control" id="modal_campo_cep">
+                            class="form-control" id="modal_create_cep">
                     </div>
 
                     <div class="form-group col-md-6">
                         <label for="cidadeRodoviaria">Cidade</label>
                         <!-- here -->
-                        <input name="rodoviaria_cidade_id" type="text" class="form-control" id="modal_campo_cidade">
+                        <input name="rodoviaria_cidade_id" type="text" class="form-control" id="modal_create_cidade">
                     </div>
                 </div>
 
@@ -121,7 +121,7 @@ $this->load->view("header2");
                     <div class="form-group col-md-6">
                         <label for="bairroRodoviaria">Bairro</label>
                         <!-- here -->
-                        <input name="rodoviaria_bairro" type="text" class="form-control" id="modal_campo_bairro">
+                        <input name="rodoviaria_bairro" type="text" class="form-control" id="modal_create_bairro">
                     </div>
                     <div class="form-group col-md-2">
                         <label for="boxRodoviaria">Box</label>
@@ -130,7 +130,7 @@ $this->load->view("header2");
                             class="form-control" id="modal_add_qntdBox">
                     </div>
                 </div>
-                <select class="form-control col-md-2">
+                <select class="form-control col-md-2" name="cidade_estado">
                     <option>UF</option>
                 </select>
             </div>
@@ -162,47 +162,58 @@ $this->load->view("header2");
                 </button>
             </div>
             <div class="modal-body ">
-                <div class="form-group">
-                    <label for="enderecoRodoviaria">Endereço</label>
-                    <!-- here -->
-                    <input name="name_enderecoRodoviaria" type="text" class="form-control" id="modal_edit_Endereco">
+                <div class="form-row">
+                    <div class="form-group col-md-10">
+                        <label for="enderecoRodoviaria">Endereço</label>
+                        <!-- here -->
+                        <input name="rodoviaria_rua" type="text" maxlength="400" min="0" class="form-control"
+                            id="modal_edit_end">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="cidadeRodoviaria">Número</label>
+                        <!-- here -->
+                        <input name="rodoviaria_numero" type="number" class="form-control" id="modal_edit_numero">
+                    </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="bairroRodoviaria">Bairro</label>
                         <!-- here -->
-                        <input name="name_bairroRodoviaria" type="text" class="form-control" id="modal_edit_Bairro">
+                        <input name="rodoviaria_bairro" type="text" class="form-control" id="modal_edit_bairro">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="cidadeRodoviaria">Cidade</label>
                         <!-- here -->
-                        <input name="name_cidadeRodoviaria" type="text" class="form-control" id="modal_edit_Cidade">
+                        <input name="rodoviaria_cidade" type="text" class="form-control" id="modal_edit_cidade">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="telefoneRodoviaria">Telefone</label>
                         <!-- here -->
-                        <input name="name_telefoneRodoviaria" type="text" class="form-control" id="modal_edit_Telefone">
+                        <input name="rodoviaria_telefone" type="text" class="form-control" id="modal_edit_telefone">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="emailRodoviaria">Email</label>
                         <!-- here -->
-                        <input name="name_emailRodoviaria" type="text" class="form-control" id="modal_edit_Email">
+                        <input name="rodoviaria_email" type="text" class="form-control" id="modal_edit_email">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="cepRodoviaria">CEP</label>
                         <!-- here -->
-                        <input name="name_cepRodoviaria" type="number" class="form-control" id="modal_edit_cep">
+                        <input name="rodoviaria_cep" type="number" class="form-control" id="modal_edit_cep">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="boxRodoviaria">Quantidade de box</label>
                         <!-- here -->
-                        <input name="name_qntdboxRodoviaria" type="number" class="form-control" id="modal_edit_qntdBox">
+                        <input name="rodoviaria_qntdbox" type="number" class="form-control" id="modal_edit_qntdBox">
                     </div>
                 </div>
+                <select class="form-control col-md-2" name="cidade_estado">
+                    <option>UF</option>
+                </select>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -225,45 +236,53 @@ $this->load->view("header2");
                 </button>
             </div>
             <div class="modal-body ">
-                <div class="form-group">
-                    <label for="enderecoRodoviaria">Endereço</label>
-                    <!-- here -->
-                    <input name="name_enderecoRodoviaria" type="text" class="form-control" id="modal_info_Endereco">
+                <div class="form-row">
+                    <div class="form-group col-md-10">
+                        <label for="enderecoRodoviaria">Endereço</label>
+                        <!-- here -->
+                        <input name="rodoviaria_rua" type="text" maxlength="400" min="0" class="form-control"
+                            id="modal_info_end">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="cidadeRodoviaria">Número</label>
+                        <!-- here -->
+                        <input name="rodoviaria_numero" type="number" class="form-control" id="modal_info_numero">
+                    </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="bairroRodoviaria">Bairro</label>
                         <!-- here -->
-                        <input name="name_bairroRodoviaria" type="text" class="form-control" id="modal_info_Bairro">
+                        <input name="rodoviaria_bairro" type="text" class="form-control" id="modal_info_bairro">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="cidadeRodoviaria">Cidade</label>
                         <!-- here -->
-                        <input name="name_cidadeRodoviaria" type="text" class="form-control" id="modal_info_Cidade">
+                        <input name="rodoviaria_cidade" type="text" class="form-control" id="modal_info_cidade">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="telefoneRodoviaria">Telefone</label>
                         <!-- here -->
-                        <input name="name_telefoneRodoviaria" type="text" class="form-control" id="modal_info_Telefone">
+                        <input name="rodoviaria_telefone" type="text" class="form-control" id="modal_info_telefone">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="emailRodoviaria">Email</label>
                         <!-- here -->
-                        <input name="name_emailRodoviaria" type="text" class="form-control" id="modal_info_Email">
+                        <input name="rodoviaria_email" type="text" class="form-control" id="modal_info_email">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="cepRodoviaria">CEP</label>
                         <!-- here -->
-                        <input name="name_cepRodoviaria" type="number" class="form-control" id="modal_info_cep">
+                        <input name="rodoviaria_cep" type="number" class="form-control" id="modal_info_cep">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="boxRodoviaria">Quantidade de box</label>
                         <!-- here -->
-                        <input name="name_qntdboxRodoviaria" type="number" class="form-control" id="modal_info_qntdBox">
+                        <input name="rodoviaria_qntdbox" type="number" class="form-control" id="modal_info_qntdbox">
                     </div>
                 </div>
             </div>
@@ -357,45 +376,43 @@ $("#customFile").change(function() {
 // modal_edit_numero
 // id_ProtocoloConcessao
 
-$("#modal_campo_telefone").on("keypress keyup blur", function(event) {
-    $(this).val($(this).val().replace(/[^\d].+/, ""));
-    if ((event.which < 48 || event.which > 57)) {
-        event.preventDefault();
-    }
-
-
-});
-$("#modal_add_cep").on("keypress keyup blur", function(event) {
+$("#modal_create_telefone").on("keypress keyup blur", function(event) {
     $(this).val($(this).val().replace(/[^\d].+/, ""));
     if ((event.which < 48 || event.which > 57)) {
         event.preventDefault();
     }
 });
-$("#modal_add_qntdBox").on("keypress keyup blur", function(event) {
+$("#modal_create_cep").on("keypress keyup blur", function(event) {
     $(this).val($(this).val().replace(/[^\d].+/, ""));
     if ((event.which < 48 || event.which > 57)) {
         event.preventDefault();
     }
 });
-$('#modal_campo_end').keypress(function(e) {
+$("#modal_create_qntdbox").on("keypress keyup blur", function(event) {
+    $(this).val($(this).val().replace(/[^\d].+/, ""));
+    if ((event.which < 48 || event.which > 57)) {
+        event.preventDefault();
+    }
+});
+$('#modal_create_end').keypress(function(e) {
     var keyCode = (e.keyCode ? e.keyCode : e.which);
     if (keyCode > 47 && keyCode < 58) {
         e.preventDefault();
     }
 });
-$('#modal_campo_bairro').keypress(function(e) {
+$('#modal_create_bairro').keypress(function(e) {
     var keyCode = (e.keyCode ? e.keyCode : e.which);
     if (keyCode > 47 && keyCode < 58) {
         e.preventDefault();
     }
 });
-$("#modal_campo_cep").on("keypress keyup blur", function(event) {
+$("#modal_create_cep").on("keypress keyup blur", function(event) {
     $(this).val($(this).val().replace(/[^\d].+/, ""));
     if ((event.which < 48 || event.which > 57)) {
         event.preventDefault();
     }
 });
-$('#modal_campo_cidade').keypress(function(e) {
+$('#modal_create_cidade').keypress(function(e) {
     var keyCode = (e.keyCode ? e.keyCode : e.which);
     if (keyCode > 47 && keyCode < 58) {
         e.preventDefault();
