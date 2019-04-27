@@ -54,14 +54,6 @@ $this->load->helper('url');
 
         </div>
     </div>
-    <script>
-        $(document).ready(function() {
-            $("#loading").toggle("slow", function(){
-                $("#loading").toggleClass("d-flex")
-            })
-            console.log("done");
-        });
-    </script>
 
 
 

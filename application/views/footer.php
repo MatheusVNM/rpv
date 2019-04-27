@@ -24,6 +24,15 @@
 
         });
     </script>
+        <script>
+        $(document).ready(function() {
+            $("#loading").toggle("slow", function(){
+                $("#loading").toggleClass("d-flex")
+            })
+            console.log("done");
+        });
+    </script>
+
 </body>
 
 </html> 
