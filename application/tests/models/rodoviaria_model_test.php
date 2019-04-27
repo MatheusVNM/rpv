@@ -27,7 +27,8 @@ class rodoviaria_model_test extends TestCase
     {
         $data = $this->rodoviaria->getRodoviarias();
         for ($i = 0; $i < count($data); $i++) {
-            $this->assertCount(1, [count($data[$i]['uf'])]);
+            $conta = count($data[$i]['uf']);
+            $this->assertCount(1, [$conta]);
         }
     }
 
@@ -36,7 +37,7 @@ class rodoviaria_model_test extends TestCase
         $data = $this->rodoviaria->insertRodoviaria('Rodoviaria de Alegrete', 'Maximinio', 120, 'Segabinazzi', 97543-410
             , 'teste@teste.com', "(55)997328105", 4,
             1);
-        $this->assertEquals(true, $data['sucess']);
+        $this->assertEquals(true, $data);
 
     }
 

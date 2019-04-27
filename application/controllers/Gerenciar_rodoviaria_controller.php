@@ -17,14 +17,8 @@ class Gerenciar_rodoviaria_controller extends CI_Controller
 
     public function index()
     {
-        $data = $this->rodoviaria->insertRodoviaria("dsfddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-        dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-        dddddddddddddddddddddddddddddddddddddddddd", 'Maximinio', 120, 'Segabinazzi', 97543-410
-            , 'teste@teste.com', "(55)997328105", 4,
-            1);
-        print_r($data);
-//        $data['rodoviarias'] = $this->rodoviaria->getRodoviarias();
-//        $this->load->view('gerenciar_rodoviaria_view/tela_inicial', $data);
+        $data['rodoviarias'] = $this->rodoviaria->getRodoviarias();
+        $this->load->view('gerenciar_rodoviaria_view/tela_inicial', $data);
     }
 
 

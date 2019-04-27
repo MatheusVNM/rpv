@@ -1,19 +1,181 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="CodeIgniter Application Test Suite" tests="6" assertions="37" errors="0" failures="0" skipped="0" time="0.138800">
-    <testsuite name="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" tests="3" assertions="3" errors="0" failures="0" skipped="0" time="0.003965">
-      <testcase name="testIndex" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="13" assertions="1" time="0.001754"/>
-      <testcase name="testErrorMessenge" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="18" assertions="1" time="0.001198"/>
-      <testcase name="testSucessMessenge" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="22" assertions="1" time="0.001013"/>
+  <testsuite name="CodeIgniter Application Test Suite" tests="6" assertions="40" errors="0" failures="0" skipped="0" time="0.134739">
+    <testsuite name="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" tests="3" assertions="3" errors="0" failures="0" skipped="0" time="0.001904">
+      <testcase name="testIndex" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="13" assertions="1" time="0.000988"/>
+      <testcase name="testErrorMessenge" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="18" assertions="1" time="0.000503"/>
+      <testcase name="testSucessMessenge" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="22" assertions="1" time="0.000413"/>
     </testsuite>
-    <testsuite name="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" tests="3" assertions="34" errors="0" failures="0" skipped="0" time="0.134835">
-      <testcase name="testGetRodoviariasIsNotEmpty" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="19" assertions="1" time="0.044956">
+    <testsuite name="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" tests="3" assertions="37" errors="0" failures="0" skipped="0" time="0.132835">
+      <testcase name="testGetRodoviariasIsNotEmpty" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="19" assertions="1" time="0.042678">
         <system-out>&#13;
 &#13;
 </system-out>
       </testcase>
-      <testcase name="testGetRodoviariasCidadeTest" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="26" assertions="32" time="0.072833">
+      <testcase name="testGetRodoviariasCidadeTest" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="26" assertions="35" time="0.075008">
         <system-out>&#13;
+&#13;
+&#13;
+A PHP Error was encountered&#13;
+&#13;
+Severity:    Warning
+Message:     count(): Parameter must be an array or an object that implements Countable
+Filename:    C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php
+Line Number: 30&#13;
+&#13;
+Backtrace:&#13;
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php
+	Line: 30
+	Function: _error_handler
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
+	Line: 1153
+	Function: testGetRodoviariasCidadeTest
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
+	Line: 842
+	Function: runTest
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestResult.php
+	Line: 687
+	Function: runBare
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
+	Line: 796
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
+	Line: 746
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
+	Line: 746
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/TestRunner.php
+	Line: 641
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
+	Line: 206
+	Function: doRun
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
+	Line: 162
+	Function: run
+
+	File: C:\Users\sandr\xampp\php\phpunit
+	Line: 614
+	Function: main
+
+&#13;
+&#13;
+A PHP Error was encountered&#13;
+&#13;
+Severity:    Warning
+Message:     count(): Parameter must be an array or an object that implements Countable
+Filename:    C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php
+Line Number: 30&#13;
+&#13;
+Backtrace:&#13;
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php
+	Line: 30
+	Function: _error_handler
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
+	Line: 1153
+	Function: testGetRodoviariasCidadeTest
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
+	Line: 842
+	Function: runTest
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestResult.php
+	Line: 687
+	Function: runBare
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
+	Line: 796
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
+	Line: 746
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
+	Line: 746
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/TestRunner.php
+	Line: 641
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
+	Line: 206
+	Function: doRun
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
+	Line: 162
+	Function: run
+
+	File: C:\Users\sandr\xampp\php\phpunit
+	Line: 614
+	Function: main
+
+&#13;
+&#13;
+A PHP Error was encountered&#13;
+&#13;
+Severity:    Warning
+Message:     count(): Parameter must be an array or an object that implements Countable
+Filename:    C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php
+Line Number: 30&#13;
+&#13;
+Backtrace:&#13;
+	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php
+	Line: 30
+	Function: _error_handler
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
+	Line: 1153
+	Function: testGetRodoviariasCidadeTest
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
+	Line: 842
+	Function: runTest
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestResult.php
+	Line: 687
+	Function: runBare
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
+	Line: 796
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
+	Line: 746
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
+	Line: 746
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/TestRunner.php
+	Line: 641
+	Function: run
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
+	Line: 206
+	Function: doRun
+
+	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
+	Line: 162
+	Function: run
+
+	File: C:\Users\sandr\xampp\php\phpunit
+	Line: 614
+	Function: main
+
 &#13;
 &#13;
 A PHP Error was encountered&#13;
@@ -1745,7 +1907,7 @@ Backtrace:&#13;
 &#13;
 </system-out>
       </testcase>
-      <testcase name="testInsertionRodoviariaCidadeCorreta" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="34" assertions="1" time="0.017046">
+      <testcase name="testInsertionRodoviariaCidadeCorreta" class="rodoviaria_model_test" classname="rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\rodoviaria_model_test.php" line="35" assertions="1" time="0.015149">
         <system-out>&#13;
 &#13;
 </system-out>

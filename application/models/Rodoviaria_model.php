@@ -41,7 +41,10 @@ class Rodoviaria_model extends CI_Model
         );
         $result['sucess'] = $this->db->insert('rodoviaria', $data);
         $result['error'] = $this->db->error();
-        return $result;
+        if($result['sucess']){
+            return true;
+        }
+        return false;
     }
 
 }
