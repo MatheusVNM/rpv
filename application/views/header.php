@@ -27,12 +27,64 @@ $this->load->helper('url');
 
     <!--Theme Styles CSS-->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/style.css"); ?>" media="all" />
+    <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.3.1.min.js"); ?>"></script>
     <style>
 
     </style>
 </head>
 
 <body>
+    <div id="loading" class="top-header position-fixed h-100 w-100 d-flex align-center justify-content-center" style="z-index:10000; height: 100px">
+        <div class=" my-auto mx-auto d-flex flex-column align-center justify-content-center text-light font-weight-bold">
+
+            <div class="loading_screen_main">
+                <div class="loading_screen_cup ">
+                    <img src="<?php echo base_url('assets/images/logo.png'); ?>" class="loading_screen_img" />
+
+                    <div class="loading_screen_shadow1"></div>
+                    <div class="loading_screen_shadow2"></div>
+                </div>
+            </div>
+            <div class="loading_screen_text mt-5 mx-auto h4">
+            </div>
+            <center>
+                <img src="<?php echo base_url("assets/images/title-text.svg"); ?>" width=100% />
+                <br>Carregando...
+            </center>
+
+        </div>
+    </div>
+    <script>
+        $(window).on("load", function() {
+                    $("#loading").toggle("slow", function() {
+                        $("#loading").toggleClass("d-flex")
+
+                    })
+                    console.log("done");
+                });
+    </script>
+
+
+
+    <!--
+    <div class="top-header position-fixed h-100 w-100 d-flex align-center justify-content-center" style="z-index:10000; height: 100px">
+<div class=" my-auto mx-auto d-flex flex-column align-center justify-content-center text-light font-weight-bold">
+    <center>
+        <img src="<?php echo base_url('assets/images/logo.png'); ?>" style="max-width: 300px" />
+    </center>
+<center>
+
+      <div class="my-3 loading-spinner">
+          </div>
+        </center>
+        <center class="h1">
+
+            Carregando
+        </center>
+    </div>
+</div> -->
+
+
     <!-- Inicio do cabeçado superior -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark top-header">
         <div class="mx-auto order-0">
@@ -57,34 +109,34 @@ $this->load->helper('url');
                 </li>
             </ul>
             <?php if ($this->session->userdata('logged_in') !== true) : ?>
-            <ul class="navbar-nav ">
-                <li class="nav-item">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Entrar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Cadastrar-se</a>
-                </li>
-            </ul>
+                <ul class="navbar-nav ">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Entrar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cadastrar-se</a>
+                    </li>
+                </ul>
             <?php else : ?>
 
-            <ul class="navbar-nav">
-                <li class="dropdown shownav-item text-light d-flex align-center ml-3">
-                    <a href="#" class="nav-link d-flex row  mr-2" role="button" id="dropdownUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user-circle fa-2x my-auto"></i>
-                        <div class="px-2 py-1">
-                            <?= $this->session->userdata('username') ?>
-                        </div>
-                    </a>
+                <ul class="navbar-nav">
+                    <li class="dropdown shownav-item text-light d-flex align-center ml-3">
+                        <a href="#" class="nav-link d-flex row  mr-2" role="button" id="dropdownUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user-circle fa-2x my-auto"></i>
+                            <div class="px-2 py-1">
+                                <?= $this->session->userdata('username') ?>
+                            </div>
+                        </a>
 
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownUser">
-                        <?php if ($this->session->userdata('level') !== 'cliente') : ?>
-                        <a class="dropdown-item" href="<?= site_url('dashboard'); ?>">Dashboard</a>
-                        <?php endif; ?>
-                        <a class="dropdown-item" href="#" onClick="alert('Indisponivel')">Meus Dados</a>
-                        <a class="dropdown-item" href="<?= site_url('logout'); ?>">Sair</a>
-                    </div>
-                </li>
-            </ul>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownUser">
+                            <?php if ($this->session->userdata('level') !== 'cliente') : ?>
+                                <a class="dropdown-item" href="<?= site_url('dashboard'); ?>">Dashboard</a>
+                            <?php endif; ?>
+                            <a class="dropdown-item" href="#" onClick="alert('Indisponivel')">Meus Dados</a>
+                            <a class="dropdown-item" href="<?= site_url('logout'); ?>">Sair</a>
+                        </div>
+                    </li>
+                </ul>
 
             <?php endif; ?>
 
@@ -137,4 +189,4 @@ $this->load->helper('url');
                 <?= form_close() ?>
             </div>
         </div>
-    </div> 
+    </div>
