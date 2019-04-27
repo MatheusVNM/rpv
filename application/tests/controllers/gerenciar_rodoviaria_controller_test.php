@@ -16,4 +16,10 @@ class gerenciar_rodoviaria_controller_test extends TestCase
         $this->assertContains('<title></title>', $output);
     }
 
+    public function testErrorMessenge(){}
+
+    public function testSucessMessenge(){
+
+    }
+
 }
