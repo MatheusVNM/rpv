@@ -19,7 +19,7 @@ class rodoviaria_model_test extends TestCase
     public function testGetRodoviariasIsNotEmpty()
     {
         $data = $this->rodoviaria->getRodoviarias();
-        $this->assertNotFalse($data);
+        $this->assertNotEquals(false, $data);
 
     }
 
