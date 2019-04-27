@@ -26,24 +26,27 @@ class rodoviaria_model_test extends TestCase
     public function testGetRodoviariasCidadeTest()
     {
         $data['rodoviaria'] = $this->rodoviaria->getRodoviarias();
-        for ($i = 0; $i < sizeof($data['rodoviaria']); $i++) {
-            $this->assertEquals(2, strlen($data['rodoviaria'][$i]['uf']));
+        if ($data['rodoviaria']) {
+            for ($i = 0; $i < sizeof($data['rodoviaria']); $i++) {
+                $this->assertEquals(2, strlen($data['rodoviaria'][$i]['uf']));
+            }
+        } else{
+            $this->assertEquals(true, $data['rodoviaria']);
         }
-}
+    }
 
-public
-function testInsertionRodoviariaCidadeCorreta()
-{
-    $data = $this->rodoviaria->insertRodoviaria('Rodoviaria de Alegrete', 'Maximinio', 120, 'Segabinazzi', 97543 - 410
-        , 'teste@teste.com', "(55)997328105", 4,
-        1);
-    $this->assertEquals(true, $data);
+    public function testInsertionRodoviariaCidadeCorreta()
+    {
+        $data = $this->rodoviaria->insertRodoviaria('Rodoviaria de Alegrete', 'Maximinio', 120, 'Segabinazzi', "97543-410"
+            , 'teste@teste.com', "(55)997328105", 4,
+            1);
+        $this->assertEquals(true, $data);
 
-}
+    }
 
 //    public function testInsertionRodoviariaCidadeIncorreta()
 //    {
-//        $data = $this->rodoviaria->insertRodoviaria('Rodoviaria de Alegrete', 'Maximinio', 120, 'Segabinazzi', 97543-410
+//        $data = $this->rodoviaria->insertRodoviaria('Rodoviaria de Alegrete', 'Maximinio', 120, 'Segabinazzi', "97543-410"
 //            , 'teste@teste.com', "(55)997328105", 4,
 //            13000000);
 //        $this->assertNotEquals(true, $data['sucess']);
@@ -57,7 +60,7 @@ function testInsertionRodoviariaCidadeCorreta()
 //        $nome = "dsfddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
 //        dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
 //        dddddddddddddddddddddddddddddddddddddddddd";
-//        $data = $this->rodoviaria->insertRodoviaria($nome, 'Maximinio', 120, 'Segabinazzi', 97543-410, 'teste@teste.com'
+//        $data = $this->rodoviaria->insertRodoviaria($nome, 'Maximinio', 120, 'Segabinazzi', "97543-410", 'teste@teste.com'
 //            , "(55)997328105", 4,
 //            1);
 //        $this->assertNotEquals(true, $data['sucess']);
@@ -69,7 +72,7 @@ function testInsertionRodoviariaCidadeCorreta()
 //     */
 //    public function testUnexpectedTypeInsertionRodoviaria(){
 //        $data = $this->rodoviaria->insertRodoviaria('Rodoviaria de Rio Grande', 'Maximinio', "AQUI DEVERIA HAVER UM NÚME
-//        RO", 'Segabinazzi', 97543-410, 'teste@teste.com', "(55)997328105", 4,
+//        RO", 'Segabinazzi', "97543-410", 'teste@teste.com', "(55)997328105", 4,
 //            1);
 //        $this->assertNotEquals(true, $data['sucess']);
 //
