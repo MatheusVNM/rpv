@@ -16,13 +16,6 @@ class rodoviaria_model_test extends TestCase
         $this->rodoviaria = $this->CI->rodoviaria_model;
     }
 
-    public function testGetRodoviariasIsNotEmpty()
-    {
-        $data = $this->rodoviaria->getRodoviarias();
-        $this->assertNotFalse($data);
-
-    }
-
     public function testGetRodoviariasCidadeTest()
     {
         $data = $this->rodoviaria->getRodoviarias();
