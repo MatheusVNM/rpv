@@ -38,9 +38,42 @@ if ($this->session->userdata('logged_in') !== true || $this->session->userdata('
     <!--Theme Styles CSS-->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/style.css"); ?>" media="all" />
 
+    <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.3.1.min.js"); ?>"></script>
+
 </head>
 
 <body>
+
+<div id="loading" class="top-header position-fixed h-100 w-100 d-flex align-center justify-content-center" style="z-index:10000; height: 100px">
+        <div class=" my-auto mx-auto d-flex flex-column align-center justify-content-center text-light font-weight-bold">
+
+            <div class="loading_screen_main">
+                <div class="loading_screen_cup ">
+                    <img src="<?php echo base_url('assets/images/logo.png'); ?>" class="loading_screen_img" />
+
+                    <div class="loading_screen_shadow1"></div>
+                    <div class="loading_screen_shadow2"></div>
+                </div>
+            </div>
+            <div class="loading_screen_text mt-5 mx-auto h4">
+            </div>
+            <center>
+                <img src="<?php echo base_url("assets/images/title-text.svg"); ?>" width=100% />
+                <br>Carregando...
+            </center>
+
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $("#loading").toggle("slow", function(){
+                $("#loading").toggleClass("d-flex")
+            })
+            console.log("done");
+        });
+    </script>
+
+
 
     <div class="d-flex w-100" id="wrapper">
 
@@ -48,7 +81,7 @@ if ($this->session->userdata('logged_in') !== true || $this->session->userdata('
         <div class="navbar-dark border-right sidebar shown" id="sidebar-wrapper">
             <div class="sidebar-heading font-weight-bold d-flex justify-content-center align-center">
                 <div class="align-self-center">
-                    <img src="<?php echo base_url("assets/images/title-text.svg"); ?>" width=150 />
+                <img src="<?php echo base_url("assets/images/title-text.svg"); ?>" width=150 />
                 </div>
             </div>
             <div class="list-group list-group-flush">

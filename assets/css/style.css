@@ -416,3 +416,132 @@ body {
   transform: translateY(4px);
 }
 /* */
+
+
+
+
+
+/* loadin spinner */
+
+
+.loading_screen_img{
+	width: 300px;
+	position: relative;
+	animation: anim 3s infinite;
+}
+@keyframes anim{
+	0%{
+			top:0px;
+	}
+	50%{
+			top:25px;
+	}
+	100%{
+			top:0px;
+	}
+}
+.loading_screen_shadow1{
+	height: 10px;
+	width: 100%;
+	border-radius: 50%;
+	position: relative;
+	top:50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	margin-top: 70px;
+	-webkit-filter:blur(10px);
+	z-index: 99;
+	animation: anim2 3s infinite;
+}
+@keyframes anim2{
+	0%{
+			height: 8px;
+			width: 180px;
+			background-color: rgba(0,0,0,.6);
+	}
+	50%{
+			height: 3px;
+			width: 150px;
+			background-color: rgba(0,0,0,1);
+	}
+	100%{
+			height: 8px;
+			width: 180px;
+			background-color: rgba(0,0,0,.6);
+	}
+}
+.loading_screen_shadow2{
+	height: 0px;
+	width: 0px;
+	border-radius: 50%;
+	position: relative;
+	top:50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	-webkit-filter:blur(5px);
+	z-index: 999;
+	animation: anim3 3s infinite;
+}
+@keyframes anim3{
+	0%{
+			height: 4px;
+			width: 130px;
+			background-color:rgba(0,0,0,.1);
+	}
+	50%{
+			height: 3px;
+			width: 120px;
+			background-color:rgba(0,0,0,.7);
+	}
+	100%{
+			height: 4px;
+			width: 130px;
+			background-color:rgba(0,0,0,.1);
+	}
+}
+#text{
+	font-family: Gloss And Bloom;
+	font-size: 120px;
+	color:#292929;
+	font-weight: 500;
+	position: absolute;
+	top:50%;
+	left: 40%;
+	transform: translate(-50%,-50%);
+}
+
+
+
+
+
+.loading-spinner {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.loading-spinner:after {
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  margin: 6px;
+  box-sizing: border-box;
+  border: 26px solid #cef;
+  border-color: #cef transparent #cef transparent;
+  animation: loading-spinner 1.2s infinite;
+}
+@keyframes loading-spinner {
+  0% {
+    transform: rotate(0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  50% {
+    transform: rotate(900deg);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  100% {
+    transform: rotate(1800deg);
+  }
+}
