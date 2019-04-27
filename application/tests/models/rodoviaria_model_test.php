@@ -19,7 +19,8 @@ class rodoviaria_model_test extends TestCase
     public function testGetRodoviariasIsNotEmpty()
     {
         $data['rodoviaria'] = $this->rodoviaria->getRodoviarias();
-        $this->assertEmpty(empty($data['rodoviaria']));
+        $empty = empty($data['rodoviaria']);
+        $this->assertEquals(false, $empty);
 
     }
 
@@ -29,7 +30,7 @@ class rodoviaria_model_test extends TestCase
         $lgt = count($data);
         for ($i = 0; $i < $lgt; $i++) {
             $conta = count($data[$i]['uf']);
-            $this->assertCount(1, [$conta]);
+            $this->assertEquals(1, $conta);
         }
     }
 
