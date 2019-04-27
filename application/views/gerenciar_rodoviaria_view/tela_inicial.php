@@ -91,13 +91,13 @@ $this->load->view("header2");
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="telefoneRodoviaria">Telefone</label>
+                        <label for="telefoneRodoviaria" type="">Telefone</label>
                         <!-- here -->
                         <input name="rodoviaria_telefone" type="text" maxlength="11" min="0" max="999999999"
                             class="form-control" id="modal_campo_telefone">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="emailRodoviaria">Email</label>
+                        <label for="emailRodoviaria" type="email">Email</label>
                         <!-- here -->
                         <input name="rodoviaria_email" type="text" class="form-control" id="modal_add_Email">
                     </div>
