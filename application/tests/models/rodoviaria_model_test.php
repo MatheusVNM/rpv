@@ -26,9 +26,10 @@ class rodoviaria_model_test extends TestCase
 
     public function testGetRodoviariasCidadeTest()
     {
-        $data = $this->rodoviaria->getRodoviarias();
+        if (!$data)
+        $data['rodoviaria'] = $this->rodoviaria->getRodoviarias();
         for ($i = 0; $i < sizeof($data); $i++) {
-            $conta = strlen($data[$i]['uf']);
+            $conta = strlen($data['rodoviaria'][$i]['uf']);
             $this->assertEquals(2, $conta);
         }
     }
