@@ -31,7 +31,7 @@ class rodoviaria_model_test extends TestCase
                 $this->assertEquals(2, strlen($data['rodoviaria'][$i]['uf']));
             }
         } else{
-            $this->assertEquals(false, $data['rodoviaria']);
+            $this->assertFalse($data['rodoviaria']);
         }
     }
 
