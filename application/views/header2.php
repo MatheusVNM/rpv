@@ -65,12 +65,13 @@ if ($this->session->userdata('logged_in') !== true || $this->session->userdata('
         </div>
     </div>
     <script>
-        $(document).ready(function() {
-            $("#loading").toggle("slow", function(){
-                $("#loading").toggleClass("d-flex")
-            })
-            console.log("done");
-        });
+        $(window).on("load", function() {
+                    $("#loading").toggle("slow", function() {
+                        $("#loading").toggleClass("d-flex")
+
+                    })
+                    console.log("done");
+                });
     </script>
 
 
