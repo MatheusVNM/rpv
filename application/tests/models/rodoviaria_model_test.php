@@ -27,10 +27,9 @@ class rodoviaria_model_test extends TestCase
     public function testGetRodoviariasCidadeTest()
     {
         $data = $this->rodoviaria->getRodoviarias();
-        $lgt = count($data);
-        for ($i = 0; $i < $lgt; $i++) {
-            $conta = count($data[$i]['uf']);
-            $this->assertEquals(1, $conta);
+        for ($i = 0; $i < sizeof($data); $i++) {
+            $conta = strlen($data[$i]['uf']);
+            $this->assertEquals(2, $conta);
         }
     }
 
