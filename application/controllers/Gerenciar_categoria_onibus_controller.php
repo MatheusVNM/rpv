@@ -2,7 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 
-class gerenciar_categoria_onibus_controller extends CI_Controller
+class Gerenciar_categoria_onibus_controller extends CI_Controller
 {
     public function __construct()
     {

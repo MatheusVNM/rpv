@@ -6,7 +6,7 @@
  * Time: 4:00 PM
  */
 
-class rodoviaria_model extends CI_Model
+class Rodoviaria_model extends CI_Model
 {
     public function getRodoviarias()
     {

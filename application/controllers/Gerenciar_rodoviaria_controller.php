@@ -6,7 +6,7 @@
  * Time: 4:14 PM
  */
 
-class gerenciar_rodoviaria_controller extends CI_Controller
+class Gerenciar_rodoviaria_controller extends CI_Controller
 {
     public function __construct()
     {

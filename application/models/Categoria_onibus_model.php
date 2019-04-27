@@ -6,7 +6,7 @@
  * Time: 10:49 AM
  */
 
-class categoria_onibus_model extends CI_Model
+class Categoria_onibus_model extends CI_Model
 {
 
     public function getcategoriaonibus()
