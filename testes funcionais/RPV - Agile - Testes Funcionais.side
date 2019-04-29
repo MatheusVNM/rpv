@@ -1,0 +1,21 @@
+{
+  "id": "6d3baa40-fdf8-40ba-af7e-a065f302caf4",
+  "version": "2.0",
+  "name": "RPV - Agile",
+  "url": "",
+  "tests": [{
+    "id": "a89da600-4a98-4491-a665-7554cb7cf689",
+    "name": "Untitled",
+    "commands": []
+  }],
+  "suites": [{
+    "id": "d9901656-dc70-4d93-8267-3d4c9ceb12a9",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["a89da600-4a98-4491-a665-7554cb7cf689"]
+  }],
+  "urls": [],
+  "plugins": []
+}
