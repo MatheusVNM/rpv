@@ -58,7 +58,29 @@ $this->load->view("header2");
         </tr>
     <?php endforeach; ?>
 -->
-
+        <tr>
+            <th scope="row"></th>
+            <td>Rodoviaria bosta</td>
+            <td>Alegrete</td>
+            <td>RS</td>
+            <td>teste@teste</td>
+            <td>55984564630</td>
+            <td>
+                <button type="button" onclick="editar()" class="btn btn-default btn-sm" id="opcoesConcessaoEditar"
+                    data-toggle="tooltip" data-placement="top" title="Editar rodoviaria"
+                    data-target="#editRodoviariaModal">
+                    <span class="hvr-icon fa fa-edit mr-1"></span> Editar
+                </button>
+                <button type="submit" class="btn btn-default btn-sm" title="Oculta da lista."
+                    id="opcoesConcessaoExcluir" data-toggle="tooltip" data-placement="top">
+                    <span class="hvr-icon fa fa-trash mr-1"></span>Ocultar
+                </button>
+                <button type="submit" onclick="info()" class="btn btn-primary btn-sm" title="Informacao Adicional."
+                    data-toggle="tooltip" data-placement="top" data-target="#infoRodoviariaModal">
+                    <span class="hvr-icon fa fa-eye mr-1"></span>Info
+                </button>
+            </td>
+        </tr>
     </tbody>
     <!--Body concessões excluidas-->
 
@@ -70,69 +92,99 @@ $this->load->view("header2");
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Dados da Rodoviária.</h5>
+                <h5 class="modal-title" id="exampleModalLabel"></h5>Inserir Dados da Rodoviária.</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class="form-row">
-                    <div class="form-group col-md-10">
-                        <label for="enderecoRodoviaria">Endereço</label>
-                        <!-- here -->
-                        <input name="rodoviaria_rua" type="text" maxlength="400" min="0" class="form-control"
-                            id="modal_create_end">
+                <form class="needs-validation container" novalidate>
+                    <div class="form-row">
+                        <div class="form-group col-md-9">
+                            <label for="enderecoRodoviaria">Endereço</label>
+                            <!-- here -->
+                            <input name="rodoviaria_rua" type="text" maxlength="400" min="0" class="form-control"
+                                id="modal_create_end" required>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="cidadeRodoviaria">Número</label>
+                            <!-- here -->
+                            <input name="rodoviaria_numero" type="number" class="form-control" id="modal_create_numero"
+                                required>
+                            <div class="invalid-feedback"></div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-2">
-                        <label for="cidadeRodoviaria">Número</label>
-                        <!-- here -->
-                        <input name="rodoviaria_numero" type="number" class="form-control" id="modal_create_numero">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="telefoneRodoviaria" type="">Telefone</label>
+                            <!-- here -->
+                            <input name="rodoviaria_telefone" type="text" maxlength="11" min="0" max="999999999"
+                                class="form-control" id="modal_create_telefone" required>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="emailRodoviaria" type="email">Email</label>
+                            <!-- here -->
+                            <input name="rodoviaria_email" type="text" class="form-control" id="modal_create_email"
+                                required>
+                            <div class="invalid-feedback"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="telefoneRodoviaria" type="">Telefone</label>
-                        <!-- here -->
-                        <input name="rodoviaria_telefone" type="text" maxlength="11" min="0" max="999999999"
-                            class="form-control" id="modal_create_telefone">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="emailRodoviaria" type="email">Email</label>
-                        <!-- here -->
-                        <input name="rodoviaria_email" type="text" class="form-control" id="modal_create_email">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="cepRodoviaria">CEP</label>
-                        <!-- here -->
-                        <input name="rodoviaria_cep" type="text" maxlength="8" min="0" max="99999999"
-                            class="form-control" id="modal_create_cep">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="cepRodoviaria">CEP</label>
+                            <!-- here -->
+                            <input name="rodoviaria_cep" type="text" maxlength="8" min="0" max="99999999"
+                                class="form-control" id="modal_create_cep" required>
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="cidadeRodoviaria">Cidade</label>
+                            <!-- here -->
+                            <input name="rodoviaria_cidade_id" type="text" class="form-control" id="modal_create_cidade"
+                                required>
+                            <div class="invalid-feedback"></div>
+                        </div>
                     </div>
 
-                    <div class="form-group col-md-6">
-                        <label for="cidadeRodoviaria">Cidade</label>
-                        <!-- here -->
-                        <input name="rodoviaria_cidade_id" type="text" class="form-control" id="modal_create_cidade">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="bairroRodoviaria">Bairro</label>
+                            <!-- here -->
+                            <input name="rodoviaria_bairro" type="text" class="form-control" id="modal_create_bairro"
+                                required>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="boxRodoviaria">Box</label>
+                            <!-- here -->
+                            <input name="rodoviaria_qntdbox" type="number" maxlength="3" min="0" max="999"
+                                class="form-control" id="modal_add_qntdBox" required>
+                            <div class="invalid-feedback"></div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="bairroRodoviaria">Bairro</label>
-                        <!-- here -->
-                        <input name="rodoviaria_bairro" type="text" class="form-control" id="modal_create_bairro">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <select class="form-control" name="estado_nome" required>
+                                <option value="">Selecione o Estado</option>
+                                <?php foreach($estados as $row): ?>
+                                <option value=<?$row['estado_uf']?>><?= $row['estado_nome']?></option>
+                                <?php endforeach;?>
+                            </select>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <select class="form-control" name="cidade_nome" id="id_cidade_selecionada" required>
+                                <option value="">Seleciona a Cidade</option>
+                                <?php foreach($cidades as $row): ?>
+                                <option class=<?$row['estado_uf']?>><?= $row['cidade_nome']?></option>
+                                <?php endforeach;?>
+                            </select>
+                            <div class="invalid-feedback"></div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-2">
-                        <label for="boxRodoviaria">Box</label>
-                        <!-- here -->
-                        <input name="rodoviaria_qntdbox" type="number" maxlength="3" min="0" max="999"
-                            class="form-control" id="modal_add_qntdBox">
-                    </div>
-                </div>
-                <select class="form-control col-md-2" name="cidade_estado">
-                    <option>UF</option>
-                </select>
             </div>
             <div class="alert alert-info" role="alert">
                 This is a info alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you
@@ -140,10 +192,11 @@ $this->load->view("header2");
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="button" onclick="enviando()" class="btn btn-success" id="idSalvarConcessao"
+                <button type="submit" onclick="enviando()" class="btn btn-success" id="idSalvarRodoviaria"
                     data-toggle="modal" data-target="#modal_confirmacao">Salvar
                 </button>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -162,58 +215,93 @@ $this->load->view("header2");
                 </button>
             </div>
             <div class="modal-body ">
-                <div class="form-row">
-                    <div class="form-group col-md-10">
-                        <label for="enderecoRodoviaria">Endereço</label>
-                        <!-- here -->
-                        <input name="rodoviaria_rua" type="text" maxlength="400" min="0" class="form-control"
-                            id="modal_edit_end">
+                <form class="needs-validation container" novalidate>
+                    <div class="form-row">
+                        <div class="form-group col-md-9">
+                            <label for="enderecoRodoviaria">Endereço</label>
+                            <!-- here -->
+                            <input name="rodoviaria_rua" type="text" maxlength="400" min="0" class="form-control"
+                                id="modal_edit_end" required>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="cidadeRodoviaria">Número</label>
+                            <!-- here -->
+                            <input name="rodoviaria_numero" type="number" class="form-control" id="modal_edit_numero"
+                                required>
+                            <div class="invalid-feedback"></div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-2">
-                        <label for="cidadeRodoviaria">Número</label>
-                        <!-- here -->
-                        <input name="rodoviaria_numero" type="number" class="form-control" id="modal_edit_numero">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="telefoneRodoviaria" type="">Telefone</label>
+                            <!-- here -->
+                            <input name="rodoviaria_telefone" type="text" maxlength="11" min="0" max="999999999"
+                                class="form-control" id="modal_edit_telefone" required>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="emailRodoviaria" type="email">Email</label>
+                            <!-- here -->
+                            <input name="rodoviaria_email" type="text" class="form-control" id="modal_edit_email"
+                                required>
+                            <div class="invalid-feedback"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="bairroRodoviaria">Bairro</label>
-                        <!-- here -->
-                        <input name="rodoviaria_bairro" type="text" class="form-control" id="modal_edit_bairro">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="cepRodoviaria">CEP</label>
+                            <!-- here -->
+                            <input name="rodoviaria_cep" type="text" maxlength="8" min="0" max="99999999"
+                                class="form-control" id="modal_edit_cep" required>
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="cidadeRodoviaria">Cidade</label>
+                            <!-- here -->
+                            <input name="rodoviaria_cidade_id" type="text" class="form-control" id="modal_edit_cidade"
+                                required>
+                            <div class="invalid-feedback"></div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="cidadeRodoviaria">Cidade</label>
-                        <!-- here -->
-                        <input name="rodoviaria_cidade" type="text" class="form-control" id="modal_edit_cidade">
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="bairroRodoviaria">Bairro</label>
+                            <!-- here -->
+                            <input name="rodoviaria_bairro" type="text" class="form-control" id="modal_edit_bairro"
+                                required>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="boxRodoviaria">Box</label>
+                            <!-- here -->
+                            <input name="rodoviaria_qntdbox" type="number" maxlength="3" min="0" max="999"
+                                class="form-control" id="modal_edit_qntdBox" required>
+                            <div class="invalid-feedback"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="telefoneRodoviaria">Telefone</label>
-                        <!-- here -->
-                        <input name="rodoviaria_telefone" type="text" class="form-control" id="modal_edit_telefone">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <select class="form-control" name="estado_nome" required>
+                                <option value="">Selecione o Estado</option>
+                                <?php foreach($estados as $row): ?>
+                                <option value=<?$row['estado_uf']?>><?= $row['estado_nome']?></option>
+                                <?php endforeach;?>
+                            </select>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <select class="form-control" name="cidade_nome" id="id_cidade_selecionada" required>
+                                <option value="">Seleciona a Cidade</option>
+                                <?php foreach($cidades as $row): ?>
+                                <option class=<?$row['estado_uf']?>><?= $row['cidade_nome']?></option>
+                                <?php endforeach;?>
+                            </select>
+                            <div class="invalid-feedback"></div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="emailRodoviaria">Email</label>
-                        <!-- here -->
-                        <input name="rodoviaria_email" type="text" class="form-control" id="modal_edit_email">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="cepRodoviaria">CEP</label>
-                        <!-- here -->
-                        <input name="rodoviaria_cep" type="number" class="form-control" id="modal_edit_cep">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="boxRodoviaria">Quantidade de box</label>
-                        <!-- here -->
-                        <input name="rodoviaria_qntdbox" type="number" class="form-control" id="modal_edit_qntdBox">
-                    </div>
-                </div>
-                <select class="form-control col-md-2" name="cidade_estado">
-                    <option>UF</option>
-                </select>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -230,7 +318,7 @@ $this->load->view("header2");
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Editar dados da Rodoviária.</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Visualização dos dados da Rodoviária.</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -241,48 +329,69 @@ $this->load->view("header2");
                         <label for="enderecoRodoviaria">Endereço</label>
                         <!-- here -->
                         <input name="rodoviaria_rua" type="text" maxlength="400" min="0" class="form-control"
-                            id="modal_info_end">
+                            id="modal_info_end" disabled>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="cidadeRodoviaria">Número</label>
                         <!-- here -->
-                        <input name="rodoviaria_numero" type="number" class="form-control" id="modal_info_numero">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="bairroRodoviaria">Bairro</label>
-                        <!-- here -->
-                        <input name="rodoviaria_bairro" type="text" class="form-control" id="modal_info_bairro">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="cidadeRodoviaria">Cidade</label>
-                        <!-- here -->
-                        <input name="rodoviaria_cidade" type="text" class="form-control" id="modal_info_cidade">
+                        <input name="rodoviaria_numero" type="number" class="form-control" id="modal_info_numero" disabled>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="telefoneRodoviaria">Telefone</label>
                         <!-- here -->
-                        <input name="rodoviaria_telefone" type="text" class="form-control" id="modal_info_telefone">
+                        <input name="rodoviaria_telefone" type="text" class="form-control" id="modal_info_telefone" disabled>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="emailRodoviaria">Email</label>
                         <!-- here -->
-                        <input name="rodoviaria_email" type="text" class="form-control" id="modal_info_email">
+                        <input name="rodoviaria_email" type="text" class="form-control" id="modal_info_email" disabled>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
+                        <label for="bairroRodoviaria">Bairro</label>
+                        <!-- here -->
+                        <input name="rodoviaria_bairro" type="text" class="form-control" id="modal_info_bairro" disabled>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="cidadeRodoviaria">Cidade</label>
+                        <!-- here -->
+                        <input name="rodoviaria_cidade" type="text" class="form-control" id="modal_info_cidade" disabled>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
                         <label for="cepRodoviaria">CEP</label>
                         <!-- here -->
-                        <input name="rodoviaria_cep" type="number" class="form-control" id="modal_info_cep">
+                        <input name="rodoviaria_cep" type="number" class="form-control" id="modal_info_cep" disabled>
                     </div>
-                    <div class="form-group col-md-4">
-                        <label for="boxRodoviaria">Quantidade de box</label>
+                    <div class="form-group col-md-2">
+                        <label for="boxRodoviaria">box</label>
                         <!-- here -->
-                        <input name="rodoviaria_qntdbox" type="number" class="form-control" id="modal_info_qntdbox">
+                        <input name="rodoviaria_qntdbox" type="number" class="form-control" id="modal_info_qntdbox" disabled>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <select class="form-control" name="estado_nome" disabled>
+                            <option value="">Selecione o Estado</option>
+                            <?php foreach($estados as $row): ?>
+                            <option value=<?$row['estado_uf']?>><?= $row['estado_nome']?></option>
+                            <?php endforeach;?>
+                        </select>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <select class="form-control" name="cidade_nome" id="id_cidade_selecionada" disabled>
+                            <option value="">Seleciona a Cidade</option>
+                            <?php foreach($cidades as $row): ?>
+                            <option class=<?$row['estado_uf']?>><?= $row['cidade_nome']?></option>
+                            <?php endforeach;?>
+                        </select>
+                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
             </div>
@@ -419,22 +528,45 @@ $('#modal_create_cidade').keypress(function(e) {
     }
 });
 </script>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
-</script>
-<script type="text/javascript">
-$('#modal_campo_cep').blur(function() {
-    if (rodoviaria_cep != "") {
-        $.getJSON("https://viacep.com.br/ws/" + rodoviaria_cep + "/json/?callback=?", function(dados) {
-            if (!("erro" in dados)) {
-                //Atualiza os campos com os valores da consulta.
-                $("#modal_campo_cidade").val(dados.localidade);
-            } else {
-                //CEP pesquisado não foi encontrado.
-                limpa_formulário_cep();
-                alert("CEP não encontrado.");
-            }
+<script>
+//Alerta de campo vazio ao dar submit
+(function() {
+    'use strict';
+    window.addEventListener('load', function() {
+        var forms = document.getElementsByClassName('needs-validation');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
         });
-    }
+    }, false);
+})();
+</script>
+<script>
+//Filtrar cidades pelo estado selecionado
+$('[name="estado_nome"]').click(function() {
+    $('[name="cidade_nome"] option').css('display', 'none');
+    $('[name="cidade_nome"] .' + $(this).val()).css('display', '');
 });
+</script>
+<script>
+$(document).ready(function() {
+    var cidadeSelecionada = $('#id_cidade_selecionada option:selected').text();
+    $("#id_cidade_selecionada").blur(function() {
+        for ($rodoviarias as $rodoviaria) {
+            if ($rodoviaria['cidade_nome'].equal(cidadeSelecionada)) {
+                $(".alert").alert();
+            } else {
+                $(".alert").alert('close');
+            }
+        }
+    });
+});
+</script>
+<script>
+$(".alert").alert('close');
 </script>
