@@ -16,18 +16,24 @@ class Rodoviaria_model_test extends TestCase
         $this->rodoviaria = $this->CI->rodoviaria_model;
     }
 
+    /**
+     * Recebe o UF de uma rodoviaria. Compara o tamanho da uf com o valor esperado de 2.
+     */
     public function testGetRodoviariasCidadeTest()
     {
         $data = $this->rodoviaria->getRodoviarias();
         if ($data) {
-            for ($i = 0; $i < sizeof($data); $i++) {
-                $this->assertEquals(2, strlen($data[$i]['uf']));
+            foreach ($data as $dt) {
+                $this->assertEquals(2, strlen($dt['uf']));
             }
         } else{
             $this->assertFalse($data);
         }
     }
 
+    /**
+     * Inserção correta de valores. Deve retornar true
+     */
     public function testInsertionRodoviariaCidadeCorreta()
     {
         $data = $this->rodoviaria->insertRodoviaria('Rodoviaria de Alegrete', 'Maximinio', 120, 'Segabinazzi', "97543-410"
@@ -42,7 +48,7 @@ class Rodoviaria_model_test extends TestCase
         $data = $this->rodoviaria->insertRodoviaria('Rodoviaria de Alegrete', 'Maximinio', 120, 'Segabinazzi', "97543-410"
             , 'teste@teste.com', "(55)997328105", 4,
             13000000);
-        $this->assertFalse($data['sucess']);
+        $this->assertNotFalse($data['error']['code']);
 
     }
 
@@ -56,7 +62,7 @@ class Rodoviaria_model_test extends TestCase
         $data = $this->rodoviaria->insertRodoviaria($nome, 'Maximinio', 120, 'Segabinazzi', "97543-410", 'teste@teste.com'
             , "(55)997328105", 4,
             1);
-        $this->assertFalse(true, $data['sucess']);
+        $this->assertNotFalse($data['error']['code']);
 
     }
     /**
@@ -67,7 +73,7 @@ class Rodoviaria_model_test extends TestCase
         $data = $this->rodoviaria->insertRodoviaria('Rodoviaria de Rio Grande', 'Maximinio', "AQUI DEVERIA HAVER UM NÚME
         RO", 'Segabinazzi', "97543-410", 'teste@teste.com', "(55)997328105", 4,
             1);
-        $this->assertFalse($data['sucess']);
+        $this->assertNotFalse($data['error']['code']);
 
     }
 } 
