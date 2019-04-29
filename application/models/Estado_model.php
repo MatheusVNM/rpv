@@ -11,19 +11,38 @@ class Estado_model extends CI_Model
     public function getEstados()
     {
         $result = $this->db->get('estado');
-        if (!$result) {
-            return false;
+        if(!$result){
+            $retorno['success']= false;
+            $retorno['error']= $this->db->error();
+            return $retorno;
         }
-
-        return $result->result_array();
+        if ($result->num_rows() > 0){
+            $retorno['success']= true;
+            $retorno['result']=$result->result_array();
+            return $retorno;
+        }
+        else{
+            $retorno['success']= false;
+            return $retorno;       
+         }
     }
 
     public function getEstado($id){
         $result = $this->db->get_where('estado', array('estado_id'=> $id));
-        if (!$result) {
-            return false;
+        if(!$result){
+            $retorno['success']= false;
+            $retorno['error']= $this->db->error();
+            return $retorno;
         }
-        return $result->row_array();
+        if ($result->num_rows() > 0){
+            $retorno['success']= true;
+            $retorno['result']=$result->row_array();
+            return $retorno;
+        }
+        else{
+            $retorno['success']= false;
+            return $retorno;       
+         }
     }
 }
 

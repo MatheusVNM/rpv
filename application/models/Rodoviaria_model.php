@@ -16,10 +16,18 @@ class Rodoviaria_model extends CI_Model
         $this->db->from('rodoviaria');
         $result = $this->db->get();
         if (!$result) {
-            return false;
+            $retorno['success'] = false;
+            $retorno['error'] = $this->db->error();
+            return $retorno;
         }
-
-        return $result->result_array();
+        if ($result->num_rows() > 0) {
+            $retorno['success'] = true;
+            $retorno['result'] = $result->result_array();
+            return $retorno;
+        } else {
+            $retorno['success'] = false;
+            return $retorno;
+        }
     }
 
     public function insertRodoviaria(
@@ -49,10 +57,10 @@ class Rodoviaria_model extends CI_Model
             'rodoviaria_codigo'    => $rodoviaria_codigo,
         );
         $result['sucess'] = $this->db->insert('rodoviaria', $data);
-        $result['error']  = $this->db->error();
-        if ($result['sucess']) {
-            return true;
-        }
-        return false;
+        if (!$result['sucess'])
+            $result['error']  = $this->db->error();
+
+
+        return $result;
     }
 }

@@ -57,6 +57,10 @@ $route['view/(:any)/(:any)'] = 'views/loadviewwithfolder/$1/$2';
 
 $route['logout'] = 'login/logout';
 
+/*Rotas para métodos de controller que funcionam com ajax*/ 
+
+$route['ajax/cidades_por_estado'] = 'data_only/cidade_controller/ajax_db_getCidadesPorEstado';
+
 
 
 /*Rotas para métodos de controller que apenas inserem/atualizam algo no banco de dados. */

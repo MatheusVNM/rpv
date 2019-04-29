@@ -11,17 +11,60 @@ class Cidade_model extends CI_Model
     public function getCidades()
     {
         $result = $this->db->get('cidade');
-        if (!$result) {
-            return false;
+        if(!$result){
+            $retorno['success']= false;
+            $retorno['error']= $this->db->error();
+            return $retorno;
         }
-
-        return $result->result_array();
+        if ($result->num_rows() > 0){
+            $retorno['success']= true;
+            $retorno['result']=$result->result_array();
+            return $retorno;
+        }
+        else{
+            $retorno['success']= false;
+            return $retorno;       
+         }
     }
-    public function getCidade($id){
-        $result = $this->db->get_where('cidade', array('cidade_id'=> $id));
-        if (!$result) {
-            return false;
+    public function getCidadesPorEstado($estado_id)
+    {
+        $result = $this->db->get_where('cidade', array('cidade_estado' => $id));
+        if(!$result){
+            $retorno['success']= false;
+            $retorno['error']= $this->db->error();
+            return $retorno;
         }
-        return $result->row_array();
+        if ($result->num_rows() > 0){
+            $retorno['success']= true;
+            $retorno['result']=$result->result_array();
+            return $retorno;
+        }
+        else{
+            $retorno['success']= false;
+            return $retorno;       
+         }
+    }
+
+    public function getCidade($id)
+    {
+        $result = $this->db->get_where('cidadess', array('cidade_id' => $id));
+        // if($this->db->error()){
+        //     $retorno['error']=true;
+        //     return $retorno;
+        // }
+        if(!$result){
+            $retorno['success']= false;
+            $retorno['error']= $this->db->error();
+            return $retorno;
+        }
+        if ($result->num_rows() > 0){
+            $retorno['success']= true;
+            $retorno['result']=$result->row_array();
+            return $retorno;
+        }
+        else{
+            $retorno['success']= false;
+            return $retorno;       
+         }
     }
 }
