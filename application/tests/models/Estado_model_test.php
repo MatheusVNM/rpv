@@ -19,7 +19,7 @@ class Estado_model_test extends TestCase
     public function testGetEstadoError()
     {
         $data = $this->estado->getEstado(30);
-        $this->assertFalse($data['sucess']);
+        $this->assertFalse($data['success']);
     }
 
     public function testGetEstadoSucess()
@@ -37,19 +37,19 @@ class Estado_model_test extends TestCase
     public function testGetEstadoEspecifico()
     {
         $data = $this->estado->getEstado(2);
-        $this->assertEquals("Alagoas", $data['estado_nome']);
+        $this->assertEquals("Alagoas", $data['result']['estado_nome']);
     }
     public function testGetUFEspecifico()
     {
         $data = $this->estado->getEstado(2);
-        $this->assertEquals("AL", $data['estado_uf']);
+        $this->assertEquals("AL", $data['result']['estado_uf']);
 
     }
 
     public function testGetTodosEstados()
     {
         $data = $this->estado->getEstados();
-        $this->assertEquals(27, sizeof($data));
+        $this->assertEquals(27, sizeof($data['result']));
 
     }
 

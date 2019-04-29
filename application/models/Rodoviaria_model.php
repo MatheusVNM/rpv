@@ -56,8 +56,8 @@ class Rodoviaria_model extends CI_Model
             'rodoviaria_cidade_id' => $rodoviaria_cidade,
             'rodoviaria_codigo'    => $rodoviaria_codigo,
         );
-        $result['sucess'] = $this->db->insert('rodoviaria', $data);
-        if (!$result['sucess'])
+        $result['success'] = $this->db->insert('rodoviaria', $data);
+        if (!$result['success'])
             $result['error']  = $this->db->error();
 
 
