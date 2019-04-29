@@ -6,10 +6,10 @@
  * Time: 7:21 PM
  */
 
-class rodoviaria_model_test extends TestCase
+class Rodoviaria_model_test extends TestCase
 {
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->resetInstance();
         $this->CI->load->model('rodoviaria_model');
