@@ -10,9 +10,9 @@ class Rodoviaria_model extends CI_Model
 {
     public function getRodoviarias()
     {
-        $this->db->select('rodoviaria.*, cidade.nome, estado.uf');
-        $this->db->join('cidade', 'rodoviaria.rodoviaria_cidade_id = cidade.id');
-        $this->db->join('estado', 'cidade.estado = estado.id');
+        $this->db->select('rodoviaria.*, cidade.cidade_nome as rodoviaria_cidade, estado.estado_uf as rodoviaria_uf');
+        $this->db->join('cidade', 'rodoviaria.rodoviaria_cidade_id = cidade.cidade_id');
+        $this->db->join('estado', 'cidade.cidade_estado = estado.estado_id');
         $this->db->from('rodoviaria');
         $result = $this->db->get();
         if (!$result) {
@@ -22,11 +22,19 @@ class Rodoviaria_model extends CI_Model
         return $result->result_array();
     }
 
-    public function insertRodoviaria($rodoviaria_nome, $rodoviaria_rua, $rodoviaria_numero, $rodoviaria_bairro,
-        $rodoviaria_cep, $rodoviaria_email, $rodoviaria_telefone, $rodoviaria_qntdbox,
-        $rodoviaria_cidade) {
+    public function insertRodoviaria(
+        $rodoviaria_nome,
+        $rodoviaria_rua,
+        $rodoviaria_numero,
+        $rodoviaria_bairro,
+        $rodoviaria_cep,
+        $rodoviaria_email,
+        $rodoviaria_telefone,
+        $rodoviaria_qntdbox,
+        $rodoviaria_cidade
+    ) {
         $this->db->select('IFNULL(MAX(`rodoviaria_id`), 0) AS `maxid`', false);
-        $rodoviaria_codigo = sprintf('RD%03d', $this->db->get('rodoviaria', 1)->result_array()[0]['maxid'] + 1);
+        $rodoviaria_codigo = sprintf('RD%03d', $this->db->get('rodoviaria', 1)->row_array()['maxid'] + 1);
 
         $data = array(
             'rodoviaria_nome'      => $rodoviaria_nome,
@@ -47,5 +55,4 @@ class Rodoviaria_model extends CI_Model
         }
         return false;
     }
-
 }
