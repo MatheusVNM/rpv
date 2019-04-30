@@ -59,10 +59,15 @@ $route['logout'] = 'login/logout';
 
 /*Rotas para métodos de controller que funcionam com ajax*/ 
 
-$route['ajax/cidades_por_estado'] = 'data_only/cidade_controller/ajax_db_getCidadesPorEstado';
+$route['ajax/cidades/por_estado'] = 'data_only/cidade_controller/ajax_db_getCidadesPorEstado';
+$route['ajax/rodoviarias/existe_na_cidade'] = 'gerenciar_rodoviaria_controller/ajax_db_verificarExistenciaRodoviariaCidade';
+$route['ajax/rodoviarias/create'] = 'gerenciar_rodoviaria_controller/ajax_db_insertRodoviaria';
+$route['ajax/rodoviarias/edit'] = 'gerenciar_rodoviaria_controller/ajax_db_updateRodoviaria';
+$route['ajax/rodoviarias/get'] = 'gerenciar_rodoviaria_controller/ajax_db_getRodoviarias';
+$route['ajax/rodoviarias/getSingle'] = 'gerenciar_rodoviaria_controller/ajax_db_getRodoviariaEspecifica';
 
 
-
+// ajax_db_insertRodoviaria
 /*Rotas para métodos de controller que apenas inserem/atualizam algo no banco de dados. */
 $route['tarifas/update'] = 'gerenciar_tarifa_controller/atualizarValorTarifa';
 $route['tarifas/create'] = 'gerenciar_tarifa_controller/catastrarNovaTarifa';

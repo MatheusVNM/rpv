@@ -10,6 +10,7 @@ class Cidade_model extends CI_Model
 {
     public function getCidades()
     {
+        $this->db->order_by("cidade_nome");
         $result = $this->db->get('cidade');
         if(!$result){
             $retorno['success']= false;
@@ -28,7 +29,8 @@ class Cidade_model extends CI_Model
     }
     public function getCidadesPorEstado($estado_id)
     {
-        $result = $this->db->get_where('cidade', array('cidade_estado' => $id));
+        $this->db->order_by("cidade_nome");
+        $result = $this->db->get_where('cidade', array('cidade_estado' => $estado_id));
         if(!$result){
             $retorno['success']= false;
             $retorno['error']= $this->db->error();

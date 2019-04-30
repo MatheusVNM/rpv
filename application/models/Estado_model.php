@@ -10,6 +10,7 @@ class Estado_model extends CI_Model
 {
     public function getEstados()
     {
+        $this->db->order_by('estado_nome');
         $result = $this->db->get('estado');
         if(!$result){
             $retorno['success']= false;
