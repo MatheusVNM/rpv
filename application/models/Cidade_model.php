@@ -49,11 +49,7 @@ class Cidade_model extends CI_Model
 
     public function getCidade($id)
     {
-        $result = $this->db->get_where('cidadess', array('cidade_id' => $id));
-        // if($this->db->error()){
-        //     $retorno['error']=true;
-        //     return $retorno;
-        // }
+        $result = $this->db->get_where('cidade', array('cidade_id' => $id));
         if(!$result){
             $retorno['success']= false;
             $retorno['error']= $this->db->error();

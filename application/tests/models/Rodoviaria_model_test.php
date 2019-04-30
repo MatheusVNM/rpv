@@ -23,8 +23,8 @@ class Rodoviaria_model_test extends TestCase
     {
         $data = $this->rodoviaria->getRodoviarias();
         if ($data) {
-            foreach ($data as $dt) {
-                $this->assertEquals(2, strlen($dt['uf']));
+            for ($i = 0; $i <  sizeof($data['result']); $i++) {
+                $this->assertEquals(2, strlen($data['result'][$i]['rodoviaria_uf']));
             }
         } else{
             $this->assertFalse($data);
@@ -39,7 +39,7 @@ class Rodoviaria_model_test extends TestCase
         $data = $this->rodoviaria->insertRodoviaria('Rodoviaria de Alegrete', 'Maximinio', 120, 'Segabinazzi', "97543-410"
             , 'teste@teste.com', "(55)997328105", 4,
             1);
-        $this->assertTrue($data);
+        $this->assertTrue($data['success']);
 
     }
 
@@ -48,7 +48,7 @@ class Rodoviaria_model_test extends TestCase
         $data = $this->rodoviaria->insertRodoviaria('Rodoviaria de Alegrete', 'Maximinio', 120, 'Segabinazzi', "97543-410"
             , 'teste@teste.com', "(55)997328105", 4,
             13000000);
-        $this->assertNotFalse($data['error']['code']);
+        $this->assertNotFalse($data['sucess']);
 
     }
 

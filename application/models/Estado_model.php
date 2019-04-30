@@ -37,7 +37,7 @@ class Estado_model extends CI_Model
         }
         if ($result->num_rows() > 0){
             $retorno['success']= true;
-            $retorno['result']=$result->row_array();
+            $retorno['result']= $result->row_array();
             return $retorno;
         }
         else{
