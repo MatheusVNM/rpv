@@ -31,6 +31,10 @@ class Rodoviaria_model_test extends TestCase
         }
     }
 
+    public function testGetRodoviariaeEspecifica(){
+
+    }
+
     /**
      * Inserção correta de valores. Deve retornar true
      */
@@ -76,4 +80,23 @@ class Rodoviaria_model_test extends TestCase
         $this->assertNotFalse($data['error']['code']);
 
     }
-} 
+
+    public function testGetQuantRodoviariaPorCidade(){
+
+
+    }
+
+    public function testUpdateRodoviariaSuccess(){
+
+    }
+
+    public function testUpdateRodoviariaError(){
+
+    }
+
+
+
+
+
+
+}
