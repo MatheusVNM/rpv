@@ -1719,7 +1719,7 @@
     }]
   }, {
     "id": "285364c0-25ec-4fbf-b0c5-894b963229ac",
-    "name": "HT23 - CT10",
+    "name": "H23 - CT10",
     "commands": [{
       "id": "127faedb-6577-4478-99c7-6afda1e9fc6d",
       "comment": "",
@@ -2156,7 +2156,7 @@
     }]
   }, {
     "id": "5f997895-d01b-4a96-a1ae-5893b4cb8cb7",
-    "name": "HT23 - CT10-1",
+    "name": "H23 - CT10-1",
     "commands": [{
       "id": "d3020c5b-e76b-4da1-b749-c3057d60156e",
       "comment": "",
@@ -2472,7 +2472,7 @@
     }]
   }, {
     "id": "75603912-b7f7-4bd9-8275-afec753996ab",
-    "name": "HT23 - CT9",
+    "name": "H23 - CT9",
     "commands": [{
       "id": "5a6464df-0a5c-49e7-9e0e-5dc4ce2b92af",
       "comment": "",
@@ -2909,7 +2909,7 @@
     }]
   }, {
     "id": "8bfe2077-0078-4a2f-adbe-6b9cd03bd28e",
-    "name": "HT23 - CT11",
+    "name": "H23 - CT11",
     "commands": [{
       "id": "4061ff17-c82a-4f33-905c-efce5352d74b",
       "comment": "",
@@ -3221,6 +3221,249 @@
       "command": "close",
       "target": "",
       "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "9e1b18cd-6dd0-4617-8b34-851923f8d259",
+    "name": "H23 - CT12",
+    "commands": [{
+      "id": "5c48f915-b2fa-405e-a0be-b9018208629c",
+      "comment": "",
+      "command": "open",
+      "target": "https://localhost/rpv/index.php/dashboard/rodoviarias",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d5708f3b-ee77-418e-a43d-af51a7cbd65c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "900x712",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b9caea9e-f9cb-4f63-a494-3d55cd0d1d9d",
+      "comment": "",
+      "command": "click",
+      "target": "id=opcoesConcessaoEditar",
+      "targets": [
+        ["id=opcoesConcessaoEditar", "id"],
+        ["css=tr:nth-child(1) #opcoesConcessaoEditar", "css:finder"],
+        ["xpath=//button[@id='opcoesConcessaoEditar']", "xpath:attributes"],
+        ["xpath=//tbody[@id='rodoviaria_tabela']/tr/td[6]/button", "xpath:idRelative"],
+        ["xpath=//td[6]/button", "xpath:position"],
+        ["xpath=//button[contains(.,' Editar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d8ecdf6e-f6de-4975-b18d-81f927c99898",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "id=opcoesConcessaoEditar",
+      "targets": [
+        ["id=opcoesConcessaoEditar", "id"],
+        ["css=tr:nth-child(1) #opcoesConcessaoEditar", "css:finder"],
+        ["xpath=//button[@id='opcoesConcessaoEditar']", "xpath:attributes"],
+        ["xpath=//tbody[@id='rodoviaria_tabela']/tr/td[6]/button", "xpath:idRelative"],
+        ["xpath=//td[6]/button", "xpath:position"],
+        ["xpath=//button[contains(.,' Editar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "acbd6053-69b6-426b-a742-b56390b05a60",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "id=opcoesConcessaoEditar",
+      "targets": [
+        ["id=opcoesConcessaoEditar", "id"],
+        ["css=tr:nth-child(1) #opcoesConcessaoEditar", "css:finder"],
+        ["xpath=//button[@id='opcoesConcessaoEditar']", "xpath:attributes"],
+        ["xpath=//tbody[@id='rodoviaria_tabela']/tr/td[6]/button", "xpath:idRelative"],
+        ["xpath=//td[6]/button", "xpath:position"],
+        ["xpath=//button[contains(.,' Editar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d59575d9-ba08-4d0c-af0a-31a28eb8e824",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,0)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8a347e3e-92ef-4c55-ac1b-7745b0773dd9",
+      "comment": "",
+      "command": "click",
+      "target": "css=#modal_edit_form .btn-secondary",
+      "targets": [
+        ["css=#modal_edit_form .btn-secondary", "css:finder"],
+        ["xpath=(//button[@type='button'])[13]", "xpath:attributes"],
+        ["xpath=//form[@id='modal_edit_form']/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/form/div[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "4cd9e753-ce91-4af7-b3e7-413154358900",
+    "name": "H23 - CT13",
+    "commands": [{
+      "id": "cf0682c4-d4cd-4dfc-9510-a19750a763c7",
+      "comment": "",
+      "command": "open",
+      "target": "https://localhost/rpv/index.php/dashboard/rodoviarias",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "411d2e08-9378-47bd-98e0-6e1d2f93dc8d",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "900x712",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "750cc2b0-6257-442a-8f97-48f034c6648f",
+      "comment": "",
+      "command": "mouseDownAt",
+      "target": "css=.container-fluid",
+      "targets": [
+        ["css=.container-fluid", "css:finder"],
+        ["xpath=//div[@id='page-content-wrapper']/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div", "xpath:position"]
+      ],
+      "value": "431.3333282470703,512.3333282470703"
+    }, {
+      "id": "4199b72e-01e0-4d95-a1dc-2de9731e6c31",
+      "comment": "",
+      "command": "mouseMoveAt",
+      "target": "css=.container-fluid",
+      "targets": [
+        ["css=.container-fluid", "css:finder"],
+        ["xpath=//div[@id='page-content-wrapper']/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div", "xpath:position"]
+      ],
+      "value": "431.3333282470703,512.3333282470703"
+    }, {
+      "id": "42ac98a4-1d73-4a23-81e3-8e837cfe6a11",
+      "comment": "",
+      "command": "mouseUpAt",
+      "target": "css=.container-fluid",
+      "targets": [
+        ["css=.container-fluid", "css:finder"],
+        ["xpath=//div[@id='page-content-wrapper']/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div", "xpath:position"]
+      ],
+      "value": "431.3333282470703,512.3333282470703"
+    }, {
+      "id": "737c739c-709a-40b0-b912-84de535cf747",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(1) .btn-primary",
+      "targets": [
+        ["css=tr:nth-child(1) .btn-primary", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//tbody[@id='rodoviaria_tabela']/tr/td[6]/button[3]", "xpath:idRelative"],
+        ["xpath=//button[3]", "xpath:position"],
+        ["xpath=//button[contains(.,'Info')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "947ac98d-16a1-4134-b250-c4435a164924",
+      "comment": "",
+      "command": "click",
+      "target": "css=.modal-content > .modal-footer > .btn",
+      "targets": [
+        ["css=.modal-content > .modal-footer > .btn", "css:finder"],
+        ["xpath=(//button[@type='button'])[15]", "xpath:attributes"],
+        ["xpath=//div[@id='modal_info_rodoviaria']/div/div/div[4]/button", "xpath:idRelative"],
+        ["xpath=//div[4]/button", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "5fe76069-2c52-4a9a-8ae9-e223fc08adc8",
+    "name": "H23 - CT14",
+    "commands": [{
+      "id": "29c45f84-f3ad-468d-a6fc-fea33512e175",
+      "comment": "",
+      "command": "open",
+      "target": "https://localhost/rpv/index.php/dashboard/rodoviarias",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "608b8c4f-bf47-412a-b72e-532de596bef9",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1233x735",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0fba10c3-bcf8-46e0-bf40-2b0c5eab99c7",
+      "comment": "",
+      "command": "click",
+      "target": "id=opcoesConcessaoExcluir",
+      "targets": [
+        ["id=opcoesConcessaoExcluir", "id"],
+        ["css=tr:nth-child(1) #opcoesConcessaoExcluir", "css:finder"],
+        ["xpath=//button[@id='opcoesConcessaoExcluir']", "xpath:attributes"],
+        ["xpath=//tbody[@id='rodoviaria_tabela']/tr/td[6]/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Ocultar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "33b4af8c-9691-4a6d-b705-50060051a0fe",
+      "comment": "",
+      "command": "click",
+      "target": "id=opcoesConcessaoExcluir",
+      "targets": [
+        ["id=opcoesConcessaoExcluir", "id"],
+        ["css=tr:nth-child(1) #opcoesConcessaoExcluir", "css:finder"],
+        ["xpath=//button[@id='opcoesConcessaoExcluir']", "xpath:attributes"],
+        ["xpath=//tbody[@id='rodoviaria_tabela']/tr/td[6]/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Ocultar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "54070f05-e175-4b8b-b8e4-407cf54de38d",
+      "comment": "",
+      "command": "click",
+      "target": "id=opcoesConcessaoExcluir",
+      "targets": [
+        ["id=opcoesConcessaoExcluir", "id"],
+        ["css=tr:nth-child(1) #opcoesConcessaoExcluir", "css:finder"],
+        ["xpath=//button[@id='opcoesConcessaoExcluir']", "xpath:attributes"],
+        ["xpath=//tbody[@id='rodoviaria_tabela']/tr/td[6]/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Ocultar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "dcf6d9a8-7ceb-41f8-8e4d-4913020ffe31",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "id=opcoesConcessaoExcluir",
+      "targets": [
+        ["id=opcoesConcessaoExcluir", "id"],
+        ["css=tr:nth-child(1) #opcoesConcessaoExcluir", "css:finder"],
+        ["xpath=//button[@id='opcoesConcessaoExcluir']", "xpath:attributes"],
+        ["xpath=//tbody[@id='rodoviaria_tabela']/tr/td[6]/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Ocultar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9bf6b599-6046-4c89-989b-470ef4d831d4",
+      "comment": "",
+      "command": "click",
+      "target": "id=opcoesConcessaoExcluir",
+      "targets": [
+        ["id=opcoesConcessaoExcluir", "id"],
+        ["css=tr:nth-child(1) #opcoesConcessaoExcluir", "css:finder"],
+        ["xpath=//button[@id='opcoesConcessaoExcluir']", "xpath:attributes"],
+        ["xpath=//tbody[@id='rodoviaria_tabela']/tr/td[6]/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Ocultar')]", "xpath:innerText"]
+      ],
       "value": ""
     }]
   }],
