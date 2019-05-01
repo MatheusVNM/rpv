@@ -126,36 +126,85 @@ $this->load->view("header2");
                             <label for="inputZip">Propriedade do Veículo</label>
                             <input type="text" class="form-control" id="inputZip">
                         </div>
-                        <div class="form-check column my-4 mx-2">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                                value="option1" checked>
-                            <label class="form-check-label" for="exampleRadios1">
+                        <label class="mx-1">Situação</label>
+                        <div class="form-check column my-4">
+                            <input class="form-check-input" type="radio" name="exampleRadios"
+                                id="id_isAtivo_radio_ativo" value="option1" checked>
+                            <label class="form-check-label" for="id_isAtivo_radio_ativo">
                                 Ônibus Ativo
                             </label><br>
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
-                                value="option2">
-                            <label class="form-check-label" for="exampleRadios2">
+                            <input class="form-check-input" type="radio" name="exampleRadios"
+                                id="id_isAtivo_radio_inativo" value="option2">
+                            <label class="form-check-label" for="id_isAtivo_radio_inativo">
                                 Ônibus Inativo
                             </label>
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-6">
                             <label for="">Motivo Inatividade</label>
-                            <textarea class="form-control" id="" rows="3"></textarea>
+                            <textarea class="form-control" id="id_onibus_motivo_inatividade" rows="3"
+                                disabled></textarea>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group mt-auto mb-2" id="id_form_input">
+                        <label class="mx-1">Ar Condicionado:</label>
+                        <div class="form-check column">
+                            <input class="form-check-input" type="radio" name="ar_radio" id="id_ar_radio_sim"
+                                value="option1" checked>
+                            <label class="form-check-label" for="id_ar_radio_sim">
+                                Sim
+                            </label>
+                            <input class="form-check-input mx-2" type="radio" name="ar_radio" id="id_ar_radio_nao"
+                                value="option2">
+                            <label class="form-check-label mx-4" for="id_ar_radio_nao">
+                                Não
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <label class="mx-1">Em Manutenção:</label>
+                        <div class="form-check column">
+                            <input class="form-check-input" type="radio" name="manun_radio" id="id_manun_radio_sim"
+                                value="option1" checked>
+                            <label class="form-check-label" for="id_manun_radio_sim">
+                                Sim
+                            </label>
+                            <input class="form-check-input mx-2" type="radio" name="manun_radio" id="id_manun_radio_nao"
+                                value="option2">
+                            <label class="form-check-label mx-4" for="id_manun_radio_nao">
+                                Não
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <label class="mx-1">Adaptado para Deficientes:</label>
+                        <div class="form-check column">
+                            <input class="form-check-input" type="radio" name="defic_radio" id="id_defic_radio_sim"
+                                value="option1" checked>
+                            <label class="form-check-label" for="id_defic_radio_sim">
+                                Sim
+                            </label>
+                            <input class="form-check-input mx-2" type="radio" name="defic_radio" id="id_defic_radio_nao"
+                                value="option2">
+                            <label class="form-check-label mx-4" for="id_defic_radio_nao">
+                                Não
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <label class="mx-1 my-3">Documento de Propriedade:</label>
+                        <div class="form-group" id="id_form_input">
                             <label for="id_input_file" id="id_label_input" class="rounded">
                                 <i class="fa fa-upload" id="id_icon_input"></i>
-                                Upload file</label>
+                                <span id="id_span_file">Upload file</span>
+                            </label>
                             <input type="file" class="custom-file-input" id="id_input_file">
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Salvar</button>
             </div>
         </div>
     </div>
@@ -170,7 +219,29 @@ $(function() {
     $('.alert').alert();
 });
 </script>
-<!-- Script end -->
+
+<script>
+$("#id_input_file").on("change", function() {
+    var fullPath = $(this).val();
+    if (fullPath) {
+        var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath
+            .lastIndexOf('/'));
+        var filename = fullPath.substring(startIndex);
+        if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+            filename = filename.substring(1);
+        }
+    }
+    $("#id_span_file").html(filename);
+});
+</script>
+<script>
+$("#id_isAtivo_radio_ativo").change(function() {
+    $("#id_onibus_motivo_inatividade").prop("disabled", true);
+});
+$("#id_isAtivo_radio_inativo").change(function() {
+    $("#id_onibus_motivo_inatividade").prop("disabled", false);
+});
+</script>
 
 
 <!-- Body end -->
