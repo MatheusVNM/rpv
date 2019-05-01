@@ -69,92 +69,98 @@ $this->load->view("header2");
                 <form>
                     <div class="form-row">
                         <div class="form-group col-md-3">
-                            <label for="inputAddress">Placa</label>
-                            <input type="text" class="form-control" id="inputAddress">
+                            <label for="modal_create_placa">Placa</label>
+                            <input name="onibus_placa" type="text" class="form-control" id="modal_create_placa">
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="inputAddress2">Nro Ônibus</label>
-                            <input type="number" class="form-control" id="inputAddress2">
+                            <label for="modal_create_nro_onibus">Nro Ônibus</label>
+                            <input name="onibus_numero" type="number" class="form-control" id="modal_create_nro_onibus">
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="inputCity">Nro ANTT</label>
-                            <input type="number" class="form-control" id="inputCity">
+                            <label for="modal_create_nro_antt">Nro ANTT</label>
+                            <input name="onibus_numero_antt" type="number" class="form-control"
+                                id="modal_create_nro_antt">
                         </div>
                         <div class="form-group col-md-2">
-                            <label for="inputAddress2">Ano Fabricação</label>
-                            <input type="number" class="form-control" id="inputAddress2">
+                            <label for="modal_create_ano_fabricacao">Ano Fabricação</label>
+                            <input name="onibus_ano_fab" type="number" class="form-control"
+                                id="modal_create_ano_fabricacao">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-3">
-                            <label for="inputZip">Nro Chassi</label>
-                            <input type="text" class="form-control" id="inputZip">
+                            <label for="modal_create_nro_chassi">Nro Chassi</label>
+                            <input name="onibus_num_chassis" type="text" class="form-control"
+                                id="modal_create_nro_chassi">
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="inputZip">Nro Lugares</label>
-                            <input type="number" class="form-control" id="inputZip">
+                            <label for="modal_create_nro_lugares">Nro Lugares</label>
+                            <input name="onibus_num_lugares" type="number" class="form-control"
+                                id="modal_create_nro_lugares">
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="inputZip">Marca da Carroceria</label>
-                            <input type="text" class="form-control" id="inputZip">
+                            <label for="modal_create_marca_carroceira">Marca da Carroceria</label>
+                            <input name="onibus_marcacarroceria" type="text" class="form-control"
+                                id="modal_create_marca_carroceira">
                         </div>
                         <div class="form-group col-md-2">
-                            <label for="">Tacógrafo</label>
-                            <input type="number" class="form-control" id="">
+                            <label for="modal_create_tacografo">Tacógrafo</label>
+                            <input name="onibus_tacografo" type="number" class="form-control"
+                                id="modal_create_tacografo">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-3">
-                            <label for="inputZip">Marca do Chassi</label>
-                            <input type="text" class="form-control" id="inputZip">
+                            <label for="modal_create_marca_chassi">Marca do Chassi</label>
+                            <input name="onibus_marca_chassis" type="text" class="form-control"
+                                id="modal_create_marca_chassi">
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="inputZip">Potência do Motor</label>
-                            <input type="number" class="form-control" id="inputZip">
+                            <label for="modal_create_potencia_motor">Potência do Motor</label>
+                            <input name="onibus_potencial_motor" type="number" class="form-control"
+                                id="modal_create_potencia_motor">
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="inputZip">Propriedade do Veículo</label>
-                            <input type="text" class="form-control" id="inputZip">
+                            <label for="modal_create_propriedade_veiculo">Propriedade do Veículo</label>
+                            <input name="onibus_propriedade_veiculo" type="text" class="form-control"
+                                id="modal_create_propriedade_veiculo">
                         </div>
                         <div class="form-group col-md-2">
-                            <label for="">Quilometragem</label>
-                            <input type="number" class="form-control" id="">
+                            <label for="model_create_quilometragem">Quilometragem</label>
+                            <input name="onibus_quilometragem" type="number" class="form-control"
+                                id="model_create_quilometragem">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-3">
-                            <label for="inputZip">Propriedade do Veículo</label>
-                            <input type="text" class="form-control" id="inputZip">
-                        </div>
                         <label class="mx-1">Situação</label>
                         <div class="form-check column my-4">
                             <input class="form-check-input" type="radio" name="exampleRadios"
-                                id="id_isAtivo_radio_ativo" value="option1" checked>
+                                id="id_isAtivo_radio_ativo" value="onibus_ativo" checked>
                             <label class="form-check-label" for="id_isAtivo_radio_ativo">
                                 Ônibus Ativo
                             </label><br>
                             <input class="form-check-input" type="radio" name="exampleRadios"
-                                id="id_isAtivo_radio_inativo" value="option2">
+                                id="id_isAtivo_radio_inativo" value="onibus_inativo">
                             <label class="form-check-label" for="id_isAtivo_radio_inativo">
                                 Ônibus Inativo
                             </label>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-3">
                             <label for="">Motivo Inatividade</label>
-                            <textarea class="form-control" id="id_onibus_motivo_inatividade" rows="3"
-                                disabled></textarea>
+                            <textarea name="onibus_motivo_inatividade" class="form-control"
+                                id="modal_create_motivo_inatividade" rows="3" disabled></textarea>
                         </div>
                     </div>
                     <div class="form-row">
                         <label class="mx-1">Ar Condicionado:</label>
                         <div class="form-check column">
-                            <input class="form-check-input" type="radio" name="ar_radio" id="id_ar_radio_sim"
-                                value="option1" checked>
+                            <input name="onibus_ar_condicionado" class="form-check-input" type="radio"
+                                id="id_ar_radio_sim" value="sim" checked>
                             <label class="form-check-label" for="id_ar_radio_sim">
                                 Sim
                             </label>
-                            <input class="form-check-input mx-2" type="radio" name="ar_radio" id="id_ar_radio_nao"
-                                value="option2">
+                            <input name="onibus_ar_condicionado" class="form-check-input mx-2" type="radio"
+                                id="id_ar_radio_nao" value="nao">
                             <label class="form-check-label mx-4" for="id_ar_radio_nao">
                                 Não
                             </label>
@@ -163,13 +169,13 @@ $this->load->view("header2");
                     <div class="form-row">
                         <label class="mx-1">Em Manutenção:</label>
                         <div class="form-check column">
-                            <input class="form-check-input" type="radio" name="manun_radio" id="id_manun_radio_sim"
-                                value="option1" checked>
+                            <input name="onibus_em_manutencao" class="form-check-input" type="radio"
+                                id="id_manun_radio_sim" value="sim" checked>
                             <label class="form-check-label" for="id_manun_radio_sim">
                                 Sim
                             </label>
-                            <input class="form-check-input mx-2" type="radio" name="manun_radio" id="id_manun_radio_nao"
-                                value="option2">
+                            <input name="onibus_em_manutencao" class="form-check-input mx-2" type="radio" id="id_manun_radio_nao"
+                                value="nao">
                             <label class="form-check-label mx-4" for="id_manun_radio_nao">
                                 Não
                             </label>
@@ -178,13 +184,13 @@ $this->load->view("header2");
                     <div class="form-row">
                         <label class="mx-1">Adaptado para Deficientes:</label>
                         <div class="form-check column">
-                            <input class="form-check-input" type="radio" name="defic_radio" id="id_defic_radio_sim"
-                                value="option1" checked>
+                            <input name="onibus_adaptado_deficiente" class="form-check-input" type="radio" id="id_defic_radio_sim"
+                                value="sim" checked>
                             <label class="form-check-label" for="id_defic_radio_sim">
                                 Sim
                             </label>
-                            <input class="form-check-input mx-2" type="radio" name="defic_radio" id="id_defic_radio_nao"
-                                value="option2">
+                            <input name="onibus_adaptado_deficiente" class="form-check-input mx-2" type="radio" id="id_defic_radio_nao"
+                                value="nao">
                             <label class="form-check-label mx-4" for="id_defic_radio_nao">
                                 Não
                             </label>
@@ -197,7 +203,7 @@ $this->load->view("header2");
                                 <i class="fa fa-upload" id="id_icon_input"></i>
                                 <span id="id_span_file">Upload file</span>
                             </label>
-                            <input type="file" class="custom-file-input" id="id_input_file">
+                            <input name="onibus_documento_veiculo" type="file" class="custom-file-input" id="id_input_file">
                         </div>
                     </div>
                 </form>
@@ -236,10 +242,10 @@ $("#id_input_file").on("change", function() {
 </script>
 <script>
 $("#id_isAtivo_radio_ativo").change(function() {
-    $("#id_onibus_motivo_inatividade").prop("disabled", true);
+    $("#modal_create_motivo_inatividade").prop("disabled", true);
 });
 $("#id_isAtivo_radio_inativo").change(function() {
-    $("#id_onibus_motivo_inatividade").prop("disabled", false);
+    $("#modal_create_motivo_inatividade").prop("disabled", false);
 });
 </script>
 
