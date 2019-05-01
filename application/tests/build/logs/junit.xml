@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="CodeIgniter Application Test Suite" tests="18" assertions="67" errors="0" failures="0" skipped="0" time="2.338014">
-    <testsuite name="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" tests="3" assertions="3" errors="0" failures="0" skipped="0" time="0.004304">
-      <testcase name="testIndex" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="13" assertions="1" time="0.001693"/>
-      <testcase name="testErrorMessenge" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="18" assertions="1" time="0.001286"/>
-      <testcase name="testSucessMessenge" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="22" assertions="1" time="0.001325"/>
+  <testsuite name="CodeIgniter Application Test Suite" tests="22" assertions="23" errors="0" failures="0" skipped="2" time="0.309540">
+    <testsuite name="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" tests="3" assertions="3" errors="0" failures="0" skipped="0" time="0.001157">
+      <testcase name="testIndex" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="13" assertions="1" time="0.000510"/>
+      <testcase name="testErrorMessenge" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="18" assertions="1" time="0.000312"/>
+      <testcase name="testSucessMessenge" class="gerenciar_rodoviaria_controller_test" classname="gerenciar_rodoviaria_controller_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\controllers\gerenciar_rodoviaria_controller_test.php" line="22" assertions="1" time="0.000335"/>
     </testsuite>
-    <testsuite name="Cidade_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Cidade_model_test.php" tests="4" assertions="4" errors="0" failures="0" skipped="0" time="0.130918">
-      <testcase name="testGetCidadeError" class="Cidade_model_test" classname="Cidade_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Cidade_model_test.php" line="20" assertions="1" time="0.039813">
+    <testsuite name="Cidade_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Cidade_model_test.php" tests="4" assertions="4" errors="0" failures="0" skipped="0" time="0.077507">
+      <testcase name="testGetCidadeError" class="Cidade_model_test" classname="Cidade_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Cidade_model_test.php" line="20" assertions="1" time="0.013591">
         <system-out>&#13;
 &#13;
 </system-out>
       </testcase>
-      <testcase name="testGetCidadeSucess" class="Cidade_model_test" classname="Cidade_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Cidade_model_test.php" line="26" assertions="1" time="0.032529">
+      <testcase name="testGetCidadeSucess" class="Cidade_model_test" classname="Cidade_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Cidade_model_test.php" line="26" assertions="1" time="0.021136">
         <system-out>&#13;
 &#13;
 &#13;
@@ -71,24 +71,24 @@ Backtrace:&#13;
 &#13;
 </system-out>
       </testcase>
-      <testcase name="testGetCidadeEspecifica" class="Cidade_model_test" classname="Cidade_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Cidade_model_test.php" line="32" assertions="1" time="0.027291">
+      <testcase name="testGetCidadeEspecifica" class="Cidade_model_test" classname="Cidade_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Cidade_model_test.php" line="32" assertions="1" time="0.020011">
         <system-out>&#13;
 &#13;
 </system-out>
       </testcase>
-      <testcase name="testGetTodasCidades" class="Cidade_model_test" classname="Cidade_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Cidade_model_test.php" line="38" assertions="1" time="0.031285">
+      <testcase name="testGetTodasCidades" class="Cidade_model_test" classname="Cidade_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Cidade_model_test.php" line="38" assertions="1" time="0.022770">
         <system-out>&#13;
 &#13;
 </system-out>
       </testcase>
     </testsuite>
-    <testsuite name="Estado_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Estado_model_test.php" tests="6" assertions="6" errors="0" failures="0" skipped="0" time="0.108086">
-      <testcase name="testGetEstadoError" class="Estado_model_test" classname="Estado_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Estado_model_test.php" line="19" assertions="1" time="0.015058">
+    <testsuite name="Estado_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Estado_model_test.php" tests="6" assertions="6" errors="0" failures="0" skipped="0" time="0.093484">
+      <testcase name="testGetEstadoError" class="Estado_model_test" classname="Estado_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Estado_model_test.php" line="19" assertions="1" time="0.017935">
         <system-out>&#13;
 &#13;
 </system-out>
       </testcase>
-      <testcase name="testGetEstadoSucess" class="Estado_model_test" classname="Estado_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Estado_model_test.php" line="25" assertions="1" time="0.014564">
+      <testcase name="testGetEstadoSucess" class="Estado_model_test" classname="Estado_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Estado_model_test.php" line="25" assertions="1" time="0.022475">
         <system-out>&#13;
 &#13;
 &#13;
@@ -147,7 +147,7 @@ Backtrace:&#13;
 &#13;
 </system-out>
       </testcase>
-      <testcase name="testGetUFSucess" class="Estado_model_test" classname="Estado_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Estado_model_test.php" line="31" assertions="1" time="0.015645">
+      <testcase name="testGetUFSucess" class="Estado_model_test" classname="Estado_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Estado_model_test.php" line="31" assertions="1" time="0.019295">
         <system-out>&#13;
 &#13;
 &#13;
@@ -206,207 +206,67 @@ Backtrace:&#13;
 &#13;
 </system-out>
       </testcase>
-      <testcase name="testGetEstadoEspecifico" class="Estado_model_test" classname="Estado_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Estado_model_test.php" line="37" assertions="1" time="0.025063">
+      <testcase name="testGetEstadoEspecifico" class="Estado_model_test" classname="Estado_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Estado_model_test.php" line="37" assertions="1" time="0.017117">
         <system-out>&#13;
 &#13;
 </system-out>
       </testcase>
-      <testcase name="testGetUFEspecifico" class="Estado_model_test" classname="Estado_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Estado_model_test.php" line="42" assertions="1" time="0.012908">
+      <testcase name="testGetUFEspecifico" class="Estado_model_test" classname="Estado_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Estado_model_test.php" line="42" assertions="1" time="0.007679">
         <system-out>&#13;
 &#13;
 </system-out>
       </testcase>
-      <testcase name="testGetTodosEstados" class="Estado_model_test" classname="Estado_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Estado_model_test.php" line="49" assertions="1" time="0.024848">
+      <testcase name="testGetTodosEstados" class="Estado_model_test" classname="Estado_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Estado_model_test.php" line="49" assertions="1" time="0.008983">
         <system-out>&#13;
 &#13;
 </system-out>
       </testcase>
     </testsuite>
-    <testsuite name="Rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Rodoviaria_model_test.php" tests="5" assertions="54" errors="0" failures="0" skipped="0" time="2.094706">
-      <testcase name="testGetRodoviariasCidadeTest" class="Rodoviaria_model_test" classname="Rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Rodoviaria_model_test.php" line="22" assertions="50" time="2.042043">
+    <testsuite name="Rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Rodoviaria_model_test.php" tests="9" assertions="10" errors="0" failures="0" skipped="2" time="0.137392">
+      <testcase name="testGetRodoviariasCidadeTest" class="Rodoviaria_model_test" classname="Rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Rodoviaria_model_test.php" line="22" assertions="4" time="0.023257">
         <system-out>&#13;
 &#13;
 </system-out>
       </testcase>
-      <testcase name="testInsertionRodoviariaCidadeCorreta" class="Rodoviaria_model_test" classname="Rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Rodoviaria_model_test.php" line="37" assertions="1" time="0.014801">
+      <testcase name="testGetRodoviariaeEspecifica" class="Rodoviaria_model_test" classname="Rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Rodoviaria_model_test.php" line="34" assertions="1" time="0.013618">
         <system-out>&#13;
 &#13;
 </system-out>
       </testcase>
-      <testcase name="testInsertionRodoviariaCidadeIncorreta" class="Rodoviaria_model_test" classname="Rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Rodoviaria_model_test.php" line="46" assertions="1" time="0.012526">
+      <testcase name="testInsertionRodoviariaCidadeCorreta" class="Rodoviaria_model_test" classname="Rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Rodoviaria_model_test.php" line="43" assertions="1" time="0.018411">
         <system-out>&#13;
-&#13;
-&#13;
-A PHP Error was encountered&#13;
-&#13;
-Severity:    Notice
-Message:     Undefined index: sucess
-Filename:    C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Rodoviaria_model_test.php
-Line Number: 51&#13;
-&#13;
-Backtrace:&#13;
-	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Rodoviaria_model_test.php
-	Line: 51
-	Function: _error_handler
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
-	Line: 1153
-	Function: testInsertionRodoviariaCidadeIncorreta
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
-	Line: 842
-	Function: runTest
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestResult.php
-	Line: 687
-	Function: runBare
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
-	Line: 796
-	Function: run
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
-	Line: 746
-	Function: run
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
-	Line: 746
-	Function: run
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/TestRunner.php
-	Line: 641
-	Function: run
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
-	Line: 206
-	Function: doRun
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
-	Line: 162
-	Function: run
-
-	File: C:\Users\sandr\xampp\php\phpunit
-	Line: 614
-	Function: main
-
 &#13;
 </system-out>
       </testcase>
-      <testcase name="testOverflowInsertionRodoviaria" class="Rodoviaria_model_test" classname="Rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Rodoviaria_model_test.php" line="58" assertions="1" time="0.013081">
+      <testcase name="testInsertionRodoviariaCidadeIncorreta" class="Rodoviaria_model_test" classname="Rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Rodoviaria_model_test.php" line="52" assertions="1" time="0.018839">
         <system-out>&#13;
-&#13;
-&#13;
-A PHP Error was encountered&#13;
-&#13;
-Severity:    Notice
-Message:     Undefined index: error
-Filename:    C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Rodoviaria_model_test.php
-Line Number: 65&#13;
-&#13;
-Backtrace:&#13;
-	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Rodoviaria_model_test.php
-	Line: 65
-	Function: _error_handler
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
-	Line: 1153
-	Function: testOverflowInsertionRodoviaria
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
-	Line: 842
-	Function: runTest
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestResult.php
-	Line: 687
-	Function: runBare
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
-	Line: 796
-	Function: run
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
-	Line: 746
-	Function: run
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
-	Line: 746
-	Function: run
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/TestRunner.php
-	Line: 641
-	Function: run
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
-	Line: 206
-	Function: doRun
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
-	Line: 162
-	Function: run
-
-	File: C:\Users\sandr\xampp\php\phpunit
-	Line: 614
-	Function: main
-
 &#13;
 </system-out>
       </testcase>
-      <testcase name="testUnexpectedTypeInsertionRodoviaria" class="Rodoviaria_model_test" classname="Rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Rodoviaria_model_test.php" line="72" assertions="1" time="0.012255">
+      <testcase name="testOverflowInsertionRodoviaria" class="Rodoviaria_model_test" classname="Rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Rodoviaria_model_test.php" line="64" assertions="0" time="0.009753">
+        <skipped/>
         <system-out>&#13;
 &#13;
+</system-out>
+      </testcase>
+      <testcase name="testUnexpectedTypeInsertionRodoviaria" class="Rodoviaria_model_test" classname="Rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Rodoviaria_model_test.php" line="81" assertions="0" time="0.010943">
+        <skipped/>
+        <system-out>&#13;
 &#13;
-A PHP Error was encountered&#13;
+</system-out>
+      </testcase>
+      <testcase name="testGetQuantRodoviariaPorCidade" class="Rodoviaria_model_test" classname="Rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Rodoviaria_model_test.php" line="91" assertions="1" time="0.009739">
+        <system-out>&#13;
 &#13;
-Severity:    Notice
-Message:     Undefined index: error
-Filename:    C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Rodoviaria_model_test.php
-Line Number: 76&#13;
+</system-out>
+      </testcase>
+      <testcase name="testUpdateRodoviariaSuccess" class="Rodoviaria_model_test" classname="Rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Rodoviaria_model_test.php" line="99" assertions="1" time="0.018279">
+        <system-out>&#13;
 &#13;
-Backtrace:&#13;
-	File: C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Rodoviaria_model_test.php
-	Line: 76
-	Function: _error_handler
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
-	Line: 1153
-	Function: testUnexpectedTypeInsertionRodoviaria
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
-	Line: 842
-	Function: runTest
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestResult.php
-	Line: 687
-	Function: runBare
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestCase.php
-	Line: 796
-	Function: run
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
-	Line: 746
-	Function: run
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/Framework/TestSuite.php
-	Line: 746
-	Function: run
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/TestRunner.php
-	Line: 641
-	Function: run
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
-	Line: 206
-	Function: doRun
-
-	File: phar://C:/Users/sandr/xampp/php/phpunit/phpunit/TextUI/Command.php
-	Line: 162
-	Function: run
-
-	File: C:\Users\sandr\xampp\php\phpunit
-	Line: 614
-	Function: main
-
+</system-out>
+      </testcase>
+      <testcase name="testUpdateRodoviariaError" class="Rodoviaria_model_test" classname="Rodoviaria_model_test" file="C:\Users\sandr\xampp\htdocs\rpv\application\tests\models\Rodoviaria_model_test.php" line="105" assertions="1" time="0.014553">
+        <system-out>&#13;
 &#13;
 </system-out>
       </testcase>
