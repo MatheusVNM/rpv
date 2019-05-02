@@ -415,7 +415,22 @@ body {
 	box-shadow: 0 5px #666;
 	transform: translateY(4px);
 }
-
+#id_label_input{
+	background: #009688;
+	color:#fff;
+	padding: 9px;
+	transition: 0.3px;
+}
+#id_label_input:hover{
+	background: #26a69a;
+	cursor: pointer;
+}
+#id_icon_input{
+	margin-right: 10px;
+}
+#id_input_file{
+	display: none;
+}
 /* */
 
 /* modals*/
