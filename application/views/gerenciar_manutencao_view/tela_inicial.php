@@ -15,14 +15,14 @@ $this->load->view("header2");
         <label for="inputStatus">Filtrar</label>
         <select id="idInputStatus" class="form-control" name="opcoesFiltros">
             <option value="-1">Todos</option>
-            <option value="  Vigente">Em Manutenção</option>
-            <option value="Não vigente">Finalizado</option>
+            <option value="Em Manutenção">Em Manutenção</option>
+            <option value="Finalizado">Finalizado</option>
             <option value="2">Ocultados</option>
         </select>
     </div>
 
     <button type="button" class="btn btn-success ml-auto  mt-auto mb-2 h-50" data-toggle="modal"
-        data-target="#addConcessaoModal" title="Adicione uma nova concessão.">
+        data-target="#addManutencaoModal" title="Adicione uma nova manutenção.">
         <i class="fa fa-plus-circle" data-toggle="tooltip" data-placement="bottom"></i> Nova Manutenção
     </button>
 
@@ -43,8 +43,8 @@ $this->load->view("header2");
             <th scope="col">Opções</th>
         </tr>
     </thead>
-    <!--Body concessões-->
-    <tbody id="idListaConcessao">
+    <!--Body Manutenções-->
+    <tbody id="">
 
         <tr>
             <th scope="row">1</th>
@@ -53,20 +53,21 @@ $this->load->view("header2");
             <td>25/03 </td>
             <td>Finalizado </td>
             <td>
-                <button type="button" class="btn btn-default btn-sm" id="opcoesConcessaoEditar" data-toggle="tooltip"
-                    data-placement="top" title="Editar manutencao">
+
+
+                <button type="button" class="btn btn-default btn-sm" id="" data-toggle="tooltip" data-placement="top"
+                    title="Editar manutencao">
                     <span class="hvr-icon fa fa-edit mr-1"></span> Editar
                 </button>
-              
-                <a type="button" class="btn btn-default btn-sm" title="Documento de concessão"
-                    id="opcoesConcessaoDownload" data-toggle="tooltip" data-placement="top"
-                    target="_blank">
+
+                <a type="button" class="btn btn-default btn-sm" title="Informação da Manutenção" id=""
+                    data-toggle="tooltip" data-placement="top" target="_blank">
                     <span class="hvr-icon fa fa-info mr-1"></span>Info
                 </a>
-               
-                <button type="submit" class="btn btn-default btn-sm" 
-                    title="Exclui concessão apenas da lista e não permanentemente." id="opcoesConcessaoExcluir"
-                    data-toggle="tooltip" data-placement="top">
+
+                <button type="submit" class="btn btn-default btn-sm"
+                    title="Exclui manutenção apenas da lista e não permanentemente." id="" data-toggle="tooltip"
+                    data-placement="top">
                     <span class=""></span>Ocultar
                 </button>
 
@@ -76,63 +77,81 @@ $this->load->view("header2");
 
     </tbody>
     <!--Body manutenções ocultadas-->
-    <tbody id="idListaConcessoesExcluidas" style="display: none;">
-     
+    <tbody id="idListaManutencaoExcluidas" style="display: none;">
+
         <tr>
             <th scope="row">1</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-                
-                <button type="submit" class="btn btn-default btn-sm"
-                    form="formRestaura<?= $concessaoExcluida['concessao_id'] ?>"
-                    title="Restaura para a lista novamente." id="opcoesConcessaoRestaurar" data-toggle="tooltip"
-                    data-placement="top">
-                    <span class="hvr-icon fa fa-refresh mr-1"></span>Restaurar
-                </button>
+            <td>OQD2085</td>
+            <td>24/03</td>
+            <td>25/03 </td>
+            <td>Finalizado </td>
+
+            <button type="submit" class="btn btn-default btn-sm" title="Restaura para a lista novamente."
+                id="opcoesManutencaoRestaurar" data-toggle="tooltip" data-placement="top">
+                <span class="hvr-icon fa fa-refresh mr-1"></span>Restaurar
+            </button>
             </td>
         </tr>
-        
+
     </tbody>
 </table>
 <!-- Table end (Ao abrir a tela) -->
 
-<!-- Modal create concessão init-->
-<div class="modal fade" id="addConcessaoModal" tabindex="-1" role="dialog">
+<!-- Modal create manutencao init-->
+<div class="modal fade" id="" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Adicionar uma nova concessão.</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Adicionar Manutenção.</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body ">
-                
+
                 <div class="form-group col-md-6">
-                    <label for="protocoloConcessao">Protocolo da Concessão</label>
-                    <input name="name_nroProtocolo" type="text" maxlength="6" min="0" max="999999" class="form-control"
-                        id="id_ProtocoloConcessao">
+                    <label for="placadoonibus">Placa</label>
+                    <input name="onibus_placa" type="text" maxlength="6" min="0" max="7" class="form-control"
+                        id="id_create_placa">
                 </div>
-                <div class="form-group col-md-5" id="formCadastroConcessao">
+
+                <div class="form-group col-md-6">
+                    <label for="valordamanutencao">Valor</label>
+                    <input name="manutencao_valor" type="number" maxlength="6" min="0" max="9999" class="form-control"
+                        id="id_create_valor">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="datainiciomanutencao">Data Inicio</label>
+                    <input name="manutencao_dataInicio" type="date" maxlength="6" min="0" max="99999"
+                        class="form-control" id="id_create_dataInicio">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="datafimmanutencao">Data Finalização</label>
+                    <input name="manutencao_dataFim" type="date" maxlength="6" min="0" max="99999" class="form-control"
+                        id="id_create_dataFim">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="descricaodamanutencao">Descrição do Problema</label>
+                    <input name="manutencao_descricao" type="text" maxlength="6" min="0" max="9999" class="form-control"
+                        id="id_create_descricao">
+                </div>
+
+                <div class="form-group col-md-5">
                     <label for="opcoesStatus">Status</label>
-                    <select id="id_opcoesStatus" class="form-control" name="name_opcoesstatus">
-                        <option value="1" selected>Vigente</option>
-                        <option value="0">Não Vigente</option>
+                    <select id="id_create_opcoesStatus" class="form-control" name="manutencao_status">
+                        <option value="1" selected>Em manutenção</option>
+                        <option value="0">Finalizado</option>
                     </select>
                 </div>
-                <div class="custom-file col-md-8 mx-3" id="formCadastroConcessao">
-                    <input type="file" class="custom-file-input" name="docconcessao" id="customFile">
-                    <label class="custom-file-label" for="customFile" id="fileLabel"></label>
-                </div>
-               
+
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="button"  class="btn btn-success"
-                    id="idSalvarConcessao">Salvar</button>
+                <button type="button" class="btn btn-success" id="id_create_SalvarManutencao">Salvar</button>
             </div>
         </div>
     </div>
@@ -145,134 +164,165 @@ $this->load->view("header2");
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Adicionar uma nova concessão.</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Editar Manutenção.</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body ">
-              
+
                 <div class="form-group col-md-6">
-                    <label for="protocoloConcessao">Protocolo da Concessão</label>
+                    <label for="placadoonibus">Placa</label>
                     <!-- here -->
-                    <input name="name_nroProtocoloEdit" type="text" maxlength="6" min="0" max="999999"
-                        class="form-control" id="modal_edit_numero">
+                    <input name="manutencao_placa" type="text" maxlength="6" min="0" max="999999" class="form-control"
+                        id="modal_edit_text">
                 </div>
+
+                <div class="form-group col-md-6">
+                    <label for="valordamanutencao">Valor</label>
+                    <!-- here -->
+                    <input name="manutencao_valor" type="text" maxlength="6" min="0" max="999999" class="form-control"
+                        id="modal_edit_text">
+
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="datainiciomanutencao">Data Inicio</label>
+                    <!-- here -->
+                    <input name="manutencao_dataInicio" type="date" maxlength="6" min="0" max="999999"
+                        class="form-control" id="modal_edit_text">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="datafimmanutencao">Data Finalização</label>
+                    <!-- here -->
+                    <input name="manutencao_dataFim" type="date" maxlength="6" min="0" max="999999" class="form-control"
+                        id="modal_edit_text">
+
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="descricaodamanutencao">Descrição do Problema</label>
+                    <!-- here -->
+                    <input name="manutencao_descricao" type="text" maxlength="6" min="0" max="999999" class="form-control"
+                        id="modal_edit_text">
+                </div>
+
                 <div class="form-group col-md-5">
                     <label for="opcoesStatus">Status</label>
                     <!-- -->
-                    <select id="modal_edit_status" class="form-control" name="concessao_status">
-                        <option value="1">Vigente</option>
-                        <option value="0">Não Vigente</option>
+                    <select id="modal_edit_status" class="form-control" name="manutencao_status">
+                        <option value="1">Em manutenção</option>
+                        <option value="0">Finalizado</option>
                     </select>
                 </div>
-               
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="submit" form="modal_edit_form" class="btn btn-primary"
-                    id="idSalvarConcessao">Salvar</button>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="submit" form="modal_edit_form" class="btn btn-primary"
+                        id="idSalvarManutencao">Salvar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Modal edit concessão end -->
+    <!-- Modal edit concessão end -->
 
-<!-- Script init -->
-<script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.3.1.min.js"); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
+    <!-- Script init -->
+    <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.3.1.min.js"); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
 
-<script>
-$(function() {
-    $('[data-toggle="tooltip"]').tooltip();
-    $('.alert').alert();
-});
-</script>
-<!-- Script end -->
+    <script>
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+        $('.alert').alert();
+    });
+    </script>
+    <!-- Script end -->
 
 
-<!-- Body end -->
-<?php
+    <!-- Body end -->
+    <?php
 $this->load->view("footer2.php")
 ?>
 
-<script>
-function editar(id, status, numero) {
-    $('#modal_edit_hidden').val(id)
-    $('#modal_edit_status').val(status);
-    $('#modal_edit_numero').val(numero);
-    $('#editConcessaoModal').modal('show')
+    <script>
+    function editar(id, status, numero) {
+        $('#modal_edit_hidden').val(id)
+        $('#modal_edit_status').val(status);
+        $('#modal_edit_numero').val(numero);
+        $('#editConcessaoModal').modal('show')
 
-}
-</script>
-<script>
-$("#idInputStatus").change(function() {
-    var value = $(this).val().toLowerCase();
-    if (value === '-1') {
-        $('#idListaConcessao').show();
-        $('#idListaConcessoesExcluidas').hide();
-        $("#idListaConcessao tr").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf('') > -1)
-        });
-    } else if (value === '2') {
-        $('#idListaConcessao').hide();
-        $('#idListaConcessoesExcluidas').show();
-        $("#idListaConcessoesExcluidas tr").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-    } else {
-        $('#idListaConcessao').show();
-        $('#idListaConcessoesExcluidas').hide();
-        $("#idListaConcessao tr").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
     }
-
-});
-</script>
-
-<script>
-function enviando() {
-    var item = '<span class="sr-only">Loading...</span>';
-    $("#idSalvarConcessao").attr("disabled", true);
-    $("#idSalvarConcessao").html(item);
-    $("#idSalvarConcessao").addClass("text-primary");
-    $("#idSalvarConcessao").addClass("spinner-grow");
-    $("#idSalvarConcessao").removeClass("btn-success");
-    $("#concessao_form").submit();
-    $(selector).submit();
-}
-</script>
-
-<script>
-$("#customFile").change(function() {
-    var fullPath = $(this).val();
-    if (fullPath) {
-        var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
-        var filename = fullPath.substring(startIndex);
-        if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
-            filename = filename.substring(1);
+    </script>
+    <script>
+    $("#idInputStatus").change(function() {
+        var value = $(this).val().toLowerCase();
+        if (value === '-1') {
+            $('#idListaConcessao').show();
+            $('#idListaConcessoesExcluidas').hide();
+            $("#idListaConcessao tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf('') > -1)
+            });
+        } else if (value === '2') {
+            $('#idListaConcessao').hide();
+            $('#idListaConcessoesExcluidas').show();
+            $("#idListaConcessoesExcluidas tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        } else {
+            $('#idListaConcessao').show();
+            $('#idListaConcessoesExcluidas').hide();
+            $("#idListaConcessao tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
         }
+
+    });
+    </script>
+
+    <script>
+    function enviando() {
+        var item = '<span class="sr-only">Loading...</span>';
+        $("#idSalvarConcessao").attr("disabled", true);
+        $("#idSalvarConcessao").html(item);
+        $("#idSalvarConcessao").addClass("text-primary");
+        $("#idSalvarConcessao").addClass("spinner-grow");
+        $("#idSalvarConcessao").removeClass("btn-success");
+        $("#concessao_form").submit();
+        $(selector).submit();
     }
-    $("#fileLabel").html(filename);
-});
+    </script>
+
+    <script>
+    $("#customFile").change(function() {
+        var fullPath = $(this).val();
+        if (fullPath) {
+            var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf(
+                '/'));
+            var filename = fullPath.substring(startIndex);
+            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                filename = filename.substring(1);
+            }
+        }
+        $("#fileLabel").html(filename);
+    });
 
 
-// modal_edit_numero
-// id_ProtocoloConcessao
+    // modal_edit_numero
+    // id_ProtocoloConcessao
 
-$("#id_ProtocoloConcessao").on("keypress keyup blur", function(event) {
-    $(this).val($(this).val().replace(/[^\d].+/, ""));
-    if ((event.which < 48 || event.which > 57)) {
-        event.preventDefault();
-    }
+    $("#id_ProtocoloConcessao").on("keypress keyup blur", function(event) {
+        $(this).val($(this).val().replace(/[^\d].+/, ""));
+        if ((event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
 
 
-});
-$("#modal_edit_numero").on("keypress keyup blur", function(event) {
-    $(this).val($(this).val().replace(/[^\d].+/, ""));
-    if ((event.which < 48 || event.which > 57)) {
-        event.preventDefault();
-    }
-});
-</script>
+    });
+    $("#modal_edit_numero").on("keypress keyup blur", function(event) {
+        $(this).val($(this).val().replace(/[^\d].+/, ""));
+        if ((event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
+    });
+    </script>
