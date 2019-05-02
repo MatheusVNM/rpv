@@ -55,19 +55,19 @@ $this->load->view("header2");
             <td>
 
 
-                <button type="button" class="btn btn-default btn-sm" id="" data-toggle="tooltip" data-placement="top"
-                    title="Editar manutencao">
+                <button type="button" class="btn btn-warning btn-sm" id="id_edit_manutencao" data-placement="top"
+                    title="Editar Manutenção" data-target="#editManutencaoModal" data-toggle ="modal">
                     <span class="hvr-icon fa fa-edit mr-1"></span> Editar
                 </button>
 
-                <a type="button" class="btn btn-default btn-sm" title="Informação da Manutenção" id=""
-                    data-toggle="tooltip" data-placement="top" target="_blank">
+                <a type="button" class="btn btn-primary btn-sm" title="Informação da Manutenção" id="id_info_manutencao"
+                    data-toggle="modal" data-placement="top" target="_blank" data-target="#infoManutencaoModal">
                     <span class="hvr-icon fa fa-info mr-1"></span>Info
                 </a>
 
-                <button type="submit" class="btn btn-default btn-sm"
-                    title="Exclui manutenção apenas da lista e não permanentemente." id="" data-toggle="tooltip"
-                    data-placement="top">
+                <button type="submit" class="btn btn-danger btn-sm"
+                    title="Exclui manutenção apenas da lista e não permanentemente." id="id_ocultar_manutencao"
+                    data-toggle="tooltip" data-placement="top">
                     <span class=""></span>Ocultar
                 </button>
 
@@ -98,55 +98,62 @@ $this->load->view("header2");
 <!-- Table end (Ao abrir a tela) -->
 
 <!-- Modal create manutencao init-->
-<div class="modal fade" id="" tabindex="-1" role="dialog">
+<div class="modal fade" id="addManutencaoModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Adicionar Manutenção.</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Adicionar Manutenção</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
             <div class="modal-body ">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="placadoonibus">Placa</label>
+                            <input name="onibus_placa" type="text" maxlength="6" min="0" max="7" class="form-control"
+                                id="id_create_placa">
+                        </div>
 
-                <div class="form-group col-md-6">
-                    <label for="placadoonibus">Placa</label>
-                    <input name="onibus_placa" type="text" maxlength="6" min="0" max="7" class="form-control"
-                        id="id_create_placa">
-                </div>
+                        <div class="form-group col-md-6">
+                            <label for="valordamanutencao">Valor da Manutenção</label>
+                            <input name="manutencao_valor" type="number" maxlength="6" min="0" max="9999"
+                                class="form-control" id="id_create_valor">
+                        </div>
+                    </div>
 
-                <div class="form-group col-md-6">
-                    <label for="valordamanutencao">Valor</label>
-                    <input name="manutencao_valor" type="number" maxlength="6" min="0" max="9999" class="form-control"
-                        id="id_create_valor">
-                </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="datainiciomanutencao">Data Inicio</label>
+                            <input name="manutencao_dataInicio" type="date" maxlength="6" min="0" max="99999"
+                                class="form-control" id="id_create_dataInicio">
+                        </div>
 
-                <div class="form-group col-md-6">
-                    <label for="datainiciomanutencao">Data Inicio</label>
-                    <input name="manutencao_dataInicio" type="date" maxlength="6" min="0" max="99999"
-                        class="form-control" id="id_create_dataInicio">
-                </div>
+                        <div class="form-group col-md-6">
+                            <label for="datafimmanutencao">Data Finalização</label>
+                            <input name="manutencao_dataFim" type="date" maxlength="6" min="0" max="99999"
+                                class="form-control" id="id_create_dataFim">
+                        </div>
+                    </div>
 
-                <div class="form-group col-md-6">
-                    <label for="datafimmanutencao">Data Finalização</label>
-                    <input name="manutencao_dataFim" type="date" maxlength="6" min="0" max="99999" class="form-control"
-                        id="id_create_dataFim">
-                </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="descricaodamanutencao">Descrição do Problema</label>
+                            <input name="manutencao_descricao" type="text" maxlength="6" min="0" max="9999"
+                                class="form-control" id="id_create_descricao">
+                        </div>
 
-                <div class="form-group col-md-6">
-                    <label for="descricaodamanutencao">Descrição do Problema</label>
-                    <input name="manutencao_descricao" type="text" maxlength="6" min="0" max="9999" class="form-control"
-                        id="id_create_descricao">
-                </div>
-
-                <div class="form-group col-md-5">
-                    <label for="opcoesStatus">Status</label>
-                    <select id="id_create_opcoesStatus" class="form-control" name="manutencao_status">
-                        <option value="1" selected>Em manutenção</option>
-                        <option value="0">Finalizado</option>
-                    </select>
-                </div>
-
+                        <div class="form-group col-md-5">
+                            <label for="opcoesStatus">Status</label>
+                            <select id="id_create_opcoesStatus" class="form-control" name="manutencao_status">
+                                <option value="1" selected>Em manutenção</option>
+                                <option value="0">Finalizado</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
 
             </div>
             <div class="modal-footer">
@@ -159,8 +166,8 @@ $this->load->view("header2");
 <!--  Modal create concessão end -->
 
 
-<!-- Modal edit concessão Init -->
-<div class="modal fade" id="editConcessaoModal" tabindex="-1" role="dialog">
+<!-- Modal edit Manutenção Init -->
+<div class="modal fade" id="editManutencaoModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -170,53 +177,61 @@ $this->load->view("header2");
                 </button>
             </div>
             <div class="modal-body ">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="placadoonibus">Placa</label>
+                            <!-- here -->
+                            <input name="manutencao_placa" type="text" maxlength="6" min="0" max="999999"
+                                class="form-control" id="modal_edit_text">
+                        </div>
 
-                <div class="form-group col-md-6">
-                    <label for="placadoonibus">Placa</label>
-                    <!-- here -->
-                    <input name="manutencao_placa" type="text" maxlength="6" min="0" max="999999" class="form-control"
-                        id="modal_edit_text">
-                </div>
+                        <div class="form-group col-md-6">
+                            <label for="valordamanutencao">Valor da Manutenção</label>
+                            <!-- here -->
+                            <input name="manutencao_valor" type="text" maxlength="6" min="0" max="999999"
+                                class="form-control" id="modal_edit_text">
 
-                <div class="form-group col-md-6">
-                    <label for="valordamanutencao">Valor</label>
-                    <!-- here -->
-                    <input name="manutencao_valor" type="text" maxlength="6" min="0" max="999999" class="form-control"
-                        id="modal_edit_text">
+                        </div>
 
-                </div>
+                    </div>
 
-                <div class="form-group col-md-6">
-                    <label for="datainiciomanutencao">Data Inicio</label>
-                    <!-- here -->
-                    <input name="manutencao_dataInicio" type="date" maxlength="6" min="0" max="999999"
-                        class="form-control" id="modal_edit_text">
-                </div>
+                    <div class="form-row">
 
-                <div class="form-group col-md-6">
-                    <label for="datafimmanutencao">Data Finalização</label>
-                    <!-- here -->
-                    <input name="manutencao_dataFim" type="date" maxlength="6" min="0" max="999999" class="form-control"
-                        id="modal_edit_text">
+                        <div class="form-group col-md-6">
+                            <label for="datainiciomanutencao">Data Inicio</label>
+                            <!-- here -->
+                            <input name="manutencao_dataInicio" type="date" maxlength="6" min="0" max="999999"
+                                class="form-control" id="modal_edit_text">
+                        </div>
 
-                </div>
+                        <div class="form-group col-md-6">
+                            <label for="datafimmanutencao">Data Finalização</label>
+                            <!-- here -->
+                            <input name="manutencao_dataFim" type="date" maxlength="6" min="0" max="999999"
+                                class="form-control" id="modal_edit_text">
 
-                <div class="form-group col-md-6">
-                    <label for="descricaodamanutencao">Descrição do Problema</label>
-                    <!-- here -->
-                    <input name="manutencao_descricao" type="text" maxlength="6" min="0" max="999999" class="form-control"
-                        id="modal_edit_text">
-                </div>
+                        </div>
+                    </div>
 
-                <div class="form-group col-md-5">
-                    <label for="opcoesStatus">Status</label>
-                    <!-- -->
-                    <select id="modal_edit_status" class="form-control" name="manutencao_status">
-                        <option value="1">Em manutenção</option>
-                        <option value="0">Finalizado</option>
-                    </select>
-                </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="descricaodamanutencao">Descrição do Problema</label>
+                            <!-- here -->
+                            <input name="manutencao_descricao" type="text" maxlength="6" min="0" max="999999"
+                                class="form-control" id="modal_edit_text">
+                        </div>
 
+                        <div class="form-group col-md-5">
+                            <label for="opcoesStatus">Status</label>
+                            <!-- -->
+                            <select id="modal_edit_status" class="form-control" name="manutencao_status">
+                                <option value="1">Em manutenção</option>
+                                <option value="0">Finalizado</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                     <button type="submit" form="modal_edit_form" class="btn btn-primary"
@@ -227,6 +242,45 @@ $this->load->view("header2");
     </div>
     <!-- Modal edit concessão end -->
 
+
+
+    <!-- Modal info Manutenção Init -->
+    <div class="modal fade" id="infoManutencaoModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Informações</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body ">
+                    <form>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="valordamanutencao">Valor da Manutenção</label>
+                                <!-- here -->
+                                <input name="manutencao_valor" type="text" maxlength="6" min="0" max="999999"
+                                    class="form-control" id="modal_edit_text" disabled>
+
+                            </div>
+
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="descricaodamanutencao">Descrição do Problema</label>
+                            <!-- here -->
+                            <input name="manutencao_descricao" type="text" maxlength="6" min="0" max="999999"
+                                class="form-control" id="modal_edit_text">
+                        </div>
+
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal info concessão end -->
     <!-- Script init -->
     <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.3.1.min.js"); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
