@@ -33,7 +33,7 @@ class Rodoviaria_model_test extends TestCase
 
     public function testGetRodoviariaeEspecifica()
     {
-        $data = $this->rodoviaria->getRodoviaria(80);
+        $data = $this->rodoviaria->getRodoviaria(55);
         $this->assertEquals("Rodoviaria de Alegrete", $data['result']['rodoviaria_nome'] );
     }
 
@@ -98,7 +98,7 @@ class Rodoviaria_model_test extends TestCase
 
     public function testUpdateRodoviariaSuccess()
     {
-        $data = $this->rodoviaria->updateRodoviaria(55, 'Nome Teste de Update', 'Rua Teste de Update', 666, 'Bairro Teste de Update', "97541-410", "kidodoido@hotmail.com", "997328105", "30", 1);
+        $data = $this->rodoviaria->updateRodoviaria(56, 'Nome Teste de Update', 'Rua Teste de Update', 666, 'Bairro Teste de Update', "97541-410", "kidodoido@hotmail.com", "997328105", "30", 1);
         $this->assertTrue($data['success']);
     }
 

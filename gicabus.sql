@@ -2,10 +2,10 @@
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: May 02, 2019 at 06:20 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.4
+-- Host: 127.0.0.1
+-- Generation Time: 03-Maio-2019 às 01:16
+-- Versão do servidor: 10.1.38-MariaDB
+-- versão do PHP: 7.3.4
 
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categoriaonibus`
+-- Estrutura da tabela `categoriaonibus`
 --
 
 DROP TABLE IF EXISTS `categoriaonibus`;
@@ -39,7 +39,7 @@ CREATE TABLE `categoriaonibus` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `categoriaonibus`
+-- Extraindo dados da tabela `categoriaonibus`
 --
 
 INSERT INTO `categoriaonibus` (`categoriaonibus_id`, `categoriaonibus_nome`, `categoriaonibus_precokm`, `categoriaonibus_status`, `categoriaonibus_codigo`) VALUES
@@ -51,7 +51,7 @@ INSERT INTO `categoriaonibus` (`categoriaonibus_id`, `categoriaonibus_nome`, `ca
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categoriapassageiro`
+-- Estrutura da tabela `categoriapassageiro`
 --
 
 DROP TABLE IF EXISTS `categoriapassageiro`;
@@ -63,7 +63,7 @@ CREATE TABLE `categoriapassageiro` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `categoriapassageiro`
+-- Extraindo dados da tabela `categoriapassageiro`
 --
 
 INSERT INTO `categoriapassageiro` (`categoriapassageiro_id`, `categoriapassageiro_nome`, `categoriapassageiro_valordesconto`, `categoriapassageiro_icone`) VALUES
@@ -77,7 +77,7 @@ INSERT INTO `categoriapassageiro` (`categoriapassageiro_id`, `categoriapassageir
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cidade`
+-- Estrutura da tabela `cidade`
 --
 
 DROP TABLE IF EXISTS `cidade`;
@@ -88,7 +88,7 @@ CREATE TABLE `cidade` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `cidade`
+-- Extraindo dados da tabela `cidade`
 --
 
 INSERT INTO `cidade` (`cidade_id`, `cidade_nome`, `cidade_estado`) VALUES
@@ -5662,7 +5662,7 @@ INSERT INTO `cidade` (`cidade_id`, `cidade_nome`, `cidade_estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `concessao`
+-- Estrutura da tabela `concessao`
 --
 
 DROP TABLE IF EXISTS `concessao`;
@@ -5675,7 +5675,7 @@ CREATE TABLE `concessao` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `concessao`
+-- Extraindo dados da tabela `concessao`
 --
 
 INSERT INTO `concessao` (`concessao_id`, `concessao_anexo`, `concessao_protocolo`, `concessao_status`, `concessao_ano`) VALUES
@@ -5685,7 +5685,7 @@ INSERT INTO `concessao` (`concessao_id`, `concessao_anexo`, `concessao_protocolo
 -- --------------------------------------------------------
 
 --
--- Table structure for table `criterios`
+-- Estrutura da tabela `criterios`
 --
 
 DROP TABLE IF EXISTS `criterios`;
@@ -5696,7 +5696,7 @@ CREATE TABLE `criterios` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `criterios`
+-- Extraindo dados da tabela `criterios`
 --
 
 INSERT INTO `criterios` (`criterios_id`, `criterios_descricao`, `criterios_id_categoria`) VALUES
@@ -5714,7 +5714,7 @@ INSERT INTO `criterios` (`criterios_id`, `criterios_descricao`, `criterios_id_ca
 -- --------------------------------------------------------
 
 --
--- Table structure for table `estado`
+-- Estrutura da tabela `estado`
 --
 
 DROP TABLE IF EXISTS `estado`;
@@ -5725,7 +5725,7 @@ CREATE TABLE `estado` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `estado`
+-- Extraindo dados da tabela `estado`
 --
 
 INSERT INTO `estado` (`estado_id`, `estado_nome`, `estado_uf`) VALUES
@@ -5760,7 +5760,7 @@ INSERT INTO `estado` (`estado_id`, `estado_nome`, `estado_uf`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `manutencao`
+-- Estrutura da tabela `manutencao`
 --
 
 DROP TABLE IF EXISTS `manutencao`;
@@ -5777,7 +5777,7 @@ CREATE TABLE `manutencao` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `onibus`
+-- Estrutura da tabela `onibus`
 --
 
 DROP TABLE IF EXISTS `onibus`;
@@ -5789,25 +5789,24 @@ CREATE TABLE `onibus` (
   `onibus_ano_fab` int(11) NOT NULL,
   `onibus_num_chassis` varchar(255) COLLATE utf8_bin NOT NULL,
   `onibus_num_lugares` int(11) NOT NULL,
-  `onibus_marca_carroceria` varchar(40) COLLATE utf8_bin NOT NULL,
-  `onibus_marca_chassis` varchar(40) COLLATE utf8_bin NOT NULL,
+  `onibus_marca` varchar(40) COLLATE utf8_bin NOT NULL,
   `onibus_potencial_motor` int(11) NOT NULL,
   `onibus_propriedade_veiculo` varchar(40) COLLATE utf8_bin NOT NULL,
   `onibus_documento_veiculo` varchar(255) COLLATE utf8_bin NOT NULL,
   `onibus_ar_condicionado` tinyint(1) NOT NULL,
   `onibus_quilometragem` int(11) NOT NULL,
-  `onibus_is_aviso` tinyint(1) NOT NULL,
+  `onibus_is_ativo` tinyint(1) NOT NULL,
   `onibus_motivo_inatividade` text COLLATE utf8_bin NOT NULL,
   `onibus_em_manutencao` tinyint(1) NOT NULL,
   `onibus_is_municipal` tinyint(1) DEFAULT '0',
-  `onibus_categoria_intermunipal` int(11) DEFAULT NULL,
+  `onibus_categoria_intermunicipal` int(11) DEFAULT NULL,
   `onibus_cidade` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `paradas`
+-- Estrutura da tabela `paradas`
 --
 
 DROP TABLE IF EXISTS `paradas`;
@@ -5821,7 +5820,7 @@ CREATE TABLE `paradas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `paradas`
+-- Extraindo dados da tabela `paradas`
 --
 
 INSERT INTO `paradas` (`parada_id`, `parada_rua`, `parada_numero`, `parada_bairro`, `parada_status`, `parada_codigo`) VALUES
@@ -5835,7 +5834,7 @@ INSERT INTO `paradas` (`parada_id`, `parada_rua`, `parada_numero`, `parada_bairr
 -- --------------------------------------------------------
 
 --
--- Table structure for table `paradatrajeto`
+-- Estrutura da tabela `paradatrajeto`
 --
 
 DROP TABLE IF EXISTS `paradatrajeto`;
@@ -5847,7 +5846,7 @@ CREATE TABLE `paradatrajeto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `paradatrajeto`
+-- Extraindo dados da tabela `paradatrajeto`
 --
 
 INSERT INTO `paradatrajeto` (`paradatrajeto_id`, `paradatrajeto_trajeto`, `paradatrajeto_parada`, `paradatrajeto_prox_parada`) VALUES
@@ -5869,7 +5868,7 @@ INSERT INTO `paradatrajeto` (`paradatrajeto_id`, `paradatrajeto_trajeto`, `parad
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rodoviaria`
+-- Estrutura da tabela `rodoviaria`
 --
 
 DROP TABLE IF EXISTS `rodoviaria`;
@@ -5888,12 +5887,12 @@ CREATE TABLE `rodoviaria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rodoviaria`
+-- Extraindo dados da tabela `rodoviaria`
 --
 
 INSERT INTO `rodoviaria` (`rodoviaria_id`, `rodoviaria_nome`, `rodoviaria_rua`, `rodoviaria_numero`, `rodoviaria_bairro`, `rodoviaria_cep`, `rodoviaria_email`, `rodoviaria_telefone`, `rodoviaria_qntdbox`, `rodoviaria_cidade_id`, `rodoviaria_codigo`) VALUES
 (55, 'Rodoviaria de Alegrete', 'Maximinio', 120, 'Segabinazzi', '97133', 'teste@teste.com', '(55)99732810', 4, 1, 'RD001'),
-(56, 'Rodoviaria de Rio Grande', 'Maximinio', 0, 'Segabinazzi', '97133', 'teste@teste.com', '(55)99732810', 4, 1, 'RD056'),
+(56, 'Nome Teste de Update', 'Rua Teste de Update', 666, 'Bairro Teste de Update', '97541-410', 'kidodoido@hotmail.com', '997328105', 30, 1, 'RD001'),
 (57, 'Nome da rodoviaria', 'asd', 123, 'asd', '123', '123', '123123', 12, 2434, 'RD001'),
 (58, 'Numoaa', 'asd', 123, 'asd', '123', '123', '123123', 12, 212, 'RD001'),
 (59, 'asdwa', 'asd', 12, 'asd', '12', '12', '12', 2, 4051, 'RD059'),
@@ -5901,12 +5900,14 @@ INSERT INTO `rodoviaria` (`rodoviaria_id`, `rodoviaria_nome`, `rodoviaria_rua`, 
 (80, '$rodoviaria_nometestenometestenometestenometestenometestenometestenometestenometestenometestenometes', '$rodoviaria_rua', 0, '$rodoviaria_bairro', '$rodoviaria_cep', '$rodoviaria_email', '$rodoviaria_', 0, 6, 'RD065'),
 (81, '$rodoviaria_nometestenometestenometestenometestenometestenometestenometestenometestenometestenometes', '$rodoviaria_rua', 0, '$rodoviaria_bairro', '$rodoviaria_cep', '$rodoviaria_email', '$rodoviaria_', 0, 6, 'RD081'),
 (84, '$rodoviaria_nometestenometestenometestenometestenometestenometestenometestenometestenometestenometes', '$rodoviaria_rua', 0, '$rodoviaria_bairro', '$rodoviaria_cep', '$rodoviaria_email', '$rodoviaria_', 0, 4, 'RD082'),
-(86, '$rodoviaria_nometestenometestenometestenometestenometestenometestenometestenometestenometestenometes', '$rodoviaria_rua', 0, '$rodoviaria_bairro', '$rodoviaria_cep', '$rodoviaria_email', '$rodoviaria_', 0, 4, 'RD082');
+(86, '$rodoviaria_nometestenometestenometestenometestenometestenometestenometestenometestenometestenometes', '$rodoviaria_rua', 0, '$rodoviaria_bairro', '$rodoviaria_cep', '$rodoviaria_email', '$rodoviaria_', 0, 4, 'RD082'),
+(87, 'Rodoviaria de Alegrete', 'Maximinio', 120, 'Segabinazzi', '97543-410', 'teste@teste.com', '(55)99732810', 4, 1, 'RD087'),
+(89, 'Rodoviaria de Alegrete', 'Maximinio', 120, 'Segabinazzi', '97543-410', 'teste@teste.com', '(55)99732810', 4, 1, 'RD088');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tarifa`
+-- Estrutura da tabela `tarifa`
 --
 
 DROP TABLE IF EXISTS `tarifa`;
@@ -5918,7 +5919,7 @@ CREATE TABLE `tarifa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `tarifa`
+-- Extraindo dados da tabela `tarifa`
 --
 
 INSERT INTO `tarifa` (`tarifa_id`, `tarifa_nome`, `tarifa_codigo`, `tarifa_vigente`) VALUES
@@ -5937,7 +5938,7 @@ INSERT INTO `tarifa` (`tarifa_id`, `tarifa_nome`, `tarifa_codigo`, `tarifa_vigen
 -- --------------------------------------------------------
 
 --
--- Table structure for table `trajetourbano`
+-- Estrutura da tabela `trajetourbano`
 --
 
 DROP TABLE IF EXISTS `trajetourbano`;
@@ -5951,7 +5952,7 @@ CREATE TABLE `trajetourbano` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `trajetourbano`
+-- Extraindo dados da tabela `trajetourbano`
 --
 
 INSERT INTO `trajetourbano` (`trajetourbano_id`, `trajetourbano_nome`, `trajetourbano_tarifa`, `trajetourbano_concessao`, `trajetourbano_isativo`, `trajetourbano_tempomedio`) VALUES
@@ -5964,7 +5965,7 @@ INSERT INTO `trajetourbano` (`trajetourbano_id`, `trajetourbano_nome`, `trajetou
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estrutura da tabela `usuarios`
 --
 
 DROP TABLE IF EXISTS `usuarios`;
@@ -5977,7 +5978,7 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `usuarios`
+-- Extraindo dados da tabela `usuarios`
 --
 
 INSERT INTO `usuarios` (`user_id`, `user_nome`, `user_email`, `user_password`, `user_level`) VALUES
@@ -5987,7 +5988,7 @@ INSERT INTO `usuarios` (`user_id`, `user_nome`, `user_email`, `user_password`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `valorestarifa`
+-- Estrutura da tabela `valorestarifa`
 --
 
 DROP TABLE IF EXISTS `valorestarifa`;
@@ -6001,7 +6002,7 @@ CREATE TABLE `valorestarifa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `valorestarifa`
+-- Extraindo dados da tabela `valorestarifa`
 --
 
 INSERT INTO `valorestarifa` (`valores_id`, `valores_id_tarifa`, `valores_data_homologacao`, `valores_is_vigente`, `valores_valor`, `valores_anexo`) VALUES
@@ -6079,7 +6080,7 @@ ALTER TABLE `manutencao`
 --
 ALTER TABLE `onibus`
   ADD PRIMARY KEY (`onibus_id`),
-  ADD KEY `onibus_categoria_intermunipal` (`onibus_categoria_intermunipal`),
+  ADD KEY `onibus_categoria_intermunipal` (`onibus_categoria_intermunicipal`),
   ADD KEY `onibus_cidade` (`onibus_cidade`);
 
 --
@@ -6187,7 +6188,7 @@ ALTER TABLE `paradatrajeto`
 -- AUTO_INCREMENT for table `rodoviaria`
 --
 ALTER TABLE `rodoviaria`
-  MODIFY `rodoviaria_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `rodoviaria_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `tarifa`
@@ -6218,20 +6219,20 @@ ALTER TABLE `valorestarifa`
 --
 
 --
--- Constraints for table `manutencao`
+-- Limitadores para a tabela `manutencao`
 --
 ALTER TABLE `manutencao`
   ADD CONSTRAINT `manutencao_ibfk_1` FOREIGN KEY (`manutencao_onibus_id`) REFERENCES `onibus` (`onibus_id`);
 
 --
--- Constraints for table `onibus`
+-- Limitadores para a tabela `onibus`
 --
 ALTER TABLE `onibus`
-  ADD CONSTRAINT `onibus_ibfk_1` FOREIGN KEY (`onibus_categoria_intermunipal`) REFERENCES `categoriaonibus` (`categoriaonibus_id`),
+  ADD CONSTRAINT `onibus_ibfk_1` FOREIGN KEY (`onibus_categoria_intermunicipal`) REFERENCES `categoriaonibus` (`categoriaonibus_id`),
   ADD CONSTRAINT `onibus_ibfk_2` FOREIGN KEY (`onibus_cidade`) REFERENCES `cidade` (`cidade_id`);
 
 --
--- Constraints for table `paradatrajeto`
+-- Limitadores para a tabela `paradatrajeto`
 --
 ALTER TABLE `paradatrajeto`
   ADD CONSTRAINT `paradatrajeto_ibfk_1` FOREIGN KEY (`paradatrajeto_parada`) REFERENCES `paradas` (`parada_id`),
@@ -6239,20 +6240,20 @@ ALTER TABLE `paradatrajeto`
   ADD CONSTRAINT `paradatrajeto_ibfk_3` FOREIGN KEY (`paradatrajeto_trajeto`) REFERENCES `trajetourbano` (`trajetourbano_id`);
 
 --
--- Constraints for table `rodoviaria`
+-- Limitadores para a tabela `rodoviaria`
 --
 ALTER TABLE `rodoviaria`
   ADD CONSTRAINT `rodoviaria_ibfk_1` FOREIGN KEY (`rodoviaria_cidade_id`) REFERENCES `cidade` (`cidade_id`);
 
 --
--- Constraints for table `trajetourbano`
+-- Limitadores para a tabela `trajetourbano`
 --
 ALTER TABLE `trajetourbano`
   ADD CONSTRAINT `trajetourbano_ibfk_1` FOREIGN KEY (`trajetourbano_tarifa`) REFERENCES `tarifa` (`tarifa_id`),
   ADD CONSTRAINT `trajetourbano_ibfk_2` FOREIGN KEY (`trajetourbano_concessao`) REFERENCES `concessao` (`concessao_id`);
 
 --
--- Constraints for table `valorestarifa`
+-- Limitadores para a tabela `valorestarifa`
 --
 ALTER TABLE `valorestarifa`
   ADD CONSTRAINT `valorestarifa_ibfk_1` FOREIGN KEY (`valores_id_tarifa`) REFERENCES `tarifa` (`tarifa_id`);
