@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2019 at 09:43 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.1.27
+-- Generation Time: 02-Maio-2019 às 03:13
+-- Versão do servidor: 10.1.38-MariaDB
+-- versão do PHP: 7.1.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,40 +21,37 @@ SET time_zone = "+00:00";
 --
 -- Database: `gicabus`
 --
-CREATE DATABASE IF NOT EXISTS `gicabus` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `gicabus`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categoriaonibus`
+-- Estrutura da tabela `categoriaonibus`
 --
 
-DROP TABLE IF EXISTS `categoriaonibus`;
 CREATE TABLE `categoriaonibus` (
-  `catOnibus_id` int(11) NOT NULL,
-  `catOnibus_nome` varchar(15) COLLATE utf8_bin NOT NULL,
-  `catOnibus_precokm` float(5,2) NOT NULL,
-  `catOnibus_status` tinyint(1) NOT NULL,
-  `catOnibus_codigo` varchar(15) COLLATE utf8_bin NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `categoriaonibus_id` int(11) NOT NULL,
+  `categoriaonibus_nome` varchar(50) COLLATE utf8_bin NOT NULL,
+  `categoriaonibus_precokm` decimal(4,2) NOT NULL,
+  `categoriaonibus_status` tinyint(1) NOT NULL DEFAULT '1',
+  `categoriaonibus_codigo` varchar(15) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `categoriaonibus`
+-- Extraindo dados da tabela `categoriaonibus`
 --
 
-INSERT INTO `categoriaonibus` (`catOnibus_id`, `catOnibus_nome`, `catOnibus_precokm`, `catOnibus_status`, `catOnibus_codigo`) VALUES
-(1, 'Leito', 2.00, 1, 'TF001'),
-(2, 'Semi-leito', 1.50, 1, 'TF002'),
-(3, 'Comum', 1.00, 1, 'TF003');
+INSERT INTO `categoriaonibus` (`categoriaonibus_id`, `categoriaonibus_nome`, `categoriaonibus_precokm`, `categoriaonibus_status`, `categoriaonibus_codigo`) VALUES
+(1, 'Leito', '2.00', 1, 'TF001'),
+(2, 'Semi-leito', '1.50', 1, 'TF002'),
+(3, 'Comum', '1.00', 1, 'TF003'),
+(4, 'teste', '2.00', 1, 'CO004');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categoriapassageiro`
+-- Estrutura da tabela `categoriapassageiro`
 --
 
-DROP TABLE IF EXISTS `categoriapassageiro`;
 CREATE TABLE `categoriapassageiro` (
   `categoriapassageiro_id` int(11) NOT NULL,
   `categoriapassageiro_nome` varchar(45) COLLATE utf8_bin DEFAULT NULL,
@@ -63,33 +60,34 @@ CREATE TABLE `categoriapassageiro` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `categoriapassageiro`
+-- Extraindo dados da tabela `categoriapassageiro`
 --
 
 INSERT INTO `categoriapassageiro` (`categoriapassageiro_id`, `categoriapassageiro_nome`, `categoriapassageiro_valordesconto`, `categoriapassageiro_icone`) VALUES
 (1, 'Estudante', '50', 'fa-book'),
 (2, 'Idoso', '100', 'fa-male'),
 (3, 'Criancas', '100', 'fa-child'),
-(4, 'Deficientes', '100', 'fa-wheelchair');
+(4, 'Deficientes', '100', 'fa-wheelchair'),
+(10, 'Nome da categoria', '50', ''),
+(9, 'teste', '50', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cidade`
+-- Estrutura da tabela `cidade`
 --
 
-DROP TABLE IF EXISTS `cidade`;
 CREATE TABLE `cidade` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(120) DEFAULT NULL,
-  `estado` int(5) DEFAULT NULL
+  `cidade_id` int(11) NOT NULL,
+  `cidade_nome` varchar(120) DEFAULT NULL,
+  `cidade_estado` int(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `cidade`
+-- Extraindo dados da tabela `cidade`
 --
 
-INSERT INTO `cidade` (`id`, `nome`, `estado`) VALUES
+INSERT INTO `cidade` (`cidade_id`, `cidade_nome`, `cidade_estado`) VALUES
 (1, 'Afonso Cláudio', 8),
 (2, 'Água Doce do Norte', 8),
 (3, 'Águia Branca', 8),
@@ -2155,9 +2153,9 @@ INSERT INTO `cidade` (`id`, `nome`, `estado`) VALUES
 (2063, 'Monte Santo de Minas', 11),
 (2064, 'Monte Sião', 11),
 (2065, 'Montes Claros', 11),
-(2066, 'Montezuma', 11),
-(2067, 'Morada Nova de Minas', 11);
-INSERT INTO `cidade` (`id`, `nome`, `estado`) VALUES
+(2066, 'Montezuma', 11);
+INSERT INTO `cidade` (`cidade_id`, `cidade_nome`, `cidade_estado`) VALUES
+(2067, 'Morada Nova de Minas', 11),
 (2068, 'Morro da Garça', 11),
 (2069, 'Morro do Pilar', 11),
 (2070, 'Munhoz', 11),
@@ -4064,10 +4062,10 @@ INSERT INTO `cidade` (`id`, `nome`, `estado`) VALUES
 (3971, 'Crissiumal', 23),
 (3972, 'Cristal', 23),
 (3973, 'Cristal do Sul', 23),
-(3974, 'Cruz Alta', 23),
+(3974, 'Cruz Alta', 23);
+INSERT INTO `cidade` (`cidade_id`, `cidade_nome`, `cidade_estado`) VALUES
 (3975, 'Cruzaltense', 23),
-(3976, 'Cruzeiro do Sul', 23);
-INSERT INTO `cidade` (`id`, `nome`, `estado`) VALUES
+(3976, 'Cruzeiro do Sul', 23),
 (3977, 'David Canabarro', 23),
 (3978, 'Derrubadas', 23),
 (3979, 'Dezesseis de Novembro', 23),
@@ -5660,25 +5658,31 @@ INSERT INTO `cidade` (`id`, `nome`, `estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `concessao`
+-- Estrutura da tabela `concessao`
 --
 
-DROP TABLE IF EXISTS `concessao`;
 CREATE TABLE `concessao` (
-  `id_Concessao` int(11) NOT NULL,
-  `anexo_Concessao` blob,
-  `protocolo_Contrato` int(6) DEFAULT NULL,
-  `statusConcessao` int(11) DEFAULT NULL,
-  `ano` date NOT NULL
+  `concessao_id` int(11) NOT NULL,
+  `concessao_anexo` blob,
+  `concessao_protocolo` int(6) DEFAULT NULL,
+  `concessao_status` int(11) DEFAULT NULL,
+  `concessao_ano` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `concessao`
+--
+
+INSERT INTO `concessao` (`concessao_id`, `concessao_anexo`, `concessao_protocolo`, `concessao_status`, `concessao_ano`) VALUES
+(1, 0x687474703a2f2f6c6f63616c686f73742f7270762f66696c65732f7465737465656564643832616637386636323334386162636136613765386633353532343936372e706466, 14, 1, '2019-04-11'),
+(2, 0x687474703a2f2f6c6f63616c686f73742f7270762f66696c65732f7465737465656539396162366563663765333634376361633239363463323863643336306266382e706466, 132112, 0, '2019-04-11');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `criterios`
+-- Estrutura da tabela `criterios`
 --
 
-DROP TABLE IF EXISTS `criterios`;
 CREATE TABLE `criterios` (
   `criterios_id` int(11) NOT NULL,
   `criterios_descricao` varchar(400) COLLATE utf8_bin DEFAULT NULL,
@@ -5686,36 +5690,38 @@ CREATE TABLE `criterios` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `criterios`
+-- Extraindo dados da tabela `criterios`
 --
 
 INSERT INTO `criterios` (`criterios_id`, `criterios_descricao`, `criterios_id_categoria`) VALUES
-(12, 'Comprovante de matricula', 1),
+(16, 'Comprovante de matricula ES', 1),
 (2, 'Carteira de Trabalho', 2),
 (3, 'Previdencia com anotacoes atualizadas', 2),
 (4, 'Contra-chegue do pagamento', 2),
 (5, 'Carne de contribuicao de inss', 2),
 (6, 'Ter no maximo 6 anos de idade', 3),
-(7, 'Obtencao de Passe Livre no Ministerio dos Transportes.', 4);
+(7, 'Obtencao de Passe Livre no Ministerio dos Transportes.', 4),
+(18, 'C222', 10),
+(17, 'Teste', 10),
+(13, 'teste', 9);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `estado`
+-- Estrutura da tabela `estado`
 --
 
-DROP TABLE IF EXISTS `estado`;
 CREATE TABLE `estado` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(75) COLLATE utf8_bin DEFAULT NULL,
-  `uf` varchar(5) COLLATE utf8_bin DEFAULT NULL
+  `estado_id` int(11) NOT NULL,
+  `estado_nome` varchar(75) COLLATE utf8_bin DEFAULT NULL,
+  `estado_uf` varchar(5) COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `estado`
+-- Extraindo dados da tabela `estado`
 --
 
-INSERT INTO `estado` (`id`, `nome`, `uf`) VALUES
+INSERT INTO `estado` (`estado_id`, `estado_nome`, `estado_uf`) VALUES
 (1, 'Acre', 'AC'),
 (2, 'Alagoas', 'AL'),
 (3, 'Amazonas', 'AM'),
@@ -5747,10 +5753,64 @@ INSERT INTO `estado` (`id`, `nome`, `uf`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `paradas`
+-- Estrutura da tabela `frota`
 --
 
-DROP TABLE IF EXISTS `paradas`;
+CREATE TABLE `frota` (
+  `frota_id` int(11) NOT NULL,
+  `frota_is_municipal` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `manutencao`
+--
+
+CREATE TABLE `manutencao` (
+  `manutencao_id` int(11) NOT NULL,
+  `onibus_id` int(11) DEFAULT NULL,
+  `manutencao_valor` int(11) DEFAULT NULL,
+  `manutencao_descricao` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `manutencao_status` varchar(45) COLLATE utf8_bin DEFAULT NULL,
+  `manutencao_dataInicio` date DEFAULT NULL,
+  `manutencao_dataFim` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `onibus`
+--
+
+CREATE TABLE `onibus` (
+  `onibus_id` int(11) NOT NULL,
+  `onibus_placa` varchar(8) COLLATE utf8_bin NOT NULL,
+  `onibus_numero` int(11) NOT NULL,
+  `onibus_numero_antt` varchar(20) COLLATE utf8_bin NOT NULL,
+  `onibus_ano_fab` int(11) NOT NULL,
+  `onibus_num_chassis` varchar(255) COLLATE utf8_bin NOT NULL,
+  `onibus_num_lugares` int(11) NOT NULL,
+  `onibus_marcacarroceria` varchar(40) COLLATE utf8_bin NOT NULL,
+  `onibus_marca_chassis` varchar(40) COLLATE utf8_bin NOT NULL,
+  `onibus_potencial_motor` int(11) NOT NULL,
+  `onibus_propriedade_veiculo` varchar(40) COLLATE utf8_bin NOT NULL,
+  `onibus_documento_veiculo` varchar(255) COLLATE utf8_bin NOT NULL,
+  `onibus_ar_condicionado` tinyint(1) NOT NULL,
+  `onibus_quilometragem` int(11) NOT NULL,
+  `onibus_is_aviso` tinyint(1) NOT NULL,
+  `onibus_motivo_inatividade` text COLLATE utf8_bin NOT NULL,
+  `onibus_em_manutencao` tinyint(1) NOT NULL,
+  `onibus_frota` int(11) DEFAULT NULL,
+  `onibus_categoria` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `paradas`
+--
+
 CREATE TABLE `paradas` (
   `parada_id` int(11) NOT NULL,
   `parada_rua` varchar(255) COLLATE utf8_bin NOT NULL,
@@ -5761,7 +5821,7 @@ CREATE TABLE `paradas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `paradas`
+-- Extraindo dados da tabela `paradas`
 --
 
 INSERT INTO `paradas` (`parada_id`, `parada_rua`, `parada_numero`, `parada_bairro`, `parada_status`, `parada_codigo`) VALUES
@@ -5775,38 +5835,73 @@ INSERT INTO `paradas` (`parada_id`, `parada_rua`, `parada_numero`, `parada_bairr
 -- --------------------------------------------------------
 
 --
--- Table structure for table `paradatrajeto`
+-- Estrutura da tabela `paradatrajeto`
 --
 
-DROP TABLE IF EXISTS `paradatrajeto`;
 CREATE TABLE `paradatrajeto` (
-  `par_traj_id` int(11) NOT NULL,
-  `par_traj_trajeto` int(11) NOT NULL,
-  `par_traj_parada` int(11) NOT NULL,
-  `par_traj_prox_parada` int(11) NOT NULL
+  `paradatrajeto_id` int(11) NOT NULL,
+  `paradatrajeto_trajeto` int(11) NOT NULL,
+  `paradatrajeto_parada` int(11) NOT NULL,
+  `paradatrajeto_prox_parada` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `paradatrajeto`
+-- Extraindo dados da tabela `paradatrajeto`
 --
 
-INSERT INTO `paradatrajeto` (`par_traj_id`, `par_traj_trajeto`, `par_traj_parada`, `par_traj_prox_parada`) VALUES
+INSERT INTO `paradatrajeto` (`paradatrajeto_id`, `paradatrajeto_trajeto`, `paradatrajeto_parada`, `paradatrajeto_prox_parada`) VALUES
 (13, 8, 10, 6),
 (14, 8, 6, 10),
 (15, 9, 10, 9),
 (16, 9, 9, 10),
-(41, 7, 6, 8),
-(42, 7, 8, 10),
-(43, 7, 10, 15),
-(44, 7, 15, 6);
+(45, 7, 6, 8),
+(46, 7, 8, 10),
+(47, 7, 10, 15),
+(48, 7, 15, 6),
+(49, 11, 6, 8),
+(50, 11, 8, 6),
+(54, 12, 7, 10),
+(55, 12, 10, 6),
+(56, 12, 6, 9),
+(57, 12, 9, 7);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tarifa`
+-- Estrutura da tabela `rodoviaria`
 --
 
-DROP TABLE IF EXISTS `tarifa`;
+CREATE TABLE `rodoviaria` (
+  `rodoviaria_id` int(11) NOT NULL,
+  `rodoviaria_nome` varchar(100) NOT NULL,
+  `rodoviaria_rua` varchar(50) NOT NULL,
+  `rodoviaria_numero` int(5) NOT NULL,
+  `rodoviaria_bairro` varchar(100) NOT NULL,
+  `rodoviaria_cep` varchar(20) NOT NULL,
+  `rodoviaria_email` varchar(50) NOT NULL,
+  `rodoviaria_telefone` varchar(12) NOT NULL,
+  `rodoviaria_qntdbox` varchar(3) NOT NULL,
+  `rodoviaria_cidade_id` int(11) NOT NULL,
+  `rodoviaria_codigo` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `rodoviaria`
+--
+
+INSERT INTO `rodoviaria` (`rodoviaria_id`, `rodoviaria_nome`, `rodoviaria_rua`, `rodoviaria_numero`, `rodoviaria_bairro`, `rodoviaria_cep`, `rodoviaria_email`, `rodoviaria_telefone`, `rodoviaria_qntdbox`, `rodoviaria_cidade_id`, `rodoviaria_codigo`) VALUES
+(55, 'Rodoviaria de Alegrete', 'Maximinio', 120, 'Segabinazzi', '97133', 'teste@teste.com', '(55)99732810', '4', 1, 'RD001'),
+(56, 'Rodoviaria de Rio Grande', 'Maximinio', 0, 'Segabinazzi', '97133', 'teste@teste.com', '(55)99732810', '4', 1, 'RD056'),
+(57, 'Nome da rodoviaria', 'asd', 123, 'asd', '123', '123', '123123', '12', 2434, 'RD001'),
+(58, 'Numoaa', 'asd', 123, 'asd', '123', '123', '123123', '12', 212, 'RD001'),
+(59, 'asdwa', 'asd', 12, 'asd', '12', '12', '12', '2', 4051, 'RD059');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tarifa`
+--
+
 CREATE TABLE `tarifa` (
   `tarifa_id` int(11) NOT NULL,
   `tarifa_nome` varchar(255) COLLATE utf8_bin NOT NULL,
@@ -5815,11 +5910,11 @@ CREATE TABLE `tarifa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `tarifa`
+-- Extraindo dados da tabela `tarifa`
 --
 
 INSERT INTO `tarifa` (`tarifa_id`, `tarifa_nome`, `tarifa_codigo`, `tarifa_vigente`) VALUES
-(1, 'Tarifa Simples', 'TF001', 0),
+(1, 'Tarifa Simples', 'TF001', 1),
 (2, 'Tarifa Interior', 'TF002', 1),
 (3, 'Tarifa BR', 'TF003', 0),
 (6, 'asdwa', 'TF006', 1),
@@ -5828,15 +5923,15 @@ INSERT INTO `tarifa` (`tarifa_id`, `tarifa_nome`, `tarifa_codigo`, `tarifa_vigen
 (9, '123', 'TF009', 1),
 (10, 'asd', 'TF010', 1),
 (11, 'AA', 'TF011', 1),
-(12, 'ASD', 'TF012', 1);
+(12, 'ASD', 'TF012', 1),
+(13, 'TESTES', 'TF013', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `trajetourbano`
+-- Estrutura da tabela `trajetourbano`
 --
 
-DROP TABLE IF EXISTS `trajetourbano`;
 CREATE TABLE `trajetourbano` (
   `trajetourbano_id` int(11) NOT NULL,
   `trajetourbano_nome` varchar(255) NOT NULL,
@@ -5847,21 +5942,22 @@ CREATE TABLE `trajetourbano` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `trajetourbano`
+-- Extraindo dados da tabela `trajetourbano`
 --
 
 INSERT INTO `trajetourbano` (`trajetourbano_id`, `trajetourbano_nome`, `trajetourbano_tarifa`, `trajetourbano_concessao`, `trajetourbano_isativo`, `trajetourbano_tempomedio`) VALUES
-(7, 'Trajeto de Teste', 2, NULL, 1, 51),
+(7, 'Trajeto de Teste1', 2, NULL, 1, 51),
 (8, 'Rota Furiosa', 1, NULL, 1, 12313),
-(9, 'asdwa', 1, NULL, 1, 2);
+(9, 'asdwa', 1, NULL, 1, 2),
+(11, 'TESTE', 2, NULL, 1, 3),
+(12, 'Alegrete JOAO23', 2, NULL, 1, 40);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estrutura da tabela `usuarios`
 --
 
-DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `user_nome` varchar(255) COLLATE utf8_bin NOT NULL,
@@ -5871,7 +5967,7 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `usuarios`
+-- Extraindo dados da tabela `usuarios`
 --
 
 INSERT INTO `usuarios` (`user_id`, `user_nome`, `user_email`, `user_password`, `user_level`) VALUES
@@ -5881,10 +5977,9 @@ INSERT INTO `usuarios` (`user_id`, `user_nome`, `user_email`, `user_password`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `valorestarifa`
+-- Estrutura da tabela `valorestarifa`
 --
 
-DROP TABLE IF EXISTS `valorestarifa`;
 CREATE TABLE `valorestarifa` (
   `valores_id` int(11) NOT NULL,
   `valores_id_tarifa` int(11) NOT NULL,
@@ -5895,7 +5990,7 @@ CREATE TABLE `valorestarifa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `valorestarifa`
+-- Extraindo dados da tabela `valorestarifa`
 --
 
 INSERT INTO `valorestarifa` (`valores_id`, `valores_id_tarifa`, `valores_data_homologacao`, `valores_is_vigente`, `valores_valor`, `valores_anexo`) VALUES
@@ -5913,7 +6008,11 @@ INSERT INTO `valorestarifa` (`valores_id`, `valores_id_tarifa`, `valores_data_ho
 (14, 10, '2019-04-11', 0, '123.00', 'http://localhost/rpv/files/testeee3e36e04f93535b399cbc7d4207ff261a.pdf'),
 (15, 10, '2019-04-11', 1, '999.99', 'http://localhost/rpv/files/comprovanteMatricula1a88249bfa2031d0ebd88d743df501e4.pdf'),
 (16, 11, '2019-04-11', 1, '999.99', 'http://localhost/rpv/files/testeeeaed9cae4a7bfffed2c8c79ec3c759258.pdf'),
-(17, 12, '2019-04-11', 1, '22.00', 'http://localhost/rpv/files/comprovanteMatricula990d8283638369862b17ceadfa8ba0ed.pdf');
+(17, 12, '2019-04-11', 1, '22.00', 'http://localhost/rpv/files/comprovanteMatricula990d8283638369862b17ceadfa8ba0ed.pdf'),
+(18, 13, '2019-04-11', 0, '2.75', 'http://localhost/rpv/files/testeeed612dbb75d9ad7640968c56a1243e3cf.pdf'),
+(19, 13, '2019-04-11', 1, '2.76', 'http://localhost/rpv/files/testeeef12e0d9abd876155c545b47312fbc928.pdf'),
+(20, 1, '2019-04-11', 0, '2.70', 'http://localhost/rpv/files/testeeec109915b7816da09ec37233f950d6315.pdf'),
+(21, 1, '2019-04-11', 1, '3.00', 'http://localhost/rpv/files/testeeee4d73070038077f1a87f043322bec08c.pdf');
 
 --
 -- Indexes for dumped tables
@@ -5923,7 +6022,7 @@ INSERT INTO `valorestarifa` (`valores_id`, `valores_id_tarifa`, `valores_data_ho
 -- Indexes for table `categoriaonibus`
 --
 ALTER TABLE `categoriaonibus`
-  ADD PRIMARY KEY (`catOnibus_id`);
+  ADD PRIMARY KEY (`categoriaonibus_id`);
 
 --
 -- Indexes for table `categoriapassageiro`
@@ -5935,14 +6034,14 @@ ALTER TABLE `categoriapassageiro`
 -- Indexes for table `cidade`
 --
 ALTER TABLE `cidade`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_Cidade_estado` (`estado`);
+  ADD PRIMARY KEY (`cidade_id`),
+  ADD KEY `fk_Cidade_estado` (`cidade_estado`);
 
 --
 -- Indexes for table `concessao`
 --
 ALTER TABLE `concessao`
-  ADD PRIMARY KEY (`id_Concessao`);
+  ADD PRIMARY KEY (`concessao_id`);
 
 --
 -- Indexes for table `criterios`
@@ -5955,7 +6054,28 @@ ALTER TABLE `criterios`
 -- Indexes for table `estado`
 --
 ALTER TABLE `estado`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`estado_id`);
+
+--
+-- Indexes for table `frota`
+--
+ALTER TABLE `frota`
+  ADD PRIMARY KEY (`frota_id`);
+
+--
+-- Indexes for table `manutencao`
+--
+ALTER TABLE `manutencao`
+  ADD PRIMARY KEY (`manutencao_id`),
+  ADD KEY `onibus_id` (`onibus_id`);
+
+--
+-- Indexes for table `onibus`
+--
+ALTER TABLE `onibus`
+  ADD PRIMARY KEY (`onibus_id`),
+  ADD KEY `onibus_frota` (`onibus_frota`),
+  ADD KEY `onibus_categoria` (`onibus_categoria`);
 
 --
 -- Indexes for table `paradas`
@@ -5967,10 +6087,17 @@ ALTER TABLE `paradas`
 -- Indexes for table `paradatrajeto`
 --
 ALTER TABLE `paradatrajeto`
-  ADD PRIMARY KEY (`par_traj_id`),
-  ADD KEY `par_traj_parada` (`par_traj_parada`),
-  ADD KEY `par_traj_prox_parada` (`par_traj_prox_parada`),
-  ADD KEY `par_traj_trajeto` (`par_traj_trajeto`);
+  ADD PRIMARY KEY (`paradatrajeto_id`),
+  ADD KEY `par_traj_parada` (`paradatrajeto_parada`),
+  ADD KEY `par_traj_prox_parada` (`paradatrajeto_prox_parada`),
+  ADD KEY `par_traj_trajeto` (`paradatrajeto_trajeto`);
+
+--
+-- Indexes for table `rodoviaria`
+--
+ALTER TABLE `rodoviaria`
+  ADD PRIMARY KEY (`rodoviaria_id`),
+  ADD KEY `rodoviaria_cidade_id` (`rodoviaria_cidade_id`);
 
 --
 -- Indexes for table `tarifa`
@@ -6007,37 +6134,55 @@ ALTER TABLE `valorestarifa`
 -- AUTO_INCREMENT for table `categoriaonibus`
 --
 ALTER TABLE `categoriaonibus`
-  MODIFY `catOnibus_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `categoriaonibus_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `categoriapassageiro`
 --
 ALTER TABLE `categoriapassageiro`
-  MODIFY `categoriapassageiro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `categoriapassageiro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `cidade`
 --
 ALTER TABLE `cidade`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5565;
+  MODIFY `cidade_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5565;
 
 --
 -- AUTO_INCREMENT for table `concessao`
 --
 ALTER TABLE `concessao`
-  MODIFY `id_Concessao` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `concessao_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `criterios`
 --
 ALTER TABLE `criterios`
-  MODIFY `criterios_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `criterios_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `estado`
 --
 ALTER TABLE `estado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `estado_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `frota`
+--
+ALTER TABLE `frota`
+  MODIFY `frota_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `manutencao`
+--
+ALTER TABLE `manutencao`
+  MODIFY `manutencao_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `onibus`
+--
+ALTER TABLE `onibus`
+  MODIFY `onibus_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `paradas`
@@ -6049,19 +6194,25 @@ ALTER TABLE `paradas`
 -- AUTO_INCREMENT for table `paradatrajeto`
 --
 ALTER TABLE `paradatrajeto`
-  MODIFY `par_traj_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `paradatrajeto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
+--
+-- AUTO_INCREMENT for table `rodoviaria`
+--
+ALTER TABLE `rodoviaria`
+  MODIFY `rodoviaria_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `tarifa`
 --
 ALTER TABLE `tarifa`
-  MODIFY `tarifa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `tarifa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `trajetourbano`
 --
 ALTER TABLE `trajetourbano`
-  MODIFY `trajetourbano_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `trajetourbano_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
@@ -6073,29 +6224,48 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `valorestarifa`
 --
 ALTER TABLE `valorestarifa`
-  MODIFY `valores_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `valores_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `paradatrajeto`
+-- Limitadores para a tabela `manutencao`
 --
-ALTER TABLE `paradatrajeto`
-  ADD CONSTRAINT `paradatrajeto_ibfk_1` FOREIGN KEY (`par_traj_parada`) REFERENCES `paradas` (`parada_id`),
-  ADD CONSTRAINT `paradatrajeto_ibfk_2` FOREIGN KEY (`par_traj_prox_parada`) REFERENCES `paradas` (`parada_id`),
-  ADD CONSTRAINT `paradatrajeto_ibfk_3` FOREIGN KEY (`par_traj_trajeto`) REFERENCES `trajetourbano` (`trajetourbano_id`);
+ALTER TABLE `manutencao`
+  ADD CONSTRAINT `manutencao_ibfk_1` FOREIGN KEY (`onibus_id`) REFERENCES `onibus` (`onibus_id`);
 
 --
--- Constraints for table `trajetourbano`
+-- Limitadores para a tabela `onibus`
+--
+ALTER TABLE `onibus`
+  ADD CONSTRAINT `onibus_ibfk_1` FOREIGN KEY (`onibus_frota`) REFERENCES `frota` (`frota_id`),
+  ADD CONSTRAINT `onibus_ibfk_2` FOREIGN KEY (`onibus_categoria`) REFERENCES `categoriaonibus` (`categoriaonibus_id`);
+
+--
+-- Limitadores para a tabela `paradatrajeto`
+--
+ALTER TABLE `paradatrajeto`
+  ADD CONSTRAINT `paradatrajeto_ibfk_1` FOREIGN KEY (`paradatrajeto_parada`) REFERENCES `paradas` (`parada_id`),
+  ADD CONSTRAINT `paradatrajeto_ibfk_2` FOREIGN KEY (`paradatrajeto_prox_parada`) REFERENCES `paradas` (`parada_id`),
+  ADD CONSTRAINT `paradatrajeto_ibfk_3` FOREIGN KEY (`paradatrajeto_trajeto`) REFERENCES `trajetourbano` (`trajetourbano_id`);
+
+--
+-- Limitadores para a tabela `rodoviaria`
+--
+ALTER TABLE `rodoviaria`
+  ADD CONSTRAINT `rodoviaria_ibfk_1` FOREIGN KEY (`rodoviaria_cidade_id`) REFERENCES `cidade` (`cidade_id`);
+
+--
+-- Limitadores para a tabela `trajetourbano`
 --
 ALTER TABLE `trajetourbano`
   ADD CONSTRAINT `trajetourbano_ibfk_1` FOREIGN KEY (`trajetourbano_tarifa`) REFERENCES `tarifa` (`tarifa_id`),
-  ADD CONSTRAINT `trajetourbano_ibfk_2` FOREIGN KEY (`trajetourbano_concessao`) REFERENCES `concessao` (`id_Concessao`);
+  ADD CONSTRAINT `trajetourbano_ibfk_2` FOREIGN KEY (`trajetourbano_concessao`) REFERENCES `concessao` (`concessao_id`);
 
 --
--- Constraints for table `valorestarifa`
+-- Limitadores para a tabela `valorestarifa`
 --
 ALTER TABLE `valorestarifa`
   ADD CONSTRAINT `valorestarifa_ibfk_1` FOREIGN KEY (`valores_id_tarifa`) REFERENCES `tarifa` (`tarifa_id`);
