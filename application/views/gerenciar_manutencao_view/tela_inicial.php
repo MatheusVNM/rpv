@@ -109,18 +109,18 @@ $this->load->view("header2");
             </div>
 
             <div class="modal-body ">
-                <form>
+                <form class = "needs-validation container" novalidate>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="placadoonibus">Placa</label>
                             <input name="onibus_placa" type="text" maxlength="6" min="0" max="7"
-                                class="form-control alphanumeric-only" id="id_create_placa">
+                                class="form-control alphanumeric-only" id="id_create_placa" required>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="valordamanutencao">Valor da Manutenção</label>
                             <input name="manutencao_valor" type="number" maxlength="6" min="0" max="9999"
-                                class="form-control numbers-only" id="id_create_valor">
+                                class="form-control numbers-only" id="id_create_valor" required>
                         </div>
                     </div>
 
@@ -128,13 +128,13 @@ $this->load->view("header2");
                         <div class="form-group col-md-6">
                             <label for="datainiciomanutencao">Data Inicio</label>
                             <input name="manutencao_dataInicio" type="date" maxlength="6" min="0" max="99999"
-                                class="form-control numbers-only" id="id_create_dataInicio">
+                                class="form-control numbers-only" id="id_create_dataInicio" required>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="datafimmanutencao">Data Finalização</label>
                             <input name="manutencao_dataFim" type="date" maxlength="6" min="0" max="99999"
-                                class="form-control numbers-only" id="id_create_dataFim">
+                                class="form-control numbers-only" id="id_create_dataFim" required>
                         </div>
                     </div>
 
@@ -142,7 +142,7 @@ $this->load->view("header2");
                         <div class="form-group col-md-6">
                             <label for="descricaodamanutencao">Descrição do Problema</label>
                             <input name="manutencao_descricao" type="text" maxlength="6" min="0" max="9999"
-                                class="form-control alphanumeric-only" id="id_create_descricao">
+                                class="form-control alphanumeric-only" id="id_create_descricao" required>
                         </div>
 
                         <div class="form-group col-md-5">
@@ -177,20 +177,20 @@ $this->load->view("header2");
                 </button>
             </div>
             <div class="modal-body ">
-                <form>
+                <form class="needs-validation container" novalidate>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="placadoonibus">Placa</label>
                             <!-- here -->
                             <input name="manutencao_placa" type="text" maxlength="6" min="0" max="999999"
-                                class="form-control alphanumeric-only" id="modal_edit_text">
+                                class="form-control alphanumeric-only" id="modal_edit_text" required>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="valordamanutencao">Valor da Manutenção</label>
                             <!-- here -->
                             <input name="manutencao_valor" type="text" maxlength="6" min="0" max="999999"
-                                class="form-control numbers-only" id="modal_edit_text">
+                                class="form-control numbers-only" id="modal_edit_text" required>
 
                         </div>
 
@@ -202,14 +202,14 @@ $this->load->view("header2");
                             <label for="datainiciomanutencao">Data Inicio</label>
                             <!-- here -->
                             <input name="manutencao_dataInicio" type="date" maxlength="6" min="0" max="999999"
-                                class="form-control numbers-only" id="modal_edit_text">
+                                class="form-control numbers-only" id="modal_edit_text" required>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="datafimmanutencao">Data Finalização</label>
                             <!-- here -->
                             <input name="manutencao_dataFim" type="date" maxlength="6" min="0" max="999999"
-                                class="form-control numbers-only" id="modal_edit_text">
+                                class="form-control numbers-only" id="modal_edit_text" required>
 
                         </div>
                     </div>
@@ -219,7 +219,7 @@ $this->load->view("header2");
                             <label for="descricaodamanutencao">Descrição do Problema</label>
                             <!-- here -->
                             <input name="manutencao_descricao" type="text" maxlength="6" min="0" max="999999"
-                                class="form-control alphanumeric-only" id="modal_edit_text">
+                                class="form-control alphanumeric-only" id="modal_edit_text" required>
                         </div>
 
                         <div class="form-group col-md-5">
