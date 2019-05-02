@@ -28,9 +28,6 @@ $this->load->view("header2");
 
 </div>
 
-
-
-
 <!-- Table init (Ao abrir a tela) -->
 <table class="table table-hover">
     <thead>
@@ -56,7 +53,7 @@ $this->load->view("header2");
 
 
                 <button type="button" class="btn btn-warning btn-sm" id="id_edit_manutencao" data-placement="top"
-                    title="Editar Manutenção" data-target="#editManutencaoModal" data-toggle ="modal">
+                    title="Editar Manutenção" data-target="#editManutencaoModal" data-toggle="modal">
                     <span class="hvr-icon fa fa-edit mr-1"></span> Editar
                 </button>
 
@@ -244,139 +241,140 @@ $this->load->view("header2");
 
 
 
-    <!-- Modal info Manutenção Init -->
-    <div class="modal fade" id="infoManutencaoModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Informações</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body ">
-                    <form>
-
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="valordamanutencao">Valor da Manutenção</label>
-                                <!-- here -->
-                                <input name="manutencao_valor" type="text" maxlength="6" min="0" max="999999"
-                                    class="form-control" id="modal_edit_text" disabled>
-
-                            </div>
-
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="descricaodamanutencao">Descrição do Problema</label>
-                            <!-- here -->
-                            <input name="manutencao_descricao" type="text" maxlength="6" min="0" max="999999"
-                                class="form-control" id="modal_edit_text">
-                        </div>
-
-                </div>
-                </form>
+</div>
+<!-- Modal info Manutenção Init -->
+<div class="modal fade" id="infoManutencaoModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Informações</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <div class="modal-body ">
+                <form>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="valordamanutencao">Valor da Manutenção</label>
+                            <!-- here -->
+                            <input name="manutencao_valor" type="text" maxlength="6" min="0" max="999999"
+                                class="form-control" id="modal_edit_text" disabled>
+
+                        </div>
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="descricaodamanutencao">Descrição do Problema</label>
+                        <!-- here -->
+                        <input name="manutencao_descricao" type="text" maxlength="6" min="0" max="999999"
+                            class="form-control" id="modal_edit_text">
+                    </div>
+
+            </div>
+            </form>
         </div>
     </div>
+</div>
 
-    <!-- Modal info concessão end -->
-    <!-- Script init -->
-    <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.3.1.min.js"); ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
+<!-- Modal info concessão end -->
+<!-- Script init -->
+<script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.3.1.min.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
 
-    <script>
-    $(function() {
-        $('[data-toggle="tooltip"]').tooltip();
-        $('.alert').alert();
-    });
-    </script>
-    <!-- Script end -->
+<script>
+$(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+    $('.alert').alert();
+});
+</script>
+<!-- Script end -->
 
 
-    <!-- Body end -->
-    <?php
+<!-- Body end -->
+<?php
 $this->load->view("footer2.php")
 ?>
 
-    <script>
-    function editar(id, status, numero) {
-        $('#modal_edit_hidden').val(id)
-        $('#modal_edit_status').val(status);
-        $('#modal_edit_numero').val(numero);
-        $('#editConcessaoModal').modal('show')
+<script>
+function editar(id, status, numero) {
+    $('#modal_edit_hidden').val(id)
+    $('#modal_edit_status').val(status);
+    $('#modal_edit_numero').val(numero);
+    $('#editConcessaoModal').modal('show')
 
+}
+</script>
+<script>
+$("#idInputStatus").change(function() {
+    var value = $(this).val().toLowerCase();
+    if (value === '-1') {
+        $('#idListaConcessao').show();
+        $('#idListaConcessoesExcluidas').hide();
+        $("#idListaConcessao tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf('') > -1)
+        });
+    } else if (value === '2') {
+        $('#idListaConcessao').hide();
+        $('#idListaConcessoesExcluidas').show();
+        $("#idListaConcessoesExcluidas tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    } else {
+        $('#idListaConcessao').show();
+        $('#idListaConcessoesExcluidas').hide();
+        $("#idListaConcessao tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
     }
-    </script>
-    <script>
-    $("#idInputStatus").change(function() {
-        var value = $(this).val().toLowerCase();
-        if (value === '-1') {
-            $('#idListaConcessao').show();
-            $('#idListaConcessoesExcluidas').hide();
-            $("#idListaConcessao tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf('') > -1)
-            });
-        } else if (value === '2') {
-            $('#idListaConcessao').hide();
-            $('#idListaConcessoesExcluidas').show();
-            $("#idListaConcessoesExcluidas tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        } else {
-            $('#idListaConcessao').show();
-            $('#idListaConcessoesExcluidas').hide();
-            $("#idListaConcessao tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
+
+});
+</script>
+
+<script>
+function enviando() {
+    var item = '<span class="sr-only">Loading...</span>';
+    $("#idSalvarConcessao").attr("disabled", true);
+    $("#idSalvarConcessao").html(item);
+    $("#idSalvarConcessao").addClass("text-primary");
+    $("#idSalvarConcessao").addClass("spinner-grow");
+    $("#idSalvarConcessao").removeClass("btn-success");
+    $("#concessao_form").submit();
+    $(selector).submit();
+}
+</script>
+
+<script>
+$("#customFile").change(function() {
+    var fullPath = $(this).val();
+    if (fullPath) {
+        var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf(
+            '/'));
+        var filename = fullPath.substring(startIndex);
+        if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+            filename = filename.substring(1);
         }
-
-    });
-    </script>
-
-    <script>
-    function enviando() {
-        var item = '<span class="sr-only">Loading...</span>';
-        $("#idSalvarConcessao").attr("disabled", true);
-        $("#idSalvarConcessao").html(item);
-        $("#idSalvarConcessao").addClass("text-primary");
-        $("#idSalvarConcessao").addClass("spinner-grow");
-        $("#idSalvarConcessao").removeClass("btn-success");
-        $("#concessao_form").submit();
-        $(selector).submit();
     }
-    </script>
-
-    <script>
-    $("#customFile").change(function() {
-        var fullPath = $(this).val();
-        if (fullPath) {
-            var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf(
-                '/'));
-            var filename = fullPath.substring(startIndex);
-            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
-                filename = filename.substring(1);
-            }
-        }
-        $("#fileLabel").html(filename);
-    });
+    $("#fileLabel").html(filename);
+});
 
 
-    // modal_edit_numero
-    // id_ProtocoloConcessao
+// modal_edit_numero
+// id_ProtocoloConcessao
 
-    $("#id_ProtocoloConcessao").on("keypress keyup blur", function(event) {
-        $(this).val($(this).val().replace(/[^\d].+/, ""));
-        if ((event.which < 48 || event.which > 57)) {
-            event.preventDefault();
-        }
+$("#id_ProtocoloConcessao").on("keypress keyup blur", function(event) {
+    $(this).val($(this).val().replace(/[^\d].+/, ""));
+    if ((event.which < 48 || event.which > 57)) {
+        event.preventDefault();
+    }
 
 
-    });
-    $("#modal_edit_numero").on("keypress keyup blur", function(event) {
-        $(this).val($(this).val().replace(/[^\d].+/, ""));
-        if ((event.which < 48 || event.which > 57)) {
-            event.preventDefault();
-        }
-    });
-    </script>
+});
+$("#modal_edit_numero").on("keypress keyup blur", function(event) {
+    $(this).val($(this).val().replace(/[^\d].+/, ""));
+    if ((event.which < 48 || event.which > 57)) {
+        event.preventDefault();
+    }
+});
+</script>
