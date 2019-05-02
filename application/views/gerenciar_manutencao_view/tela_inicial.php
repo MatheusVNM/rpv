@@ -262,14 +262,14 @@ $this->load->view("header2");
                                 class="form-control" id="modal_edit_text" disabled>
 
                         </div>
+                        <div class="form-group col-md-6">
+                            <label for="descricaodamanutencao">Descrição do Problema</label>
+                            <!-- here -->
+                            <input name="manutencao_descricao" type="text" maxlength="6" min="0" max="999999"
+                                class="form-control" id="modal_edit_text" disabled>
+                        </div>
+                    </div>
 
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="descricaodamanutencao">Descrição do Problema</label>
-                        <!-- here -->
-                        <input name="manutencao_descricao" type="text" maxlength="6" min="0" max="999999"
-                            class="form-control" id="modal_edit_text">
-                    </div>
 
             </div>
             </form>
