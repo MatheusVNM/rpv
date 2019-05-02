@@ -28,6 +28,9 @@ $this->load->view("header2");
 
 </div>
 
+
+
+
 <!-- Table init (Ao abrir a tela) -->
 <table class="table table-hover">
     <thead>
@@ -110,14 +113,14 @@ $this->load->view("header2");
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="placadoonibus">Placa</label>
-                            <input name="onibus_placa" type="text" maxlength="6" min="0" max="7" class="form-control"
+                            <input name="onibus_placa" type="text" maxlength="6" min="0" max="7" class="form-control alphanumeric-only"
                                 id="id_create_placa">
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="valordamanutencao">Valor da Manutenção</label>
                             <input name="manutencao_valor" type="number" maxlength="6" min="0" max="9999"
-                                class="form-control" id="id_create_valor">
+                                class="form-control numbers-only" id="id_create_valor">
                         </div>
                     </div>
 
@@ -125,13 +128,13 @@ $this->load->view("header2");
                         <div class="form-group col-md-6">
                             <label for="datainiciomanutencao">Data Inicio</label>
                             <input name="manutencao_dataInicio" type="date" maxlength="6" min="0" max="99999"
-                                class="form-control" id="id_create_dataInicio">
+                                class="form-control numbers-only" id="id_create_dataInicio">
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="datafimmanutencao">Data Finalização</label>
                             <input name="manutencao_dataFim" type="date" maxlength="6" min="0" max="99999"
-                                class="form-control" id="id_create_dataFim">
+                                class="form-control numbers-only" id="id_create_dataFim">
                         </div>
                     </div>
 
@@ -139,7 +142,7 @@ $this->load->view("header2");
                         <div class="form-group col-md-6">
                             <label for="descricaodamanutencao">Descrição do Problema</label>
                             <input name="manutencao_descricao" type="text" maxlength="6" min="0" max="9999"
-                                class="form-control" id="id_create_descricao">
+                                class="form-control alphanumeric-only" id="id_create_descricao">
                         </div>
 
                         <div class="form-group col-md-5">
@@ -160,7 +163,7 @@ $this->load->view("header2");
         </div>
     </div>
 </div>
-<!--  Modal create concessão end -->
+<!--  Modal create manutenção end -->
 
 
 <!-- Modal edit Manutenção Init -->
@@ -180,14 +183,14 @@ $this->load->view("header2");
                             <label for="placadoonibus">Placa</label>
                             <!-- here -->
                             <input name="manutencao_placa" type="text" maxlength="6" min="0" max="999999"
-                                class="form-control" id="modal_edit_text">
+                                class="form-control alphanumeric-only" id="modal_edit_text">
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="valordamanutencao">Valor da Manutenção</label>
                             <!-- here -->
                             <input name="manutencao_valor" type="text" maxlength="6" min="0" max="999999"
-                                class="form-control" id="modal_edit_text">
+                                class="form-control numbers-only" id="modal_edit_text">
 
                         </div>
 
@@ -199,14 +202,14 @@ $this->load->view("header2");
                             <label for="datainiciomanutencao">Data Inicio</label>
                             <!-- here -->
                             <input name="manutencao_dataInicio" type="date" maxlength="6" min="0" max="999999"
-                                class="form-control" id="modal_edit_text">
+                                class="form-control numbers-only" id="modal_edit_text">
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="datafimmanutencao">Data Finalização</label>
                             <!-- here -->
                             <input name="manutencao_dataFim" type="date" maxlength="6" min="0" max="999999"
-                                class="form-control" id="modal_edit_text">
+                                class="form-control numbers-only" id="modal_edit_text">
 
                         </div>
                     </div>
@@ -216,7 +219,7 @@ $this->load->view("header2");
                             <label for="descricaodamanutencao">Descrição do Problema</label>
                             <!-- here -->
                             <input name="manutencao_descricao" type="text" maxlength="6" min="0" max="999999"
-                                class="form-control" id="modal_edit_text">
+                                class="form-control alphanumeric-only" id="modal_edit_text">
                         </div>
 
                         <div class="form-group col-md-5">
@@ -237,144 +240,142 @@ $this->load->view("header2");
             </div>
         </div>
     </div>
-    <!-- Modal edit concessão end -->
+    <!-- Modal edit manutenção end -->
 
 
 
-</div>
-<!-- Modal info Manutenção Init -->
-<div class="modal fade" id="infoManutencaoModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Informações</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body ">
-                <form>
+    <!-- Modal info Manutenção Init -->
+    <div class="modal fade" id="infoManutencaoModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Informações</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body ">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="valordamanutencao">Valor da Manutenção</label>
+                                <!-- here -->
+                                <input name="manutencao_valor" type="text" maxlength="6" min="0" max="999999"
+                                    class="form-control" id="modal_edit_text" disabled>
 
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="valordamanutencao">Valor da Manutenção</label>
-                            <!-- here -->
-                            <input name="manutencao_valor" type="text" maxlength="6" min="0" max="999999"
-                                class="form-control" id="modal_edit_text" disabled>
+                            </div>
 
                         </div>
+                        <div class="form-group col-md-6">
+                            <label for="descricaodamanutencao">Descrição do Problema</label>
+                            <!-- here -->
+                            <input name="manutencao_descricao" type="text" maxlength="6" min="0" max="999999"
+                                class="form-control" id="modal_edit_text">
+                        </div>
 
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="descricaodamanutencao">Descrição do Problema</label>
-                        <!-- here -->
-                        <input name="manutencao_descricao" type="text" maxlength="6" min="0" max="999999"
-                            class="form-control" id="modal_edit_text">
-                    </div>
-
+                </div>
+                </form>
             </div>
-            </form>
         </div>
     </div>
-</div>
 
-<!-- Modal info concessão end -->
-<!-- Script init -->
-<script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.3.1.min.js"); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
+    <!-- Modal info concessão end -->
+    <!-- Script init -->
+    <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.3.1.min.js"); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
 
-<script>
-$(function() {
-    $('[data-toggle="tooltip"]').tooltip();
-    $('.alert').alert();
-});
-</script>
-<!-- Script end -->
+    <script>
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+        $('.alert').alert();
+    });
+    </script>
+    <!-- Script end -->
 
 
-<!-- Body end -->
-<?php
+    <!-- Body end -->
+    <?php
 $this->load->view("footer2.php")
 ?>
 
-<script>
-function editar(id, status, numero) {
-    $('#modal_edit_hidden').val(id)
-    $('#modal_edit_status').val(status);
-    $('#modal_edit_numero').val(numero);
-    $('#editConcessaoModal').modal('show')
+    <script>
+    function editar(id, status, numero) {
+        $('#modal_edit_hidden').val(id)
+        $('#modal_edit_status').val(status);
+        $('#modal_edit_numero').val(numero);
+        $('#editConcessaoModal').modal('show')
 
-}
-</script>
-<script>
-$("#idInputStatus").change(function() {
-    var value = $(this).val().toLowerCase();
-    if (value === '-1') {
-        $('#idListaConcessao').show();
-        $('#idListaConcessoesExcluidas').hide();
-        $("#idListaConcessao tr").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf('') > -1)
-        });
-    } else if (value === '2') {
-        $('#idListaConcessao').hide();
-        $('#idListaConcessoesExcluidas').show();
-        $("#idListaConcessoesExcluidas tr").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-    } else {
-        $('#idListaConcessao').show();
-        $('#idListaConcessoesExcluidas').hide();
-        $("#idListaConcessao tr").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
     }
-
-});
-</script>
-
-<script>
-function enviando() {
-    var item = '<span class="sr-only">Loading...</span>';
-    $("#idSalvarConcessao").attr("disabled", true);
-    $("#idSalvarConcessao").html(item);
-    $("#idSalvarConcessao").addClass("text-primary");
-    $("#idSalvarConcessao").addClass("spinner-grow");
-    $("#idSalvarConcessao").removeClass("btn-success");
-    $("#concessao_form").submit();
-    $(selector).submit();
-}
-</script>
-
-<script>
-$("#customFile").change(function() {
-    var fullPath = $(this).val();
-    if (fullPath) {
-        var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf(
-            '/'));
-        var filename = fullPath.substring(startIndex);
-        if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
-            filename = filename.substring(1);
+    </script>
+    <script>
+    $("#idInputStatus").change(function() {
+        var value = $(this).val().toLowerCase();
+        if (value === '-1') {
+            $('#idListaConcessao').show();
+            $('#idListaConcessoesExcluidas').hide();
+            $("#idListaConcessao tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf('') > -1)
+            });
+        } else if (value === '2') {
+            $('#idListaConcessao').hide();
+            $('#idListaConcessoesExcluidas').show();
+            $("#idListaConcessoesExcluidas tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        } else {
+            $('#idListaConcessao').show();
+            $('#idListaConcessoesExcluidas').hide();
+            $("#idListaConcessao tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
         }
+
+    });
+    </script>
+
+    <script>
+    function enviando() {
+        var item = '<span class="sr-only">Loading...</span>';
+        $("#idSalvarConcessao").attr("disabled", true);
+        $("#idSalvarConcessao").html(item);
+        $("#idSalvarConcessao").addClass("text-primary");
+        $("#idSalvarConcessao").addClass("spinner-grow");
+        $("#idSalvarConcessao").removeClass("btn-success");
+        $("#concessao_form").submit();
+        $(selector).submit();
     }
-    $("#fileLabel").html(filename);
-});
+    </script>
+
+    <script>
+    $("#customFile").change(function() {
+        var fullPath = $(this).val();
+        if (fullPath) {
+            var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf(
+                '/'));
+            var filename = fullPath.substring(startIndex);
+            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                filename = filename.substring(1);
+            }
+        }
+        $("#fileLabel").html(filename);
+    });
 
 
-// modal_edit_numero
-// id_ProtocoloConcessao
+    // modal_edit_numero
+    // id_ProtocoloConcessao
 
-$("#id_ProtocoloConcessao").on("keypress keyup blur", function(event) {
-    $(this).val($(this).val().replace(/[^\d].+/, ""));
-    if ((event.which < 48 || event.which > 57)) {
-        event.preventDefault();
-    }
+    $("#id_ProtocoloConcessao").on("keypress keyup blur", function(event) {
+        $(this).val($(this).val().replace(/[^\d].+/, ""));
+        if ((event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
 
 
-});
-$("#modal_edit_numero").on("keypress keyup blur", function(event) {
-    $(this).val($(this).val().replace(/[^\d].+/, ""));
-    if ((event.which < 48 || event.which > 57)) {
-        event.preventDefault();
-    }
-});
-</script>
+    });
+    $("#modal_edit_numero").on("keypress keyup blur", function(event) {
+        $(this).val($(this).val().replace(/[^\d].+/, ""));
+        if ((event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
+    });
+    </script>
