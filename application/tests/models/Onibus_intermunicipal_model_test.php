@@ -45,4 +45,17 @@ class Onibus_intermunicipal_model_test extends TestCase
         }
     }
 
+    public function testInsertionOnibusSucess(){
+        $data = $this->onibus->insertOnibus("ABC-2314", 2930, "29390", 2019, "x123456DZ912T45K7", 30, "Mercedez Benz",
+            30, "Matheus Marques", "Documento_Veiculo_URL", true, 300, true, "sadas", 0, 1, 1);
+        $this->assertTrue($data['success']);
+        Console.log($data);
+    }
+
+    public function testInsertionOnibusError(){
+
+
+    }
+
+
 }
