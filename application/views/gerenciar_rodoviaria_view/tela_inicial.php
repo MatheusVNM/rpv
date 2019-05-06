@@ -565,8 +565,7 @@ $this->load->view("footer2.php")
             },
             complete: function() {
                 setTimeout(closeLoadingModal, 500)
-
-            };
+            }
         });
         return false;
     });
@@ -684,8 +683,6 @@ $this->load->view("footer2.php")
 <script>
     $("#modal_edit_estado").change(function() {
         var str = $(this).children("option:selected").val();
-
-        // alert('estado selected');
         $.ajax({
             url: '<?= base_url("ajax/cidades/por_estado") ?>',
             type: 'POST',
