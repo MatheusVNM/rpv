@@ -58,7 +58,7 @@ class Rodoviaria_model extends CI_Model
     {
         $this->db->select("count(rodoviaria_id) as quantidade");
 
-        $result = $this->db->get_where("rodoviaria", array('rodoviaria_cidade_id', $cidade_id));
+        $result = $this->db->get_where("rodoviaria", array('rodoviaria_cidade_id' => $cidade_id));
         if (!$result) {
             $retorno['success'] = false;
             $retorno['error'] = $this->db->error();
