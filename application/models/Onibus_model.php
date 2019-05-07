@@ -9,7 +9,7 @@
 class Onibus_model extends CI_Model
 {
 
-    public function getOnibus()
+    public function getOnibusIntermunicipal()
     {
 
         $this->db->select('onibus.*, categoriaonibus.categoriaonibus_nome, categoriaonibus.categoriaonibus_precokm, cidade.cidade_nome, estado.estado_uf');
@@ -17,6 +17,7 @@ class Onibus_model extends CI_Model
         $this->db->join('cidade', 'rodoviaria.rodoviaria_cidade_id = cidade.cidade_id');
         $this->db->join('estado', 'cidade.cidade_estado = estado.estado_id');
         $this->db->from('onibus');
+        $this->db->where('onibus.onibus_is_municipal', 0);
         $result = $this->db->get();
         if (!$result) {
             $retorno['success'] = false;
@@ -39,7 +40,7 @@ class Onibus_model extends CI_Model
     // $this->db->select('onibus.*, categoriaonibus.categoriaonibus_nome, categoriaonibus.categoriaonibus_precokm categoriaonibus.categoriaonibus_id');
     // $this->db->join('categoriaonibus', 'onibus.onibus_categoria_intermunicipal= categoriaonibus.categoriaonibus_id');
     // $this->db->from('onibus');
-    public function getOnibusEspecifico($id)
+    public function getOnibusIntermunicipalEspecifico($id)
     {
         $this->db->select('onibus.*, categoriaonibus.categoriaonibus_nome, categoriaonibus.categoriaonibus_precokm categoriaonibus.categoriaonibus_id');
         $this->db->join('categoriaonibus', 'onibus.onibus_categoria_intermunicipal= categoriaonibus.categoriaonibus_id');
@@ -57,12 +58,12 @@ class Onibus_model extends CI_Model
             $retorno['result'] = $result->row_array();
             return $retorno;
         } else {
-            $retorno['success'] = false;    
+            $retorno['success'] = false;
             return $retorno;
         }
     }
 
-    public function insertOnibus(
+    public function insertOnibusIntermunicipal(
         $onibus_placa,
         $onibus_numero,
         $onibus_numero_antt,
@@ -78,7 +79,7 @@ class Onibus_model extends CI_Model
         $onibus_is_ativo,
         $onibus_motivo_inatividade,
         $onibus_em_manuntencao,
-        $onibus_categoria_intermunicipal ,
+        $onibus_categoria_intermunicipal,
         $onibus_cidade
     )
     {
@@ -98,7 +99,7 @@ class Onibus_model extends CI_Model
             'onibus_quilometragem' => $onibus_quilometragem,
             'onibus_is_ativo' => $onibus_is_ativo,
             'onibus_motivo_inatividade' => $onibus_motivo_inatividade,
-            'onibus_em_manuntencao'=> $onibus_em_manuntencao,
+            'onibus_em_manuntencao' => $onibus_em_manuntencao,
             'onibus_is_municipal' => 0,
             'onibus_categoria_intermunicipal' => $onibus_categoria_intermunicipal,
             'onibus_cidade' => $onibus_cidade,
@@ -111,7 +112,7 @@ class Onibus_model extends CI_Model
 
     }
 
-    public function updateOnibus(
+    public function updateOnibusIntermunicipal(
         $onibus_id,
         $onibus_placa,
         $onibus_numero,
@@ -147,7 +148,7 @@ class Onibus_model extends CI_Model
             'onibus_quilometragem' => $onibus_quilometragem,
             'onibus_is_ativo' => $onibus_is_ativo,
             'onibus_motivo_inatividade' => $onibus_motivo_inatividade,
-            'onibus_em_manuntencao'=> $onibus_em_manuntencao,
+            'onibus_em_manuntencao' => $onibus_em_manuntencao,
             'onibus_is_municipal' => 0,
             'onibus_categoria_intermunicipal' => $onibus_categoria_intermunicipal,
             'onibus_cidade' => $onibus_cidade,
@@ -161,5 +162,21 @@ class Onibus_model extends CI_Model
 
     }
 
+    public function getOnibusMunicipal()
+    {
 
+    }
+
+    public function getOnibusMunicipalEspecifico()
+    {
+
+    }
+
+    public function insertOnibusMunicial()
+    {
+    }
+
+    public function updateOnibusMunicipal()
+    {
+    }
 }
