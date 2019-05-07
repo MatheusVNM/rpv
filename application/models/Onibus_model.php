@@ -6,14 +6,16 @@
  * Time: 12:14 PM
  */
 
-class Onibus_intermunicipal_model extends CI_Model
+class Onibus_model extends CI_Model
 {
 
     public function getOnibus()
     {
 
-        $this->db->select('onibus.*, categoriaonibus.categoriaonibus_nome, categoriaonibus.categoriaonibus_precokm, categoriaonibus.categoriaonibus_id');
+        $this->db->select('onibus.*, categoriaonibus.categoriaonibus_nome, categoriaonibus.categoriaonibus_precokm, cidade.cidade_nome, estado.estado_uf');
         $this->db->join('categoriaonibus', 'onibus.onibus_categoria_intermunicipal = categoriaonibus.categoriaonibus_id');
+        $this->db->join('cidade', 'rodoviaria.rodoviaria_cidade_id = cidade.cidade_id');
+        $this->db->join('estado', 'cidade.cidade_estado = estado.estado_id');
         $this->db->from('onibus');
         $result = $this->db->get();
         if (!$result) {
@@ -27,12 +29,16 @@ class Onibus_intermunicipal_model extends CI_Model
             return $retorno;
         } else {
             $retorno['success'] = false;
+
             return $retorno;
         }
 
 
     }
 
+    // $this->db->select('onibus.*, categoriaonibus.categoriaonibus_nome, categoriaonibus.categoriaonibus_precokm categoriaonibus.categoriaonibus_id');
+    // $this->db->join('categoriaonibus', 'onibus.onibus_categoria_intermunicipal= categoriaonibus.categoriaonibus_id');
+    // $this->db->from('onibus');
     public function getOnibusEspecifico($id)
     {
         $this->db->select('onibus.*, categoriaonibus.categoriaonibus_nome, categoriaonibus.categoriaonibus_precokm categoriaonibus.categoriaonibus_id');
@@ -51,7 +57,7 @@ class Onibus_intermunicipal_model extends CI_Model
             $retorno['result'] = $result->row_array();
             return $retorno;
         } else {
-            $retorno['success'] = false;
+            $retorno['success'] = false;    
             return $retorno;
         }
     }

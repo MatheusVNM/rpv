@@ -9,13 +9,13 @@
 class Categoria_onibus_model extends CI_Model
 {
 
-    public function getcategoriaonibus()
+    public function getCategoriaOnibus()
     {
         $query = $this->db->get('categoriaonibus');
         return $query->result_array();
     }
 
-    public function getcategoriaonibusEspecifica($id)
+    public function getCategoriaOnibusEspecifica($id)
     {
         $query = $this->db->get_where('categoriaonibus', array('categoriaonibus_id' => $id));
         return $query->result_array();
