@@ -164,13 +164,55 @@ class Onibus_model extends CI_Model
 
     public function getOnibusMunicipal()
     {
+        $this->db->select('onibus.*, cidade.cidade_nome, estado.estado_uf');
+        $this->db->join('cidade', 'rodoviaria.rodoviaria_cidade_id = cidade.cidade_id');
+        $this->db->join('estado', 'cidade.cidade_estado = estado.estado_id');
+        $this->db->from('onibus');
+        $this->db->where('onibus.onibus_is_municipal', 1);
+        $result = $this->db->get();
+        if (!$result) {
+            $retorno['success'] = false;
+            $retorno['error'] = $this->db->error();
+            return $retorno;
+        }
+        if ($result->num_rows() > 0) {
+            $retorno['success'] = true;
+            $retorno['result'] = $result->result_array();
+            return $retorno;
+        } else {
+            $retorno['success'] = false;
+
+            return $retorno;
+        }
 
     }
 
-    public function getOnibusMunicipalEspecifico()
+    public function getOnibusMunicipalEspecifico($id)
     {
+        $this->db->select('onibus.*, cidade.cidade_nome, estado.estado_uf');
+        $this->db->join('cidade', 'rodoviaria.rodoviaria_cidade_id = cidade.cidade_id');
+        $this->db->join('estado', 'cidade.cidade_estado = estado.estado_id');
+        $this->db->from('onibus');
+        $this->db->where('onibus.onibus_is_municipal', 1);
+        $this->db->where('onibus.onibus_is_municipal', $id);
+        $result = $this->db->get();
+        if (!$result) {
+            $retorno['success'] = false;
+            $retorno['error'] = $this->db->error();
+            return $retorno;
+        }
+        if ($result->num_rows() > 0) {
+            $retorno['success'] = true;
+            $retorno['result'] = $result->result_array();
+            return $retorno;
+        } else {
+            $retorno['success'] = false;
+
+            return $retorno;
+        }
 
     }
+
 
     public function insertOnibusMunicipal(
         $onibus_placa,
@@ -211,9 +253,57 @@ class Onibus_model extends CI_Model
             'onibus_cidade' => $onibus_cidade,
         );
 
+        $result['success'] = $this->db->insert('onibus', $data);
+        if (!$result['success'])
+            $result['error'] = $this->db->error();
+        return $result;
+
     }
 
-    public function updateOnibusMunicipal()
+    public function updateOnibusMunicipal(
+        $onibus_id,
+        $onibus_placa,
+        $onibus_numero,
+        $onibus_numero_antt,
+        $onibus_ano_fab,
+        $onibus_num_chassis,
+        $onibus_num_lugares,
+        $onibus_marca,
+        $onibus_potencial_motor,
+        $onibus_propriedade_veiculo,
+        $onibus_documento_veiculo,
+        $onibus_ar_condicionado,
+        $onibus_quilometragem,
+        $onibus_is_ativo,
+        $onibus_motivo_inatividade,
+        $onibus_em_manuntencao,
+        $onibus_cidade
+    )
     {
+        $data = array(
+            'onibus_placa' => $onibus_placa,
+            'onibus_numero' => $onibus_numero,
+            'onibus_numero_antt' => $onibus_numero_antt,
+            'onibus_ano_fab' => $onibus_ano_fab,
+            'onibus_num_chassis' => $onibus_num_chassis,
+            'onibus_num_lugares' => $onibus_num_lugares,
+            'onibus_marca' => $onibus_marca,
+            'onibus_potencial_motor' => $onibus_potencial_motor,
+            'onibus_propriedade_veiculo' => $onibus_propriedade_veiculo,
+            'onibus_documento_veiculo' => $onibus_documento_veiculo,
+            'onibus_ar_condicionado' => $onibus_ar_condicionado,
+            'onibus_quilometragem' => $onibus_quilometragem,
+            'onibus_is_ativo' => $onibus_is_ativo,
+            'onibus_motivo_inatividade' => $onibus_motivo_inatividade,
+            'onibus_em_manuntencao' => $onibus_em_manuntencao,
+            'onibus_is_municipal' => 0,
+            'onibus_cidade' => $onibus_cidade,
+        );
+        $result['success'] = $this->db->update('onibus', $data, array('onibus_id' => $onibus_id));
+        if (!$result['success'])
+            $result['error'] = $this->db->error();
+
+
+        return $result;
     }
 }

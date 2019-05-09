@@ -63,6 +63,7 @@ class Onibus_model_test extends TestCase
 
     public function testGetPlacaOnibusMunicipal()
     {
+        $this->markTestIncomplete();
         $data = $this->onibus->getOnibusMunicipal();
         if ($data) {
             for ($i = 0; $i < sizeof($data['result']); $i++) {
@@ -74,13 +75,14 @@ class Onibus_model_test extends TestCase
     }
 
     public function testInsertionOnibusMunicipalError()
-    {
+    {   $this->markTestIncomplete();
         $data = $this->onibus->insertOnibusMunicipal("CBA-414", 2930, "29390", 2019, "x123456DZ912T45K7", 30, "Mercedez Benz",
             30, "LCS Marques", "Documento_Veiculo_URL", false, 300, true, null, 0, 10000000000000000000);
         $this->assertFalse($data['success']);
     }
 
     public function updateOnibusMunicipalError(){
+        $this->markTestIncomplete();
         $data = $this->onibus->updateOnibusMunicipal(-1, "CBA-414", 2930, "29390", 2019, "x123456DZ912T45K7", 30, "Mercedez Benz",
             30, "LCS Marques", "Documento_Veiculo_URL", false, 300, true, null, 0, 10000000000000000000);
         $this->assertFalse($data['success']);
