@@ -90,7 +90,7 @@ $this->load->view("header2");
                     <button type="button" class="btn btn-danger btn-sm" title="Ocultar da lista" id="id_opcao_ocultar" data-toggle="tooltip" data-placement="top" target="_blank">
                         <span class="hvr-icon fa fa-trash mr-1"></span>Ocultar
                     </button>
-                    <button type="button" class="btn btn-primary btn-sm" title="Mais informações sobre o veíuclo." id="id_opcao_visualizar" data-toggle="tooltip" data-placement="top">
+                    <button type="button" class="btn btn-primary btn-sm" title="Mais informações sobre o veíuclo." id="id_opcao_visualizar" data-toggle="tooltip" data-placement="top" data-target="#id_modal_edit_veiculo">
                         <span class="hvr-icon fa fa-info mr-1"></span>Info
                     </button>
                 </td>
