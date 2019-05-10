@@ -126,3 +126,5 @@ $route['dashboard/categorias/passageiros/editar'] = 'gerenciar_categoria_passage
 
 $route['dashboard/rodoviarias'] = 'gerenciar_rodoviaria_controller';
 // cadastrarTarifaView
+
+$route['dashboard/manutencoes'] = 'gerenciar_manutencoes_controller';

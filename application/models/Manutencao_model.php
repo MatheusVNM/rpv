@@ -15,7 +15,7 @@ class Manutencao_model extends CI_Model
         $this->db->join('cidade', ' cidade.cidade_id = onibus.onibus_cidade');
         $this->db->join('estado', 'estado.estado_id = cidade.cidade_estado');
         $this->db->from('manutencao');
-
+        $result = $this->db->get();
         if (!$result) {
             $retorno['success'] = false;
             $retorno['error'] = $this->db->error();
@@ -75,7 +75,7 @@ class Manutencao_model extends CI_Model
             'manutencao_onibus_id' => $manutencao_onibus_id
         );
         $result['result'] = $this->db->insert('onibus', $data);
-        if (!result['result'])
+        if (!$result['result'])
             $result['error'] = $this->db->error();
         return $result;
     }
@@ -101,7 +101,7 @@ class Manutencao_model extends CI_Model
             'manutencao_onibus_id' => $manutencao_onibus_id
         );
         $result['result'] = $this->db->update('onibus', $data, array('manutencao_id' => $manutencao_id));
-        if (!result['result'])
+        if (!$result['result'])
             $result['error'] = $this->db->error();
         return $result;
     }

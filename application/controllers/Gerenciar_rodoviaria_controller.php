@@ -24,7 +24,6 @@ class Gerenciar_rodoviaria_controller extends CI_Controller
         $data['rodoviarias'] = $this->rodoviaria->getRodoviarias()['result'];
         $data['estados'] = $this->estados->getEstados()['result'];
         $data['cidades'] = $this->cidades->getCidades()['result'];
-        // print_r($data['rodoviarias']);
         $this->load->view('gerenciar_rodoviaria_view/tela_inicial', $data);
     }
 
