@@ -44,7 +44,7 @@ if ($this->session->userdata('logged_in') !== true || $this->session->userdata('
 
 <body>
 
-<div id="loading" class="top-header position-fixed h-100 w-100 d-flex align-center justify-content-center" style="z-index:10000; height: 100px">
+    <div id="loading" class="top-header position-fixed h-100 w-100 d-flex align-center justify-content-center" style="z-index:10000; height: 100px">
         <div class=" my-auto mx-auto d-flex flex-column align-center justify-content-center text-light font-weight-bold">
 
             <div class="loading_screen_main">
@@ -66,12 +66,12 @@ if ($this->session->userdata('logged_in') !== true || $this->session->userdata('
     </div>
     <script>
         $(window).on("load", function() {
-                    $("#loading").toggle("slow", function() {
-                        $("#loading").toggleClass("d-flex")
+            $("#loading").toggle("slow", function() {
+                $("#loading").toggleClass("d-flex")
 
-                    })
-                    console.log("done");
-                });
+            })
+            console.log("done");
+        });
     </script>
 
 
@@ -82,7 +82,7 @@ if ($this->session->userdata('logged_in') !== true || $this->session->userdata('
         <div class="navbar-dark border-right sidebar shown" id="sidebar-wrapper">
             <div class="sidebar-heading font-weight-bold d-flex justify-content-center align-center">
                 <div class="align-self-center">
-                <img src="<?php echo base_url("assets/images/title-text.svg"); ?>" width=150 />
+                    <img src="<?php echo base_url("assets/images/title-text.svg"); ?>" width=150 />
                 </div>
             </div>
             <div class="list-group list-group-flush">
@@ -95,13 +95,13 @@ if ($this->session->userdata('logged_in') !== true || $this->session->userdata('
                 <a href="<?= site_url('dashboard/') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-wrench mr-1"></i> Gerenciar Manutenções</a>
                 <?php elseif ($this->session->userdata('level') === 'admlocal') : ?>
 
-                <a href="<?= site_url('dashboard/tarifas') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-money mr-1"></i> Gerenciar Tarifas</a>
-                <a href="<?= site_url('dashboard/trajetos/urbanos') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-road mr-1"></i> Gerenciar Trajetos Urbanos</a>
-                <a href="<?= site_url('dashboard/paradas') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-hand-paper-o mr-1"></i> Gerenciar Paradas</a>
-                <a href="<?= site_url('dashboard/concessoes') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-paper-plane-o mr-1"></i> Gerenciar Concessões de Trajetos</a>
+                    <a href="<?= site_url('dashboard/tarifas') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-money mr-1"></i> Gerenciar Tarifas</a>
+                    <a href="<?= site_url('dashboard/trajetos/urbanos') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-road mr-1"></i> Gerenciar Trajetos Urbanos</a>
+                    <a href="<?= site_url('dashboard/paradas') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-hand-paper-o mr-1"></i> Gerenciar Paradas</a>
+                    <a href="<?= site_url('dashboard/concessoes') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-paper-plane-o mr-1"></i> Gerenciar Concessões de Trajetos</a>
 
                 <?php elseif ($this->session->userdata('level') === 'secretario') : ?>
-                <a href="#" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-bus mr-1"></i> Gerenciar Registro de Frotas</a>
+                    <a href="<?= site_url('dashboard/frotas') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-bus mr-1"></i> Gerenciar Registro de Frotas</a>
 
                 <?php endif; ?>
 

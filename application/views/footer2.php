@@ -40,17 +40,101 @@ $this->load->helper('url');
         $("#wrapper").toggleClass("toggled");
     });
 
-    $('.dual-collapse').on('shown.bs.collapse', function (e) {
-       $(this).parent().find("#navbar-collapse-icon").removeClass("fa-arrow-circle-down").addClass("fa-arrow-circle-up");
+    $('.dual-collapse').on('shown.bs.collapse', function(e) {
+        $(this).parent().find("#navbar-collapse-icon").removeClass("fa-arrow-circle-down").addClass("fa-arrow-circle-up");
     });
 
-    $('.dual-collapse').on('hidden.bs.collapse', function () {
-       $(this).parent().find("#navbar-collapse-icon").removeClass("fa-arrow-circle-up").addClass("fa-arrow-circle-down");
+    $('.dual-collapse').on('hidden.bs.collapse', function() {
+        $(this).parent().find("#navbar-collapse-icon").removeClass("fa-arrow-circle-up").addClass("fa-arrow-circle-down");
+    });
+</script>
+
+<!-- Funções para validar os campos de  -->
+<script>
+    function escapeRegExp(str) {
+        return str.replace(/([^a-zA-Z0-9\x20ÀÁÂÃÄÅàáâãÒÓÔÕòóôõÈÉÊèéêëÇçÌÍÎÏìíîïÙÚÛùúûÑñ-])/g, "");
+    }
+
+    $('.alphanumeric-only, .letters-only, .numbers-only').bind('keyup blur', function() {
+        $(this).val(escapeRegExp($(this).val()))
+    })
+    $('.alphanumeric-only').bind('keypress blur', function(event) {
+        var keyCode = event.keyCode;
+        if (keyCode == 8 || (keyCode >= 35 && keyCode <= 40) || keyCode == 116 || keyCode == 9 || keyCode == 8) {
+            return;
+        }
+        var regex = /[^a-zA-Z0-9\x20ÀÁÂÃÄÅàáâãÒÓÔÕòóôõÈÉÊèéêëÇçÌÍÎÏìíîïÙÚÛùúûÑñ-]/;
+        $(this).attr("pattern", "[a-zA-Z0-9\x20ÀÁÂÃÄÅàáâãÒÓÔÕòóôõÈÉÊèéêëÇçÌÍÎÏìíîïÙÚÛùúûÑñ-]+")
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
     });
 
+    $('.letters-only').bind('keypress blur', function(event) {
+        var keyCode = event.keyCode;
+        if (keyCode == 8 || (keyCode >= 35 && keyCode <= 40) || keyCode == 116 || keyCode == 9 || keyCode == 8) {
+            return;
+        }
+        var regex = /[^a-zA-Z\x20ÀÁÂÃÄÅàáâãÒÓÔÕòóôõÈÉÊèéêëÇçÌÍÎÏìíîïÙÚÛùúûÑñ-]/;
+        $(this).attr("pattern", "[a-zA-Z\x20ÀÁÂÃÄÅàáâãÒÓÔÕòóôõÈÉÊèéêëÇçÌÍÎÏìíîïÙÚÛùúûÑñ-]+")
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
+    });
+
+    $('.email-only').bind('keypress blur', function(event) {
+        var keyCode = event.keyCode;
+        if (keyCode == 8 || (keyCode >= 35 && keyCode <= 40) || keyCode == 116 || keyCode == 9 || keyCode == 8) {
+            return;
+        }
+        var regex = /[^a-zA-Z0-9_@.-]/;
+        $(this).attr("pattern", "[a-zA-Z0-9_@.-]+")
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
+    });
+    $('.numbers-only').bind('keypress blur', function(event) {
+        var keyCode = event.keyCode;
+        if (keyCode == 8 || (keyCode >= 35 && keyCode <= 40) || keyCode == 116 || keyCode == 9 || keyCode == 8) {
+            return;
+        }
+        var regex = /[^0-9]/;
+        $(this).attr("pattern", "[0-9]+")
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
+    });
+</script>
+
+<!-- Função para deixar vermelho os campos que estiverem vazios -->
+<script>
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
 </script>
 
 
+<!-- Funções para abrir e fechar o modal de carregamento -->
 <script>
     function showLoadingModal(message) {
         $("#loading-modal-txt").html(message)
@@ -68,4 +152,4 @@ $this->load->helper('url');
 </script>
 </body>
 
-</html> 
+</html>

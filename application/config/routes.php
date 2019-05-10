@@ -123,6 +123,7 @@ $route['dashboard/categorias/passageiros/editar'] = 'gerenciar_categoria_passage
 // $route['dashboard/tarifas/listar'] = 'gerenciar_tarifa_controller/listartarifasview';
 // $route['dashboard/tarifas/listar'] = 'gerenciar_tarifa_controller/listartarifasview';
 
-
 $route['dashboard/rodoviarias'] = 'gerenciar_rodoviaria_controller';
 // cadastrarTarifaView
+
+$route['dashboard/frotas']  = 'gerenciar_frota_controller';
