@@ -10,55 +10,50 @@ $this->load->view("header2");
 <?= $this->session->flashdata('error'); ?>
 <?= $this->session->flashdata('success'); ?>
 <div id="page_message"></div>
-<button type="button" class="btn btn-success float-right mr-2 my-2" data-toggle="modal"
-        data-target="#modal_create_rodoviaria" title="Adicione uma nova rodoviaria.">
+<button type="button" class="btn btn-success float-right mr-2 my-2" data-toggle="modal" data-target="#modal_create_rodoviaria" title="Adicione uma nova rodoviaria.">
     <i class="fa fa-plus-circle" data-toggle="tooltip" data-placement="bottom"> </i> Adicionar rodoviária
 </button>
 
 <!-- Table init (Ao abrir a tela) -->
 <table class="table table-hover">
     <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nome</th>
-        <th scope="col">Cidade</th>
-        <th scope="col">UF</th>
-        <th scope="col">Email</th>
-        <th scope="col">Telefone</th>
-        <th scope="col">Opções</th>
-    </tr>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Cidade</th>
+            <th scope="col">UF</th>
+            <th scope="col">Email</th>
+            <th scope="col">Telefone</th>
+            <th scope="col">Opções</th>
+        </tr>
     </thead>
     <!--Body concessões-->
     <tbody id="rodoviaria_tabela">
 
-    <?php if ($rodoviarias) : ?>
-        <?php foreach ($rodoviarias as $row) : ?>
+        <?php if ($rodoviarias) : ?>
+            <?php foreach ($rodoviarias as $row) : ?>
+                <tr>
+                    <th scope="row"><?= $row['rodoviaria_codigo'] ?></th>
+                    <td><?= $row['rodoviaria_nome'] ?></td>
+                    <td><?= $row['rodoviaria_cidade'] ?></td>
+                    <td><?= $row['rodoviaria_uf'] ?></td>
+                    <td><?= $row['rodoviaria_email'] ?></td>
+                    <td><?= $row['rodoviaria_telefone'] ?></td>
+                    <td>
+                        <button type="button" onclick="editar(<?= $row['rodoviaria_id'] ?>)" class="btn my-1 btn-default btn-sm" id="opcoesConcessaoEditar" data-toggle="tooltip" data-placement="top" title="Editar rodoviaria" data-target="#editRodoviariaModal">
+                            <span class="hvr-icon fa fa-edit mr-1"></span> Editar
+                        </button>
+                        <button type="submit" onclick="info(<?= $row['rodoviaria_id'] ?>)" class="btn my-1 btn-primary btn-sm" title="Informacao Adicional." data-toggle="tooltip" data-placement="top" data-target="#infoRodoviariaModal">
+                            <span class="hvr-icon fa fa-eye mr-1"></span>Info
+                        </button>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        <?php else : ?>
             <tr>
-                <th scope="row"><?= $row['rodoviaria_codigo'] ?></th>
-                <td><?= $row['rodoviaria_nome'] ?></td>
-                <td><?= $row['rodoviaria_cidade'] ?></td>
-                <td><?= $row['rodoviaria_uf'] ?></td>
-                <td><?= $row['rodoviaria_email'] ?></td>
-                <td><?= $row['rodoviaria_telefone'] ?></td>
-                <td>
-                    <button type="button" onclick="editar(<?= $row['rodoviaria_id'] ?>)"
-                            class="btn my-1 btn-default btn-sm" id="opcoesConcessaoEditar" data-toggle="tooltip"
-                            data-placement="top" title="Editar rodoviaria" data-target="#editRodoviariaModal">
-                        <span class="hvr-icon fa fa-edit mr-1"></span> Editar
-                    </button>
-                    <button type="submit" onclick="info(<?= $row['rodoviaria_id'] ?>)"
-                            class="btn my-1 btn-primary btn-sm" title="Informacao Adicional." data-toggle="tooltip"
-                            data-placement="top" data-target="#infoRodoviariaModal">
-                        <span class="hvr-icon fa fa-eye mr-1"></span>Info
-                    </button>
-                </td>
+                <td colspan=100 class="text-bold text-center"> Nenhuma Rodoviaria Encontrada</td>
             </tr>
-        <?php endforeach; ?>
-    <?php else : ?>
-        <tr>
-            <td colspan=100 class="text-bold text-center"> Nenhuma Rodoviaria Encontrada</td>
-        </tr>
-    <?php endif; ?>
+        <?php endif; ?>
 
 
     </tbody>
@@ -73,21 +68,19 @@ $this->load->view("header2");
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel"></h5>Inserir Dados da Rodoviária.</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" id="modal_create_close" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <form id="modal_create_form" class="needs-validation container" novalidate>
                 <div class="modal-body">
                     <div id="modal_create_warning">
-
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label for="rodoviaria_rua">Nome</label>
                             <!-- here -->
-                            <input name="rodoviaria_nome" value="" type="text" maxlength="400" min="0"
-                                   class="form-control alphanumeric-only" id="modal_create_end" required>
+                            <input name="rodoviaria_nome" value="" type="text" maxlength="100" min="0" class="form-control alphanumeric-only" id="modal_create_nome" required>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
@@ -95,15 +88,13 @@ $this->load->view("header2");
                         <div class="form-group col-md-9">
                             <label for="rodoviaria_rua">Rua</label>
                             <!-- here -->
-                            <input name="rodoviaria_rua" value="" type="text" maxlength="400" min="0"
-                                   class="form-control alphanumeric-only" id="modal_create_end" required>
+                            <input name="rodoviaria_rua" value="" type="text" maxlength="50" min="0" class="form-control alphanumeric-only" id="modal_create_end" required>
                             <div class="invalid-feedback"></div>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="cidadeRodoviaria">Número</label>
                             <!-- here -->
-                            <input name="rodoviaria_numero" type="number" class="form-control numbers-only"
-                                   id="modal_create_numero " required>
+                            <input name="rodoviaria_numero" class="form-control numbers-only" min=0 max=99999 maxlength="5" id="modal_create_numero" required>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
@@ -111,15 +102,13 @@ $this->load->view("header2");
                         <div class="form-group col-md-6">
                             <label for="telefoneRodoviaria" type="">Telefone</label>
                             <!-- here -->
-                            <input name="rodoviaria_telefone" type="text" maxlength="11" min="0" max="999999999"
-                                   class="form-control numbers-only" id="modal_create_telefone" required>
+                            <input name="rodoviaria_telefone" type="text" maxlength="12" min="0" max="999999999" class="form-control numbers-only" id="modal_create_telefone" required>
                             <div class="invalid-feedback"></div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="emailRodoviaria" type="email">Email</label>
                             <!-- here -->
-                            <input name="rodoviaria_email" type="text" class="form-control email-only"
-                                   id="modal_create_email" required>
+                            <input name="rodoviaria_email" type="text" maxlength="50" class="form-control email-only" id="modal_create_email" required>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
@@ -127,27 +116,21 @@ $this->load->view("header2");
                         <div class="form-group col-md-6">
                             <label for="cepRodoviaria">CEP</label>
                             <!-- here -->
-                            <input name="rodoviaria_cep" type="text" mask="00000-000" maxlength="8" min="0"
-                                   max="99999999" class="form-control numbers-only" id="modal_create_cep" required>
+                            <input name="rodoviaria_cep" type="text" maxlength="8" min="0" max="99999999" class="form-control numbers-only" id="modal_create_cep" required>
                             <div class="invalid-feedback"></div>
                         </div>
-
-
                     </div>
-
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="bairroRodoviaria">Bairro</label>
                             <!-- here -->
-                            <input name="rodoviaria_bairro" type="text" class="form-control alphanumeric-only"
-                                   id="modal_create_bairro" required>
+                            <input name="rodoviaria_bairro" maxlength="100" type="text" class="form-control alphanumeric-only" id="modal_create_bairro" required>
                             <div class="invalid-feedback"></div>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="boxRodoviaria">Box</label>
                             <!-- here -->
-                            <input name="rodoviaria_qntdbox" type="number" maxlength="3" min="0" max="999"
-                                   class="form-control numbers-only" id="modal_add_qntdBox" required>
+                            <input name="rodoviaria_qntdbox" maxlength="3" min="0" max="999" class="form-control numbers-only" id="modal_add_qntdBox" required>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
@@ -174,8 +157,7 @@ $this->load->view("header2");
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="submit" class="btn btn-success" id="modal_create_salvar" data-toggle="modal"
-                            data-target="#modal_confirmacao">Salvar
+                    <button type="submit" class="btn btn-success" id="modal_create_salvar" data-toggle="modal" data-target="#modal_confirmacao">Salvar
                     </button>
                 </div>
             </form>
@@ -198,7 +180,8 @@ $this->load->view("header2");
                 </button>
             </div>
             <form id="modal_edit_form" class="needs-validation container" novalidate>
-                <input type="hidden" name="rodoviaria_id" id="modal_edit_id" value=""/>
+                <input type="hidden" name="rodoviaria_id" id="modal_edit_id" value="" />
+
                 <div class="modal-body">
                     <div id="modal_edit_warning">
 
@@ -207,8 +190,7 @@ $this->load->view("header2");
                         <div class="form-group col-md-12">
                             <label for="rodoviaria_rua">Nome</label>
                             <!-- here -->
-                            <input name="rodoviaria_nome" value="" type="text" maxlength="400" min="0"
-                                   class="form-control alphanumeric-only" id="modal_edit_end" required>
+                            <input name="rodoviaria_nome" value="" type="text" maxlength="100" min="0" class="form-control alphanumeric-only" id="modal_edit_nome" required>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
@@ -216,15 +198,13 @@ $this->load->view("header2");
                         <div class="form-group col-md-9">
                             <label for="rodoviaria_rua">Rua</label>
                             <!-- here -->
-                            <input name="rodoviaria_rua" value="" type="text" maxlength="400" min="0"
-                                   class="form-control alphanumeric-only" id="modal_edit_end" required>
+                            <input name="rodoviaria_rua" value="" type="text" maxlength="50" min="0" class="form-control alphanumeric-only" id="modal_edit_end" required>
                             <div class="invalid-feedback"></div>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="cidadeRodoviaria">Número</label>
                             <!-- here -->
-                            <input name="rodoviaria_numero" type="number" class="form-control  numbers-only"
-                                   id="modal_edit_numero" required>
+                            <input name="rodoviaria_numero" class="form-control numbers-only" min=0 max=99999 maxlength="5" id="modal_edit_numero" required>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
@@ -232,15 +212,13 @@ $this->load->view("header2");
                         <div class="form-group col-md-6">
                             <label for="telefoneRodoviaria" type="">Telefone</label>
                             <!-- here -->
-                            <input name="rodoviaria_telefone" type="text" maxlength="11" min="0" max="999999999"
-                                   class="form-control numbers-only" id="modal_edit_telefone" required>
+                            <input name="rodoviaria_telefone" type="text" maxlength="12" min="0" max="999999999" class="form-control numbers-only" id="modal_edit_telefone" required>
                             <div class="invalid-feedback"></div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="emailRodoviaria" type="email">Email</label>
                             <!-- here -->
-                            <input name="rodoviaria_email" type="text" class="form-control email-only"
-                                   id="modal_edit_email" required>
+                            <input name="rodoviaria_email" type="text" maxlength="50" class="form-control email-only" id="modal_edit_email" required>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
@@ -248,8 +226,7 @@ $this->load->view("header2");
                         <div class="form-group col-md-6">
                             <label for="cepRodoviaria">CEP</label>
                             <!-- here -->
-                            <input name="rodoviaria_cep" type="text" mask="00000-000" maxlength="8" min="0"
-                                   max="99999999" class="form-control numbers-only" id="modal_edit_cep" required>
+                            <input name="rodoviaria_cep" type="text" maxlength="8" min="0" max="99999999" class="form-control numbers-only" id="modal_edit_cep" required>
                             <div class="invalid-feedback"></div>
                         </div>
 
@@ -260,15 +237,13 @@ $this->load->view("header2");
                         <div class="form-group col-md-6">
                             <label for="bairroRodoviaria">Bairro</label>
                             <!-- here -->
-                            <input name="rodoviaria_bairro" type="text" class="form-control alphanumeric-only"
-                                   id="modal_edit_bairro" required>
+                            <input name="rodoviaria_bairro" maxlength="100" type="text" class="form-control alphanumeric-only" id="modal_edit_bairro" required>
                             <div class="invalid-feedback"></div>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="boxRodoviaria">Box</label>
                             <!-- here -->
-                            <input name="rodoviaria_qntdbox" type="number" maxlength="3" min="0" max="999"
-                                   class="form-control numbers-only" id="modal_edit_qntdBox" required>
+                            <input name="rodoviaria_qntdbox" maxlength="3" min="0" max="999" class="form-control numbers-only" id="modal_edit_qntdBox" required>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
@@ -290,13 +265,13 @@ $this->load->view("header2");
                         </div>
                     </div>
                 </div>
+
                 <div class="alert alert-warning d-none" role="alert" id="rodoviaria_existente">
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="submit" class="btn btn-success" id="modal_edit_salvar" data-toggle="modal"
-                            data-target="#modal_confirmacao">Atualizar
+                    <button type="submit" class="btn btn-success" id="modal_edit_salvar" data-toggle="modal" data-target="#modal_confirmacao">Atualizar
                     </button>
                 </div>
             </form>
@@ -325,8 +300,7 @@ $this->load->view("header2");
                     <div class="form-group col-md-12">
                         <label for="rodoviaria_rua">Nome</label>
                         <!-- here -->
-                        <input name="rodoviaria_nome" value="" type="text" maxlength="400" min="0"
-                               class="form-control alphanumeric-only" id="modal_info_end" required>
+                        <input name="rodoviaria_nome" value="" type="text" maxlength="400" min="0" class="form-control alphanumeric-only" id="modal_info_nome" required>
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
@@ -334,15 +308,13 @@ $this->load->view("header2");
                     <div class="form-group col-md-9">
                         <label for="rodoviaria_rua">Rua</label>
                         <!-- here -->
-                        <input name="rodoviaria_rua" value="" type="text" maxlength="400" min="0"
-                               class="form-control alphanumeric-only" id="modal_info_end" required>
+                        <input name="rodoviaria_rua" value="" type="text" maxlength="400" min="0" class="form-control alphanumeric-only" id="modal_info_end" required>
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group col-md-3">
                         <label for="cidadeRodoviaria">Número</label>
                         <!-- here -->
-                        <input name="rodoviaria_numero" type="number" class="form-control numbers-only"
-                               id="modal_info_numero " required>
+                        <input name="rodoviaria_numero" class="form-control numbers-only" id="modal_info_numero" required>
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
@@ -350,15 +322,13 @@ $this->load->view("header2");
                     <div class="form-group col-md-6">
                         <label for="telefoneRodoviaria" type="">Telefone</label>
                         <!-- here -->
-                        <input name="rodoviaria_telefone" type="text" maxlength="11" min="0" max="999999999"
-                               class="form-control numbers-only" id="modal_info_telefone" required>
+                        <input name="rodoviaria_telefone" type="text" maxlength="11" min="0" max="999999999" class="form-control numbers-only" id="modal_info_telefone" required>
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="emailRodoviaria" type="email">Email</label>
                         <!-- here -->
-                        <input name="rodoviaria_email" type="text" class="form-control email-only" id="modal_info_email"
-                               required>
+                        <input name="rodoviaria_email" type="text" class="form-control email-only" id="modal_info_email" required>
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
@@ -366,8 +336,7 @@ $this->load->view("header2");
                     <div class="form-group col-md-6">
                         <label for="cepRodoviaria">CEP</label>
                         <!-- here -->
-                        <input name="rodoviaria_cep" type="text" mask="00000-000" maxlength="8" min="0" max="99999999"
-                               class="form-control numbers-only" id="modal_info_cep" required>
+                        <input name="rodoviaria_cep" type="text" mask="00000-000" maxlength="8" min="0" max="99999999" class="form-control numbers-only" id="modal_info_cep" required>
                         <div class="invalid-feedback"></div>
                     </div>
 
@@ -378,27 +347,25 @@ $this->load->view("header2");
                     <div class="form-group col-md-6">
                         <label for="bairroRodoviaria">Bairro</label>
                         <!-- here -->
-                        <input name="rodoviaria_bairro" type="text" class="form-control alphanumeric-only"
-                               id="modal_info_bairro" required>
+                        <input name="rodoviaria_bairro" type="text" class="form-control alphanumeric-only" id="modal_info_bairro" required>
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group col-md-3">
                         <label for="boxRodoviaria">Box</label>
                         <!-- here -->
-                        <input name="rodoviaria_qntdbox" type="number" maxlength="3" min="0" max="999"
-                               class="form-control numbers-only" id="modal_add_qntdBox" required>
+                        <input name="rodoviaria_qntdbox" maxlength="3" min="0" max="999" class="form-control numbers-only" id="modal_info_qntdBox" required>
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <input class="form-control" name="estado_nome" id="modal_info_estado"/>
+                        <input class="form-control" name="estado_nome" id="modal_info_estado" />
 
 
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group col-md-6">
-                        <input class="form-control" name="rodoviaria_cidade_id" id="modal_info_cidade"/>
+                        <input class="form-control" name="rodoviaria_cidade_id" id="modal_info_cidade" />
 
                         <div class="invalid-feedback"></div>
                     </div>
@@ -429,10 +396,10 @@ $this->load->view("footer2.php")
             method: "post",
             dataType: "json",
             url: "<?= base_url('ajax/rodoviarias/getSingle') ?>",
-            beforeSend: function () {
+            beforeSend: function() {
                 showLoadingModal('Buscando Dados Completos Rodoviarias');
             },
-            success: function (result) {
+            success: function(result) {
                 if (result['success']) {
                     console.log(result['data']['rodoviaria_nome'])
                     $("#modal_edit_id").val(result['data']['rodoviaria_id'])
@@ -446,7 +413,7 @@ $this->load->view("footer2.php")
                     $("#modal_edit_qntdBox").val(result['data']['rodoviaria_qntdbox'])
                     $("#modal_edit_estado").val(result['data']['estado_id'])
                     $("#modal_edit_estado").trigger('change');
-                    setTimeout(function () {
+                    setTimeout(function() {
 
                         $("#modal_edit_cidade").val(result['data']['rodoviaria_cidade_id'])
                     }, 600);
@@ -457,10 +424,10 @@ $this->load->view("footer2.php")
                     console.log(result);
                 }
             },
-            error: function (error) {
+            error: function(error) {
                 console.log(error);
             },
-            complete: function () {
+            complete: function() {
                 setTimeout(closeLoadingModal, 500)
             }
         });
@@ -474,10 +441,10 @@ $this->load->view("footer2.php")
             method: "post",
             dataType: "json",
             url: "<?= base_url('ajax/rodoviarias/getSingle') ?>",
-            beforeSend: function () {
+            beforeSend: function() {
                 showLoadingModal('Buscando Dados Completos Rodoviarias');
             },
-            success: function (result) {
+            success: function(result) {
                 if (result['success']) {
                     console.log(result['data']['rodoviaria_nome'])
                     $("#modal_info_nome").val(result['data']['rodoviaria_nome'])
@@ -496,10 +463,10 @@ $this->load->view("footer2.php")
                     console.log(result);
                 }
             },
-            error: function (error) {
+            error: function(error) {
                 console.log(error);
             },
-            complete: function () {
+            complete: function() {
                 setTimeout(closeLoadingModal, 500)
             }
         });
@@ -508,17 +475,16 @@ $this->load->view("footer2.php")
 
 <script>
     function atualizarTabela() {
-
         $.ajax({
             dataType: "json",
             url: "<?= base_url('ajax/rodoviarias/get') ?>",
-            beforeSend: function () {
+            beforeSend: function() {
                 showLoadingModal('Atualizando Rodoviarias');
             },
-            success: function (data) {
+            success: function(data) {
                 console.log(data);
                 $("#rodoviaria_tabela").empty();
-                $.each(data, function (key, value) {
+                $.each(data, function(key, value) {
                     console.log(value);
                     $('#rodoviaria_tabela').append(createRodoviariaTr(
                         value['rodoviaria_id'],
@@ -531,10 +497,10 @@ $this->load->view("footer2.php")
                     ))
                 })
             },
-            error: function (error) {
+            error: function(error) {
                 console.log(error);
             },
-            complete: function () {
+            complete: function() {
                 setTimeout(closeLoadingModal, 500)
             }
         });
@@ -562,33 +528,39 @@ $this->load->view("footer2.php")
 
     }
 </script>
+<script>
+$("#modal_create_close").click(function(){
+    $("#modal_create_form").trigger("reset");
+})
+</script>
 <!-- Ajax form submit -->
 <!-- Metodo em ajax para fazer o submit do modal create (id="modal_create_form") -->
 <script>
-    $("#modal_create_form").submit(function () {
+    $("#modal_create_form").submit(function() {
         console.log($(this).serialize())
         $.ajax({
             data: $(this).serialize(),
             type: "POST",
             url: "<?= base_url('ajax/rodoviarias/create') ?>",
             dataType: "json",
-            beforeSend: function () {
+            beforeSend: function() {
                 showLoadingModal('Enviando Dados')
             },
-            success: function (result) {
+            success: function(result) {
                 console.log(result['message']);
                 if (result['success']) {
                     $("#page_message").html(result['message']);
                     $("#modal_create_rodoviaria").modal('hide');
+                    $("#modal_create_form").trigger("reset");
                     atualizarTabela()
                 } else {
                     $('#modal_create_warning').html(result['message']);
                 }
             },
-            error: function (error) {
+            error: function(error) {
                 console.log(error)
             },
-            complete: function () {
+            complete: function() {
                 setTimeout(closeLoadingModal, 500)
             }
         });
@@ -597,17 +569,17 @@ $this->load->view("footer2.php")
 </script>
 <!-- Metodo em ajax para fazer o submit do modal edit (id="modal_edit_form") -->
 <script>
-    $("#modal_edit_form").submit(function () {
+    $("#modal_edit_form").submit(function() {
         console.log($(this).serialize())
         $.ajax({
             data: $(this).serialize(),
             type: "POST",
             url: "<?= base_url('ajax/rodoviarias/edit') ?>",
             dataType: "json",
-            beforeSend: function () {
+            beforeSend: function() {
                 showLoadingModal('Enviando Dados')
             },
-            success: function (result) {
+            success: function(result) {
                 console.log(result['message']);
                 if (result['success']) {
                     $("#page_message").html(result['message']);
@@ -617,10 +589,10 @@ $this->load->view("footer2.php")
                     $('#modal_edit_warning').html(result['message']);
                 }
             },
-            error: function (error) {
+            error: function(error) {
                 console.log(error)
             },
-            complete: function () {
+            complete: function() {
                 setTimeout(closeLoadingModal, 500)
 
             }
@@ -634,17 +606,17 @@ $this->load->view("footer2.php")
 
 <!-- verificar_rodoviaria_na_cidade -->
 <script>
-    $("#modal_create_cidade").change(function () {
+    $("#modal_create_cidade").change(function() {
         var str = $(this).children("option:selected").val();
         $.ajax({
             url: '<?= base_url("ajax/rodoviarias/existe_na_cidade") ?>',
             type: 'POST',
             data: 'cidade_id=' + str,
             dataType: 'json',
-            beforeSend: function () {
+            beforeSend: function() {
                 showLoadingModal("Verificando existencia de rodoviarias na cidade selecionada")
             },
-            success: function (result) {
+            success: function(result) {
                 console.log(result);
                 if (result['success']) {
                     if (result['existe']) {
@@ -658,15 +630,14 @@ $this->load->view("footer2.php")
                         }
                         $("#rodoviaria_existente").html("");
                     }
-                } else {
-                }
+                } else {}
             },
-            error: function (error) {
+            error: function(error) {
                 console.log(error);
                 alert('Houve algum erro. Se o erro persistir, contate o administrador dos sistema')
 
             },
-            complete: function () {
+            complete: function() {
                 setTimeout(closeLoadingModal, 500)
             }
         });
@@ -674,30 +645,29 @@ $this->load->view("footer2.php")
     });
 </script>
 <script>
-    $("#modal_create_estado").change(function () {
+    $("#modal_create_estado").change(function() {
         var str = $(this).children("option:selected").val();
         $.ajax({
             url: '<?= base_url("ajax/cidades/por_estado") ?>',
             type: 'POST',
             data: 'estado_id=' + str,
             dataType: 'json',
-            beforeSend: function () {
+            beforeSend: function() {
                 showLoadingModal("Carregando Cidades")
             },
-            success: function (result) {
+            success: function(result) {
                 if (result['success']) {
                     $('#modal_create_cidade').empty()
-                    $.each(result["data"], function (key, value) {
+                    $.each(result["data"], function(key, value) {
                         $('#modal_create_cidade').append($('<option>').text(value['cidade_nome']).attr('value', value['cidade_id']));
                     });
-                } else {
-                }
+                } else {}
             },
-            error: function (error) {
+            error: function(error) {
                 alert('deu erro: veja o console')
                 console.log(error)
             },
-            complete: function () {
+            complete: function() {
                 $("#modal_create_cidade").trigger("change");
                 setTimeout(closeLoadingModal, 500)
             }
@@ -707,30 +677,29 @@ $this->load->view("footer2.php")
 </script>
 
 <script>
-    $("#modal_edit_estado").change(function () {
+    $("#modal_edit_estado").change(function() {
         var str = $(this).children("option:selected").val();
         $.ajax({
             url: '<?= base_url("ajax/cidades/por_estado") ?>',
             type: 'POST',
             data: 'estado_id=' + str,
             dataType: 'json',
-            beforeSend: function () {
+            beforeSend: function() {
                 showLoadingModal("Carregando Cidades")
             },
-            success: function (result) {
+            success: function(result) {
                 if (result['success']) {
                     $('#modal_edit_cidade').empty()
-                    $.each(result["data"], function (key, value) {
+                    $.each(result["data"], function(key, value) {
                         $('#modal_edit_cidade').append($('<option>').text(value['cidade_nome']).attr('value', value['cidade_id']));
                     });
-                } else {
-                }
+                } else {}
             },
-            error: function (error) {
+            error: function(error) {
                 alert('deu erro: veja o console')
                 console.log(error)
             },
-            complete: function () {
+            complete: function() {
                 $("#modal_edit_cidade").trigger("change");
                 setTimeout(closeLoadingModal, 500)
             }
