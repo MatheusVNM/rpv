@@ -106,11 +106,11 @@ $this->load->view("header2");
                 <form class="needs-validation container" novalidate>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="placadoonibus">Placa</label>
-                            <input name="onibus_placa" type="text" maxlength="6" min="0" max="7"
-                                   class="form-control alphanumeric-only" id="id_create_placa" required>
-                        </div>
+                            <select class="form-control" name="estado_nome" id="modal_create_estado" required>
+                                <option disabled selected value>Seleciona uma Placa de Ônibus</option>
 
+                            </select>
+                        </div>
                         <div class="form-group col-md-6">
                             <label for="valordamanutencao">Valor da Manutenção</label>
                             <input name="manutencao_valor" type="number" maxlength="6" min="0" max="9999"

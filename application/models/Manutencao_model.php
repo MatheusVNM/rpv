@@ -57,6 +57,7 @@ class Manutencao_model extends CI_Model
         }
     }
 
+
     public function insertManutencao(
         $manutencao_valor,
         $manutencao_descricao,
