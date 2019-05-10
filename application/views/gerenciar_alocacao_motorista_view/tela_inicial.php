@@ -74,7 +74,7 @@ $this->load->view("header2");
 <!-- Modal create alocação -->
 <div class="modal fade" id="id_modal_create_alocacao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel"><b>Cadastrar Nova Alocação</b></h5>
@@ -84,18 +84,65 @@ $this->load->view("header2");
             </div>
             <div class="modal-body">
                 <form class="needs-validation container" novalidate>
-                    <div class="form-row">
-                        <div class="form-group col-md-3">
-                            <label for="modal_create_placa">Onibus:</label>
+                    <div class="form-row mx-2">
+                        <div class="form-group col-md-6">
+                            <label for="modal_create_onibus">Ônibus:</label>
+                            <i class="fa fa-search"></i>
                             <input name="onibus_placa" type="text" maxlength="7" class="form-control alphanumeric-only"
                                 id="modal_create_placa" required>
                         </div>
-                        <div class="form-group col-md-3">
-                            <label for="modal_create_nro_onibus">Trajeto:</label>
-                            <input name="onibus_numero" type="number" class="form-control numbers-only"
-                                id="modal_create_nro_onibus" required>
+                        <div class="form-group col-md-6">
+                            <label for="modal_create_trajeto fa ">Trajeto:</label>
+                            <i class="fa fa-search"></i>
+                            <input name="" type="text" class="form-control numbers-only" id="modal_create_onibus"
+                                required>
                         </div>
                     </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="modal_create_motorista">Motorista:</label>
+                                    <i class="fa fa-search"></i>
+                                    <input name="" type="text" maxlength="7" class="form-control alphanumeric-only"
+                                        id="modal_create_placa" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="modal_create_cobrador fa ">Cobrador:</label>
+                                    <i class="fa fa-search"></i>
+                                    <input name="" type="text" class="form-control numbers-only"
+                                        id="modal_create_nro_onibus" required>
+                                </div>
+                            </div>
+                            <div id="id_dados_alocacao">
+                                <div class="col-auto">
+                                    <label for="exampleFormControlInput1">Ônibus Alocado:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <label for="exampleFormControlInput1">Trajeto Alocado:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-group" id="id_mais_motorista">
+                                        <div class="my-2 justify-content-between d-flex">
+                                            <label for="exampleFormControlInput1">Motorista Alocado:</label>
+                                            <button id="id_add_motorista" type="button" class="btn text-dark mb-2">
+                                                <i class="fa fa-plus-square my-auto ml-2 fa-2x input-group-icon"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-group" id="id_mais_cobrador">
+                                        <div class="my-2 justify-content-between d-flex">
+                                            <label for="exampleFormControlInput1">Cobrador Alocado:</label>
+                                            <button id="id_add_cobrador" type="button" class="btn text-dark mb-2">
+                                                <i class="fa fa-plus-square my-auto ml-2 fa-2x input-group-icon"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -109,3 +156,34 @@ $this->load->view("header2");
 <?php
 $this->load->view("footer2.php")
 ?>
+<script>
+var lastInsert = 0;
+$('#id_add_motorista').click(function() {
+    ++lastInsert
+    $('#id_mais_motorista').append(
+        '<div id="mot' + lastInsert +
+        '"class="d-flex flex-row align-center my-1 justify-content-center">' +
+        '<input required maxlength="255" type="text" name="" class="form-control" id="exampleFormControlInput1">' +
+        '<button onclick="deletarCampo(\'mot' + lastInsert +
+        '\')"type="button" id="id_excluir_input_button" class=" btn btn-hover text-dark">' +
+        '<i class="fa fa-trash my-auto ml-2 fa-2x input-group-icon"></i>' +
+        '</button>' +
+        '</div>');
+});
+
+$('#id_add_cobrador').click(function() {
+    ++lastInsert
+    $('#id_mais_cobrador').append(
+        '<div id="mot' + lastInsert +
+        '"class="d-flex flex-row align-center my-1 justify-content-center">' +
+        '<input required maxlength="255" type="text" name="" class="form-control" id="exampleFormControlInput1">' +
+        '<button onclick="deletarCampo(\'mot' + lastInsert +
+        '\')"type="button" id="id_excluir_input_button" class=" btn btn-hover text-dark">' +
+        '<i class="fa fa-trash my-auto ml-2 fa-2x input-group-icon"></i>' +
+        '</button>' +
+        '</div>');
+});
+function deletarCampo(campo) {
+    $('#' + campo + '').remove();
+}
+</script>

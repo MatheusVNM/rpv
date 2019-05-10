@@ -438,6 +438,24 @@ body {
 #id_input_file{
 	display: none;
 }
+#id_input_motorista{
+	margin-top: -20px;
+}
+#id_add_motorista{
+	margin-top: -10px;
+	margin-right: 0px;
+}
+#id_excluir_input_button{
+	margin-top: -5px;
+	margin-left: -10px;
+}
+#id_add_cobrador{
+	margin-top: -13px;
+}
+#id_dados_alocacao{
+	margin-left: -14px;
+}
+
 /* */
 
 /* modals*/
@@ -576,6 +594,7 @@ body {
 	content: "\f093 \020 Procurar" !important;
 	font-weight: 900;
 }
+
 /* 
 
 .loading-spinner {
