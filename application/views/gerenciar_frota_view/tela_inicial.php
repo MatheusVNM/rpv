@@ -5,7 +5,6 @@ $this->load->view("header2");
 ?>
 
 <!-- Body init -->
-
 <h2 class="text-center">Lista de Veículos</h2>
 <?= $this->session->flashdata('error'); ?>
 <?= $this->session->flashdata('success'); ?>
@@ -75,45 +74,54 @@ $this->load->view("header2");
         </thead>
         <!--Body Frota-->
         <tbody id="id_lista_frota">
-            <tr>
-                <th scope="row">1</th>
-                <td>IQU1240</td>
-                <td>2010</td>
-                <td>Rodando</td>
-                <td>Interurbano</td>
-                <td>Comum</td>
+            <?php foreach ($frota as $onibus) : ?>
+                <tr>
+                    <th scope="row">1</th>
+                    <td><?= $onibus['onibus_numero'] ?></td>
+                    <td><?= $onibus['onibus_ano_fab'] ?></td>
+                    <td>
+                        <?php if (!$onibus['onibus_is_ativo']) {
+                            echo "Inativo";
+                        } else {
+                            if ($onibus['onibus_em_manutencao']) {
+                                echo "Em manutenção";
+                            } else {
+                                echo "Ativo";
+                            }
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php if ($onibus['onibus_cidade']) {
+                            echo $onibus['cidade_nome'];
+                        } else {
+                            echo "Intermunicipal";
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php if ($onibus['onibus_categoria_intermunicipal']) {
+                            echo $onibus['categoriaonibus_nome'];
+                        } else {
+                            echo "---";
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <button onclick="editar()" type="button" class="btn btn-warning btn-sm" id="id_opcao_editar" data-toggle="modal" data-placement="top" title="Editar veículo" data-target="#id_modal_edit_veiculo">
+                            <span class="hvr-icon fa fa-edit mr-1"></span> Editar
+                        </button>
+                        <button onclick="ocultar()" type="button" class="btn btn-danger btn-sm" title="Ocultar da lista" id="id_opcao_ocultar" data-toggle="tooltip" data-placement="top" target="_blank">
+                            <span class="hvr-icon fa fa-trash mr-1"></span>Ocultar
+                        </button>
+                        <button onclick="info()" type="button" class="btn btn-primary btn-sm" title="Mais informações sobre o veíuclo." id="id_opcao_visualizar" data-toggle="tooltip" data-placement="top">
+                            <span class="hvr-icon fa fa-info mr-1"></span>Info
+                        </button>
+                    </td>
 
-                <td>
-                    <button type="button" class="btn btn-warning btn-sm" id="id_opcao_editar" data-toggle="modal" data-placement="top" title="Editar veículo" data-target="#id_modal_edit_veiculo">
-                        <span class="hvr-icon fa fa-edit mr-1"></span> Editar
-                    </button>
-                    <button type="button" class="btn btn-danger btn-sm" title="Ocultar da lista" id="id_opcao_ocultar" data-toggle="tooltip" data-placement="top" target="_blank">
-                        <span class="hvr-icon fa fa-trash mr-1"></span>Ocultar
-                    </button>
-                    <button type="button" class="btn btn-primary btn-sm" title="Mais informações sobre o veíuclo."  data-toggle="modal" id="id_opcao_visualizar" data-placement="top" data-target="#id_modal_info_veiculo">
-                        <span class="hvr-icon fa fa-info mr-1"></span>Info
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>IFG3831</td>
-                <td>1982</td>
-                <td>Rodando</td>
-                <td>Alegrete</td>
-                <td>---</td>
-                <td>
-                    <button type="button" class="btn btn-warning btn-sm" id="id_opcao_editar" data-toggle="modal" data-placement="top" title="Editar veículo" data-target="#id_modal_edit_veiculo">
-                        <span class="hvr-icon fa fa-edit mr-1"></span> Editar
-                    </button>
-                    <button type="button" class="btn btn-danger btn-sm" title="Ocultar da lista" id="id_opcao_ocultar" data-toggle="tooltip" data-placement="top" target="_blank">
-                        <span class="hvr-icon fa fa-trash mr-1"></span>Ocultar
-                    </button>
-                    <button type="button" class="btn btn-primary btn-sm" title="Mais informações sobre o veíuclo." id="id_opcao_visualizar" data-placement="top" data-target="#id_modal_info_veiculo">
-                        <span class="hvr-icon fa fa-info mr-1"></span>Info
-                    </button>
-                </td>
-            </tr>
+                </tr>
+            <?php endforeach; ?>
+
         </tbody>
     </table>
 
@@ -516,210 +524,113 @@ $this->load->view("header2");
                         </div>
                     </div>
                     <div class="form-row">
-                        <label class="mx-1">Situação</label>
-                        <div class="form-check column my-4">
-                            <input class="form-check-input" type="radio" name="onibus_is_ativo" id="id_edit_ativo" value="onibus_ativo" checked required>
-                            <label class="form-check-label" for="id_edit_ativo">
-                                Ônibus Ativo
-                            </label><br>
-                            <input class="form-check-input" type="radio" name="onibus_is_ativo" id="id_edit_inativo" value="onibus_inativo" required>
-                            <label class="form-check-label" for="id_edit_inativo">
-                                Ônibus Inativo
-                            </label>
+                        <div class="form-group column col-6">
+                            <label for="modal_edit_municipal">Frota: </label>
+                            <select id="modal_edit_municipal" name="onibus_is_municipal" class="form-control custom-select ">
+                                <option id="testeop" value="true"> Municipal</option>
+                                <option value="false"> Intermunicipal </option>
+                            </select>
                         </div>
-                        <div class="form-group col-md-3">
-                            <label for="">Motivo Inatividade</label>
-                            <textarea name="onibus_motivo_inatividade" class="form-control alphanumeric-only" id="modal_edit_motivo_inatividade" rows="3" disabled maxlength="255"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <label class="mx-1">Ar Condicionado:</label>
-                        <div class="form-check column">
-                            <input name="onibus_ar_condicionado" class="form-check-input" type="radio" id="id_edit_ar_sim" value="sim" checked required>
-                            <label class="form-check-label" for="id_edit_ar_sim">
-                                Sim
-                            </label>
-                            <input name="onibus_ar_condicionado" class="form-check-input mx-2" type="radio" id="id_edit_ar_nao" value="nao" required>
-                            <label class="form-check-label mx-4" for="id_edit_ar_nao">
-                                Não
-                            </label>
+                        <div class="form-group column col-6" id="container_modal_edit_tipo" style="display:none">
+                            <label for="modal_edit_tipo">Tipo:</label>
+                            <select id="modal_edit_tipo" name="onibus_categoria_intermunicipal" class="form-control custom-select">
+                                <?php foreach ($categoriaonibus as $row) : ?>
+                                    <option value=<?= $row['categoriaonibus_id'] ?>><?= $row['categoriaonibus_nome'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                     </div>
                     <div class="form-row">
-                        <label class="mx-1">Em Manutenção:</label>
-                        <div class="form-check column">
-                            <input name="onibus_em_manutencao" class="form-check-input" type="radio" id="id_edit_manun_sim" value="sim" checked required>
-                            <label class="form-check-label" for="id_edit_manun_sim">
-                                Sim
-                            </label>
-                            <input name="onibus_em_manutencao" class="form-check-input mx-2" type="radio" id="id_edit_manun_nao" value="nao" required>
-                            <label class="form-check-label mx-4" for="id_edit_manun_nao">
-                                Não
-                            </label>
+                        <div class="form-group column col-6" id="container_modal_edit_estados">
+                            <label for="modal_edit_estados">Estado:</label>
+                            <select id="modal_edit_estados" class="form-control custom-select">
+                                <option disabled selected value>Seleciona um Estado</option>
+                                <?php foreach ($estados as $row) : ?>
+                                    <option value=<?= $row['estado_id'] ?>><?= $row['estado_nome'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-group column col-6" id="container_modal_edit_cidades">
+                            <label for="modal_edit_cidades">Cidade:</label>
+                            <select id="modal_edit_cidades" name="onibus_cidade" class="form-control custom-select">
+                                <option disabled selected value>Seleciona um estado para listar as cidades</option>
+
+                            </select>
                         </div>
                     </div>
+
+
+
+
                     <div class="form-row">
-                        <label class="mx-1">Adaptado para Deficientes:</label>
-                        <div class="form-check column">
-                            <input name="onibus_adaptado_deficiente" class="form-check-input" type="radio" id="id_edit_defic_sim" value="sim" checked required>
-                            <label class="form-check-label" for="id_edit_defic_sim">
-                                Sim
-                            </label>
-                            <input name="onibus_adaptado_deficiente" class="form-check-input mx-2" type="radio" id="id_edit_defic_nao" value="nao" required>
-                            <label class="form-check-label mx-4" for="id_edit_defic_nao">
-                                Não
-                            </label>
+                        <div class="form-group mr-4">
+                            <label class="mx-1">Ar Condicionado:</label>
+                            <div class="form-check column">
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input name="onibus_ar_condicionado" class="custom-control-input" type="radio" id="id_edit_ar_sim" value="sim" checked required>
+                                    <label class="custom-control-label" for="id_edit_ar_sim">
+                                        Sim
+                                    </label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input name="onibus_ar_condicionado" class="custom-control-input mx-2" type="radio" id="id_edit_ar_nao" value="nao" required>
+                                    <label class="custom-control-label" for="id_edit_ar_nao">
+                                        Não
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="mx-1">Adaptado para Deficientes:</label>
+                            <div class="form-check column">
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input name="onibus_adaptado_deficiente" class="custom-control-input" type="radio" id="id_edit_defic_sim" value="sim" checked required>
+                                    <label class="custom-control-label" for="id_edit_defic_sim">
+                                        Sim
+                                    </label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input name="onibus_adaptado_deficiente" class="custom-control-input mx-2" type="radio" id="id_edit_defic_nao" value="nao" required>
+                                    <label class="custom-control-label mx-4" for="id_edit_defic_nao">
+                                        Não
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label for="id_edit_input_file" class="my-3 mr-2">Documento de Propriedade:</label>
+                            <div class="custom-file">
+                                <input name="onibus_documento_veiculo" type="file" class="custom-file-input" id="id_edit_input_file" required>
+                                <label id="id_edit_label_file" class="custom-file-label" for="id_edit_input_file">Selecione um Arquivo...</label>
+                            </div>
+
+                            <!-- <div class="form-group" id="id_form_input">
+                                <label for="id_edit_input_file" id="id_label_input" class="rounded">
+                                    <i class="fa fa-upload" id="id_icon_input"></i>
+                                    <span id="id_edit_label_file">Upload file</span>
+                                </label>
+                                <input name="onibus_documento_veiculo" type="file" class="custom-file-input" id="id_edit_input_file" required>
+                            </div> -->
                         </div>
                     </div>
-                    <div class="form-row">
-                        <label class="mx-1 my-3">Documento de Propriedade:</label>
-                        <div class="form-group" id="id_form_input">
-                            <label for="id_edit_input_file" id="id_label_input" class="rounded">
-                                <i class="fa fa-upload" id="id_icon_input"></i>
-                                <span id="id_span_file">Upload file</span>
-                            </label>
-                            <input name="onibus_documento_veiculo" type="file" class="custom-file-input" id="id_edit_input_file" required>
-                        </div>
-                    </div>
+
+
+
+
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Salvar</button>
+                <button type="button" class="btn btn-primary">Atualizar</button>
             </div>
         </div>
     </div>
 </div>
+
+
+
 <!-- Body end -->
 <?php
-$this->load->view("footer2.php")
+$this->load->view("footer2.php", array('js' => 'gerenciar_frota'))
 ?>
 <!-- Script init -->
-<script>
-    $(function() {
-        $('[data-toggle="tooltip"]').tooltip();
-        $('.alert').alert();
-    });
-</script>
-
-<script>
-    $("#id_create_input_file").on("change", function() {
-        var fullPath = $(this).val();
-        if (fullPath) {
-            var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath
-                .lastIndexOf('/'));
-            var filename = fullPath.substring(startIndex);
-            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
-                filename = filename.substring(1);
-            }
-        }
-        $("#id_create_label_file").html(filename);
-    });
-</script>
-<!-- filters -->
-<script>
-    $("#filter_municipal").change(function(e) {
-        if ($(this).val() === "Municipal") {
-            $("#container_filter_cidades").show()
-            $("#container_filter_estados").show()
-            $("#container_filter_tipo").hide()
-        } else {
-            $("#container_filter_cidades").hide()
-            $("#container_filter_estados").hide()
-            $("#container_filter_tipo").show()
-        }
-        $("#filter_filter").prop('disabled', false);
-    })
-
-    $("#filter_filter").click(function(e) {
-        $("#id_lista_frota > tr").show();
-        if ($("#filter_municipal").children("option:selected").val() === "Municipal") {
-            var busca = $("#filter_cidades").children("option:selected").val().toLowerCase();
-            if ((busca === '')) {
-                $("#id_lista_frota tr").filter(function() {
-                    $(this).toggle(!($(this).text().toLowerCase().indexOf("interurbano") > -1))
-                });
-            } else {
-                $("#id_lista_frota tr").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(busca) > -1)
-                });
-            }
-        } else if ($("#filter_municipal").children("option:selected").val() === "Intermunicipal") {
-
-            var busca = $("#filter_tipo").children("option:selected").val().toLowerCase();
-            if ((busca === '')) {
-                $("#id_lista_frota tr").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf("interurbano") > -1)
-                });
-            } else {
-                $("#id_lista_frota tr").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(busca) > -1)
-                });
-            }
-        } else {
-            $("#id_lista_frota tr").show();
-        }
-
-    });
-</script>
-<!-- dando toggle nos campos de tipo e tals -->
-<script>
-    $("#modal_create_municipal").change(function() {
-        var ismunicipal = $(this).children("option:selected").val();
-        if (ismunicipal==="true") {
-            $("#container_modal_create_tipo").hide();
-            $("#container_modal_create_estados").show();
-            $("#container_modal_create_cidades").show();
-
-        }else{
-            $("#container_modal_create_tipo").show();
-            $("#container_modal_create_estados").hide();
-            $("#container_modal_create_cidades").hide();
-        }
-    })
-</script>
-
-<!-- pegando as cidades pelos estados -->
-<script>
-    $("#filter_estados, #modal_create_estados, #modal_edit_estados").change(function() {
-        var field = "";
-        switch ($(this).attr('id')) {
-            case "filter_estados":
-                field = "filter_cidades"
-                break;
-            case "modal_create_estados":
-                field = "modal_create_cidades"
-                break;
-            case "modal_edit_estados":
-                field = "modal_edit_cidades"
-                break;
-        }
-        var str = $(this).children("option:selected").val();
-        $.ajax({
-            url: '<?= base_url("ajax/cidades/por_estado") ?>',
-            type: 'POST',
-            data: 'estado_id=' + str,
-            dataType: 'json',
-            beforeSend: function() {
-                showLoadingModal("Carregando Cidades")
-            },
-            success: function(result) {
-                if (result['success']) {
-                    $('#' + field).empty()
-                    $.each(result["data"], function(key, value) {
-                        $('#' + field).append($(' <option> ').text(value['cidade_nome']).attr('value', value['cidade_nome']));
-                    });
-                } else {}
-            },
-            error: function(error) {
-                alert('deu erro: veja o console')
-                console.log(error)
-            },
-            complete: function() {
-                $('#' + field).trigger("change");
-                setTimeout(closeLoadingModal, 500)
-            }
-        });
-
-    });
-</script>
