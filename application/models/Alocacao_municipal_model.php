@@ -6,7 +6,7 @@
  * Time: 8:26 PM
  */
 
-class Alocacao_municipal_model
+class Alocacao_municipal_model extends
 {
     public function getAlocacoes(){
         
