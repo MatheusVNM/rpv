@@ -12,13 +12,16 @@ class Gerenciar_manutencoes_controller extends CI_Controller
     {
         parent::__construct();
         $this->load->model('manutencao_model');
+        $this->load->model('onibus_model');
     }
 
     public function index()
     {
-        $data['manutencoes'] = $this->manutencao_model->getManutencoes();
+        $data['manutencao'] = $this->manutencao_model->getManutencoes();
         $this->load->view('gerenciar_manutencao_view/tela_inicial', $data);
-
+    }
+    public function createManutencao(){
+        $this->form_validation->set_rules();
     }
 
 }
