@@ -66,11 +66,15 @@ $route['ajax/rodoviarias/edit'] = 'gerenciar_rodoviaria_controller/ajax_db_updat
 $route['ajax/rodoviarias/get'] = 'gerenciar_rodoviaria_controller/ajax_db_getRodoviarias';
 $route['ajax/rodoviarias/getSingle'] = 'gerenciar_rodoviaria_controller/ajax_db_getRodoviariaEspecifica';
 
-
 $route['ajax/onibus/create'] = 'gerenciar_frota_controller/ajax_db_insertOnibus';
 $route['ajax/onibus/edit'] = 'gerenciar_frota_controller/ajax_db_updateOnibus';
 $route['ajax/onibus/get'] = 'gerenciar_frota_controller/ajax_db_getOnibus';
 $route['ajax/onibus/getSingle'] = 'gerenciar_frota_controller/ajax_db_getOnibusEspecifico';
+
+$route['ajax/manutencao/create'] = 'gerenciar_manutencoes_controller/ajax_db_createManutencao';
+$route['ajax/manutencao/getUnica'] = 'gerenciar_manutencoes_controller/ajax_db_getManutencaoUnica';
+$route['ajax/manutencao/get'] = 'gerenciar_manutencoes_controller/ajax_db_getManutencoes';
+$route['ajax/manutencao/edit'] = 'gerenciar_manutencoes_controller/ajax_db_updateManutencao';
 
 
 // ajax_db_insertRodoviaria
@@ -101,7 +105,7 @@ $route['categorias/onibus/changeStatus'] = 'gerenciar_categoria_onibus_controlle
 $route['categorias/onibus/update'] = 'gerenciar_categoria_onibus_controller/_updateCategoriaOnibus';
 
 
-
+//aquiiii
 /*Rotas métodos de controller que exibem alguma tela, sem necessáriamente inserir/atualizar algo no banco de dados*/
 $route['dashboard'] = 'Dashboard';
 
@@ -133,3 +137,4 @@ $route['dashboard/rodoviarias'] = 'gerenciar_rodoviaria_controller';
 // cadastrarTarifaView
 
 $route['dashboard/frotas']  = 'gerenciar_frota_controller';
+$route['dashboard/manutencoes'] = 'gerenciar_manutencoes_controller';

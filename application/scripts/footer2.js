@@ -6,7 +6,7 @@ $(function () {
 });
 
 $(".reset_form_on_modal_close").on('hidden.bs.modal', function () {
-    $(this).find("form").trigger("reset").find("input").removeClass("is-valid is-invalid");
+   $(this).find("form").trigger("reset").find("input").removeClass("is-valid is-invalid");
 })
 
 $("#menu-toggle").click(function (e) {

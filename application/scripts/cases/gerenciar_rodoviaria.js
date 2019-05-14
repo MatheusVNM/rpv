@@ -281,7 +281,9 @@ $("#modal_edit_estado").change(function () {
                 $.each(result["data"], function (key, value) {
                     $('#modal_edit_cidade').append($('<option>').text(value['cidade_nome']).attr('value', value['cidade_id']));
                 });
-            } else { }
+            } else {
+                
+             }
         },
         error: function (error) {
             alert('deu erro: veja o console')
