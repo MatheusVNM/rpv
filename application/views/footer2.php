@@ -26,46 +26,38 @@ $this->load->helper('url');
     </div>
 </div>
 
+
+
+<!-- Modal -->
+<div class="modal fade" id="message_modal" tabindex="-1" role="dialog" aria-labelledby="message_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="message_label">Modal warning</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="message-modal-txt">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Bootstrap core JavaScript -->
 <script src="<?php echo base_url('assets/js/jquery-3.3.1.min.js') ?>"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
 <script src="<?php echo base_url('assets/js/bootstrap.bundle.min.js') ?>"></script>
 <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap-select.min.js"); ?>"></script>
-
-<!-- Menu Toggle Script -->
-<script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-
-    $('.dual-collapse').on('shown.bs.collapse', function (e) {
-       $(this).parent().find("#navbar-collapse-icon").removeClass("fa-arrow-circle-down").addClass("fa-arrow-circle-up");
-    });
-
-    $('.dual-collapse').on('hidden.bs.collapse', function () {
-       $(this).parent().find("#navbar-collapse-icon").removeClass("fa-arrow-circle-up").addClass("fa-arrow-circle-down");
-    });
-
-</script>
+<?php $this->load->script("footer2") ?>
+<?php if(isset($js)) $this->load->script("cases/" . $js) ?>
 
 
-<script>
-    function showLoadingModal(message) {
-        $("#loading-modal-txt").html(message)
-        $("#loading_modal").modal({
-            backdrop: "static", //nao pode fechar
-            keyboard: false, //nem pelo teclado
-            show: true //e mostra
-        });
-    }
 
-    function closeLoadingModal() {
-        $("#loading-modal-txt").html(" ")
-        $("#loading_modal").modal("hide")
-    }
-</script>
 </body>
 
-</html> 
+</html>
