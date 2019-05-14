@@ -1,7 +1,48 @@
 
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip();
-    $('.alert').alert();
+$("#modal_create_form").submit(function () {
+
+    // if (this.checkValidity() === false) {
+    //     console.log('invalid');
+    //     return false;
+    // }
+    $.ajax({
+        data: $(this).serialize(),
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: "<?= base_url('ajax/onibus/create') ?>",
+        dataType: "json",
+        beforeSend: function () {
+            showLoadingModal('Enviando Dados')
+        },
+        success: function (result) {
+
+            showWarningModal(result['success'] + "<br />" + result['message']+"<br />"+result['error_fields']);
+            if (result['success']) {
+                $("#page_message").html(result['message']);
+                $("#modal_create_rodoviaria").modal('hide');
+                $("#modal_create_form").trigger("reset");
+                atualizarTabela()
+            } else {
+                $('#modal_create_warning').html(result['message']);
+                $("#modal_create_form").find("input").addClass("is-valid");
+                $("#modal_create_form").find("select").addClass("is-valid");
+                $.each(result['error_fields'], function(key, value){
+                    $("#modal_create_form [name='"+value+"']").addClass('is-invalid').removeClass('is-valid');
+                })
+                // $(this).find("input").find()
+            }
+        },
+        error: function (error) {
+            showWarningModal(error['responseText']);
+            console.log(error)
+        },
+        complete: function () {
+            setTimeout(closeLoadingModal, 500)
+        }
+    });
+    alert("a");
+
+    return false;
 });
 
 
@@ -67,36 +108,48 @@ $("#filter_filter").click(function (e) {
 $("#modal_create_municipal").change(function () {
     var ismunicipal = $(this).children("option:selected").val();
     if (ismunicipal === "true") {
-        $("#container_modal_create_tipo").hide();
+        $("#container_modal_create_tipo").hide()
+        $("#container_modal_create_tipo").prop('required', false);
         $("#container_modal_create_estados").show();
+        $("#container_modal_create_estados").prop('required', true);
         $("#container_modal_create_cidades").show();
+        $("#container_modal_create_cidades").prop('required', true);
 
     } else {
         $("#container_modal_create_tipo").show();
+        $("#container_modal_create_tipo").prop('required', true);
         $("#container_modal_create_estados").hide();
+        $("#container_modal_create_estados").prop('required', false);
         $("#container_modal_create_cidades").hide();
+        $("#container_modal_create_cidades").prop('required', false);
+
     }
 })
 
 
 //pegando as cidades pelos estados
 $("#filter_estados, #modal_create_estados, #modal_edit_estados").change(function () {
-    var field = "";
+    var campo = "";
+    var array_field="";
     switch ($(this).attr('id')) {
         case "filter_estados":
-            field = "filter_cidades"
+            campo = "filter_cidades"
+            array_field="cidade_nome"
             break;
         case "modal_create_estados":
-            field = "modal_create_cidades"
+            campo = "modal_create_cidades"
+            array_field="cidade_id"
             break;
         case "modal_edit_estados":
-            field = "modal_edit_cidades"
+            campo = "modal_edit_cidades"
+            array_field="cidade_id"
             break;
     }
     var str = $(this).children("option:selected").val();
     $.ajax({
         url: '<?= base_url("ajax/cidades/por_estado") ?>',
         type: 'POST',
+
         data: 'estado_id=' + str,
         dataType: 'json',
         beforeSend: function () {
@@ -104,18 +157,18 @@ $("#filter_estados, #modal_create_estados, #modal_edit_estados").change(function
         },
         success: function (result) {
             if (result['success']) {
-                $('#' + field).empty()
+                $('#' + campo).empty()
                 $.each(result["data"], function (key, value) {
-                    $('#' + field).append($(' <option> ').text(value['cidade_nome']).attr('value', value['cidade_nome']));
+                    $('#' + campo).append($(' <option> ').text(value['cidade_nome']).attr('value', value[array_field]));
                 });
             } else { }
         },
         error: function (error) {
-            alert('deu erro: veja o console')
+            showWarningModal(error['responseText']);
             console.log(error)
         },
         complete: function () {
-            $('#' + field).trigger("change");
+            $('#' + campo).trigger("change");
             setTimeout(closeLoadingModal, 500)
         }
     });

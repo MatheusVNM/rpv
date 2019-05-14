@@ -67,6 +67,12 @@ $route['ajax/rodoviarias/get'] = 'gerenciar_rodoviaria_controller/ajax_db_getRod
 $route['ajax/rodoviarias/getSingle'] = 'gerenciar_rodoviaria_controller/ajax_db_getRodoviariaEspecifica';
 
 
+$route['ajax/onibus/create'] = 'gerenciar_frota_controller/ajax_db_insertOnibus';
+$route['ajax/onibus/edit'] = 'gerenciar_frota_controller/ajax_db_updateOnibus';
+$route['ajax/onibus/get'] = 'gerenciar_frota_controller/ajax_db_getOnibus';
+$route['ajax/onibus/getSingle'] = 'gerenciar_frota_controller/ajax_db_getOnibusEspecifica';
+
+
 // ajax_db_insertRodoviaria
 /*Rotas para métodos de controller que apenas inserem/atualizam algo no banco de dados. */
 $route['tarifas/update'] = 'gerenciar_tarifa_controller/atualizarValorTarifa';

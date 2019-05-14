@@ -1,5 +1,14 @@
 
 
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+    $('.alert').alert();
+});
+
+$(".reset_form_on_modal_close").on('hidden.bs.modal', function () {
+    $(this).find("form").trigger("reset").find("input").removeClass("is-valid is-invalid");
+})
+
 $("#menu-toggle").click(function (e) {
     e.preventDefault();
     $("#wrapper").toggleClass("toggled");
@@ -76,22 +85,22 @@ $('.numbers-only').bind('keypress blur', function (event) {
     }
 });
 
-// <!-- Função para deixar vermelho os campos que estiverem vazios -->
-(function () {
-    'use strict';
-    window.addEventListener('load', function () {
-        var forms = document.getElementsByClassName('needs-validation');
-        var validation = Array.prototype.filter.call(forms, function (form) {
-            form.addEventListener('submit', function (event) {
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    }, false);
-})();
+// // <!-- Função para deixar vermelho os campos que estiverem vazios -->
+// (function () {
+//     'use strict';
+//     window.addEventListener('load', function () {
+//         var forms = document.getElementsByClassName('needs-validation');
+//         var validation = Array.prototype.filter.call(forms, function (form) {
+//             form.addEventListener('submit', function (event) {
+//                 if (form.checkValidity() === false) {
+//                     event.preventDefault();
+//                     event.stopPropagation();
+//                 }
+//                 form.classList.add('was-validated');
+//             }, false);
+//         });
+//     }, false);
+// })();
 
 
 // <!-- Funções para abrir e fechar o modal de carregamento -->
@@ -103,6 +112,18 @@ function showLoadingModal(message) {
         show: true //e mostra
     });
 }
+
+// <!-- Funções para abrir e fechar o modal de warning -->
+function showWarningModal(message) {
+    $("#message-modal-txt").html(message)
+    $("#message_modal").modal({
+        keyboard: false, //nem pelo teclado
+        show: true //e mostra
+    });
+}
+$('#message_modal').on('hidden.bs.modal', function (e) {
+    $("#message-modal-txt").html("");
+})
 
 function closeLoadingModal() {
     $("#loading-modal-txt").html(" ")
