@@ -12,56 +12,56 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="modal_create_placa">Placa</label>
-                            <input value="x" name="onibus_placa" type="text" maxlength="7" class="form-control alphanumeric-only" id="modal_create_placa" required />
+                            <input  name="onibus_placa" type="text" maxlength="7" class="form-control alphanumeric-only" id="modal_create_placa" required />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="modal_create_nro_onibus">Nro Ônibus</label>
-                            <input value="2" name="onibus_numero" class="form-control numbers-only" id="modal_create_nro_onibus" required />
+                            <input  name="onibus_numero" class="form-control numbers-only" id="modal_create_nro_onibus" required />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="modal_create_nro_antt">Nro ANTT</label>
-                            <input value="2" name="onibus_numero_antt" class="form-control numbers-only" id="modal_create_nro_antt" maxlength="12" required />
+                            <input  name="onibus_numero_antt" class="form-control numbers-only" id="modal_create_nro_antt" maxlength="12" required />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="modal_create_nro_chassi">Nro Chassi</label>
-                            <input value="x" name="onibus_num_chassis" type="text" class="form-control alphanumeric-only" id="modal_create_nro_chassi" maxlength="17" required />
+                            <input  name="onibus_num_chassis" type="text" class="form-control alphanumeric-only" id="modal_create_nro_chassi" maxlength="17" required />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="modal_create_nro_lugares">Nro Lugares</label>
-                            <input value="2" name="onibus_num_lugares" class="form-control numbers-only" id="modal_create_nro_lugares" maxlength="3" max="99" required />
+                            <input  name="onibus_num_lugares" class="form-control numbers-only" id="modal_create_nro_lugares" maxlength="3" max="99" required />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="modal_create_marca_carroceira">Marca</label>
-                            <input value="x" name="onibus_marca" type="text" class="form-control letters-only" id="modal_create_marca_carroceira" maxlength="50" required />
+                            <input  name="onibus_marca" type="text" class="form-control letters-only" id="modal_create_marca_carroceira" maxlength="50" required />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="modal_create_potencia_motor">Potência do Motor</label>
-                            <input value="2" name="onibus_potencial_motor" class="form-control numbers-only" id="modal_create_potencia_motor" maxlength="4" required />
+                            <input  name="onibus_potencial_motor" class="form-control numbers-only" id="modal_create_potencia_motor" maxlength="4" required />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="modal_create_propriedade_veiculo">Propriedade do Veículo</label>
-                            <input value="2" name="onibus_propriedade_veiculo" type="text" class="form-control letters-only" id="modal_create_propriedade_veiculo" maxlength="30" required />
+                            <input  name="onibus_propriedade_veiculo" type="text" class="form-control letters-only" id="modal_create_propriedade_veiculo" maxlength="30" required />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="modal_create_ano_fabricacao">Ano Fabricação</label>
-                            <input value="2" name="onibus_ano_fab" class="form-control numbers-only" id="modal_create_ano_fabricacao" maxlength="4" required />
+                            <input  name="onibus_ano_fab" class="form-control numbers-only" id="modal_create_ano_fabricacao" maxlength="4" required />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="model_create_quilometragem">Quilometragem</label>
-                            <input value="2" name="onibus_quilometragem" class="form-control numbers-only" id="model_create_quilometragem" maxlength="10" required />
+                            <input  name="onibus_quilometragem" class="form-control numbers-only" id="model_create_quilometragem" maxlength="10" required />
                         </div>
 
                         <div class="form-group col-md-4">
                             <label class="mx-1">Ar Condicionado:</label>
                             <div class="form-check column">
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input value="x" name="onibus_ar_condicionado" class="custom-control-input" type="radio" id="id_create_ar_sim" value="true" checked required />
+                                    <input  name="onibus_ar_condicionado" class="custom-control-input" type="radio" id="id_create_ar_sim" value="true" checked required />
                                     <label class="custom-control-label" for="id_create_ar_sim">
                                         Sim
                                     </label>
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input value="x" name="onibus_ar_condicionado" class="custom-control-input mx-2" type="radio" id="id_create_ar_nao" value="false" required />
+                                    <input  name="onibus_ar_condicionado" class="custom-control-input mx-2" type="radio" id="id_create_ar_nao" value="false" required />
                                     <label class="custom-control-label" for="id_create_ar_nao">
                                         Não
                                     </label>
@@ -72,13 +72,13 @@
                             <label class="mx-1">Adaptado para Deficientes:</label>
                             <div class="form-check column">
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input value="x" name="onibus_adaptado_deficiente" class="custom-control-input" type="radio" id="id_create_defic_sim" value="true" checked required />
+                                    <input name="onibus_adaptado_deficiente" class="custom-control-input" type="radio" id="id_create_defic_sim" value="true" checked required />
                                     <label class="custom-control-label" for="id_create_defic_sim">
                                         Sim
                                     </label>
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input value="x" name="onibus_adaptado_deficiente" class="custom-control-input mx-2" type="radio" id="id_create_defic_nao" value="false" required />
+                                    <input name="onibus_adaptado_deficiente" class="custom-control-input mx-2" type="radio" id="id_create_defic_nao" value="false" required />
                                     <label class="custom-control-label mx-4" for="id_create_defic_nao">
                                         Não
                                     </label>

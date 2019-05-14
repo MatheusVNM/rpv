@@ -125,6 +125,33 @@ $('#message_modal').on('hidden.bs.modal', function (e) {
     $("#message-modal-txt").html("");
 })
 
+function showErrorModal(title, message) {
+    $("#error_modal_title").html(title)
+    $("#error_modal_txt").html(message)
+    $("#error_modal").modal({
+        keyboard: false, //nem pelo teclado
+        show: true //e mostra
+    });
+}
+$('#error_modal').on('hidden.bs.modal', function (e) {
+    $("#error_modal_title").html("")
+    $("#error_modal_txt").html("")
+})
+
+function showSuccessModal(title, message) {
+    $("#success_modal_title").html(title)
+    $("#success_modal_txt").html(message)
+    $("#success_modal").modal({
+        keyboard: false, //nem pelo teclado
+        show: true //e mostra
+    });
+}
+$('#success_modal').on('hidden.bs.modal', function (e) {
+    $("#success_modal_title").html("")
+    $("#success_modal_txt").html("")
+})
+
+
 function closeLoadingModal() {
     $("#loading-modal-txt").html(" ")
     $("#loading_modal").modal("hide")

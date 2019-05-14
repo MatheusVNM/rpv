@@ -30,23 +30,18 @@ class Gerenciar_frota_controller extends CI_Controller
         $this->load->view('gerenciar_frota_view/tela_inicial', $data);
     }
 
-    public function ajax_db_getFrotaIntermunicipal()
+    public function ajax_db_getOnibus()
     {
+        // echo "olamundo";
         echo json_encode($this->onibus->getOnibus()['result'] ?? null);
     }
-    public function ajax_db_getFrotaMunicipal()
-    {
-        echo json_encode($this->onibus_municipal->getOnibus()['result'] ?? null);
-    }
-
     public function ajax_db_getOnibusEspecifico()
     {
-        $this->form_validation->set_rules('onibus_id', 'ID do Onibus', 'trim|required|numeric');
+        $this->form_validation->set_rules('onibus_id', 'ID do Onibus', 'required|trim|numeric');
 
         if ($this->form_validation->run() !== FALSE) {
             $retorno['success'] = true;
-            $retorno['data'] = $this->onibus->getRodoviaria($this->input->post('rodoviaria_id'))['result'];
-
+            $retorno['data'] = $this->onibus->getOnibusEspecifico($this->input->post('onibus_id'))['result']??null;
             echo json_encode($retorno);
         } else {
             $retorno['success'] = false;
@@ -59,32 +54,32 @@ class Gerenciar_frota_controller extends CI_Controller
 
     public function ajax_db_insertOnibus()
     {
-        $this->form_validation->set_rules('onibus_placa', '', 'required');
-        $this->form_validation->set_rules('onibus_numero', '', 'required');
-        $this->form_validation->set_rules('onibus_numero_antt', '', 'required');
-        $this->form_validation->set_rules('onibus_num_chassis', '', 'required');
-        $this->form_validation->set_rules('onibus_num_lugares', '', 'required');
-        $this->form_validation->set_rules('onibus_marca', '', 'required');
-        $this->form_validation->set_rules('onibus_potencial_motor', '', 'required');
-        $this->form_validation->set_rules('onibus_propriedade_veiculo', '', 'required');
-        $this->form_validation->set_rules('onibus_ano_fab', '', 'required');
-        $this->form_validation->set_rules('onibus_quilometragem', '', 'required');
-        $this->form_validation->set_rules('onibus_is_municipal', '', 'required');
-        // echo_r($this->input->post());
-        echo $this->input->post('onibus_cidade');
+        $this->form_validation->set_rules('onibus_placa', '', 'required|trim|regex_match[/[a-zA-Z]{3}\d{4}/]|exact_length[7]|strtoupper');
+        $this->form_validation->set_rules('onibus_numero', '', 'required|trim|min_length[1]|greater_than[0]|max_length[4]|numeric');
+        $this->form_validation->set_rules('onibus_numero_antt', '', 'required|trim|exact_length[9]|greater_than[0]|numeric');
+        $this->form_validation->set_rules('onibus_num_chassis', '', 'required|trim|exact_length[17]|strtoupper');
+        $this->form_validation->set_rules('onibus_num_lugares', '', 'required|trim|min_length[1]|greater_than[0]|max_length[3]|numeric');
+        $this->form_validation->set_rules('onibus_marca', '', 'required|trim|strtoupper');
+        $this->form_validation->set_rules('onibus_potencial_motor', '', 'required|trim|numeric|greater_than[1]');
+        $this->form_validation->set_rules('onibus_propriedade_veiculo', '', 'required|trim|strtoupper');
+        $this->form_validation->set_rules('onibus_ano_fab', '', 'required|trim|exact_length[4]|numeric');
+        $this->form_validation->set_rules('onibus_quilometragem', '', 'required|trim|greater_than_equal_to[0]');
+        $this->form_validation->set_rules('onibus_is_municipal', '', 'required|trim');
+        $this->form_validation->set_rules('onibus_is_municipal', '', 'required|trim');
+        // echo $this->input->post('onibus_cidade');
         if ($this->input->post('onibus_is_municipal')) {
             if (filter_var($this->input->post('onibus_is_municipal'), FILTER_VALIDATE_BOOLEAN)) {
                 $isMunicipal = true;
-                $this->form_validation->set_rules('onibus_cidade', '', 'required|numeric|greater_than[0]');
+                $this->form_validation->set_rules('onibus_cidade', '', 'required|trim|numeric|greater_than[0]');
             } else {
                 $isMunicipal = false;
-                $this->form_validation->set_rules('onibus_categoria_intermunicipal', '', 'required');
+                $this->form_validation->set_rules('onibus_categoria_intermunicipal', '', 'required|trim|numeric|greater_than[0]');
             }
         }
-        $this->form_validation->set_rules('onibus_ar_condicionado', '', 'required');
-        $this->form_validation->set_rules('onibus_adaptado_deficiente', '', 'required');
+        $this->form_validation->set_rules('onibus_ar_condicionado', '', 'required|trim');
+        $this->form_validation->set_rules('onibus_adaptado_deficiente', '', 'required|trim');
 
-        //    echo_r($this->input->post());
+        // echo_r($this->input->post());
 
         if ($this->form_validation->run() !== false) {
             $onibus_placa = $this->input->post('onibus_placa');
@@ -140,14 +135,15 @@ class Gerenciar_frota_controller extends CI_Controller
                 );
 
 
-            if ($result['success']) {
+            if ($result['success'] === true) {
                 $result['message'] = successAlert('Onibus cadastrado com sucesso');
             } else {
                 $result['message'] = errorAlert('Erro ao cadastrar a onibus: ' . json_encode($result['error']) . '');
             }
         } else {
             $result['success'] = false;
-            $result['message'] = errorAlert('Erro ao cadastrar a onibus: Algum campo não foi preenchido corretamente');
+            $result['message'] = errorAlert('Erro ao cadastrar a onibus: Algum campo não foi preenchido corretamente', false);
+            $result['error_messages'] = $this->form_validation->error_array();
             $result['error_fields'] = array();
             foreach ($this->form_validation->error_array() as $key => $value) {
                 array_push($result['error_fields'], $key);
@@ -157,52 +153,85 @@ class Gerenciar_frota_controller extends CI_Controller
         echo json_encode($result);
     }
 
-    public function ajax_db_updateRodoviaria()
+    public function ajax_db_updateOnibus()
     {
-        $this->form_validation->set_rules('rodoviaria_id', 'Rua', 'required');
-        $this->form_validation->set_rules('rodoviaria_rua', 'Rua', 'required');
-        $this->form_validation->set_rules('rodoviaria_cep', 'Cep', 'required');
-        $this->form_validation->set_rules('rodoviaria_nome', 'Email', 'required');
-        $this->form_validation->set_rules('rodoviaria_email', 'Email', 'required');
-        $this->form_validation->set_rules('rodoviaria_bairro', 'Bairro', 'required');
-        $this->form_validation->set_rules('rodoviaria_numero', 'NUmero', 'required|numeric');
-        $this->form_validation->set_rules('rodoviaria_qntdbox', 'Boxes', 'required|numeric');
-        $this->form_validation->set_rules('rodoviaria_telefone', 'telefone', 'required|numeric');
-        $this->form_validation->set_rules('rodoviaria_cidade_id', 'Nome da Cidade', 'required|numeric');
+        $this->form_validation->set_rules('onibus_id', '', 'required|trim|greater_than[0]|numeric');
+        $this->form_validation->set_rules('onibus_placa', '', 'required|trim|regex_match[/[a-zA-Z]{3}\d{4}/]|exact_length[7]|strtoupper');
+        $this->form_validation->set_rules('onibus_numero', '', 'required|trim|min_length[1]|greater_than[0]|max_length[4]|numeric');
+        $this->form_validation->set_rules('onibus_numero_antt', '', 'required|trim|exact_length[9]|greater_than[0]|numeric');
+        $this->form_validation->set_rules('onibus_num_chassis', '', 'required|trim|exact_length[17]|strtoupper');
+        $this->form_validation->set_rules('onibus_num_lugares', '', 'required|trim|min_length[1]|greater_than[0]|max_length[3]|numeric');
+        $this->form_validation->set_rules('onibus_marca', '', 'required|trim|strtoupper');
+        $this->form_validation->set_rules('onibus_potencial_motor', '', 'required|trim|numeric|greater_than[1]');
+        $this->form_validation->set_rules('onibus_propriedade_veiculo', '', 'required|trim|strtoupper');
+        $this->form_validation->set_rules('onibus_ano_fab', '', 'required|trim|exact_length[4]|numeric');
+        $this->form_validation->set_rules('onibus_quilometragem', '', 'required|trim|greater_than_equal_to[0]');
+        $this->form_validation->set_rules('onibus_is_municipal', '', 'required|trim');
+        // echo $this->input->post('onibus_cidade');
+        if ($this->input->post('onibus_is_municipal')) {
+            if (filter_var($this->input->post('onibus_is_municipal'), FILTER_VALIDATE_BOOLEAN)) {
+                $isMunicipal = true;
+                $this->form_validation->set_rules('onibus_cidade', '', 'required|trim|numeric|greater_than[0]');
+            } else {
+                $isMunicipal = false;
+                $this->form_validation->set_rules('onibus_categoria_intermunicipal', '', 'required|trim|numeric|greater_than[0]');
+            }
+        }
+        $this->form_validation->set_rules('onibus_ar_condicionado', '', 'required|trim');
+        $this->form_validation->set_rules('onibus_adaptado_deficiente', '', 'required|trim');
+
+        // echo_r($this->input->post());
 
         if ($this->form_validation->run() !== false) {
-            $rodoviaria_id = $this->input->post('rodoviaria_id');
-            $rodoviaria_rua = $this->input->post('rodoviaria_rua');
-            $rodoviaria_cep = $this->input->post('rodoviaria_cep');
-            $rodoviaria_nome = $this->input->post('rodoviaria_nome');
-            $rodoviaria_email = $this->input->post('rodoviaria_email');
-            $rodoviaria_bairro = $this->input->post('rodoviaria_bairro');
-            $rodoviaria_numero = $this->input->post('rodoviaria_numero');
-            $rodoviaria_qntdbox = $this->input->post('rodoviaria_qntdbox');
-            $rodoviaria_telefone = $this->input->post('rodoviaria_telefone');
-            $rodoviaria_cidade_id = $this->input->post('rodoviaria_cidade_id');
-
-            $result = $this->rodoviaria->updateRodoviaria(
-                $rodoviaria_id,
-                $rodoviaria_nome,
-                $rodoviaria_rua,
-                $rodoviaria_numero,
-                $rodoviaria_bairro,
-                $rodoviaria_cep,
-                $rodoviaria_email,
-                $rodoviaria_telefone,
-                $rodoviaria_qntdbox,
-                $rodoviaria_cidade_id
-            );
-
-            if ($result['success']) {
-                $result['message'] = successAlert('Rodoviaria atualizada com sucess o');
+            $onibus_id = $this->input->post('onibus_id');
+            $onibus_placa = $this->input->post('onibus_placa');
+            $onibus_numero = $this->input->post('onibus_numero');
+            $onibus_numero_antt = $this->input->post('onibus_numero_antt');
+            $onibus_num_chassis = $this->input->post('onibus_num_chassis');
+            $onibus_num_lugares = $this->input->post('onibus_num_lugares');
+            $onibus_marca = $this->input->post('onibus_marca');
+            $onibus_potencial_motor = $this->input->post('onibus_potencial_motor');
+            $onibus_propriedade_veiculo = $this->input->post('onibus_propriedade_veiculo');
+            $onibus_ano_fab = $this->input->post('onibus_ano_fab');
+            $onibus_quilometragem = $this->input->post('onibus_quilometragem');
+            $onibus_cidade = $this->input->post('onibus_cidade');
+            $onibus_categoria_intermunicipal = $this->input->post('onibus_categoria_intermunicipal');
+            $onibus_ar_condicionado =
+                filter_var($this->input->post('onibus_ar_condicionado'), FILTER_VALIDATE_BOOLEAN);
+            $onibus_adaptado_deficiente =
+                filter_var($this->input->post('onibus_adaptado_deficiente'), FILTER_VALIDATE_BOOLEAN);
+                $result = $this->onibus->updateOnibus(
+                    $onibus_id,
+                    $onibus_placa,
+                    $onibus_numero,
+                    $onibus_numero_antt,
+                    $onibus_num_chassis,
+                    $onibus_num_lugares,
+                    $onibus_marca,
+                    $onibus_potencial_motor,
+                    $onibus_propriedade_veiculo,
+                    $onibus_ano_fab,
+                    $onibus_quilometragem,
+                    $isMunicipal,
+                    $onibus_cidade,
+                    $onibus_categoria_intermunicipal,
+                    $onibus_ar_condicionado,
+                    $onibus_adaptado_deficiente
+                );
+           
+            if ($result['success'] === true) {
+                $result['message'] = successAlert('Onibus atualizado com sucesso');
             } else {
-                $result['message'] = errorAlert('Erro ao atualizar arodoviaria: '  . $result['error'] . '');
+                $result['message'] = errorAlert('Erro ao atualizar a onibus: ' . json_encode($result['error']) . '');
             }
         } else {
             $result['success'] = false;
-            $result['message'] = errorAlert('Erro ao atualizar a rodoviaria: Algum campo não foi preenchido corretamente');
+            $result['message'] = errorAlert('Erro ao atualizar a onibus: Algum campo não foi preenchido corretamente', false);
+            $result['error_messages'] = $this->form_validation->error_array();
+            $result['error_fields'] = array();
+            foreach ($this->form_validation->error_array() as $key => $value) {
+                array_push($result['error_fields'], $key);
+            }
         }
 
         echo json_encode($result);

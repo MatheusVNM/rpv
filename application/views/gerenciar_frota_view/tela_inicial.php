@@ -108,13 +108,13 @@ $this->load->view("header2");
                         ?>
                     </td>
                     <td>
-                        <button onclick="editar()" type="button" class="btn btn-warning btn-sm" id="id_opcao_editar" data-toggle="modal" data-placement="top" title="Editar veículo" data-target="#id_modal_edit_veiculo">
+                        <button onclick="editar(<?= $onibus['onibus_id'] ?>)" type="button" class="btn btn-warning btn-sm" id="id_opcao_editar" data-toggle="modal" data-placement="top" title="Editar veículo" data-target="#id_modal_edit_veiculo">
                             <span class="hvr-icon fa fa-edit mr-1"></span> Editar
                         </button>
-                        <button onclick="ocultar()" type="button" class="btn btn-danger btn-sm" title="Ocultar da lista" id="id_opcao_ocultar" data-toggle="tooltip" data-placement="top" target="_blank">
-                            <span class="hvr-icon fa fa-trash mr-1"></span>Ocultar
-                        </button>
-                        <button onclick="info()" type="button" class="btn btn-primary btn-sm" title="Mais informações sobre o veíuclo." id="id_opcao_visualizar" data-toggle="tooltip" data-placement="top">
+                        <!-- <button onclick="inativar(<?= $onibus['onibus_id'] ?>)" type="button" class="btn btn-danger btn-sm" title="Inativar da lista" id="id_opcao_inativar" data-placement="top" target="_blank">
+                            <span class="hvr-icon fa fa-trash mr-1"></span>Inativar
+                        </button> -->
+                        <button onclick="info(<?= $onibus['onibus_id'] ?>)" type="button" class="btn btn-primary btn-sm" title="Mais informações sobre o veíuclo." id="id_opcao_visualizar" data-placement="top">
                             <span class="hvr-icon fa fa-info mr-1"></span>Info
                         </button>
                     </td>

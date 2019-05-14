@@ -70,7 +70,7 @@ $route['ajax/rodoviarias/getSingle'] = 'gerenciar_rodoviaria_controller/ajax_db_
 $route['ajax/onibus/create'] = 'gerenciar_frota_controller/ajax_db_insertOnibus';
 $route['ajax/onibus/edit'] = 'gerenciar_frota_controller/ajax_db_updateOnibus';
 $route['ajax/onibus/get'] = 'gerenciar_frota_controller/ajax_db_getOnibus';
-$route['ajax/onibus/getSingle'] = 'gerenciar_frota_controller/ajax_db_getOnibusEspecifica';
+$route['ajax/onibus/getSingle'] = 'gerenciar_frota_controller/ajax_db_getOnibusEspecifico';
 
 
 // ajax_db_insertRodoviaria

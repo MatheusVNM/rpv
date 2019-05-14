@@ -576,6 +576,12 @@ body {
 	content: "\f093 \020 Procurar" !important;
 	font-weight: 900;
 }
+
+.rotate-45{
+	-ms-transform: rotate(45deg); /* IE 9 */
+  -webkit-transform: rotate(45deg); /* Safari 3-8 */
+  transform: rotate(45deg);
+}
 /* 
 
 .loading-spinner {
