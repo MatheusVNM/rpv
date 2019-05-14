@@ -11,15 +11,6 @@ $this->load->view("header2");
 <?= $this->session->flashdata('success'); ?>
 <div class="row col-md-12 pr-0">
 
-    <div class="form-group col-md-3 ">
-        <label for="inputStatus">Filtrar</label>
-        <select id="idInputStatus" class="form-control" name="opcoesFiltros">
-            <option value="-1">Todos</option>
-            <option value="Em Manutenção">Em Manutenção</option>
-            <option value="Finalizado">Finalizado</option>
-            <option value="2">Ocultados</option>
-        </select>
-    </div>
 
     <button type="button" class="btn btn-success ml-auto  mt-auto mb-2 h-50" data-toggle="modal" data-target="#modal_create_manutencao" title="Adicione uma nova manutenção.">
         <i class="fa fa-plus-circle" data-toggle="tooltip" data-placement="bottom"></i> Nova Manutenção
