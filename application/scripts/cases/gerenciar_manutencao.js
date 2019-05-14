@@ -46,6 +46,8 @@ $("#modal_create_manutencao_form").submit(function () {
             if (result['success']) {
                 $("#page_message").html(result['message']);
                 $("#modal_create_manutencao").modal('hide');
+                $(".modal-backdrop").removeClass('show');
+                $(".modal-backdrop").addClass('d-none');
                 $("#id_modal_create_manutencao_form").trigger("reset");
                 atualizarTabela()
             } else {
@@ -68,7 +70,8 @@ $("#modal_create_manutencao_form").submit(function () {
             }
         },
         error: function (error) {
-            showWarningModal(JSON.stringify(error));
+            // showWarningModal(JSON.stringify(error));
+            showErrorModal('Erro inesperado', "Um erro inesperado aconteceu. Aguarde um momento e tente novamente. Se o erro persistir, contacte o administrador")
             console.log(error)
         },
         complete: function () {
@@ -99,6 +102,7 @@ function atualizarTabela() {
             })
         },
         error: function (error) {
+            showErrorModal('Erro inesperado', "Um erro inesperado aconteceu. Aguarde um momento e tente novamente. Se o erro persistir, contacte o administrador")
             console.log(error);
         },
         complete: function () {
@@ -228,9 +232,7 @@ $("#modal_edit_manutencao_form").submit(function () {
         },
         complete: function () {
             setTimeout(closeLoadingModal, 500)
-            setTimeout(function(){
-                $(".modal-backdrop").removeClass('show');
-            }, 1200)
+           
         }
     });
     return false;

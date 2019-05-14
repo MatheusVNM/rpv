@@ -134,7 +134,7 @@ $this->load->view("header2");
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label>Placa</label>
-                            <select disabled class="form-control" id="modal_edit_placa">
+                            <select name="onibus_id" disabled class="form-control" id="modal_edit_placa">
                                 <option disabled selected value>Selecione a Placa do Ônibus</option>
                                 <?php foreach ($onibus as $row) : ?>
                                     <option value=<?= $row['onibus_id'] ?>><?= $row['onibus_placa'] ?></option>
