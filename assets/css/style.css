@@ -455,6 +455,14 @@ body {
 #id_dados_alocacao{
 	margin-left: -14px;
 }
+#id_button_lista_onibus{
+	background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
 
 /* */
 
