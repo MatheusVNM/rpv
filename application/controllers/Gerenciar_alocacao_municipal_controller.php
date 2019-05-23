@@ -14,16 +14,18 @@ class Gerenciar_alocacao_municipal_controller extends CI_Controller
         $this->load->model('alocacao_municipal_model', 'alocacao');
         $this->load->model('funcionarios_model', 'funcionarios');
         $this->load->model('tipo_funcionario_model', 'tipofuncionario');
-        $this->output->enable_profiler(true);
+        // $this->output->enable_profiler(true);
     }
 
     public function index()
     {
-        // $data['alocacaomunicipal'] = $this->alocacao->getAlocacoes()['result'];
+        $data['alocacaomunicipal'] = $this->alocacao->getAlocacoes()['result'];
         //echo_r( $this->alocacao->getAlocacoes()['result']);
         //echo_r($this->alocacao->getAlocacao(1)['result']);
         // $data['funcionarios'] = $this->funcionarios->getFuncionarios()['result'];
         //print_r($data['alocacoes']);
+        //echo_r($data);
+        $this->load->view('gerenciar_alocacao_municipal_view/tela_inicial', $data);
     }
     public function ajax_db_getAlocacoes()
     {
