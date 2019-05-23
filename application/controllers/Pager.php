@@ -15,7 +15,7 @@ class Pager extends CI_Controller
   {
     //Allowing akses to admin only
     if ($this->session->userdata('level') === 'cliente') {
-        redirect('');
+        redirect('clientes');
     } else {
       echo "Access Denied";
     }
