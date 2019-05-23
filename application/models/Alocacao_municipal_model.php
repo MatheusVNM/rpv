@@ -1,14 +1,15 @@
 <?php
 
-class Gerenciar_alocacao_model extends CI_Model
+class Alocacao_municipal_model extends CI_Model
 {
     public function getAlocacoes()
     {
-        $this->db->select('alocacaomunicipal.*, funcionarios.funcionario_nome, 
-        funcionarios.funcionario_cpf as alocacaomunicipal.alocacaomunicipal_horainicio, 
-        alocacaomunicipal.alocacaomunicipal_horafinal as onibus.onibus_placa');
-        $this->db->join('funcionarios', 'alocacaomunicipal.alocacaomunicipal_cobrador = funcionario.funcionario_id');
-        $this->db->join('onibus', 'alocacaomunicipal.alocacaomunicipal_id = onibus.onibus_id');
+        $this->db->select('alocacaomunicipal.*');
+        $this->db->join('onibus', 'alocacaomunicipal.alocacaomunicipal_onibus_id = onibus.onibus_id');
+        $this->db->join('trajetourbano', 'trajetourbano.trajetourbano_id = alocacaomunicipal.alocacaomunicipal_trajetourbano_id');
+        $this->db->join('cidade', 'cidade.cidade_id = onibus.onibus_cidade_id');
+        $this->db->join('funcionarios', ' funcionarios.funcionarios_id = alocacaomunicipal.alocacaomunicipal_motorista_id or 
+        funcionarios.funcionarios_id = alocacaomunicipal.alocacaomunicipal_cobrador_id');
         $this->db->from('alocacaomunicipal');
         $result = $this->db->get();
         if (!$result) {
@@ -27,11 +28,12 @@ class Gerenciar_alocacao_model extends CI_Model
     }
     public function getAlocacao($id)
     {
-        $this->db->select('alocacaomunicipal.*, funcionarios.funcionario_nome, 
-        funcionarios.funcionario_cpf as alocacaomunicipal.alocacaomunicipal_horainicio, 
-        alocacaomunicipal.alocacaomunicipal_horafinal as onibus.onibus_placa');
-        $this->db->join('funcionarios', 'alocacaomunicipal.alocacaomunicipal_cobrador = funcionario.funcionario_id');
-        $this->db->join('onibus', 'alocacaomunicipal.alocacaomunicipal_id = onibus.onibus_id');
+        $this->db->select('alocacaomunicipal.*');
+        $this->db->join('onibus', 'alocacaomunicipal.alocacaomunicipal_onibus_id = onibus.onibus_id');
+        $this->db->join('trajetourbano', 'trajetourbano.trajetourbano_id = alocacaomunicipal.alocacaomunicipal_trajetourbano_id');
+        $this->db->join('cidade', 'cidade.cidade_id = onibus.onibus_cidade_id');
+        $this->db->join('funcionarios', ' funcionarios.funcionarios_id = alocacaomunicipal.alocacaomunicipal_motorista_id or 
+        funcionarios.funcionarios_id = alocacaomunicipal.alocacaomunicipal_cobrador_id');
         $this->db->from('alocacaomunicipal');
         $this->db->where('alocacaomunicipal_id', $id);
         $result = $this->db->get();
