@@ -28,5 +28,25 @@ class Funcionarios_model extends CI_Model
             return $retorno;
         }
     }
-
+    public function getTipoFuncionario($tipoFuncionario)
+    {
+        $this->db->select('funcionarios.*, tipofuncionario.tipofuncionario_nome');
+        $this->db->join('tipofuncionario', 'funcionarios.funcionarios_id = tipofuncionario.tipofuncionario_id');
+        $this->db->from('funcionarios');
+        $this->db->where('tipofuncionario.tipofuncionario_nome', $tipoFuncionario);
+        $result = $this->db->get();
+        if (!$result) {
+            $retorno['success'] = false;
+            $retorno['error'] = $this->db->error();
+            return $retorno;
+        }
+        if ($result->num_rows() > 0) {
+            $retorno['success'] = true;
+            $retorno['result'] = $result->result_array();
+            return $retorno;
+        } else {
+            $retorno['success'] = false;
+            return $retorno;
+        }
+    }
 }
