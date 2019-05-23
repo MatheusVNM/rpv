@@ -125,9 +125,10 @@ $('#message_modal').on('hidden.bs.modal', function (e) {
     $("#message-modal-txt").html("");
 })
 
-function showErrorModal(title, message) {
+function showErrorModal(title, message, closeAction=function(){}) {
     $("#error_modal_title").html(title)
     $("#error_modal_txt").html(message)
+    $("#success_modal").on("hidden.bs.modal", closeAction);
     $("#error_modal").modal({
         keyboard: false, //nem pelo teclado
         show: true //e mostra
@@ -138,9 +139,10 @@ $('#error_modal').on('hidden.bs.modal', function (e) {
     $("#error_modal_txt").html("")
 })
 
-function showSuccessModal(title, message) {
+function showSuccessModal(title, message, closeAction=function(){}) {
     $("#success_modal_title").html(title)
     $("#success_modal_txt").html(message)
+    $("#success_modal").on("hidden.bs.modal", closeAction);
     $("#success_modal").modal({
         keyboard: false, //nem pelo teclado
         show: true //e mostra
