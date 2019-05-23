@@ -28,6 +28,8 @@ $this->load->view("header2");
             Adicionar Alocação
         </button>
     </div>
+   
+
 </div>
 
 <!-- Table init (Ao abrir a tela) -->
@@ -62,7 +64,7 @@ $this->load->view("header2");
                     </button>
                     <button type="button" class="btn btn-primary btn-sm" title="Mais informações sobre a alocação."
                         data-toggle="modal" id="id_opcao_visualizar" data-placement="top"
-                        data-target="#id_modal_info_alocacao">
+                        data-target="#id_modal_info">
                         <span class="hvr-icon fa fa-info mr-1"></span>Info
                     </button>
                 </td>
@@ -175,6 +177,7 @@ $this->load->view("header2");
             </div>
         </div>
     </div>
+    </div>
 </div>
 
 
@@ -282,6 +285,7 @@ $this->load->view("header2");
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!-- Modal lista de motorista-->
@@ -444,6 +448,79 @@ $this->load->view("header2");
     </div>
 </div>
 
+<!-- Modal Info -->
+<div class="modal fade" id="id_modal_info" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="TituloModalCentralizado">Informações</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form class="needs-validation" novalidate>
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationCustom01">Motorista:</label>
+      <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Gillianes Guedes" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationCustom02">Hora Inicio:</label>
+      <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="8:00 AM" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationCustom02">Hora Fim:</label>
+      <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="16:00 PM" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationCustom03">Cobrador:</label>
+      <input type="text" class="form-control" id="validationCustom03" placeholder="Mathias Baldissera" required>
+      <div class="invalid-feedback">
+        Please provide a valid city.
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationCustom04">Hora Inicio:</label>
+      <input type="text" class="form-control" id="validationCustom04" placeholder="8:00 AM" required>
+      <div class="invalid-feedback">
+        Please provide a valid state.
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationCustom05">Hora Fim:</label>
+      <input type="text" class="form-control" id="validationCustom05" placeholder="16:00 PM" required>
+      <div class="invalid-feedback">
+        Please provide a valid zip.
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom05">Data Alocação:</label>
+      <input type="text" class="form-control" id="validationCustom05" placeholder="23/05/2019" required>
+      <div class="invalid-feedback">
+        Please provide a valid zip.
+      </div>
+    </div>
+  </div>
+
+ 
+</form>
+
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Body end -->
 <?php
