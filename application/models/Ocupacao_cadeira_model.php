@@ -1,7 +1,7 @@
 <?php
 
 
-class OcupacaoCadeira extends CI_Model
+class Ocupacao_cadeira_model extends CI_Model
 {
     public function getOcupacoesCadeiras()
     {
