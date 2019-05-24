@@ -138,3 +138,10 @@ $route['dashboard/rodoviarias'] = 'gerenciar_rodoviaria_controller';
 
 $route['dashboard/frotas']  = 'gerenciar_frota_controller';
 $route['dashboard/manutencoes'] = 'gerenciar_manutencoes_controller';
+
+
+
+// Gerenciar venda de passagens online
+
+$route['dashboard/passagens/onibus'] = 'gerenciar_venda_passagens_online_controller';
+//$route['dashboard/passagens/venda'] =

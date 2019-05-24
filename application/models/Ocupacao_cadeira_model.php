@@ -21,8 +21,34 @@ class Ocupacao_cadeira_model extends CI_Model
             return $retorno;
         }
 
+    }
+
+
+    public function getNumeroDeCadeirasDisponiveis($id_alocacao)
+    {
+        foreach ($id_alocacao as $id) {
+            $data = array(
+                'ocupacaocadeira_alocacaointermunicipal' => $id,
+                'ocupacaocadeira_isOcupado' => false
+            );
+            $this->db->select('*');
+            $this->db->from('ocupacaocadeira');
+            $this->db->where($data);
+            $result[] = $this->db->count_all_results();
+        }
+        return $result;
 
     }
+
+
+
+
+
+
+
+
+
+
 
     public function insertOcupacaoCadeira(
         $quantidadeCadeiras,
@@ -44,16 +70,15 @@ class Ocupacao_cadeira_model extends CI_Model
 
     }
 
-    public function venderCadeira($id){
+    public function venderCadeira($id)
+    {
         $data = array(
             'ocupacaocadeira_isOcupado' => true,
         );
         $result['success'] = $this->db->update('ocupacaocadeira', $data, array('ocupacaocadeira_id' => $id));
-        if ($result['success']!==true)
+        if ($result['success'] !== true)
             $result['error'] = $this->db->error();
         return $result;
-
-
 
 
     }
