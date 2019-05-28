@@ -7,11 +7,11 @@ class Alocacao_intermunicipal_model extends CI_Model
     public function getAlocacoes()
     {
 
-        $this->db->select('*');
+        $this->db->select('alocacaointermunicipal.*, cidade_trajetointerurbano.cidade_trajetointerurbano_saidaDaCidade, cidade_trajetointerurbano.cidade_trajetointerurbano_chegadaNoDestino, 
+        categoriaonibus.categoriaonibus_nome, categoriaonibus.categoriaonibus_precokm, trajetointerurbano.trajetointerurbano_distanciaTotal');
         $this->db->join('onibus', 'alocacaointermunicipal.alocacaointermunicipal_onibus = onibus.onibus_id');
         $this->db->join('categoriaonibus', 'onibus.onibus_categoria_intermunicipal = categoriaonibus.categoriaonibus_id');
         $this->db->join('trajetointerurbano', 'trajetointerurbano.trajetointerurbano_id = alocacaointermunicipal.alocacaointermunicipal_trajetointerurbano');
-        $this->db->join('funcionarios', 'funcionarios.funcionarios_id = alocacaointermunicipal.alocacaointermunicipal_motorista');
         $this->db->join('cidade_trajetointerurbano', 'cidade_trajetointerurbano.cidade_trajetointerurbano_trajeto = trajetointerurbano.trajetointerurbano_id');
         $this->db->join('cidade', 'cidade_trajetointerurbano.cidade_trajetointerurbano_cidade = cidade_id');
         $this->db->from('alocacaointermunicipal');
@@ -34,18 +34,24 @@ class Alocacao_intermunicipal_model extends CI_Model
 
     }
 
-    public function getAlocacoesPorCidades($id_cidade_origem, $id_cidade_destino)
+    public function getAlocacoesPorCidades($origem_id, $destino_id, $data_id)
     {
 
-        $this->db->select('alocacao.*, cidade_trajetointerurbano.cidade_trajetointerurbano_saidaDaCidade, cidade_trajetointerurbano.cidade_trajetointerurbano_chegadaNoDestino, 
-        categoriaonibus.categoriaonibus_nome, categoriaonibus.categoriaonibus_precokm, trajetointerurbano_trajetointerurbano_distanciaTotal');
-        $this->db->join('onibus', 'alocacaointermunicipal.alocacaointermunicipal_onibus = onibus.onibus_id');
-        $this->db->join('categoriaonibus', 'onibus.onibus_categoria_intermunicipal = categoriaonibus.categoriaonibus_id');
-        $this->db->join('trajetointerurbano', 'trajetointerurbano.trajetointerurbano_id = alocacaointermunicipal.alocacaointermunicipal_trajetointerurbano');
-        $this->db->join('cidade_trajetointerurbano', 'cidade_trajetointerurbano.cidade_trajetointerurbano_trajeto = trajetointerurbano.trajetointerurbano_id');
-        $this->db->join('cidade', 'cidade_trajetointerurbano.cidade_trajetointerurbano_cidade = cidade_id');
-        $this->db->from('alocacaointermunicipal');
-        $this->db->where($data);
+            $this->db->select('trajeto');
+
+
+
+
+//
+//        $this->db->select('alocacaointermunicipal.*, cidade_trajetointerurbano.cidade_trajetointerurbano_distancia_ponto_inicial, cidade_trajetointerurbano.cidade_trajetointerurbano_chegadaNoDestino,
+//        categoriaonibus.categoriaonibus_nome, categoriaonibus.categoriaonibus_precokm, trajetointerurbano.trajetointerurbano_distanciaTotal');
+//        $this->db->join('onibus', 'alocacaointermunicipal.alocacaointermunicipal_onibus = onibus.onibus_id');
+//        $this->db->join('categoriaonibus', 'onibus.onibus_categoria_intermunicipal = categoriaonibus.categoriaonibus_id');
+//        $this->db->join('trajetointerurbano', 'trajetointerurbano.trajetointerurbano_id = alocacaointermunicipal.alocacaointermunicipal_trajetointerurbano');
+//        $this->db->join('cidade_trajetointerurbano', 'cidade_trajetointerurbano.cidade_trajetointerurbano_trajeto = trajetointerurbano.trajetointerurbano_id');
+//        $this->db->join('cidade', 'cidade_trajetointerurbano.cidade_trajetointerurbano_cidade = cidade_id');
+//        $this->db->from('alocacaointermunicipal');
+//        $this->db->where($data);
 
         $result = $this->db->get();
         if (!$result) {

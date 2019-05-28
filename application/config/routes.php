@@ -76,6 +76,8 @@ $route['ajax/manutencao/getUnica'] = 'gerenciar_manutencoes_controller/ajax_db_g
 $route['ajax/manutencao/get'] = 'gerenciar_manutencoes_controller/ajax_db_getManutencoes';
 $route['ajax/manutencao/edit'] = 'gerenciar_manutencoes_controller/ajax_db_updateManutencao';
 
+$route['ajax/comprar_passagem/onibus'] = 'gerenciar_venda_passagens_online_controller/ajax_db_getAlocacoesPorCidade';
+
 
 // ajax_db_insertRodoviaria
 /*Rotas para métodos de controller que apenas inserem/atualizam algo no banco de dados. */
