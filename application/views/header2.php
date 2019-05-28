@@ -38,6 +38,7 @@ if ($this->session->userdata('logged_in') !== true || $this->session->userdata('
     <!--Theme Styles CSS-->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/style.css"); ?>" media="all" />
 
+
     <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.3.1.min.js"); ?>"></script>
 
 </head>
@@ -89,10 +90,10 @@ if ($this->session->userdata('logged_in') !== true || $this->session->userdata('
                 <a href="<?= site_url('dashboard') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-home mr-1"></i> Home</a>
 
                 <?php if ($this->session->userdata('level') === 'adm') : ?>
-                <a href="<?= site_url('dashboard/categorias/passageiros') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-group mr-1"></i> Gerenciar Categorias de Passageiros</a>
-                <a href="<?= site_url('dashboard/categorias/onibus') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-bus mr-1"></i> Gerenciar Categorias de Onibus Intermunicipais</a>
-                <a href="<?= site_url('dashboard/rodoviarias') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-location-arrow mr-1"></i> Gerenciar Rodoviarias</a>
-                <a href="<?= site_url('dashboard/manutencoes') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-wrench mr-1"></i> Gerenciar Manutenções</a>
+                    <a href="<?= site_url('dashboard/categorias/passageiros') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-group mr-1"></i> Gerenciar Categorias de Passageiros</a>
+                    <a href="<?= site_url('dashboard/categorias/onibus') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-bus mr-1"></i> Gerenciar Categorias de Onibus Intermunicipais</a>
+                    <a href="<?= site_url('dashboard/rodoviarias') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-location-arrow mr-1"></i> Gerenciar Rodoviarias</a>
+                    <a href="<?= site_url('dashboard/manutencoes') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-wrench mr-1"></i> Gerenciar Manutenções</a>
                 <?php elseif ($this->session->userdata('level') === 'admlocal') : ?>
 
                     <a href="<?= site_url('dashboard/tarifas') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-money mr-1"></i> Gerenciar Tarifas</a>
