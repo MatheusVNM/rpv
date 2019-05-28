@@ -253,6 +253,7 @@ class Onibus_model extends CI_Model
             'onibus_ar_condicionado' => $onibus_ar_condicionado,
             'onibus_quilometragem' => $onibus_quilometragem,
             'onibus_is_ativo' => $onibus_is_ativo,
+            'onibus_quantidade_fileiras' => 4,
             'onibus_motivo_inatividade' => $onibus_motivo_inatividade,
             'onibus_em_manuntencao' => $onibus_em_manuntencao,
             'onibus_is_municipal' => 0,
