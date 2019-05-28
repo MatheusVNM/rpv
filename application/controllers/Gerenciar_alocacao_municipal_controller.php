@@ -12,14 +12,20 @@ class Gerenciar_alocacao_municipal_controller extends CI_Controller
     {
         parent::__construct();
         $this->load->model('alocacao_municipal_model', 'alocacao');
+        $this->load->model('onibus_model', 'onibus');
         $this->load->model('funcionarios_model', 'funcionarios');
         $this->load->model('tipo_funcionario_model', 'tipofuncionario');
+        $this->load->model('trajeto_urbano_model', 'trajetourbano');
         // $this->output->enable_profiler(true);
     }
 
     public function index()
     {
         $data['alocacaomunicipal'] = $this->alocacao->getAlocacoes()['result'];
+        $data['onibus'] = $this->onibus->getOnibusMunicipalNaoAlocado()['result'];
+        $data['motoristas'] = $this->funcionarios->getFuncionariosNaoAlocados(1)['result'];
+        $data['cobradores'] = $this->funcionarios->getFuncionariosNaoAlocados(2)['result'];
+        $data['trajetourbano'] = $this->trajetourbano->getTrajetos();
         //echo_r( $this->alocacao->getAlocacoes()['result']);
         //echo_r($this->alocacao->getAlocacao(1)['result']);
         // $data['funcionarios'] = $this->funcionarios->getFuncionarios()['result'];
@@ -37,8 +43,7 @@ class Gerenciar_alocacao_municipal_controller extends CI_Controller
 
         if ($this->form_validation->run() !== FALSE) {
             $retorno['success'] = true;
-            $retorno['data'] = $this->alocacao-- > get($this->input->post('alocacaomunicipal_id'))['result'];
-
+            $retorno['data'] = $this->alocacao->getAlocacao($this->input->post('alocacaomunicipal_id'))['result'];
             echo json_encode($retorno);
         } else {
             $retorno['success'] = false;
@@ -50,7 +55,7 @@ class Gerenciar_alocacao_municipal_controller extends CI_Controller
     public function ajax_db_insertAlocacaoMunicipal()
     {
         $this->form_validation->set_rules('alocacaomunicipal_cobrador_id', 'Cobrador ID', 'required');
-        $this->form_validation->set_rules('alocacaomunicipal_dataFinal', 'Data final', 'required');
+        $this->form_validation->set_rules('alocacaomunicipal_dataInicial', 'Data inicial', 'required');
         $this->form_validation->set_rules('alocacaomunicipal_dataInicial', 'Data inicial', 'required');
         $this->form_validation->set_rules('alocacaomunicipal_motorista_id', 'ID motorista', 'required');
         $this->form_validation->set_rules('alocacaomunicipal_onibus_id', 'ID onibus', 'required');

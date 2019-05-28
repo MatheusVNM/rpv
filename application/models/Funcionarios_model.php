@@ -49,4 +49,29 @@ class Funcionarios_model extends CI_Model
             return $retorno;
         }
     }
+    public function getFuncionariosNaoAlocados($tipoFuncionario)
+    {
+        $this->db->select('funcionarios.funcionarios_id, 
+        funcionarios.funcionarios_nome');
+        $this->db->join(
+            'alocacaomunicipal',
+            'funcionarios.funcionarios_id != alocacaomunicipal.alocacaomunicipal_motorista_id AND alocacaomunicipal.alocacaomunicipal_cobrador_id != funcionarios.funcionarios_id'
+        );
+        $this->db->from('funcionarios');
+        $this->db->where('funcionarios.funcionarios_tipofuncionario_id', $tipoFuncionario);
+        $result = $this->db->get();
+        if (!$result) {
+            $retorno['success'] = false;
+            $retorno['error'] = $this->db->error();
+            return $retorno;
+        }
+        if ($result->num_rows() > 0) {
+            $retorno['success'] = true;
+            $retorno['result'] = $result->result_array();
+            return $retorno;
+        } else {
+            $retorno['success'] = false;
+            return $retorno;
+        }
+    }
 }

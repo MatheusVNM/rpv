@@ -33,8 +33,6 @@ class Onibus_model extends CI_Model
 
             return $retorno;
         }
-
-
     }
 
     // $this->db->select('onibus.*, categoriaonibus.categoriaonibus_nome, categoriaonibus.categoriaonibus_precokm categoriaonibus.categoriaonibus_id');
@@ -81,8 +79,7 @@ class Onibus_model extends CI_Model
         $onibus_em_manuntencao,
         $onibus_categoria_intermunicipal,
         $onibus_cidade
-    )
-    {
+    ) {
 
         $data = array(
             'onibus_placa' => $onibus_placa,
@@ -109,7 +106,6 @@ class Onibus_model extends CI_Model
         if (!$result['success'])
             $result['error'] = $this->db->error();
         return $result;
-
     }
 
     public function updateOnibusIntermunicipal(
@@ -131,8 +127,7 @@ class Onibus_model extends CI_Model
         $onibus_em_manuntencao,
         $onibus_categoria_intermunicipal,
         $onibus_cidade
-    )
-    {
+    ) {
         $data = array(
             'onibus_placa' => $onibus_placa,
             'onibus_numero' => $onibus_numero,
@@ -159,7 +154,6 @@ class Onibus_model extends CI_Model
 
 
         return $result;
-
     }
 
     public function getOnibusMunicipal()
@@ -184,9 +178,30 @@ class Onibus_model extends CI_Model
 
             return $retorno;
         }
-
     }
 
+    public function getOnibusMunicipalNaoAlocado()
+    {
+        $this->db->select('onibus.onibus_id, onibus.onibus_placa');
+        $this->db->join('alocacaomunicipal', 'onibus.onibus_id != 
+        alocacaomunicipal.alocacaomunicipal_motorista_id');
+        $this->db->from('onibus');
+        $result = $this->db->get();
+        if (!$result) {
+            $retorno['success'] = false;
+            $retorno['error'] = $this->db->error();
+            return $retorno;
+        }
+        if ($result->num_rows() > 0) {
+            $retorno['success'] = true;
+            $retorno['result'] = $result->result_array();
+            return $retorno;
+        } else {
+            $retorno['success'] = false;
+
+            return $retorno;
+        }
+    }
     public function getOnibusMunicipalEspecifico($id)
     {
         $this->db->select('onibus.*, cidade.cidade_nome, estado.estado_uf');
@@ -210,7 +225,6 @@ class Onibus_model extends CI_Model
 
             return $retorno;
         }
-
     }
 
 
@@ -231,8 +245,7 @@ class Onibus_model extends CI_Model
         $onibus_motivo_inatividade,
         $onibus_em_manuntencao,
         $onibus_cidade
-    )
-    {
+    ) {
         $data = array(
             'onibus_placa' => $onibus_placa,
             'onibus_numero' => $onibus_numero,
@@ -257,7 +270,6 @@ class Onibus_model extends CI_Model
         if (!$result['success'])
             $result['error'] = $this->db->error();
         return $result;
-
     }
 
     public function updateOnibusMunicipal(
@@ -278,8 +290,7 @@ class Onibus_model extends CI_Model
         $onibus_motivo_inatividade,
         $onibus_em_manuntencao,
         $onibus_cidade
-    )
-    {
+    ) {
         $data = array(
             'onibus_placa' => $onibus_placa,
             'onibus_numero' => $onibus_numero,
