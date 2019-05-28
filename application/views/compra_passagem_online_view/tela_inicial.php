@@ -28,7 +28,7 @@ $this->load->view("header2");
 <div class="row col-md-12 pr-0 mr-0">
     <form id="form_pesquisa" class="row col-md-12 border-secondary rounded mx-auto alert alert-secondary">
         <div class="form-group col-md  px-1 d-flex flex-column align-center form-group"> Origem
-            <select required class="selectpicker form-control enableButton" data-live-search="true" id="origem">
+            <select required class="selectpicker form-control enableButton" data-live-search="true" id="origem_id">
                 <option>Alegrete</option>
                 <option>Uruguaiana</option>
                 <option>Manoel Viana</option>
@@ -46,7 +46,7 @@ $this->load->view("header2");
             </select>
         </div>
         <div class="form-group col-md  px-1 d-flex flex-column align-center form-group"> Destino
-            <select required class="selectpicker form-control enableButton" data-live-search="true" id="destino">
+            <select required class="selectpicker form-control enableButton" data-live-search="true" id="destino_id">
                 <option>Alegrete</option>
                 <option>Uruguaiana</option>
                 <option>Manoel Viana</option>
@@ -65,7 +65,7 @@ $this->load->view("header2");
         </div>
 
         <div class="form-group col-md  px-1 d-flex flex-column align-center form-group">
-            Saída <input id="searchDate" required style="min-width: 100%"
+            Saída <input id="data_id" required style="min-width: 100%"
                          class="py-2 form-control datepickerinit enableButton" type="date"/>
         </div>
 
@@ -88,22 +88,18 @@ $this->load->view("header2");
         </thead>
         <tbody id="tableBody">
         <tr>
-            <?php for ($i=0; $i < sizeof($alocacoes); $i++) : ?>
-            <th scope="row">???</th>
-            <td> <?= $alocacoes[$i]['cidade_trajetointerurbano_saidaDaCidade'] ?>
-            </td>
-            <td><?= $alocacoes[$i]['cidade_trajetointerurbano_chegadaNoDestino'] ?>
-
+            <th></th>
+            <td>
             </td>
             <td>
-                <?= $alocacoes[$i]['categoriaonibus_nome'] ?>
             </td>
             <td>
-                <?= $cadeirasdisponiveis[$i] ?>
+            </td>
+            <td>
             </td>
             <td><a class="btn btn-primary"><i class="fa fa-rebel"></i> Ver Cadeiras</a></td>
         </tr>
-        <?php endfor; ?>
+
         </tbody>
     </table>
 </div>
