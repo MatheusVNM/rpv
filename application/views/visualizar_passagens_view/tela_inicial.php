@@ -42,7 +42,7 @@ $this->load->view("header2");
                 <th scope="col">Placa do Veículo</th>
                 <th scope="col">Trajeto</th>
                 <th scope="col">Total Vendidas</th>
-                <th scope="col">Mês</th>
+                <th scope="col">Data</th>
                 <th scope="col">Opções</th>
             </tr>
         </thead>
@@ -53,7 +53,7 @@ $this->load->view("header2");
                 <td>IQU1240</td>
                 <td>Alegrete/Rosário do Sul</td>
                 <td>50</td>
-                <td>02/2019</td>
+                <td>02/05/2019</td>
                 
 
                 <td>
@@ -115,21 +115,21 @@ $this->load->view("header2");
                             <div class= "form-row">
                              <div class="form-group col-md-3">
                                 <label for="exampleFormControlInput1">Passagens Inteiras:</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1" >
+                                <input type="number" maxlenght="6" min="0" max="9999" class="form-control" id="exampleFormControlInput1" >
                         </div>
 
                             <div class="form-group col-md-3">
                                 <label for="exampleFormControlInput1">Meias Passagens:</label>
-                                 <input type="email" class="form-control" id="exampleFormControlInput1">
+                                 <input type="number" maxlenght="6" min="0" max="9999" class="form-control" id="exampleFormControlInput1">
                             </div>
                             
                             <div class="form-group col-md-3">
                                 <label for="exampleFormControlInput1">Passagens Isentas:</label>
-                                 <input type="email" class="form-control" id="exampleFormControlInput1" >
+                                 <input type="number" maxlenght="6" min="0" max="9999" class="form-control" id="exampleFormControlInput1" >
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="exampleFormControlInput1">Mês/Ano:</label>
-                                 <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="mm/yyyy">
+                                <label for="exampleFormControlInput1">Data:</label>
+                                 <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="mm/yyyy">
                             </div>
                             </div>
 
@@ -191,21 +191,21 @@ $this->load->view("header2");
                             <div class= "form-row">
                              <div class="form-group col-md-3">
                                 <label for="exampleFormControlInput1">Passagens Inteiras:</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder ="25" >
+                                <input type="number" maxlenght="6" min="0" max="9999" class="form-control" id="exampleFormControlInput1" placeholder ="25" >
                         </div>
 
                             <div class="form-group col-md-3">
                                 <label for="exampleFormControlInput1">Meias Passagens:</label>
-                                 <input type="email" class="form-control" id="exampleFormControlInput1" placeholder ="20">
+                                 <input type="number" maxlenght="6" min="0" max="9999" class="form-control" id="exampleFormControlInput1" placeholder ="20">
                             </div>
                             
                             <div class="form-group col-md-3">
                                 <label for="exampleFormControlInput1">Passagens Isentas:</label>
-                                 <input type="email" class="form-control" id="exampleFormControlInput1" placeholder ="5" >
+                                 <input type="number" maxlenght="6" min="0" max="9999" class="form-control" id="exampleFormControlInput1" placeholder ="5" >
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="exampleFormControlInput1">Mês/Ano:</label>
-                                 <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="02/2019">
+                                <label for="exampleFormControlInput1">Data:</label>
+                                 <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="02/05/2019">
                             </div>
                             </div>
 
@@ -279,17 +279,17 @@ $this->load->view("header2");
             <div class="modal-body">
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Vera Cruz - Santos Dumont
+                        Alegrete - Rosário do Sul
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="id_trajetourbano_nome"
-                                name="trajetourbano_nome">
+                            <input class="form-check-input" type="checkbox" value="" id="id_trajetointermunicipal_nome"
+                                name="trajetointermunicipal_nome">
                             <label class="form-check-label" for="defaultCheck1">
                             </label>
                         </div>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center"
                         name="trajetourbano_nome">
-                        Favila - Terminal
+                        Alegrete - Manoel Viana
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                             <label class="form-check-label" for="defaultCheck1">
@@ -313,7 +313,7 @@ $this->load->view("header2");
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="TituloModalCentralizado">Informações</h5>
+        <h5 class="modal-title" id="TituloModalCentralizado"><b>Informações</b></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
