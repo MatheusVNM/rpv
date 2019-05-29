@@ -14,10 +14,9 @@ class Gerenciar_venda_passagens_online_controller extends CI_Controller
 
     public function index()
     {
-
-        $this->alocacoes->getAlocacoesPorCidades(3855, 4214, new DateTime('2019-05-30'));
-
-        // $this->load->view('compra_passagem_online_view/tela_inicial');
+        $data['alocacoes'] = $this->alocacoes->getAlocacoesPorCidades(4214, 4174, new DateTime('2019-05-30'))['result'];
+        echo_r($data['alocacoes']);
+        $this->load->view('compra_passagem_online_view/tela_inicial', $data);
 
     }
 

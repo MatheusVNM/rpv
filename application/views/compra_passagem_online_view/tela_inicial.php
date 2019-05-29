@@ -65,8 +65,7 @@ $this->load->view("header2");
         </div>
 
         <div class="form-group col-md  px-1 d-flex flex-column align-center form-group">
-            Saída <input id="data_id" required style="min-width: 100%"
-                         class="py-2 form-control datepickerinit enableButton" type="date"/>
+            Saída <input id="data_id" required style="min-width: 100%" class="py-2 form-control datepickerinit enableButton" type="date" />
         </div>
 
         <div class=" col-md-2 col-sm-12 my-auto ml-auto">
@@ -77,29 +76,35 @@ $this->load->view("header2");
 <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover">
         <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Hora de Saída</th>
-            <th scope="col">Hora de Chegada</th>
-            <th scope="col">Tipo de Onibus</th>
-            <th scope="col">Cadeiras Disponíveis</th>
-            <th scope="col">Opções</th>
-        </tr>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Hora de Saída</th>
+                <th scope="col">Hora de Chegada</th>
+                <th scope="col">Tipo de Onibus</th>
+                <th scope="col">Cadeiras Disponíveis</th>
+                <th scope="col">Opções</th>
+            </tr>
         </thead>
         <tbody id="tableBody">
-        <tr>
-            <th></th>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td><a class="btn btn-primary"><i class="fa fa-rebel"></i> Ver Cadeiras</a></td>
-        </tr>
-
+            
+            <?php $counter = 1; foreach ($alocacoes as $row) : ?>
+                <tr>
+                    <th><?=$counter ?></th>
+                    <td>
+                    <?= $row['alocacaointermunicipal_hora_saida'] ?>
+                    </td>
+                    <td>
+                    <?= $row['alocacaointermunicipal_hora_chegada'] ?>
+                    </td>
+                    <td>
+                    <?= $row['categoriaonibus_nome'] ?>
+                    </td>
+                    <td>
+                    <?= $row['count_cadeiras_livres'] ?>
+                    </td>
+                    <td><a class="btn btn-primary"><i class="fa fa-rebel"></i> Ver Cadeiras</a></td>
+                </tr>
+            <?php $counter++; endforeach; ?>
         </tbody>
     </table>
 </div>
@@ -109,16 +114,16 @@ $this->load->view("footer2.php", array('js' => 'gerenciar_manutencao'))
 ?>
 <script>
     $(".btn-primary").prop('href', "<?= site_url('view/compra_passagem_online_view/selecao_acento') ?>")
-    $(".rndHour").each(function () {
+    $(".rndHour").each(function() {
         $(this).html(getRandomHour())
     })
     //                         document.write(getRandomHour())
-    $(".rndCat").each(function () {
+    $(".rndCat").each(function() {
         $(this).html(getRandomCat())
     })
     // rndCat
     // document.write(getRandomCat())
-    $(".rndQntd").each(function () {
+    $(".rndQntd").each(function() {
         $(this).html(getRandomInt(3, 48))
     })
     // rndQntd
@@ -127,26 +132,26 @@ $this->load->view("footer2.php", array('js' => 'gerenciar_manutencao'))
     var today = new Date().toISOString().split('T')[0];
     $("#searchDate").prop('min', today);
 
-    $(".enableButton").change(function () {
+    $(".enableButton").change(function() {
         $("#procurarPassagemBtn").prop('disabled', false);
 
     })
-    $("#form_pesquisa").submit(function (event) {
+    $("#form_pesquisa").submit(function(event) {
 
         $("#procurarPassagemBtn").prop('disabled', true);
         showLoadingModal("Buscando Passanges");
         $("#tableBody").hide();
-        setTimeout(function () {
-            $(".rndHour").each(function () {
+        setTimeout(function() {
+            $(".rndHour").each(function() {
                 $(this).html(getRandomHour())
             })
             //                         document.write(getRandomHour())
-            $(".rndCat").each(function () {
+            $(".rndCat").each(function() {
                 $(this).html(getRandomCat())
             })
             // rndCat
             // document.write(getRandomCat())
-            $(".rndQntd").each(function () {
+            $(".rndQntd").each(function() {
                 $(this).html(getRandomInt(3, 48))
             })
             closeLoadingModal();
