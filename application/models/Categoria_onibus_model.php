@@ -21,7 +21,7 @@ class Categoria_onibus_model extends CI_Model
         return $query->result_array();
     }
 
-    public function save($nome, $precokm)
+    public function insertCategoriaOnibus($nome, $precokm)
     {
         $this->db->select('IFNULL(MAX(`categoriaonibus_id`), 0) AS `maxid`', false);
         $categoriaonibus_codigo = sprintf('CO%03d', $this->db->get('categoriaonibus', 1)->result_array()[0]['maxid']+1);
@@ -42,7 +42,7 @@ class Categoria_onibus_model extends CI_Model
         $this->db->update('categoriaonibus');
     }
 
-    public function update($id, $nome, $precokm)
+    public function updateCategoriaOnibus($id, $nome, $precokm)
     {
         $data = array(
             'categoriaonibus_nome' => $nome,
