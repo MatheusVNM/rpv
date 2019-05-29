@@ -37,7 +37,29 @@ class Alocacao_intermunicipal_model extends CI_Model
     public function getAlocacoesPorCidades($origem_id, $destino_id, $data_id)
     {
 
-            $this->db->select('trajeto');
+        // -Receber as cidades e a data -ok 
+        // -Procurar todas as rotas que possuam a cidade $1 e que passam para a cidade $2 -ok 
+        // -Procurar alocações daquela rota na data $3 que tenham cadeiras disponíveis
+        // -Fazer o calculo da hora de saida e de chegada
+        // -Retornar um array com todas as alocações, hora de saida e chegada
+        // -Verificar a história dos onibus
+        //trajetointerurbano_nome
+        
+            echo_r(array($data_id));
+            // $result = $this->db->select('trajetointerurbano.*,rotas_trajetointerurbano.rotas_trajetointerurbano_cidade_origem, rotas_trajetointerurbano.rotas_trajetointerurbano_cidade_destino, rotas_trajetointerurbano.rotas_trajetointerurbano_tempo, rotas_trajetointerurbano.rotas_trajetointerurbano_distancia')
+            $result = $this->db->select('alocacaointermunicipal.*, onibus.onibus_categoria_intermunicipal, trajetointerurbano.trajetointerurbano_nome')
+            ->distinct()
+            ->from('alocacaointermunicipal')
+            ->join('trajetointerurbano', 'alocacaointermunicipal_trajetointerurbano=trajetointerurbano_id')
+            ->join('onibus', 'alocacaointermunicipal_onibus=onibus_id')
+            ->join('rotas_trajetointerurbano', 'trajetointerurbano_id=rotas_trajetointerurbano_trajeto_id')
+            ->where("(rotas_trajetointerurbano_cidade_origem=$origem_id and rotas_trajetointerurbano_cidade_destino=$destino_id )", null, false)
+            ->where("(alocacaointermunicipal_data_hora_inicio >='".$data_id->format("Y-m-d")."' and alocacaointermunicipal_data_hora_inicio<'".$data_id->modify('+1 day')->format("Y-m-d")."' )", null, false )
+            ->get()->result_array();
+            // ->get();
+            echo_r($this->db->error());
+
+            echo_r($result);
 
 
 
@@ -53,20 +75,20 @@ class Alocacao_intermunicipal_model extends CI_Model
 //        $this->db->from('alocacaointermunicipal');
 //        $this->db->where($data);
 
-        $result = $this->db->get();
-        if (!$result) {
-            $retorno['success'] = false;
-            $retorno['error'] = $this->db->error();
-            return $retorno;
-        }
-        if ($result->num_rows() > 0) {
-            $retorno['success'] = true;
-            $retorno['result'] = $result->result_array();
-            return $retorno;
-        } else {
-            $retorno['success'] = false;
-            return $retorno;
-        }
+        // $result = $this->db->get();
+        // if (!$result) {
+        //     $retorno['success'] = false;
+        //     $retorno['error'] = $this->db->error();
+        //     return $retorno;
+        // }
+        // if ($result->num_rows() > 0) {
+        //     $retorno['success'] = true;
+        //     $retorno['result'] = $result->result_array();
+        //     return $retorno;
+        // } else {
+        //     $retorno['success'] = false;
+        //     return $retorno;
+        // }
 
 
 
