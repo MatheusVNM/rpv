@@ -13,7 +13,7 @@ class Gerenciar_categoria_onibus_controller extends CI_Controller
 
     public function index($data = array())
     {   
-        $data['categoriaonibus'] = $this->categoria_onibus_model->getcategoriaonibus();
+        $data['categoriaonibus'] = $this->categoria_onibus_model->getCategoriaOnibus();
         $this->load->view('gerenciar_categoria_onibus_view/tela_inicial', $data);
     }
 
@@ -25,7 +25,7 @@ class Gerenciar_categoria_onibus_controller extends CI_Controller
         if ($this->form_validation->run() !== false) {
             $nome = $this->input->post('name_nome', true);
             $precokm = $this->input->post('name_precokm', true);
-            $this->categoria_onibus_model->save($nome, $precokm);
+            $this->categoria_onibus_model->insertCategoriaOnibus($nome, $precokm);
             $this->session->set_flashdata('success', successAlert('Edição feita com sucesso'));
         } else {
             $this->session->set_flashdata('error', errorAlert('Preencha o formulario corretamente'));
@@ -45,7 +45,7 @@ class Gerenciar_categoria_onibus_controller extends CI_Controller
     public function view_editarCategoriaOnibus()
     {
         $id = $this->input->post('id', true);
-        $data['categoriaonibus'] = $this->categoria_onibus_model->getcategoriaonibussEspecifica($id);
+        $data['categoriaonibus'] = $this->categoria_onibus_model->getCategoriaOnibusEspecifica($id);
         $this->load->view('gerenciar_categoria_onibus_view/tela_editar', $data);
 
     }
@@ -57,7 +57,7 @@ class Gerenciar_categoria_onibus_controller extends CI_Controller
             $nome = $this->input->post('name_nome', true);
             $precokm = $this->input->post('name_precokm', true);
             $id = $this->input->post('id', true);
-            $this->categoria_onibus_model->update($id, $nome, $precokm);
+            $this->categoria_onibus_model->updateCategoriaOnibus($id, $nome, $precokm);
             $this->session->set_flashdata('success', successAlert('Edição feita com sucesso'));
             redirect('dashboard/categorias/onibus');
         } else {
