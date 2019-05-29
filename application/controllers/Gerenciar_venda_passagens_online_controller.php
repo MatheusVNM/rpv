@@ -15,7 +15,9 @@ class Gerenciar_venda_passagens_online_controller extends CI_Controller
     public function index()
     {
 
-        $this->load->view('compra_passagem_online_view/tela_inicial');
+        $this->alocacoes->getAlocacoesPorCidades(3855, 4214, new DateTime('2019-05-30'));
+
+        // $this->load->view('compra_passagem_online_view/tela_inicial');
 
     }
 
@@ -38,7 +40,6 @@ class Gerenciar_venda_passagens_online_controller extends CI_Controller
             $data['error'] = validation_errors();
             echo json_encode($data);
         }
-
     }
 
 
@@ -50,13 +51,8 @@ class Gerenciar_venda_passagens_online_controller extends CI_Controller
             $id_alocacao[] = $row['alocacaointermunicipal_id'];
         }
         return $this->cadeira->getNumeroDeCadeirasDisponiveis($id_alocacao);
-
     }
 
     public function ajax_db_getVenderCadeira()
-    {
-
-
-    }
-
+    { }
 }
