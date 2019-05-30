@@ -182,9 +182,8 @@ class Onibus_model extends CI_Model
 
     public function getOnibusMunicipalNaoAlocado()
     {
-        $this->db->select('onibus.onibus_id, onibus.onibus_placa');
-        $this->db->join('alocacaomunicipal', 'onibus.onibus_id != 
-        alocacaomunicipal.alocacaomunicipal_motorista_id');
+        $this->db->select('onibus.onibus_id,  onibus.onibus_placa');
+        $this->db->join('alocacaomunicipal', 'alocacaomunicipal.alocacaomunicipal_onibus_id != onibus.onibus_id');
         $this->db->from('onibus');
         $result = $this->db->get();
         if (!$result) {

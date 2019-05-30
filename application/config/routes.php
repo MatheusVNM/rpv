@@ -67,14 +67,13 @@ $route['ajax/rodoviarias/get'] = 'gerenciar_rodoviaria_controller/ajax_db_getRod
 $route['ajax/rodoviarias/getSingle'] = 'gerenciar_rodoviaria_controller/ajax_db_getRodoviariaEspecifica';
 
 /*Alocação Municipal - H08*/
+$route['ajax/alocacoesmunicipais/create'] = 'gerenciar_alocacao_municipal_controller/ajax_db_insertAlocacaoMunicipal';
 $route['ajax/alocacoesmunicipais/get'] = 'gerenciar_alocacao_municipal_controller/ajax_db_getAlocacoes';
+$route['ajax/alocacoesmunicipais/update'] = 'gerenciar_alocacao_municipal_controller/ajax_db_updateAlocacao';
 $route['ajax/alocacoesmunicipais/getSingle'] = 'gerenciar_alocacao_municipal_controller/ajax_db_getAlocacaoEspecifica';
 
 /*Rotas para métodos de controller que apenas inserem/atualizam algo no banco de dados. */
 
-/*Alocação Municipal - H08*/
-$route['ajax/alocacoesmunicipais/create'] = 'gerenciar_alocacao_municipal_controller/ajax_db_insertAlocacaoMunicipal';
-$route['ajax/alocacoesmunicipais/update'] = 'gerenciar_alocacao_municipal_controller/ajax_db_updateAlocacao';
 
 $route['tarifas/update'] = 'gerenciar_tarifa_controller/atualizarValorTarifa';
 $route['tarifas/create'] = 'gerenciar_tarifa_controller/catastrarNovaTarifa';

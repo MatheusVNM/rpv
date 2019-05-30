@@ -36,20 +36,20 @@ $this->load->view("header2");
 
     <table class="table table-hover table-striped">
         <thead>
-            <?php if ($alocacaomunicipal) : ?>
-                <?php foreach ($alocacaomunicipal as $row) : ?>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Placa do Veículo</th>
-                        <th scope="col">Trajeto</th>
-                        <th scope="col">Tempo Trajeto</th>
-                        <th scope="col">Cidade</th>
-                        <th scope="col">Opções</th>
-                    </tr>
-                </thead>
-                <!--Body Frota-->
-                <tbody id="id_lista_alocacao">
-                    <tr>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Placa do Veículo</th>
+                <th scope="col">Trajeto</th>
+                <th scope="col">Tempo Trajeto</th>
+                <th scope="col">Cidade</th>
+                <th scope="col">Opções</th>
+            </tr>
+        </thead>
+        <!--Body Frota-->
+        <tbody id="id_lista_alocacao">
+            <tr>
+                <?php if ($alocacaomunicipal) : ?>
+                    <?php foreach ($alocacaomunicipal as $row) : ?>
                         <th scope="row">1</th>
                         <td><?= $row['onibus_placa'] ?></td>
                         <td><?= $row['trajetourbano_nome'] ?></td>
@@ -87,80 +87,81 @@ $this->load->view("header2");
             </div>
             <form id="modal_create_alocacao_form" class="needs-validation container" novalidate>
                 <div class="modal-body">
-                    <form class="needs-validation container" novalidate>
-                        <div class="form-row mx-2">
-                            <div class="form-group col-md-6">
-                                <label for="modal_create_onibus">Selecione o ônibus:</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#id_modal_com_listas_onibus">Ônibus</button>
+                    <div class="form-row mx-2">
+                        <div class="form-group col-md-6">
+                            <label for="modal_create_onibus">Selecione o ônibus:</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#id_modal_com_listas_onibus">Ônibus</button>
+                                </div>
+                                <input id="onibus_selecionado" type="text" class="form-control" placeholder="Nenhum ônibus selecionado" aria-describedby="basic-addon1" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="modal_create_trajeto fa ">Selecione o trajeto:</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-secondary" type="button" data-target="#id_modal_com_listas_trajeto" data-toggle="modal">Trajetos</button>
+                                </div>
+                                <input id="trajeto_selecionado" type="text" class="form-control" placeholder="Nenhum trajeto selecionado" aria-describedby="basic-addon1" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="alert alert-primary" role="alert">
+                                O trajeto tem duração maior que 8 horas. Por favor, selecione mais de
+                                um motorista e cobrador.
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="modal_create_motorista">Seleciona o Motorista:</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-outline-secondary" type="button" data-target="#id_modal_com_listas_motoristas" data-toggle="modal">Motoristas</button>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Nenhum motorista selecionado" aria-label="" aria-describedby="basic-addon1" disabled>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Nenhum ônibus selecionado" aria-label="" aria-describedby="basic-addon1" disabled>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="modal_create_cobrador fa ">Cobrador:</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-outline-secondary" type="button" data-target="#id_modal_com_listas_cobrador" data-toggle="modal">Cobrador</button>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Nenhum cobrador selecionado" aria-label="" aria-describedby="basic-addon1" disabled>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="modal_create_trajeto fa ">Selecione o trajeto:</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-secondary" type="button" data-target="#id_modal_com_listas_trajeto" data-toggle="modal">Trajetos</button>
+                            <div id="id_dados_alocacao">
+                                <div class="col-auto">
+                                    <div class="my-2 justify-content-between d-flex">
+                                        <label for="exampleFormControlInput1"><b>Motorista Alocado:</b></label>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Nenhum trajeto selecionado" aria-label="" aria-describedby="basic-addon1" disabled>
+                                    <div class="form-group" id="id_mais_motorista">
+
+                                    </div>
+
+                                </div>
+                                <div class="col-auto">
+                                    <div class="my-2 justify-content-between d-flex">
+                                        <label for="exampleFormControlInput1"><b>Cobrador Alocado:</b></label>
+
+                                    </div>
+                                    <div class="form-group" id="id_mais_cobrador">
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="alert alert-primary" role="alert">
-                                    O trajeto tem duração maior que 8 horas. Por favor, selecione mais de
-                                    um motorista e cobrador.
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="modal_create_motorista">Seleciona o Motorista:</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-outline-secondary" type="button" data-target="#id_modal_com_listas_motoristas" data-toggle="modal">Motoristas</button>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="Nenhum motorista selecionado" aria-label="" aria-describedby="basic-addon1" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="modal_create_cobrador fa ">Cobrador:</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-outline-secondary" type="button" data-target="#id_modal_com_listas_cobrador" data-toggle="modal">Cobrador</button>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="Nenhum cobrador selecionado" aria-label="" aria-describedby="basic-addon1" disabled>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="id_dados_alocacao">
-                                    <div class="col-auto">
-                                        <div class="form-group" id="id_mais_motorista">
-                                            <div class="my-2 justify-content-between d-flex">
-                                                <label for="exampleFormControlInput1"><b>Motorista Alocado:</b></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="form-group" id="id_mais_cobrador">
-                                            <div class="my-2 justify-content-between d-flex">
-                                                <label for="exampleFormControlInput1"><b>Cobrador Alocado:</b></label>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Salvar</button>
-                </div>
+            </form>
         </div>
-        </form>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
     </div>
+</div>
 </div>
 </div>
 
@@ -252,39 +253,6 @@ $this->load->view("header2");
 </div>
 </div>
 
-<!-- Modal lista de motorista-->
-<div class="modal" tabindex="-1" role="dialog" id="id_modal_com_listas_motoristas">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Lista de Motoristas Disponíveis</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <ul class="list-group">
-                    <?php if ($motoristas) : ?>
-                        <?php foreach ($motoristas as $row) : ?>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <?= $row['funcionarios_nome'] ?>
-                                <div class="form-check">
-                                    <input onclick="addCampoMotorista('<?= $row['funcionarios_nome'] ?>')" class="form-check-input" type="checkbox" id="id_motorista_nome" name="motorista_nome">
-                                    <label class="form-check-label" for="defaultCheck1">
-                                    </label>
-                                </div>
-                            </li>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                </ul>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="id_botao_selecionar_funcionario" disabled>Selecionar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Modal lista de Onibus-->
 <div class="modal" tabindex="-1" role="dialog" id="id_modal_com_listas_onibus">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -295,25 +263,28 @@ $this->load->view("header2");
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <ul class="list-group">
-                    <?php if ($onibus) : ?>
-                        <?php foreach ($onibus as $row) : ?>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <?= $row['onibus_placa'] ?>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="id_onibus_selecionado" name="onibus_placa">
-                                    <label class="form-check-label" for="defaultCheck1">
+            <form id="form_onibus_select">
+                <div class="modal-body">
+                    <ul class="list-group">
+                        <?php if ($onibus) : ?>
+                            <?php foreach ($onibus as $row) : ?>
+                                <li class="list-group-item d-flex justify-content-between align-items-center" id="id_lista_onibus_placa">
+                                    <label for="id_onibus_placa<?= $row['onibus_id'] ?>" class="float-left m-0 r-0 mr-auto">
+                                        <?= $row['onibus_placa'] ?>
                                     </label>
-                                </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input float-right" type="radio" data-name="<?= $row['onibus_placa'] ?>" id="id_onibus_placa<?= $row['onibus_id'] ?>" name="onibus_placa" value="<?= $row['onibus_id'] ?>">
+                                        <label></label>
+                                    </div>
+                                </li>
                             <?php endforeach; ?>
-                        </li>
-                    <?php else : ?>
-                    <?php endif; ?>
-                </ul>
-            </div>
+                        <?php else : ?>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+            </form>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="id_botao_selecionar_onibus" disabled>Selecionar</button>
+                <button type="submit" class="btn btn-primary" id="id_botao_selecionar_onibus">Selecionar</button>
             </div>
         </div>
     </div>
@@ -329,26 +300,65 @@ $this->load->view("header2");
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <ul class="list-group">
-                    <?php if ($trajetourbano) : ?>
-                        <?php foreach ($trajetourbano as $row) : ?>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <?= $row['trajetourbano_nome'] ?>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" onclick="validarQuantidadeMotorista('<?= $row['trajetourbano_tempomedio'] ?>')" id="id_trajetourbano_nome" name="trajetourbano_nome">
-                                    <label class="form-check-label" for="defaultCheck1">
+            <form id="form_trajeto_select">
+                <div class="modal-body">
+                    <ul class="list-group">
+                        <?php if ($trajetourbano) : ?>
+                            <?php foreach ($trajetourbano as $row) : ?>
+                                <li class="list-group-item d-flex justify-content-between align-items-center" id="id_lista_nome_trajeto">
+                                    <label for="id_trajetourbano_nome<?= $row['trajetourbano_id'] ?>" class="float-left m-0 r-0 mr-auto">
+                                        <?= $row['trajetourbano_nome'] ?>
                                     </label>
-                                </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input float-right" type="radio" data-name="<?= $row['trajetourbano_nome'] ?>" onclick="validarQuantidadeMotorista('<?= $row['trajetourbano_tempomedio'] ?>')" id="id_trajetourbano_nome<?= $row['trajetourbano_id'] ?>" name="trajetourbano_nome" value="<?= $row['trajetourbano_id'] ?>">
+                                        <label></label>
+                                    </div>
+                                </li>
                             <?php endforeach; ?>
-                        </li>
-                    <?php else : ?>
-                    <?php endif; ?>
-                </ul>
+                        <?php else : ?>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="id_botao_selecionar_trajeto">Selecionar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal lista de motorista-->
+<div class="modal" tabindex="-1" role="dialog" id="id_modal_com_listas_motoristas">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Lista de Motoristas Disponíveis</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="id_botao_selecionar_trajeto">Selecionar</button>
-            </div>
+            <form id="form_motorista_select">
+                <div class="modal-body">
+                    <ul class="list-group">
+                        <?php if ($motoristas) : ?>
+                            <?php foreach ($motoristas as $row) : ?>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <?= $row['funcionarios_nome'] ?>
+                                    <div class="form-check">
+                                        <input data-name="<?= $row['funcionarios_nome'] ?>" class="form-check-input" type="checkbox" id="id_motorista_nome" name="motorista_nome" value="<?= $row['funcionarios_id'] ?>">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="id_botao_selecionar_funcionario" disabled>Selecionar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -363,25 +373,27 @@ $this->load->view("header2");
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <ul class="list-group">
-                    <?php if ($cobradores) : ?>
-                        <?php foreach ($cobradores as $row) : ?>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <?= $row['funcionarios_nome'] ?>
-                                <div class="form-check">
-                                    <input onclick="addCampoCobrador('<?= $row['funcionarios_nome'] ?>')" class="form-check-input" type="checkbox" value="" id="id_cobrador_nome" name="funcionarios_nome">
-                                    <label class="form-check-label" for="defaultCheck1">
-                                    </label>
-                                </div>
-                            </li>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                </ul>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="id_botao_selecionar_cobrador" disabled>Selecionar</button>
-            </div>
+            <form id="form_cobrador_select">
+                <div class="modal-body">
+                    <ul class="list-group">
+                        <?php if ($cobradores) : ?>
+                            <?php foreach ($cobradores as $row) : ?>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <?= $row['funcionarios_nome'] ?>
+                                    <div class="form-check">
+                                        <input data-name="<?= $row['funcionarios_nome'] ?>" class="form-check-input" type="checkbox" id="id_cobrador_nome" name="cobrador_nome" value="<?= $row['funcionarios_id'] ?>">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        </label>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="id_botao_selecionar_cobrador">Selecionar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -445,7 +457,7 @@ $this->load->view("header2");
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="validationCustom05">Data Alocação:</label>
-                            <input type="text" class="form-control" id="modal_info_data_alocacao" placeholder="23/05/2019" disabled>
+                            <input type="text" class="form-control" id="modal_info_data_alocacao" disabled>
                             <div class="invalid-feedback">
                                 Please provide a valid zip.
                             </div>
@@ -464,43 +476,70 @@ $this->load->view("header2");
 <?php
 $this->load->view("footer2.php")
 ?>
+
 <script>
-    function addCampoMotorista(nomeFuncionario) {
+    $("#form_motorista_select").submit(function(event) {
+        $('#id_mais_motorista').html("");
+        $("input[name=motorista_nome]:checked").each(function() {
+            var id = $(this).val();
+            addCampoMotorista($(this).attr("data-name"), id)
+        });
+        event.preventDefault();
+        return false;
+    });
+</script>
+<script>
+    $("#form_cobrador_select").submit(function(event) {
+        $('#id_mais_cobrador').html("");
+        $("input[name=cobrador_nome]:checked").each(function() {
+            var id = $(this).val();
+            addCampoCobrador($(this).attr("data-name"), id)
+        });
+        event.preventDefault();
+        return false;
+    });
+</script>
+<script>
+    function addCampoMotorista(nomeFuncionario, id) {
         var lastInsert = 0;
         ++lastInsert
         $('#id_mais_motorista').append(
             '<div id="mot' + lastInsert +
             '"class="d-flex flex-row align-center my-1 justify-content-center">' +
-            '<input required maxlength="255" value="' + nomeFuncionario + '" type="text" name="nome_funcionario" class="form-control" id="exampleFormControlInput1">' +
-            '<button onclick="deletarCampo(\'mot' + lastInsert + '\')"type="button" id="id_excluir_input_button" class=" btn btn-hover text-dark">' +
+            '<input required maxlength="255" value="' + nomeFuncionario + '" type="text" class="form-control">' +
+            '<input type="hidden" disabled required maxlength="255" value="' + id + '" name="motorista_id[]" class="form-control">' +
+            '<button onclick="deletarCampo(\'mot' + lastInsert + '\')"type="button" name="motorista_appt[]" id="id_excluir_input_button" class=" btn btn-hover text-dark">' +
             '<i class="fa fa-trash my-auto ml-2 fa-2x input-group-icon"></i>' +
             '</button>' +
             '</div>' +
             '<label for="appt" id="mot' + lastInsert + '">Horário Inicio:</label>' +
-            '<input type="time" id="mot' + lastInsert + '" name="appt" min="9:00" max="18:00" required>' +
+            '<input type="hidden" id="mot' + lastInsert + '" name="motorista_id[]" value="' + id + '" class="form-control" required>' +
+            '<input type="time" id="mot' + lastInsert + '" name="motorista_appt[]" min="00:00" max="23:59" class="form-control col-md-5" required>' +
             '<span class="note"></span>'
         );
     }
 
     function deletarCampo(campo) {
-        $('#' + campo + '').remove();
-        $('#' + campo + '').remove();
-        $('#' + campo + '').remove();
+        $('#mot' + campo + '').remove();
+        $('#mot' + campo + '').remove();
+        $('#mot' + campo + '').remove();
     }
 
-    function addCampoMotorista(nomeFuncionario) {
+    function addCampoCobrador(nomeFuncionario, id) {
         var lastInsert = 0;
         ++lastInsert
-        $('#id_mais_motorista').append(
+        $('#id_mais_cobrador').append(
             '<div id="mot' + lastInsert +
             '"class="d-flex flex-row align-center my-1 justify-content-center">' +
-            '<input required maxlength="255" value="' + nomeFuncionario + '" type="text" name="nome_funcionario" class="form-control" id="exampleFormControlInput1">' +
-            '<button onclick="deletarCampo(\'mot' + lastInsert + '\')"type="button" id="id_excluir_input_button" class=" btn btn-hover text-dark">' +
+            '<input required maxlength="255" value="' + nomeFuncionario + '" type="text" class="form-control" id="exampleFormControlInput1">' +
+            '<input type="hidden" disabled required maxlength="255" value="' + id + '" name="cobrador_id[]" class="form-control">' +
+            '<button onclick="deletarCampo(\'mot' + lastInsert + '\')"type="button" name="cobrador_appt[]" id="id_excluir_input_button" class=" btn btn-hover text-dark">' +
             '<i class="fa fa-trash my-auto ml-2 fa-2x input-group-icon"></i>' +
             '</button>' +
             '</div>' +
             '<label for="appt" id="mot' + lastInsert + '">Horário Inicio:</label>' +
-            '<input type="time" id="mot' + lastInsert + '" name="appt" min="9:00" max="18:00" required>' +
+            '<input type="hidden" id="mot' + lastInsert + '" name="cobrador_id[]" value="' + id + '" class="form-control" required>' +
+            '<input type="time" id="mot' + lastInsert + '" name="cobrador_appt[]" min="00:00" max="23:59" class="form-control col-md-5" required>' +
             '<span class="note"></span>'
         );
     }
@@ -513,77 +552,34 @@ $this->load->view("footer2.php")
 
     function validarQuantidadeMotorista(trajetourbano_tempo) {
         this.tempotrajeto = trajetourbano_tempo;
-        console.log("TEMPO TRAJETO: " + tempotrajeto);
         $("input[type=checkbox]").change(function() {
             var checados = $('#id_motorista_nome:checked').length;
-            var valorHoraAtingida = checados * 6;
-            console.log(checados);
-            console.log("VALOR HORA ATINGIDA: " + valorHoraAtingida);
-            if (valorHoraAtingida >= tempotrajeto) {
-                $("#id_botao_selecionar_funcionario").prop("disabled", false);
-            } else {
-                $("#id_botao_selecionar_funcionario").prop("disabled", true);
-            }
-            if (tempotrajeto > 6) {
-                $(".alert").alert('show');
-            } else {
-                $(".alert").alert('close');
+            var cobradorChegado = $('#id_cobrador_nome:checked').length;
+            if (checados > 0) {
+                var valorHoraAtingida = checados * 6;
+                if (valorHoraAtingida >= tempotrajeto) {
+                    $("#id_botao_selecionar_funcionario").prop("disabled", false);
+                } else {
+                    $("#id_botao_selecionar_funcionario").prop("disabled", true);
+                }
+                if (tempotrajeto > 6) {
+                    $(".alert").alert('show');
+                } else {
+                    $(".alert").alert('close');
+                }
+            } else if (cobradorChegado > 0) {
+                var valorHoraAtingida = cobradorChegado * 6;
+                if (valorHoraAtingida >= tempotrajeto) {
+                    $("#id_botao_selecionar_cobrador").prop("disabled", false);
+                } else {
+                    $("#id_botao_selecionar_cobrador").prop("disabled", true);
+                }
             }
         });
     }
 </script>
 
-
-
 <script>
-    var onibus_placa = "";
-
-    function addCampoCobrador(nomeFuncionario) {
-        var lastInsert = 0;
-        ++lastInsert
-        $('#id_mais_cobrador').append(
-            '<div id="mot' + lastInsert +
-            '"class="d-flex flex-row align-center my-1 justify-content-center">' +
-            '<input required maxlength="255" value="' + nomeFuncionario + '" type="text" name="nome_funcionario" class="form-control" id="exampleFormControlInput1">' +
-            '<button onclick="deletarCampo(\'mot' + lastInsert + '\')"type="button" id="id_excluir_input_button" class=" btn btn-hover text-dark">' +
-            '<i class="fa fa-trash my-auto ml-2 fa-2x input-group-icon"></i>' +
-            '</button>' +
-            '</div>' +
-            '<label for="appt" id="mot' + lastInsert + '">Horário Inicio:</label>' +
-            '<input type="time" id="mot' + lastInsert + '" name="appt" min="9:00" max="18:00" required>' +
-            '<span class="note"></span>'
-        );
-    }
-
-    function deletarCampo(campo) {
-        $('#' + campo + '').remove();
-        $('#' + campo + '').remove();
-        $('#' + campo + '').remove();
-    }
-
-    function addCampoCobrador(nomeFuncionario) {
-        var lastInsert = 0;
-        ++lastInsert
-        $('#id_mais_cobrador').append(
-            '<div id="mot' + lastInsert +
-            '"class="d-flex flex-row align-center my-1 justify-content-center">' +
-            '<input required maxlength="255" value="' + nomeFuncionario + '" type="text" name="nome_funcionario" class="form-control" id="exampleFormControlInput1">' +
-            '<button onclick="deletarCampo(\'mot' + lastInsert + '\')"type="button" id="id_excluir_input_button" class=" btn btn-hover text-dark">' +
-            '<i class="fa fa-trash my-auto ml-2 fa-2x input-group-icon"></i>' +
-            '</button>' +
-            '</div>' +
-            '<label for="appt" id="mot' + lastInsert + '">Horário Inicio:</label>' +
-            '<input type="time" id="mot' + lastInsert + '" name="appt" min="9:00" max="18:00" required>' +
-            '<span class="note"></span>'
-        );
-    }
-
-    function deletarCampo(campo) {
-        $('#' + campo + '').remove();
-        $('#' + campo + '').remove();
-        $('#' + campo + '').remove();
-    }
-
     function validarQuantidadeCobrador(trajetourbano_tempo) {
         this.tempotrajeto = trajetourbano_tempo;
         console.log("TEMPO TRAJETO: " + tempotrajeto);
@@ -600,7 +596,27 @@ $this->load->view("footer2.php")
         });
     }
 </script>
+<script>
+    $("#form_trajeto_select").submit(function(event) {
+        var id_trajeto = $('input[name=trajetourbano_nome]:checked', '#form_trajeto_select').attr("data-name")
+        console.log(id_trajeto)
+        $("#trajeto_selecionado").val(id_trajeto)
+        $("#id_modal_com_listas_trajeto").modal('hide')
+        event.preventDefault();
+        return false;
+    })
+</script>
 
+<script>
+    $("#form_onibus_select").submit(function(event) {
+        var id_trajeto = $('input[name=onibus_placa]:checked', '#form_onibus_select').attr("data-name")
+        console.log(id_trajeto)
+        $("#onibus_selecionado").val(id_trajeto)
+        $("#id_modal_com_listas_trajeto").modal('hide')
+        event.preventDefault();
+        return false;
+    })
+</script>
 <script>
     //cadastra alocação no banco
     $("#modal_create_alocacao_form").submit(function() {
@@ -615,7 +631,7 @@ $this->load->view("footer2.php")
             },
             success: function(result) {
                 console.log(result['error_fields'])
-                console.log(result);
+                console.log("result:success:", result);
                 if (result['success']) {
                     $("#page_message").html(result['message']);
                     $("#id_modal_create_alocacao").modal('hide');
@@ -641,8 +657,8 @@ $this->load->view("footer2.php")
                 }
             },
             error: function(error) {
-                showWarningModal(JSON.stringify(error));
-                console.log(error)
+                // showWarningModal(JSON.stringify(error));
+                console.log("ressult:error:", error)
             },
             complete: function() {
                 setTimeout(closeLoadingModal, 500)
@@ -666,18 +682,19 @@ $this->load->view("footer2.php")
             success: function(result) {
                 if (result['success']) {
                     console.log('success', result);
-                    console.log(result['data'][0]['funcionarios_nome'])
                     console.log(result['data'].length);
-                    $("#modal_info_nome_motorista").val(result['data'][0]['funcionarios_nome'])
-                    $("#modal_info_nome_cobrador").val(result['data'][1]['funcionarios_nome'])
-                    $("#modal_info_horaInicio_motorista").val(result['data'][0]['alocacaomunicipal_horaInicio_motorista'])
-                    $("#modal_info_horaFinal_motorista").val(result['data'][0]['alocacaomunicipal_horaFim_motorista'])
-                    $("#modal_info_horaInicio_cobrador").val(result['data'][1]['alocacaomunicipal_horaInicio_cobrador'])
-                    $("#modal_info_horaFinal_cobrador").val(result['data'][1]['alocacaomunicipal_horaFim_cobrador'])
-                    $("#modal_info_data_alocacao").val(result['data'][0]['alocacaomunicipal_hora_inicio'])
+                    for (var i = 0; i < result['data'].length; ++i) {
+                        $("#modal_info_nome_motorista").val(result['data'][i]['funcionarios_nome'])
+                        $("#modal_info_horaInicio_motorista").val(result['data'][i]['alocacaomunicipal_motorista_expediente_hora_inicio'])
+                        $("#modal_info_horaFinal_motorista").val(result['data'][i]['alocacaomunicipal_motorista_expediente_hora_final'])
+                            ++i
+                        $("#modal_info_nome_cobrador").val(result['data'][i]['funcionarios_nome'])
+                        $("#modal_info_horaInicio_cobrador").val(result['data'][i]['alocacaomunicipal_cobrador_expediente_hora_inicio'])
+                        $("#modal_info_horaFinal_cobrador").val(result['data'][i]['alocacaomunicipal_cobrador_expediente_hora_final'])
+                    }
+                    $("#modal_info_data_alocacao").val(result['data'][0]['alocacaomunicipal_data_inicio'])
+
                     $("#id_modal_info").modal('show');
-
-
                 } else {
                     alert('Alocação não encontrada');
                     console.log('false success', result);

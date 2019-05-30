@@ -26,8 +26,8 @@ class Gerenciar_alocacao_municipal_controller extends CI_Controller
         $data['motoristas'] = $this->funcionarios->getFuncionariosNaoAlocados(1)['result'];
         $data['cobradores'] = $this->funcionarios->getFuncionariosNaoAlocados(2)['result'];
         $data['trajetourbano'] = $this->trajetourbano->getTrajetos();
-        //echo_r( $this->alocacao->getAlocacoes()['result']);
-        //echo_r($this->alocacao->getAlocacao(1)['result']);
+        // echo_r( $this->alocacao->getAlocacoes()['result']);
+        // echo_r($this->alocacao->getAlocacao(1)['result']);
         // $data['funcionarios'] = $this->funcionarios->getFuncionarios()['result'];
         //print_r($data['alocacoes']);
         //echo_r($data);
@@ -54,41 +54,64 @@ class Gerenciar_alocacao_municipal_controller extends CI_Controller
     }
     public function ajax_db_insertAlocacaoMunicipal()
     {
-        $this->form_validation->set_rules('alocacaomunicipal_cobrador_id', 'Cobrador ID', 'required');
-        $this->form_validation->set_rules('alocacaomunicipal_dataInicial', 'Data inicial', 'required');
-        $this->form_validation->set_rules('alocacaomunicipal_dataInicial', 'Data inicial', 'required');
-        $this->form_validation->set_rules('alocacaomunicipal_motorista_id', 'ID motorista', 'required');
-        $this->form_validation->set_rules('alocacaomunicipal_onibus_id', 'ID onibus', 'required');
-        $this->form_validation->set_rules('alocacaomunicipal_trajetourbano_id', 'ID trajeto', 'required');
+
+        // echo_r($this->input->post());
+        $this->form_validation->set_rules('motorista_id[]', '', 'trim|required');
+        $this->form_validation->set_rules('motorista_appt[]', '', 'trim|required');
+
+
 
         if ($this->form_validation->run() !== false) {
-            $alocacaomunicipal_cobrador_id = $this->input->post('alocacaomunicipal_cobrador_id');
-            $alocacaomunicipal_dataFinal = $this->input->post('alocacaomunicipal_dataFinal');
-            $alocacaomunicipal_dataInicial = $this->input->post('alocacaomunicipal_dataInicial');
-            $alocacaomunicipal_motorista_id = $this->input->post('alocacaomunicipal_motorista_id');
-            $alocacaomunicipal_onibus_id = $this->input->post('alocacaomunicipal_onibus_id');
-            $alocacaomunicipal_trajetourbano_id = $this->input->post('alocacaomunicipal_trajetourbano_id');
-
-            $result = $this->alocacao->insertAlocacao(
-                $alocacaomunicipal_cobrador_id,
-                $alocacaomunicipal_dataFinal,
-                $alocacaomunicipal_dataInicial,
-                $alocacaomunicipal_motorista_id,
-                $alocacaomunicipal_onibus_id,
-                $alocacaomunicipal_trajetourbano_id
-            );
-
-            if ($result['success']) {
-                $result['message'] = successAlert('Alocação cadastrada com sucesso');
-            } else {
-                $result['message'] = errorAlert('Erro ao cadastrar a alocação: ' . $result['error'] . '');
-            }
+            echo json_encode(array(
+                "result" => true,
+                "message" => "Talkei",
+                "post_data" => $this->input->post()
+            ));
         } else {
-            $result['success'] = false;
-            $result['message'] = errorAlert('Erro ao cadastrar a alocação: Algum campo não foi preenchido corretamente');
+            echo json_encode(array(
+                "result" => false,
+                "message" => "Alguma coisa está faltando, verifique essa porra",
+                "post_data" => $this->input->post()
+            ));
         }
 
-        echo json_encode($result);
+
+
+        // $this->form_validation->set_rules('alocacaomunicipal_cobrador_id', 'Cobrador ID', 'required');
+        // $this->form_validation->set_rules('alocacaomunicipal_dataInicial', 'Data inicial', 'required');
+        // $this->form_validation->set_rules('alocacaomunicipal_dataInicial', 'Data inicial', 'required');
+        // $this->form_validation->set_rules('alocacaomunicipal_motorista_id', 'ID motorista', 'required');
+        // $this->form_validation->set_rules('alocacaomunicipal_onibus_id', 'ID onibus', 'required');
+        // $this->form_validation->set_rules('alocacaomunicipal_trajetourbano_id', 'ID trajeto', 'required');
+
+        // if ($this->form_validation->run() !== false) {
+        //     $alocacaomunicipal_cobrador_id = $this->input->post('alocacaomunicipal_cobrador_id');
+        //     $alocacaomunicipal_dataFinal = $this->input->post('alocacaomunicipal_dataFinal');
+        //     $alocacaomunicipal_dataInicial = $this->input->post('alocacaomunicipal_dataInicial');
+        //     $alocacaomunicipal_motorista_id = $this->input->post('alocacaomunicipal_motorista_id');
+        //     $alocacaomunicipal_onibus_id = $this->input->post('alocacaomunicipal_onibus_id');
+        //     $alocacaomunicipal_trajetourbano_id = $this->input->post('alocacaomunicipal_trajetourbano_id');
+
+        //     $result = $this->alocacao->insertAlocacao(
+        //         $alocacaomunicipal_cobrador_id,
+        //         $alocacaomunicipal_dataFinal,
+        //         $alocacaomunicipal_dataInicial,
+        //         $alocacaomunicipal_motorista_id,
+        //         $alocacaomunicipal_onibus_id,
+        //         $alocacaomunicipal_trajetourbano_id
+        //     );
+
+        //     if ($result['success']) {
+        //         $result['message'] = successAlert('Alocação cadastrada com sucesso');
+        //     } else {
+        //         $result['message'] = errorAlert('Erro ao cadastrar a alocação: ' . $result['error'] . '');
+        //     }
+        // } else {
+        //     $result['success'] = false;
+        //     $result['message'] = errorAlert('Erro ao cadastrar a alocação: Algum campo não foi preenchido corretamente');
+        // }
+
+        // echo json_encode($result);
     }
     public function ajax_db_updateAlocacao()
     {

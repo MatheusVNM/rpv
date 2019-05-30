@@ -51,12 +51,9 @@ class Funcionarios_model extends CI_Model
     }
     public function getFuncionariosNaoAlocados($tipoFuncionario)
     {
-        $this->db->select('funcionarios.funcionarios_id, 
-        funcionarios.funcionarios_nome');
-        $this->db->join(
-            'alocacaomunicipal',
-            'funcionarios.funcionarios_id != alocacaomunicipal.alocacaomunicipal_motorista_id AND alocacaomunicipal.alocacaomunicipal_cobrador_id != funcionarios.funcionarios_id'
-        );
+        $this->db->select('funcionarios.funcionarios_id, funcionarios.funcionarios_nome');
+        $this->db->join('alocacaomunicipal_motorista','alocacaomunicipal_motorista.alocacaomunicipal_motorista_funcionario_id != funcionarios.funcionarios_id');
+        $this->db->join('alocacaomunicipal_cobrador','alocacaomunicipal_cobrador.alocacaomunicipal_cobrador_funcionario_id != funcionarios.funcionarios_id');
         $this->db->from('funcionarios');
         $this->db->where('funcionarios.funcionarios_tipofuncionario_id', $tipoFuncionario);
         $result = $this->db->get();
