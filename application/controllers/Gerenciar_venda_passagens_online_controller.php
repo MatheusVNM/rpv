@@ -32,7 +32,6 @@ class Gerenciar_venda_passagens_online_controller extends CI_Controller
             $dataSaida = $this->input->post('data_id', true);
             $data['success'] = true;
             $data['alocacoes'] = $this->alocacoes->getAlocacoesPorCidade($origem, $destino, $dataSaida)['result'] ?? null;
-            $data['cadeirasdisponiveis'] = $this->countCadeirasDisponiveis($data['alocacoes']);
             echo json_encode($data);
         } else {
             $data['success'] = false;

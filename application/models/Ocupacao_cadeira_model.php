@@ -24,32 +24,6 @@ class Ocupacao_cadeira_model extends CI_Model
     }
 
 
-    public function getNumeroDeCadeirasDisponiveis($id_alocacao)
-    {
-        foreach ($id_alocacao as $id) {
-            $data = array(
-                'ocupacaocadeira_alocacaointermunicipal' => $id,
-                'ocupacaocadeira_isOcupado' => false
-            );
-            $this->db->select('*');
-            $this->db->from('ocupacaocadeira');
-            $this->db->where($data);
-            $result[] = $this->db->count_all_results();
-        }
-        return $result;
-
-    }
-
-
-
-
-
-
-
-
-
-
-
     public function insertOcupacaoCadeira(
         $quantidadeCadeiras,
         $ocupacaocadeira_alocacaointermunicipal
@@ -70,18 +44,32 @@ class Ocupacao_cadeira_model extends CI_Model
 
     }
 
-    public function venderCadeira($id)
+    public function venderCadeira($id_cadeira, $id_usuario, $valor_compra)
     {
-        $data = array(
-            'ocupacaocadeira_isOcupado' => true,
-        );
-        $result['success'] = $this->db->update('ocupacaocadeira', $data, array('ocupacaocadeira_id' => $id));
-        if ($result['success'] !== true)
-            $result['error'] = $this->db->error();
-        return $result;
-
-
+        for ($i = 0; $i<sizeof($id_cadeira);$i++){
+            $data = array(
+                'ocupacaocadeira_isOcupado' => true,
+            );
+            $this->db->update('ocupacaocadeira', $data, array('ocupacaocadeira_id' => $id_cadeira));
+            $pontos_gerados = $this->calcularPontos($valor_compra);
+            $this->db->select('IFNULL(MAX(`parada_id`), 0) AS `maxid`', false);
+            $num_ticket =  sprintf('%d', $this->db->get('comprapassagem', 1)->result_array()[0]['maxid']+1);
+            $compra = array(
+                'comprapassagem_usuario' => $id_usuario,
+                'comprapassagem_data' => date('Y-m-d H:i:s'),
+                'comprapassagem_pontos_gerados' => $pontos_gerados,
+                'comprapassagem_num_ticket' => $num_ticket,
+                'comprapassagem_cadeira' => $id_cadeira
+            );
+        $this->db->insert('comprapassagem_cadeira', $compra);
+        }
     }
+
+    private function calcularPontos($valor_compra)
+    {
+        return 10 * $valor_compra;
+    }
+
 
 
 }
