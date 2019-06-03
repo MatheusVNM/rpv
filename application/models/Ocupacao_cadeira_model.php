@@ -46,6 +46,7 @@ class Ocupacao_cadeira_model extends CI_Model
 
     public function venderCadeira($id_cadeira, $id_usuario, $valor_compra)
     {
+        $pontosAdicionais = 0;
         for ($i = 0; $i<sizeof($id_cadeira);$i++){
             $data = array(
                 'ocupacaocadeira_isOcupado' => true,
@@ -61,8 +62,16 @@ class Ocupacao_cadeira_model extends CI_Model
                 'comprapassagem_num_ticket' => $num_ticket,
                 'comprapassagem_cadeira' => $id_cadeira
             );
+        $pontosAdicionais += $pontos_gerados;
         $this->db->insert('comprapassagem_cadeira', $compra);
         }
+        $this->db->select('user_pontosTotais');
+        $this->db->where('user_id', $id_usuario);
+        $pontos = $this->db->get('usuarios');
+        $pontosTotais = $pontos + $pontosAdicionais;
+        $this->db->where('user_id', $id_usuario);
+        $this->db->update('usuarios', array('user_pontosTotais' => $pontosTotais));
+
     }
 
     private function calcularPontos($valor_compra)
