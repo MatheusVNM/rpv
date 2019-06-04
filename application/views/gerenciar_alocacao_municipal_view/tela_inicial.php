@@ -94,16 +94,16 @@ $this->load->view("header2");
                                 <div class="input-group-prepend">
                                     <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#id_modal_com_listas_onibus">Ônibus</button>
                                 </div>
-                                <input id="onibus_selecionado" type="text" class="form-control" placeholder="Nenhum ônibus selecionado" aria-describedby="basic-addon1" disabled>
+                                <input id="onibus_selecionado" type="text" class="form-control" placeholder="Nenhum ônibus selecionado" aria-describedby="basic-addon1" required>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="modal_create_trajeto fa ">Selecione o trajeto:</label>
-                            <div class="input-group mb-3">
+                            <div class="input-group mb-3" id="id_trajeto_selecionado">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-outline-secondary" type="button" data-target="#id_modal_com_listas_trajeto" data-toggle="modal">Trajetos</button>
                                 </div>
-                                <input id="trajeto_selecionado" type="text" class="form-control" placeholder="Nenhum trajeto selecionado" aria-describedby="basic-addon1" disabled>
+                                <input id="trajeto_selecionado" type="text" name="trajetourbano_id" class="form-control" placeholder="Nenhum trajeto selecionado" aria-describedby="basic-addon1" required>
                             </div>
                         </div>
                     </div>
@@ -120,7 +120,7 @@ $this->load->view("header2");
                                         <div class="input-group-prepend">
                                             <button class="btn btn-outline-secondary" type="button" data-target="#id_modal_com_listas_motoristas" data-toggle="modal">Motoristas</button>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="Nenhum motorista selecionado" aria-label="" aria-describedby="basic-addon1" disabled>
+                                        <input id="motoristas_selecionados" type="text" value="" class="form-control" placeholder="Nenhum motorista selecionado" aria-label="" aria-describedby="basic-addon1" required>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
@@ -129,7 +129,7 @@ $this->load->view("header2");
                                         <div class="input-group-prepend">
                                             <button class="btn btn-outline-secondary" type="button" data-target="#id_modal_com_listas_cobrador" data-toggle="modal">Cobrador</button>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="Nenhum cobrador selecionado" aria-label="" aria-describedby="basic-addon1" disabled>
+                                        <input id="cobradores_selecionados" type="text" class="form-control" placeholder="Nenhum cobrador selecionado" aria-label="" aria-describedby="basic-addon1" required>
                                     </div>
                                 </div>
                             </div>
@@ -282,10 +282,10 @@ $this->load->view("header2");
                         <?php endif; ?>
                     </ul>
                 </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="id_botao_selecionar_onibus">Selecionar</button>
+                </div>
             </form>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" id="id_botao_selecionar_onibus">Selecionar</button>
-            </div>
         </div>
     </div>
 </div>
@@ -476,13 +476,17 @@ $this->load->view("header2");
 <?php
 $this->load->view("footer2.php")
 ?>
-
 <script>
     $("#form_motorista_select").submit(function(event) {
         $('#id_mais_motorista').html("");
+        var lastInsert = 0;
+        var quantidadeSelecionados = $("input[name=motorista_nome]:checked").length;
+        $('#motoristas_selecionados').val(quantidadeSelecionados + " selecionados");
         $("input[name=motorista_nome]:checked").each(function() {
             var id = $(this).val();
-            addCampoMotorista($(this).attr("data-name"), id)
+            ++lastInsert
+            addCampoMotorista($(this).attr("data-name"), id, lastInsert)
+            $("#id_modal_com_listas_motoristas").modal('hide')
         });
         event.preventDefault();
         return false;
@@ -491,63 +495,100 @@ $this->load->view("footer2.php")
 <script>
     $("#form_cobrador_select").submit(function(event) {
         $('#id_mais_cobrador').html("");
+        var ultimoCobrador = 0;
+        var quantidadeSelecionados = $("input[name=cobrador_nome]:checked").length;
+        $('#cobradores_selecionados').val(quantidadeSelecionados + " selecionados");
         $("input[name=cobrador_nome]:checked").each(function() {
             var id = $(this).val();
-            addCampoCobrador($(this).attr("data-name"), id)
+            ++ultimoCobrador
+            addCampoCobrador($(this).attr("data-name"), id, ultimoCobrador)
+            $("#id_modal_com_listas_cobrador").modal('hide')
         });
         event.preventDefault();
         return false;
     });
-</script>
+</script>,
+
 <script>
-    function addCampoMotorista(nomeFuncionario, id) {
-        var lastInsert = 0;
-        ++lastInsert
+    function addCampoMotorista(nomeFuncionario, id, lastInsert) {
         $('#id_mais_motorista').append(
             '<div id="mot' + lastInsert +
             '"class="d-flex flex-row align-center my-1 justify-content-center">' +
             '<input required maxlength="255" value="' + nomeFuncionario + '" type="text" class="form-control">' +
             '<input type="hidden" disabled required maxlength="255" value="' + id + '" name="motorista_id[]" class="form-control">' +
-            '<button onclick="deletarCampo(\'mot' + lastInsert + '\')"type="button" name="motorista_appt[]" id="id_excluir_input_button" class=" btn btn-hover text-dark">' +
+            '<button onclick="deletarCampoMotorista(\'mot' + lastInsert + '\')"type="button" name="motorista_appt[]" id="id_excluir_input_button" class=" btn btn-hover text-dark">' +
             '<i class="fa fa-trash my-auto ml-2 fa-2x input-group-icon"></i>' +
             '</button>' +
             '</div>' +
+            '<div class="form-row" id="mot' + lastInsert + '">' +
+            '<div class="form-group col-md-4">' +
             '<label for="appt" id="mot' + lastInsert + '">Horário Inicio:</label>' +
             '<input type="hidden" id="mot' + lastInsert + '" name="motorista_id[]" value="' + id + '" class="form-control" required>' +
-            '<input type="time" id="mot' + lastInsert + '" name="motorista_appt[]" min="00:00" max="23:59" class="form-control col-md-5" required>' +
-            '<span class="note"></span>'
+            '<input type="time" id="mot' + lastInsert + '" name="motorista_appt[]" min="00:00" max="23:59" class="form-control" required>' +
+            '<span class="note"></span>' +
+            '</div>' +
+            '<div class="form-group col-md-4">' +
+            '<label for="appt" id="mot' + lastInsert + '">Horário Final:</label>' +
+            '<input type="hidden" id="mot' + lastInsert + '" value="' + id + '" class="form-control" required>' +
+            '<input type="time" id="mot' + lastInsert + '" name="motorista_appt[]" min="00:00" max="23:59" class="form-control" required>' +
+            '<span class="note"></span>' +
+            '</div>' +
+            '</div>'
         );
     }
 
-    function deletarCampo(campo) {
-        $('#mot' + campo + '').remove();
-        $('#mot' + campo + '').remove();
-        $('#mot' + campo + '').remove();
+    function deletarCampoMotorista(campo) {
+        $('#' + campo + '').remove();
+        $('#' + campo + '').remove();
+        $('#' + campo + '').remove();
+        $('#' + campo + '').remove();
+        limparChecks("motorista_nome");
+        $('#motoristas_selecionados').val("");
     }
 
-    function addCampoCobrador(nomeFuncionario, id) {
-        var lastInsert = 0;
-        ++lastInsert
+    function limparChecks(nomeListaChecked) {
+        $("input[name=" + nomeListaChecked + "]:checked").each(function() {
+            if ($(this).prop("checked")) {
+                $(this).prop("checked", false);
+            } else {
+                $(this).prop("checked", true);
+            }
+        });
+    }
+
+    function addCampoCobrador(nomeFuncionario, id, ultimoCobrador) {
         $('#id_mais_cobrador').append(
-            '<div id="mot' + lastInsert +
+            '<div id="cob' + ultimoCobrador +
             '"class="d-flex flex-row align-center my-1 justify-content-center">' +
             '<input required maxlength="255" value="' + nomeFuncionario + '" type="text" class="form-control" id="exampleFormControlInput1">' +
             '<input type="hidden" disabled required maxlength="255" value="' + id + '" name="cobrador_id[]" class="form-control">' +
-            '<button onclick="deletarCampo(\'mot' + lastInsert + '\')"type="button" name="cobrador_appt[]" id="id_excluir_input_button" class=" btn btn-hover text-dark">' +
+            '<button onclick="deletarCampoCobrador(\'cob' + ultimoCobrador + '\')"type="button" name="cobrador_appt[]" id="id_excluir_input_button" class=" btn btn-hover text-dark">' +
             '<i class="fa fa-trash my-auto ml-2 fa-2x input-group-icon"></i>' +
             '</button>' +
             '</div>' +
-            '<label for="appt" id="mot' + lastInsert + '">Horário Inicio:</label>' +
-            '<input type="hidden" id="mot' + lastInsert + '" name="cobrador_id[]" value="' + id + '" class="form-control" required>' +
-            '<input type="time" id="mot' + lastInsert + '" name="cobrador_appt[]" min="00:00" max="23:59" class="form-control col-md-5" required>' +
-            '<span class="note"></span>'
+            '<div class="form-row" id="cob' + ultimoCobrador + '">' +
+            '<div class="form-group col-md-4">' +
+            '<label for="appt" id="cob' + ultimoCobrador + '">Horário Inicio:</label>' +
+            '<input type="hidden" id="cob' + ultimoCobrador + '" name="cobrador_id[]" value="' + id + '" class="form-control" required>' +
+            '<input type="time" id="cob' + ultimoCobrador + '" name="cobrador_appt[]" min="00:00" max="23:59" class="form-control" required>' +
+            '<span class="note"></span>' +
+            '</div>' +
+            '<div class="form-group col-md-4">' +
+            '<label for="appt" id="cob' + ultimoCobrador + '">Horário Inicio:</label>' +
+            '<input type="hidden" id="cob' + ultimoCobrador + '" value="' + id + '" class="form-control" required>' +
+            '<input type="time" id="cob' + ultimoCobrador + '" name="cobrador_appt[]" min="00:00" max="23:59" class="form-control" required>' +
+            '<span class="note"></span>' +
+            '</div>'
         );
     }
 
-    function deletarCampo(campo) {
+    function deletarCampoCobrador(campo) {
         $('#' + campo + '').remove();
         $('#' + campo + '').remove();
         $('#' + campo + '').remove();
+        $('#' + campo + '').remove();
+        limparChecks("cobrador_nome");
+        $('#cobradores_selecionados').val("");
     }
 
     function validarQuantidadeMotorista(trajetourbano_tempo) {
@@ -596,15 +637,26 @@ $this->load->view("footer2.php")
         });
     }
 </script>
+
 <script>
     $("#form_trajeto_select").submit(function(event) {
-        var id_trajeto = $('input[name=trajetourbano_nome]:checked', '#form_trajeto_select').attr("data-name")
-        console.log(id_trajeto)
-        $("#trajeto_selecionado").val(id_trajeto)
+        var nomeTrajeto = $('input[name=trajetourbano_nome]:checked', '#form_trajeto_select').attr("data-name")
+        console.log(nomeTrajeto)
+        var id = $(this).val();
+        console.log("ID do trajeto: "+id);
+        $("#trajeto_selecionado").val(nomeTrajeto)
+        addInputInvisivel(id);
         $("#id_modal_com_listas_trajeto").modal('hide')
         event.preventDefault();
         return false;
     })
+</script>
+<script>
+    function addInputInvisivel(id) {
+        $("#id_trajeto_selecionado").append(
+            '<input type="hidden" id="trajeto_selecionado" value="' + id + '" name="trajetourbano_id" class="form-control" placeholder="Nenhum trajeto selecionado" aria-describedby="basic-addon1" required>'
+        );
+    }
 </script>
 
 <script>
@@ -612,11 +664,12 @@ $this->load->view("footer2.php")
         var id_trajeto = $('input[name=onibus_placa]:checked', '#form_onibus_select').attr("data-name")
         console.log(id_trajeto)
         $("#onibus_selecionado").val(id_trajeto)
-        $("#id_modal_com_listas_trajeto").modal('hide')
+        $("#id_modal_com_listas_onibus").modal('hide')
         event.preventDefault();
         return false;
     })
 </script>
+
 <script>
     //cadastra alocação no banco
     $("#modal_create_alocacao_form").submit(function() {

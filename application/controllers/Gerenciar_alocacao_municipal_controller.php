@@ -55,22 +55,22 @@ class Gerenciar_alocacao_municipal_controller extends CI_Controller
     public function ajax_db_insertAlocacaoMunicipal()
     {
 
-        // echo_r($this->input->post());
-        $this->form_validation->set_rules('motorista_id[]', '', 'trim|required');
-        $this->form_validation->set_rules('motorista_appt[]', '', 'trim|required');
-
-
+        // $this->form_validation->set_rules('motorista_id[]', '', 'trim|required');
+        // $this->form_validation->set_rules('motorista_appt[]', '', 'trim|required');
+        // $this->form_validation->set_rules('cobrador_id[]', '', 'trim|required');
+        // $this->form_validation->set_rules('cobrador_appt[]', '', 'trim|required');
+        // $this->form_validation->set_rules('onibus_placa', '', 'trim|required');
 
         if ($this->form_validation->run() !== false) {
             echo json_encode(array(
                 "result" => true,
-                "message" => "Talkei",
+                "message" => "Todos dados preenchidos corretamente.",
                 "post_data" => $this->input->post()
             ));
         } else {
             echo json_encode(array(
                 "result" => false,
-                "message" => "Alguma coisa está faltando, verifique essa porra",
+                "message" => "Algum campo não foi preenchido corretamente.",
                 "post_data" => $this->input->post()
             ));
         }
