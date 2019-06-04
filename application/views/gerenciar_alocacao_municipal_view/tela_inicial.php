@@ -90,11 +90,11 @@ $this->load->view("header2");
                     <div class="form-row mx-2">
                         <div class="form-group col-md-6">
                             <label for="modal_create_onibus">Selecione o ônibus:</label>
-                            <div class="input-group mb-3">
+                            <div class="input-group mb-3" id="id_onibus_selecionado">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#id_modal_com_listas_onibus">Ônibus</button>
                                 </div>
-                                <input id="onibus_selecionado" type="text" class="form-control" placeholder="Nenhum ônibus selecionado" aria-describedby="basic-addon1" required>
+                                <input id="onibus_selecionado" type="text" name="onibus_id" class="form-control" placeholder="Nenhum ônibus selecionado" aria-describedby="basic-addon1" required>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
@@ -641,33 +641,36 @@ $this->load->view("footer2.php")
 <script>
     $("#form_trajeto_select").submit(function(event) {
         var nomeTrajeto = $('input[name=trajetourbano_nome]:checked', '#form_trajeto_select').attr("data-name")
-        console.log(nomeTrajeto)
-        var id = $(this).val();
-        console.log("ID do trajeto: "+id);
+        var id = $('input[name=trajetourbano_nome]:checked', '#form_trajeto_select').attr("value")
         $("#trajeto_selecionado").val(nomeTrajeto)
-        addInputInvisivel(id);
+        addInputInvisivelTrajeto(id);
         $("#id_modal_com_listas_trajeto").modal('hide')
         event.preventDefault();
         return false;
     })
-</script>
-<script>
-    function addInputInvisivel(id) {
+
+    function addInputInvisivelTrajeto(id) {
         $("#id_trajeto_selecionado").append(
             '<input type="hidden" id="trajeto_selecionado" value="' + id + '" name="trajetourbano_id" class="form-control" placeholder="Nenhum trajeto selecionado" aria-describedby="basic-addon1" required>'
         );
     }
 </script>
-
 <script>
     $("#form_onibus_select").submit(function(event) {
-        var id_trajeto = $('input[name=onibus_placa]:checked', '#form_onibus_select').attr("data-name")
-        console.log(id_trajeto)
-        $("#onibus_selecionado").val(id_trajeto)
+        var placa_onibus = $('input[name=onibus_placa]:checked', '#form_onibus_select').attr("data-name")
+        var id_onibus = $('input[name=onibus_placa]:checked', '#form_onibus_select').attr("value")
+        $("#onibus_selecionado").val(placa_onibus)
+        addInputInvisivelOnibus(id_onibus);
         $("#id_modal_com_listas_onibus").modal('hide')
         event.preventDefault();
         return false;
     })
+
+    function addInputInvisivelOnibus(id_desse_onibus) {
+        $("#id_onibus_selecionado").append(
+            '<input type="hidden" id="onibus_selecionado" value="' + id_desse_onibus + '" name="onibus_id" class="form-control" placeholder="Nenhum ônibus selecionado" aria-describedby="basic-addon1" required>'
+        );
+    }
 </script>
 
 <script>
