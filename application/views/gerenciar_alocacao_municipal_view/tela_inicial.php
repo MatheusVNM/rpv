@@ -88,6 +88,14 @@ $this->load->view("header2");
             <form id="modal_create_alocacao_form" class="needs-validation container" novalidate>
                 <div class="modal-body">
                     <div class="form-row mx-2">
+                        <div class="form-group col-md-3">
+                            <label for="inputEmail4">Data Início da Alocação</label>
+                            <input type="date" class="form-control" id="inputEmail4">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputEmail4">Data Final da Alocação:</label>
+                            <input type="date" class="form-control" id="inputEmail4" min="2019-06-03">
+                        </div>
                         <div class="form-group col-md-6">
                             <label for="modal_create_onibus">Selecione o ônibus:</label>
                             <div class="input-group mb-3" id="id_onibus_selecionado">
