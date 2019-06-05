@@ -260,6 +260,45 @@
 	--white: #ffffff;
 }
 
+.card-info-hover{
+	background: #bbdefb33;
+	transition: 0.3px;
+
+}
+
+
+.minh-25vh{
+	min-height: 25vh;
+}
+
+.minh-50vh{
+	min-height: 50vh;
+}
+
+.minh-75vh{
+	min-height: 75vh;
+}
+
+.minh-100vh{
+	min-height: 100vh;
+}
+
+.minh-25percent{
+	min-height: 25percent;
+}
+
+.minh-50percent{
+	min-height: 50percent;
+}
+
+.minh-75percent{
+	min-height: 75percent;
+}
+
+.minh-100percent{
+	min-height: 100percent;
+}
+
 .top-header {
 	/* background: #1d1e4f!important; */
 	background: var(--color-primary) !important;

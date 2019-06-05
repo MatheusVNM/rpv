@@ -32,9 +32,12 @@ class Alocacao_intermunicipal_model extends CI_Model
         }
     }
 
-    public function getAlocacoesPorCidades($origem_id, $destino_id, $data_id)
+    public function getAlocacoesPorCidades($origem_id, $destino_id, $data)
     {
 
+        if (is_string($data)) {
+            $data = new DateTime($data);
+        }
         // -Receber as cidades e a data -ok 
         // -Procurar todas as rotas que possuam a cidade $1 e que passam para a cidade $2 -ok 
         // -Procurar alocações daquela rota na data $3 que tenham cadeiras disponíveis -ok
@@ -42,11 +45,11 @@ class Alocacao_intermunicipal_model extends CI_Model
         // -Retornar um array com todas as alocações, hora de saida e chegada -ok
         // -Verificar a história dos onibus -Q
 
-        // echo_r(array($data_id));
+        // echo_r(array($data));
         // $result = $this->db->select('trajetointerurbano.*,rotas_trajetointerurbano.rotas_trajetointerurbano_cidade_origem, rotas_trajetointerurbano.rotas_trajetointerurbano_cidade_destino, rotas_trajetointerurbano.rotas_trajetointerurbano_tempo, rotas_trajetointerurbano.rotas_trajetointerurbano_distancia')
 
 
-        $result = $this->db->select('alocacaointermunicipal_id,alocacaointermunicipal_data_hora_inicio,alocacaointermunicipal_trajetointerurbano, categoriaonibus_nome, rotas_trajetointerurbano_tempo,  rotas_trajetointerurbano_tempo_origem, trajetointerurbano_nome, count(ocupacaocadeira.ocupacaocadeira_id) as count_cadeiras_livres, (rotas_trajetointerurbano_distancia*categoriaonibus_precokm) as precocadeira')
+        $result = $this->db->select('alocacaointermunicipal_id,alocacaointermunicipal_data_hora_inicio,alocacaointermunicipal_trajetointerurbano, categoriaonibus_nome, rotas_trajetointerurbano_tempo,  rotas_trajetointerurbano_tempo_origem, trajetointerurbano_nome, (onibus.onibus_num_lugares-count(ocupacaocadeira.ocupacaocadeira_id)) as count_cadeiras_livres, count(ocupacaocadeira.ocupacaocadeira_id) as cadeiras_ocupadas, (rotas_trajetointerurbano_distancia*categoriaonibus_precokm) as precocadeira')
             ->distinct()
             ->from('alocacaointermunicipal')
             ->join('trajetointerurbano', 'alocacaointermunicipal_trajetointerurbano=trajetointerurbano_id')
@@ -55,8 +58,8 @@ class Alocacao_intermunicipal_model extends CI_Model
             ->join('ocupacaocadeira', 'ocupacaocadeira_alocacaointermunicipal=alocacaointermunicipal_id')
             ->join('rotas_trajetointerurbano', 'trajetointerurbano_id=rotas_trajetointerurbano_trajeto_id')
             ->where("(rotas_trajetointerurbano_cidade_origem=$origem_id and rotas_trajetointerurbano_cidade_destino=$destino_id )", null, false)
-            ->where("(alocacaointermunicipal_data_hora_inicio >='" . $data_id->format("Y-m-d") . "' and alocacaointermunicipal_data_hora_inicio<'" . $data_id->modify('+1 day')->format("Y-m-d") . "' )", null, false)
-            ->where("ocupacaocadeira_isOcupado", "false")
+            ->where("(alocacaointermunicipal_data_hora_inicio >='" . $data->format("Y-m-d") . "' and alocacaointermunicipal_data_hora_inicio<'" . $data->modify('+1 day')->format("Y-m-d") . "' )", null, false)
+            ->where("ocupacaocadeira_isOcupado", "1")
             ->get();
 
         // ->get();
@@ -69,18 +72,23 @@ class Alocacao_intermunicipal_model extends CI_Model
         //     $retorno['success'] = false;
         //     return $retorno;
         // }
-        if ($result==false) {
+        if ($result == false) {
             $retorno['success'] = false;
             $retorno['error'] = $this->db->error();
             return $retorno;
-        } if ($result->num_rows() > 0) {
-            $retorno['success'] = true;
-            $retorno['result'] = $result->result_array();
-            for ($i = 0; $i < sizeof($retorno['result']); $i++) {
-                $start = $retorno['result'][$i]['alocacaointermunicipal_data_hora_inicio'];
-                $horasaida = $retorno['result'][$i]['alocacaointermunicipal_hora_saida'] = date('Y-m-d H:i:s', strtotime('+' . $retorno['result'][$i]['rotas_trajetointerurbano_tempo_origem'] . ' minutes', strtotime($start)));
-                $retorno['result'][$i]['alocacaointermunicipal_hora_chegada'] = date('Y-m-d H:i:s', strtotime('+' . $retorno['result'][$i]['rotas_trajetointerurbano_tempo'] . ' minutes', strtotime($horasaida)));
-                
+        }
+        if ($result->num_rows() > 0) {
+            if(is_null($result->result_array()[0]['alocacaointermunicipal_id'])){
+                $retorno['success'] = false;
+            }else{
+
+                $retorno['success'] = true;
+                $retorno['result'] = $result->result_array();
+                for ($i = 0; $i < sizeof($retorno['result']); $i++) {
+                    $start = $retorno['result'][$i]['alocacaointermunicipal_data_hora_inicio'];
+                    $horasaida = $retorno['result'][$i]['alocacaointermunicipal_hora_saida'] = date('Y-m-d H:i:s', strtotime('+' . $retorno['result'][$i]['rotas_trajetointerurbano_tempo_origem'] . ' minutes', strtotime($start)));
+                    $retorno['result'][$i]['alocacaointermunicipal_hora_chegada'] = date('Y-m-d H:i:s', strtotime('+' . $retorno['result'][$i]['rotas_trajetointerurbano_tempo'] . ' minutes', strtotime($horasaida)));
+                }
             }
         } else {
             $retorno['success'] = false;

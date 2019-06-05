@@ -5,7 +5,7 @@ class MY_Loader extends CI_Loader
     public function script($script)
     {
         $this->load->helper('file');
-        echo APPPATH."scripts/".$script.".js";
+        // echo APPPATH."scripts/".$script.".js";
         echo "<script>";
         $file = read_file(APPPATH."scripts/".$script.".js");
         $find = array( "<?= base_url('", '<?= base_url("' );

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 $this->load->helper('url');
-$this->load->view("header2");
+$this->load->view("header_cliente");
 ?>
 
 <head>
@@ -225,7 +225,7 @@ $numPoltronas = 50;
 </div>
 
 <?php
-$this->load->view("footer2.php", array('js' => 'gerenciar_manutencao'))
+$this->load->view("footer_cliente.php", array('js' => 'gerenciar_manutencao'))
 ?>
 <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
 

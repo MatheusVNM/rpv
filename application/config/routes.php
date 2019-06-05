@@ -147,3 +147,9 @@ $route['dashboard/manutencoes'] = 'gerenciar_manutencoes_controller';
 
 $route['dashboard/passagens/onibus'] = 'gerenciar_venda_passagens_online_controller';
 //$route['dashboard/passagens/venda'] =
+
+
+
+/* Rotas para clientes */
+$route['clientes'] = 'dashboard_clientes';
+$route['clientes/compra_passagem']= 'gerenciar_venda_passagens_online_controller';

@@ -20,4 +20,13 @@ class Cidade_controller extends CI_Controller
 		}
 	}
 
+	public function ajax_db_getCidadesComEstados(){
+		$this->load->model('cidade_model', 'cidades');
+
+		$retorno['success'] = true;
+		$retorno['data'] = $this->cidades->getCidades()['result'];
+		
+		echo json_encode($retorno);
+	}
+
 }

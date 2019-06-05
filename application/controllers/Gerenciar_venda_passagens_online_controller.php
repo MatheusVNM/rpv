@@ -9,15 +9,16 @@ class Gerenciar_venda_passagens_online_controller extends CI_Controller
         $this->load->model('alocacao_intermunicipal_model', 'alocacoes');
         $this->load->model('cidade_model', 'cidades');
         $this->load->model('ocupacao_cadeira_model', 'cadeira');
-        $this->output->enable_profiler(true);
+        // $this->output->enable_profiler(true);
     }
 
     public function index()
     {
-        $data['alocacoes'] = $this->alocacoes->getAlocacoesPorCidades(4214, 4174, new DateTime('2019-05-30'))['result'];
-        echo_r($data['alocacoes']);
+        // $data['alocacoes'] = $this->alocacoes->getAlocacoesPorCidades(4214, 4174, new DateTime('2019-05-30'))['result'];
+        // echo_r($data['alocacoes']);
+        $t = $data['cidades'] = $this->cidades->getCidades()['result'];
+        // echo_r($t);
         $this->load->view('compra_passagem_online_view/tela_inicial', $data);
-
     }
 
     public function ajax_db_getAlocacoesPorCidade()
@@ -25,14 +26,20 @@ class Gerenciar_venda_passagens_online_controller extends CI_Controller
 
         $this->form_validation->set_rules('origem_id', 'ID da Origem', 'required|trim|numeric');
         $this->form_validation->set_rules('destino_id', 'ID do Destino', 'required|trim|numeric');
-        $this->form_validation->set_rules('data_id', 'ID da Data', 'required|matches[(0[1-9]|[12][0-9]|3[01])[-](0[1-9]|1[012])[-]\d{4}]');
+        $this->form_validation->set_rules('data', 'Data', 'required|trim');
         if ($this->form_validation->run() !== false) {
             $origem = $this->input->post('origem_id', true);
             $destino = $this->input->post('destino_id', true);
-            $dataSaida = $this->input->post('data_id', true);
-            $data['success'] = true;
-            $data['alocacoes'] = $this->alocacoes->getAlocacoesPorCidade($origem, $destino, $dataSaida)['result'] ?? null;
-            $data['cadeirasdisponiveis'] = $this->countCadeirasDisponiveis($data['alocacoes']);
+            $dataSaida = $this->input->post('data', true);
+            $result = $this->alocacoes->getAlocacoesPorCidades($origem, $destino,  new DateTime($dataSaida)) ?? null;
+            $data['success'] = $result === null ? false : $result['success'];
+            if ($data['success'] === true)
+                $data['alocacoes'] = $this->alocacoes->getAlocacoesPorCidades($origem, $destino,  new DateTime($dataSaida))['result'] ?? null;
+            else
+                $data['noresult']=true;
+            
+                // echo_r($data['alocacoes']);
+            // $data['cadeirasdisponiveis'] = $this->countCadeirasDisponiveis($data['alocacoes']);
             echo json_encode($data);
         } else {
             $data['success'] = false;
@@ -40,6 +47,7 @@ class Gerenciar_venda_passagens_online_controller extends CI_Controller
             echo json_encode($data);
         }
     }
+
 
 
     //todo falta a entrada do métodos post -> + válidações

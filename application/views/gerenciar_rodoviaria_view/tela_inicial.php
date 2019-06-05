@@ -229,8 +229,6 @@ $this->load->view("header2");
                             <input name="rodoviaria_cep" type="text" maxlength="8" min="0" max="99999999" class="form-control numbers-only" id="modal_edit_cep" required>
                             <div class="invalid-feedback"></div>
                         </div>
-
-
                     </div>
 
                     <div class="form-row">

@@ -102,6 +102,13 @@ $this->load->helper('url');
 <script src="<?php echo base_url('assets/js/bootstrap.bundle.min.js') ?>"></script>
 <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap-select.min.js"); ?>"></script>
 <?php $this->load->script("footer2") ?>
+<!-- Bootstrap core JavaScript -->
+<script src="<?php echo base_url('assets/js/jquery-3.3.1.min.js') ?>"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
+<script src="<?php echo base_url('assets/js/bootstrap.bundle.min.js') ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap-select.min.js"); ?>"></script>
+<?php $this->load->script("footer2") ?>
 
 <?php  if(isset($js)) $this->load->script("cases/" . $js) ?>
 
