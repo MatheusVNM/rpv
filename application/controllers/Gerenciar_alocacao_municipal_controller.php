@@ -103,7 +103,7 @@ class Gerenciar_alocacao_municipal_controller extends CI_Controller
             );
             if ($result['success']) {
                 $result['message'] = successAlert('Alocação cadastrada com sucesso');
-                redirect('/dashboard/alocacaomunicipal');
+                redirect('dashboard/alocacaomunicipal');
                 //header("Refresh: 0; url=tela_inicial.php");
             } else {
                 //$result['message'] = errorAlert('Erro ao cadastrar a alocação: ' . $result['error'] . '');
