@@ -23,11 +23,11 @@ class Gerenciar_alocacao_municipal_controller extends CI_Controller
     {
         $data['alocacaomunicipal'] = $this->alocacao->getAlocacoes()['result'];
         $data['onibus'] = $this->onibus->getOnibusMunicipalNaoAlocado()['result'];
-        $data['motoristas'] = $this->funcionarios->getFuncionariosNaoAlocados(1)['result'];
-        $data['cobradores'] = $this->funcionarios->getFuncionariosNaoAlocados(2)['result'];
+        $data['motoristas'] = $this->funcionarios->getMotoristasNaoAlocados()['result'];
+        $data['cobradores'] = $this->funcionarios->getCobradoresNaoAlocados()['result'];
         $data['trajetourbano'] = $this->trajetourbano->getTrajetos();
-        // echo_r( $this->alocacao->getAlocacoes()['result']);
-        // echo_r($this->alocacao->getAlocacao(1)['result']);
+        //echo_r( $this->funcionarios->getMotoristasNaoAlocados()['result']);
+        //echo_r($this->funcionarios->getCobradoresNaoAlocados()['result']);
         // $data['funcionarios'] = $this->funcionarios->getFuncionarios()['result'];
         //print_r($data['alocacoes']);
         //echo_r($data);
@@ -54,13 +54,13 @@ class Gerenciar_alocacao_municipal_controller extends CI_Controller
     }
     public function ajax_db_insertAlocacaoMunicipal()
     {
-
         $this->form_validation->set_rules('motorista_id[]', '', 'trim|required');
         $this->form_validation->set_rules('motorista_appt[]', '', 'trim|required');
         $this->form_validation->set_rules('cobrador_id[]', '', 'trim|required');
         $this->form_validation->set_rules('cobrador_appt[]', '', 'trim|required');
         $this->form_validation->set_rules('onibus_id', '', 'trim|required');
         $this->form_validation->set_rules('trajetourbano_id', '', 'trim|required');
+        $this->form_validation->set_rules('alocacaomunicipal_data_inicio', '', 'trim|required');
         if ($this->form_validation->run() !== false) {
             echo json_encode(array(
                 "result" => true,
@@ -79,10 +79,13 @@ class Gerenciar_alocacao_municipal_controller extends CI_Controller
             $alocacaomunicipal_motorista_funcionario_id = $this->input->post('motorista_id[0]');
             $alocacaomunicipal_motorista_expediente_hora_inicio = $this->input->post('motorista_appt[0]');
             $alocacaomunicipal_motorista_expediente_hora_final = $this->input->post('motorista_appt[1]');
-            $alocacaomunicipal_data_inicio = $this->input->post('04/06/2019');
-            $alocacaomunicipal_data_final = $this->input->post('');
+            $alocacaomunicipal_data_inicio = $this->input->post('alocacaomunicipal_data_inicio');
+            $alocacaomunicipal_data_final = $this->input->post('alocacaomunicipal_data_final');
             $alocacaomunicipal_onibus_id = $this->input->post('onibus_id');
             $alocacaomunicipal_trajetourbano_id = $this->input->post('trajetourbano_id');
+            $alocacaomunicipal_cobrador_funcionario_id =  $this->input->post('cobrador_id[0]');
+            $alocacaomunicipal_cobrador_expediente_hora_inicio = $this->input->post('cobrador_appt[0]');
+            $alocacaomunicipal_cobrador_expediente_hora_final = $this->input->post('cobrador_appt[1]');
 
             $result = $this->alocacao->insertAlocacao(
                 $alocacaomunicipal_data_inicio,
@@ -92,10 +95,16 @@ class Gerenciar_alocacao_municipal_controller extends CI_Controller
 
                 $alocacaomunicipal_motorista_funcionario_id,
                 $alocacaomunicipal_motorista_expediente_hora_inicio,
-                $alocacaomunicipal_motorista_expediente_hora_final
+                $alocacaomunicipal_motorista_expediente_hora_final,
+
+                $alocacaomunicipal_cobrador_funcionario_id,
+                $alocacaomunicipal_cobrador_expediente_hora_inicio,
+                $alocacaomunicipal_cobrador_expediente_hora_final
             );
             if ($result['success']) {
                 $result['message'] = successAlert('Alocação cadastrada com sucesso');
+                redirect('/dashboard/alocacaomunicipal');
+                //header("Refresh: 0; url=tela_inicial.php");
             } else {
                 //$result['message'] = errorAlert('Erro ao cadastrar a alocação: ' . $result['error'] . '');
                 $result['message'] = errorAlert('Erro ao cadastrar a alocação');

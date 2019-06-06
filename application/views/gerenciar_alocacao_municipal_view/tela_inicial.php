@@ -88,13 +88,15 @@ $this->load->view("header2");
             <form id="modal_create_alocacao_form" class="needs-validation container" novalidate>
                 <div class="modal-body">
                     <div class="form-row mx-2">
-                        <div class="form-group col-md-3">
-                            <label for="inputEmail4">Data Início da Alocação</label>
-                            <input type="date" class="form-control" id="inputEmail4">
+                        <div class="form-group col-md-6">
+                            <div class="form-row">
+                                <label for="min">Data Início Alocação</label>
+                                <input name="alocacaomunicipal_data_inicio" class="min-today form-control" id="min" type="date" placeholder="YYYY-MM-DD" data-date-split-input="true" required/>
+                            </div>
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-6">
                             <label for="inputEmail4">Data Final da Alocação:</label>
-                            <input type="date" class="form-control" id="inputEmail4" min="2019-06-03">
+                            <input name="alocacaomunicipal_data_final" type="date" class="form-control" id="inputEmail4" min="2019-06-03">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="modal_create_onibus">Selecione o ônibus:</label>
@@ -295,10 +297,10 @@ $this->load->view("header2");
                 </div>
             </form>
         </div>
+        <!-- Modal lista de Trajetos-->
     </div>
 </div>
 
-<!-- Modal lista de Trajetos-->
 <div class="modal" tabindex="-1" role="dialog" id="id_modal_com_listas_trajeto">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -354,7 +356,8 @@ $this->load->view("header2");
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <?= $row['funcionarios_nome'] ?>
                                     <div class="form-check">
-                                        <input data-name="<?= $row['funcionarios_nome'] ?>" class="form-check-input" type="checkbox" id="id_motorista_nome" name="motorista_nome" value="<?= $row['funcionarios_id'] ?>">
+                                        <input data-name="<?= $row['funcionarios_nome'] ?>" class="form-check-input" type="checkbox" 
+                                        id="id_motorista_nome" name="motorista_nome" value="<?= $row['funcionarios_id'] ?>">
                                         <label class="form-check-label" for="defaultCheck1">
                                         </label>
                                     </div>

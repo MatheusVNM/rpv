@@ -104,9 +104,10 @@ $route['categorias/onibus/update'] = 'gerenciar_categoria_onibus_controller/_upd
 
 /*Rotas métodos de controller que exibem alguma tela, sem necessáriamente inserir/atualizar algo no banco de dados*/
 $route['dashboard'] = 'Dashboard';
-
 $route['dashboard/categorias/onibus'] = 'gerenciar_categoria_onibus_controller';
 $route['dashboard/categorias/onibus/editar'] = 'gerenciar_categoria_onibus_controller/editarCategoriaOnibus';
+
+$route['dashboard/alocacaomunicipal'] = 'Gerenciar_alocacao_municipal_controller';
 
 $route['dashboard/tarifas/editar'] = 'gerenciar_tarifa_controller/editarTarifa';
 $route['dashboard/tarifas'] = 'gerenciar_tarifa_controller';

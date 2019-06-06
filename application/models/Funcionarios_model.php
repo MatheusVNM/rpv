@@ -49,13 +49,34 @@ class Funcionarios_model extends CI_Model
             return $retorno;
         }
     }
-    public function getFuncionariosNaoAlocados($tipoFuncionario)
+    public function getMotoristasNaoAlocados()
     {
-        $this->db->select('funcionarios.funcionarios_id, funcionarios.funcionarios_nome');
+        $this->db->distinct('funcionarios.funcionarios_id, funcionarios.funcionarios_nome');
         $this->db->join('alocacaomunicipal_motorista','alocacaomunicipal_motorista.alocacaomunicipal_motorista_funcionario_id != funcionarios.funcionarios_id');
+        $this->db->from('funcionarios');
+        $this->db->where('funcionarios.funcionarios_tipofuncionario_id', 1);
+        $result = $this->db->get();
+        if (!$result) {
+            $retorno['success'] = false;
+            $retorno['error'] = $this->db->error();
+            return $retorno;
+        }
+        if ($result->num_rows() > 0) {
+            $retorno['success'] = true;
+            $retorno['result'] = $result->result_array();
+            return $retorno;
+        } else {
+            $retorno['success'] = false;
+            return $retorno;
+        }
+    }
+
+    public function getCobradoresNaoAlocados()
+    {
+        $this->db->distinct('funcionarios.funcionarios_id, funcionarios.funcionarios_nome');
         $this->db->join('alocacaomunicipal_cobrador','alocacaomunicipal_cobrador.alocacaomunicipal_cobrador_funcionario_id != funcionarios.funcionarios_id');
         $this->db->from('funcionarios');
-        $this->db->where('funcionarios.funcionarios_tipofuncionario_id', $tipoFuncionario);
+        $this->db->where('funcionarios.funcionarios_tipofuncionario_id', 2);
         $result = $this->db->get();
         if (!$result) {
             $retorno['success'] = false;

@@ -51,19 +51,23 @@ class Alocacao_municipal_model extends CI_Model
         }
     }
     public function insertAlocacao(
-        $alocacaomunicipal_data_final,
         $alocacaomunicipal_data_inicio,
+        $alocacaomunicipal_data_final,
         $alocacaomunicipal_onibus_id,
         $alocacaomunicipal_trajetoUrbano_id,
 
         $alocacaomunicipal_motorista_funcionario_id,
         $alocacaomunicipal_motorista_expediente_hora_inicio,
-        $alocacaomunicipal_motorista_expediente_hora_final
+        $alocacaomunicipal_motorista_expediente_hora_final,
+
+        $alocacaomunicipal_cobrador_funcionario_id,
+        $alocacaomunicipal_cobrador_expediente_hora_inicio,
+        $alocacaomunicipal_cobrador_expediente_hora_final
     ) {
         $this->db->select('IFNULL(MAX(`alocacaomunicipal_id`), 0) AS `maxid`', false);
         $data = array(
-            'alocacaomunicipal_data_final' => $alocacaomunicipal_data_final,
             'alocacaomunicipal_data_inicio' => $alocacaomunicipal_data_inicio,
+            'alocacaomunicipal_data_final' => $alocacaomunicipal_data_final,
             'alocacaomunicipal_onibus_id' => $alocacaomunicipal_onibus_id,
             'alocacaomunicipal_trajetoUrbano_id' => $alocacaomunicipal_trajetoUrbano_id
         );
@@ -73,37 +77,33 @@ class Alocacao_municipal_model extends CI_Model
             return $result;
         }
         $this->db->select('IFNULL(MAX(`alocacaomunicipal_motorista`), 0) AS `maxid`', false);
-        $alocacaomunicipal_motorista_id_alocacao = 14;
+
+        $alocacaomunicipal_id_alocacao = $this->db->query('SELECT MAX(alocacaomunicipal_id) AS `maxid` FROM `alocacaomunicipal`')->row()->maxid;
         $data = array(
             'alocacaomunicipal_motorista_expediente_hora_inicio' => $alocacaomunicipal_motorista_expediente_hora_inicio,
             'alocacaomunicipal_motorista_expediente_hora_final' => $alocacaomunicipal_motorista_expediente_hora_final,
-            'alocacaomunicipal_motorista_id_alocacao' => $alocacaomunicipal_motorista_id_alocacao,
+            'alocacaomunicipal_motorista_id_alocacao' => $alocacaomunicipal_id_alocacao,
             'alocacaomunicipal_motorista_funcionario_id' => $alocacaomunicipal_motorista_funcionario_id
         );
         $result['success'] = $this->db->insert('alocacaomunicipal_motorista', $data);
-        if (!$result['success'])
-            $result['error'] = $this->db->error();
-        return $result;
-    }
-    // public function insertAlocacao_Motorista(
-    //     $alocacaomunicipal_motorista_funcionario_id,
-    //     $alocacaomunicipal_motorista_expediente_hora_inicio,
-    //     $alocacaomunicipal_motorista_expediente_hora_final
-    // ) {
-    //     $this->db->select('IFNULL(MAX(`alocacaomunicipal_motorista`), 0) AS `maxid`', false);
-    //     $alocacaomunicipal_motorista_id_alocacao = 11;
-    //     $data = array(
-    //         'alocacaomunicipal_motorista_expediente_hora_inicio' => $alocacaomunicipal_motorista_expediente_hora_inicio,
-    //         'alocacaomunicipal_motorista_expediente_hora_final' => $alocacaomunicipal_motorista_expediente_hora_final,
-    //         'alocacaomunicipal_motorista_id_alocacao' => $alocacaomunicipal_motorista_id_alocacao,
-    //         'alocacaomunicipal_motorista_funcionario_id' => $alocacaomunicipal_motorista_funcionario_id
-    //     );
-    //     $result['success'] = $this->db->insert('alocacaomunicipal_motorista', $data);
-    //     if (!$result['success'])
-    //         $result['error'] = $this->db->error();
-    //     return $result;
-    // }
 
+        if (!$result['success']) {
+            $result['error'] = $this->db->error();
+            return $result;
+        } else {
+            $data = array(
+                'alocacaomunicipal_cobrador_expediente_hora_inicio' => $alocacaomunicipal_cobrador_expediente_hora_inicio,
+                'alocacaomunicipal_cobrador_expediente_hora_final	' => $alocacaomunicipal_cobrador_expediente_hora_final,
+                'alocacaomunicipal_cobrador_id_alocacao' => $alocacaomunicipal_id_alocacao,
+                'alocacaomunicipal_cobrador_funcionario_id' => $alocacaomunicipal_cobrador_funcionario_id
+            );
+            $result['success'] = $this->db->insert('alocacaomunicipal_cobrador', $data);
+            if (!$result['success']) {
+                $result['error'] = $this->db->error();
+                return $result;
+            }
+        }
+    }
     public function updateAlocacao(
         $alocacaomunicipal_id,
         $alocacaomunicipal_cobrador_id,
