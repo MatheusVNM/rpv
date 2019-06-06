@@ -91,7 +91,7 @@ $this->load->view("header2");
                         <div class="form-group col-md-6">
                             <div class="form-row">
                                 <label for="min">Data Início Alocação</label>
-                                <input name="alocacaomunicipal_data_inicio" class="min-today form-control" id="min" type="date" placeholder="YYYY-MM-DD" data-date-split-input="true" required/>
+                                <input name="alocacaomunicipal_data_inicio" class="min-today form-control" id="min" type="date" placeholder="YYYY-MM-DD" data-date-split-input="true" required />
                             </div>
                         </div>
                         <div class="form-group col-md-6">
@@ -175,37 +175,45 @@ $this->load->view("header2");
 </div>
 </div>
 
-
-
-<!-- Modal Editar -->
-<div class="modal fade" id="id_modal_edit_alocacao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe2" aria-hidden="true">
+<!-- Modal edit alocação -->
+<div class="modal fade" id="id_modal_edit_alocacao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabe2"><b>Editar Alocação</b></h5>
+                <h5 class="modal-title" id="exampleModalLabel"><b>Editar Alocação Municipal</b></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form class="needs-validation container" novalidate>
+            <form id="modal_create_alocacao_form" class="needs-validation container" novalidate>
+                <div class="modal-body">
                     <div class="form-row mx-2">
                         <div class="form-group col-md-6">
+                            <div class="form-row">
+                                <label for="min">Data Início Alocação</label>
+                                <input name="alocacaomunicipal_data_inicio" class="min-today form-control" id="min" type="date" placeholder="YYYY-MM-DD" data-date-split-input="true" required />
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Data Final da Alocação:</label>
+                            <input name="alocacaomunicipal_data_final" type="date" class="form-control" id="inputEmail4" min="2019-06-03">
+                        </div>
+                        <div class="form-group col-md-6">
                             <label for="modal_create_onibus">Selecione o ônibus:</label>
-                            <div class="input-group mb-3">
+                            <div class="input-group mb-3" id="id_onibus_selecionado">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#id_modal_com_listas_onibus">Ônibus</button>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Nenhum ônibus selecionado" aria-label="" aria-describedby="basic-addon1" disabled>
+                                <input id="onibus_selecionado" type="text" name="onibus_id" class="form-control" placeholder="Nenhum ônibus selecionado" aria-describedby="basic-addon1" required>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="modal_create_trajeto fa ">Selecione o trajeto:</label>
-                            <div class="input-group mb-3">
+                            <div class="input-group mb-3" id="id_trajeto_selecionado">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-outline-secondary" type="button" data-target="#id_modal_com_listas_trajeto" data-toggle="modal">Trajetos</button>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Nenhum trajeto selecionado" aria-label="" aria-describedby="basic-addon1" disabled>
+                                <input id="trajeto_selecionado" type="text" name="trajetourbano_id" class="form-control" placeholder="Nenhum trajeto selecionado" aria-describedby="basic-addon1" required>
                             </div>
                         </div>
                     </div>
@@ -222,7 +230,7 @@ $this->load->view("header2");
                                         <div class="input-group-prepend">
                                             <button class="btn btn-outline-secondary" type="button" data-target="#id_modal_com_listas_motoristas" data-toggle="modal">Motoristas</button>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="Nenhum motorista selecionado" aria-label="" aria-describedby="basic-addon1" disabled>
+                                        <input id="motoristas_selecionados" type="text" value="" class="form-control" placeholder="Nenhum motorista selecionado" aria-label="" aria-describedby="basic-addon1" required>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
@@ -231,35 +239,39 @@ $this->load->view("header2");
                                         <div class="input-group-prepend">
                                             <button class="btn btn-outline-secondary" type="button" data-target="#id_modal_com_listas_cobrador" data-toggle="modal">Cobrador</button>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="Nenhum cobrador selecionado" aria-label="" aria-describedby="basic-addon1" disabled>
+                                        <input id="cobradores_selecionados" type="text" class="form-control" placeholder="Nenhum cobrador selecionado" aria-label="" aria-describedby="basic-addon1" required>
                                     </div>
                                 </div>
                             </div>
                             <div id="id_dados_alocacao">
                                 <div class="col-auto">
-                                    <div class="form-group" id="id_mais_motorista">
-                                        <div class="my-2 justify-content-between d-flex">
-                                            <label for="exampleFormControlInput1"><b>Motorista Alocado:</b></label>
-                                        </div>
+                                    <div class="my-2 justify-content-between d-flex">
+                                        <label for="exampleFormControlInput1"><b>Motorista Alocado:</b></label>
                                     </div>
+                                    <div class="form-group" id="id_mais_motorista">
+
+                                    </div>
+
                                 </div>
                                 <div class="col-auto">
+                                    <div class="my-2 justify-content-between d-flex">
+                                        <label for="exampleFormControlInput1"><b>Cobrador Alocado:</b></label>
+
+                                    </div>
                                     <div class="form-group" id="id_mais_cobrador">
-                                        <div class="my-2 justify-content-between d-flex">
-                                            <label for="exampleFormControlInput1"><b>Cobrador Alocado:</b></label>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary">Salvar</button>
-            </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
         </div>
     </div>
+</div>
 </div>
 </div>
 
@@ -297,9 +309,9 @@ $this->load->view("header2");
                 </div>
             </form>
         </div>
-        <!-- Modal lista de Trajetos-->
     </div>
 </div>
+<!-- Modal lista de Trajetos-->
 
 <div class="modal" tabindex="-1" role="dialog" id="id_modal_com_listas_trajeto">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -356,8 +368,7 @@ $this->load->view("header2");
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <?= $row['funcionarios_nome'] ?>
                                     <div class="form-check">
-                                        <input data-name="<?= $row['funcionarios_nome'] ?>" class="form-check-input" type="checkbox" 
-                                        id="id_motorista_nome" name="motorista_nome" value="<?= $row['funcionarios_id'] ?>">
+                                        <input data-name="<?= $row['funcionarios_nome'] ?>" class="form-check-input" type="checkbox" id="id_motorista_nome" name="motorista_nome" value="<?= $row['funcionarios_id'] ?>">
                                         <label class="form-check-label" for="defaultCheck1">
                                         </label>
                                     </div>
