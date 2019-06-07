@@ -79,8 +79,10 @@ $route['ajax/manutencao/edit'] = 'gerenciar_manutencoes_controller/ajax_db_updat
 $route['ajax/comprar_passagem/onibus'] = 'gerenciar_venda_passagens_online_controller/ajax_db_getAlocacoesPorCidade';
 
 
-// ajax_db_insertRodoviaria
 /*Rotas para métodos de controller que apenas inserem/atualizam algo no banco de dados. */
+$route['formas_pagamentos/save']= 'Gerenciar_formas_pagamento_controller/updatePayments';
+
+
 $route['tarifas/update'] = 'gerenciar_tarifa_controller/atualizarValorTarifa';
 $route['tarifas/create'] = 'gerenciar_tarifa_controller/catastrarNovaTarifa';
 $route['tarifas/changeStatus'] = 'gerenciar_tarifa_controller/mudarStatusTarifa';
@@ -148,8 +150,9 @@ $route['dashboard/manutencoes'] = 'gerenciar_manutencoes_controller';
 $route['dashboard/passagens/onibus'] = 'gerenciar_venda_passagens_online_controller';
 //$route['dashboard/passagens/venda'] =
 
-
+$route['dashboard/formas_pagamentos']= 'Gerenciar_formas_pagamento_controller';
 
 /* Rotas para clientes */
 $route['clientes'] = 'dashboard_clientes';
+$route['clientes/compra_passagem/selecao_acento']= 'gerenciar_venda_passagens_online_controller/selecionarAcento';
 $route['clientes/compra_passagem']= 'gerenciar_venda_passagens_online_controller';

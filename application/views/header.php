@@ -132,6 +132,9 @@ $this->load->helper('url');
                             <?php if ($this->session->userdata('level') !== 'cliente') : ?>
                                 <a class="dropdown-item" href="<?= site_url('dashboard'); ?>">Dashboard</a>
                             <?php endif; ?>
+                            <?php if ($this->session->userdata('level') === 'cliente') : ?>
+                                <a class="dropdown-item" href="<?= site_url('clientes'); ?>">Pagina do Cliente</a>
+                            <?php endif; ?>
                             <a class="dropdown-item" href="#" onClick="alert('Indisponivel')">Meus Dados</a>
                             <a class="dropdown-item" href="<?= site_url('logout'); ?>">Sair</a>
                         </div>

@@ -3,6 +3,27 @@
 
 class Ocupacao_cadeira_model extends CI_Model
 {
+
+
+
+    public function getCadeirasOcupadasPorAlocacao($idAlocacao)
+    {
+        $result =        $this->db->get_where('ocupacaocadeira', array('ocupacaocadeira_alocacaointermunicipal' => $idAlocacao, 'ocupacaocadeira_isOcupado' => true));
+        if (!$result) {
+            $retorno['success'] = false;
+            $retorno['error'] = $this->db->error();
+            return $retorno;
+        }
+        if ($result->num_rows() > 0) {
+            $retorno['success'] = true;
+            $retorno['result'] = $result->result_array();
+            return $retorno;
+        } else {
+            $retorno['success'] = false;
+            return $retorno;
+        }
+    }
+
     public function getOcupacoesCadeiras()
     {
 
@@ -20,7 +41,6 @@ class Ocupacao_cadeira_model extends CI_Model
             $retorno['success'] = false;
             return $retorno;
         }
-
     }
 
 
@@ -28,8 +48,7 @@ class Ocupacao_cadeira_model extends CI_Model
         $quantidadeCadeiras,
         $ocupacaocadeira_alocacaointermunicipal
 
-    )
-    {
+    ) {
         $acumulador = 0;
         for ($i = 0; $i < $quantidadeCadeiras; $i++) {
             $data = array(
@@ -38,23 +57,20 @@ class Ocupacao_cadeira_model extends CI_Model
                 'ocupacaocadeira_alocacaointermunicipal' => $ocupacaocadeira_alocacaointermunicipal
             );
             $this->db->insert('ocupacaocadeira', $data);
-
         }
-
-
     }
 
     public function venderCadeira($id_cadeira, $id_usuario, $valor_compra)
     {
         $pontosAdicionais = 0;
-        for ($i = 0; $i<sizeof($id_cadeira);$i++){
+        for ($i =  0; $i < sizeof($id_cadeira); $i++ ){
             $data = array(
                 'ocupacaocadeira_isOcupado' => true,
             );
             $this->db->update('ocupacaocadeira', $data, array('ocupacaocadeira_id' => $id_cadeira));
             $pontos_gerados = $this->calcularPontos($valor_compra);
             $this->db->select('IFNULL(MAX(`parada_id`), 0) AS `maxid`', false);
-            $num_ticket =  sprintf('%d', $this->db->get('comprapassagem', 1)->result_array()[0]['maxid']+1);
+            $num_ticket =  sprintf('%d', $this->db->get('comprapassagem', 1)->result_array()[0]['ma x id' ] +1);
             $compra = array(
                 'comprapassagem_usuario' => $id_usuario,
                 'comprapassagem_data' => date('Y-m-d H:i:s'),
@@ -62,8 +78,8 @@ class Ocupacao_cadeira_model extends CI_Model
                 'comprapassagem_num_ticket' => $num_ticket,
                 'comprapassagem_cadeira' => $id_cadeira
             );
-        $pontosAdicionais += $pontos_gerados;
-        $this->db->insert('comprapassagem_cadeira', $compra);
+            $pontosAdicionais += $pontos_gerados;
+            $this->db->insert('comprapassagem_cadeira', $compra);
         }
         $this->db->select('user_pontosTotais');
         $this->db->where('user_id', $id_usuario);
@@ -71,14 +87,10 @@ class Ocupacao_cadeira_model extends CI_Model
         $pontosTotais = $pontos + $pontosAdicionais;
         $this->db->where('user_id', $id_usuario);
         $this->db->update('usuarios', array('user_pontosTotais' => $pontosTotais));
-
     }
 
     private function calcularPontos($valor_compra)
     {
         return 10 * $valor_compra;
     }
-
-
-
 }

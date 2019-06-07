@@ -35,7 +35,7 @@ $this->load->view("header_cliente");
     }
 
     .seat input[type=checkbox]:checked+label {
-        background: #bada55;
+        background: #55aaff;
         -webkit-animation-name: rubberBand;
         animation-name: rubberBand;
         animation-duration: 300ms;
@@ -43,7 +43,7 @@ $this->load->view("header_cliente");
     }
 
     .seat input[type=checkbox]:disabled+label {
-        background: #dddddd;
+        background: #ff5555;
         text-indent: -9999px;
         overflow: hidden;
     }
@@ -71,7 +71,8 @@ $this->load->view("header_cliente");
         font-weight: bold;
         line-height: 1.5rem;
         padding: 4px 0;
-        background: #55aaff;
+
+        background: #99ff55;
         border-radius: 5px;
     }
 
@@ -83,8 +84,10 @@ $this->load->view("header_cliente");
 
 
 <?php
-$numColunas = 4;
-$numPoltronas = 50;
+echo_r($cadeirasOcupadas);
+echo_r($alocacao);
+$numColunas = $alocacao['onibus_quantidade_fileiras'];
+$numPoltronas = $alocacao['onibus_num_lugares'];
 ?>
 <?= "
 <style>
@@ -97,44 +100,59 @@ $numPoltronas = 50;
 <h2 class="text-center">Compra de Passagem</h2>
 <?= $this->session->flashdata('error'); ?>
 <?= $this->session->flashdata('success'); ?>
+<?php
+function isCadeiraOcupada($nCadeira, $cadeirasOcupadas)
+{
+    foreach ($cadeirasOcupadas as $cadeiraOcupada) {
+        if ($cadeiraOcupada['ocupacaocadeira_numero'] == $nCadeira) {
+            // echo 'c'.$nCadeira.'true';
+            var_dump("c$nCadeira:true");
+            return true;
+        } else {
+            var_dump("c$nCadeira:false");
+        }
+    }
+    return false;
+}
+?>
+<form id="form_compra" class="row col-md-12">
+<input type="hidden" name="alocacaointermunicipal_id" value="<?= $alocacao['alocacaointermunicipal_id']?>" />
+        <div class="col-md-6 overflow-auto mr-3">
 
-<div class="row col-md-12">
-    <div class="col-md-6 overflow-auto mr-3">
+            <ol class="cabin fuselage">
+                <li class="col bg-secondary p-2 rounded-top">
+                    <center>Frende do Onibus</center>
+                </li>
+                <?php for ($i = 0; $i < $numPoltronas; $i++) :
+                    ?>
+                    <script>
+                        console.log("mod", <?= $i % $numColunas ?>)
+                    </script>
+                    <? if ($i % $numColunas === 0) echo '<li class="row col seats">' ?>
 
-        <ol class="cabin fuselage">
-            <li class="col bg-secondary p-2 rounded-top">
-                <center>Frende do Onibus</center>
-            </li>
-            <?php for ($i = 0; $i < $numPoltronas; $i++) :
-                ?>
-                <script>
-                    console.log("mod", <?= $i % $numColunas ?>)
-                </script>
-                <? if ($i % $numColunas === 0) echo '<li class="row col seats">' ?>
-
-                <? if ($i % $numColunas == ceil($numColunas / 2) - 1) : ?>
-                    <div class="col seat mr-4">
-                        <input <? if (($i == 7 || $i == 14)) : ?>
-                            disabled
-                        <? endif; ?>
-                        type="checkbox" id="Cadeira<?= $i + 1 ?>" />
-                        <label for="Cadeira<?= $i + 1 ?>"><?= $i + 1 ?></label>
-                    </div>
-                <? else : ?>
-                    <div class="col seat">
-                        <input <? if (($i == 7 || $i == 14)) : ?>
-                            disabled
-                        <? endif; ?>
-                        type="checkbox" id="Cadeira<?= $i + 1 ?>" />
-                        <label for="Cadeira<?= $i + 1 ?>"><?= $i + 1 ?></label>
-                    </div>
-                <? endif; ?>
-                <? if ($i % $numColunas === $numColunas - 1) echo '</li>' ?>
+                    <? if ($i % $numColunas == ceil($numColunas / 2) - 1) : ?>
+                        <div class="col seat mr-4">
+                            <input name='cadeiras[]' value='<?= $i + 1 ?>' <? if (isCadeiraOcupada($i + 1, $cadeirasOcupadas)) : ?>
+                                disabled
+                            <? endif; ?>
+                            type="checkbox" id="Cadeira<?= $i + 1 ?>" />
+                            <label for="Cadeira<?= $i + 1 ?>"><?= $i + 1 ?></label>
+                        </div>
+                    <? else : ?>
+                        <div class="col seat">
+                            <input name='cadeiras[]' value='<?= $i + 1 ?>' <? if (isCadeiraOcupada($i + 1, $cadeirasOcupadas)) : ?>
+                                disabled
+                            <? endif; ?>
+                            type="checkbox" id="Cadeira<?= $i + 1 ?>" />
+                            <label for="Cadeira<?= $i + 1 ?>"><?= $i + 1 ?></label>
+                        </div>
+                    <? endif; ?>
+                    <? if ($i % $numColunas === $numColunas - 1) echo '</li>' ?>
 
 
-            <?php endfor; ?>
+                <?php endfor; ?>
 
-            <!--                     
+                <!--                     
                         <div class="col seat">
                             <input type="checkbox" id="Cadeira2" />
                             <label for="Cadeira2">2</label>
@@ -168,61 +186,62 @@ $numPoltronas = 50;
                             <label for="2D">2D</label>
                         </div>
                     </li> -->
-        </ol>
-    </div>
-    <div class="col-md-5 card">
-        <div class="card-body">
+            </ol>
+        </div>
+        <div class="col-md-5 card">
+            <div class="card-body">
 
-            <div class="form-row">
+                <div class="form-row">
 
-                <label>
-                    Quantidade Selecionada:
-                </label>
-                <input type="text" id="countSelected" class="form-control" disabled />
-            </div>
+                    <label>
+                        Quantidade Selecionada:
+                    </label>
+                    <input type="text" id="countSelected" class="form-control" disabled />
+                </div>
 
-            <div class="form-row">
+                <div class="form-row">
 
-                <label> Preço total:
-                </label> <input type="text" id="totalValue" class="form-control" disabled />
-            </div>
-            <div class="form-row">
+                    <label> Preço total:
+                    </label> <input type="text" id="totalValue" class="form-control" disabled />
+                </div>
+                <div class="form-row">
 
-                <label> Preço por cadeira:
-                </label> <input type="text" id="totalValue" class="form-control" disabled value=" R$92,27" />
-            </div>
+                    <label> Preço por cadeira:
+                    </label> <input type="text" id="valorCadeira" class="form-control" disabled value=" R$<?= $alocacao['precocadeira'] ?>" />
+                </div>
 
-            <div class="credit-card-input no-js" id="skeuocard">
-                <label for="cc_type">Bandeira</label>
-                <select class="form-control" name="cc_type">
-                    <option value="">...</option>
-                    <option value="visa">Visa</option>
-                    <option value="discover">Discover</option>
-                    <option value="mastercard">MasterCard</option>
-                    <option value="maestro">Maestro</option>
-                    <option value="jcb">JCB</option>
-                    <option value="unionpay">China UnionPay</option>
-                    <option value="amex">American Express</option>
-                    <option value="dinersclubintl">Diners Club</option>
-                </select>
-                <label for="cc_number">Numero do Cartao</label>
-                <input class="form-control" type="text" name="cc_number" id="cc_number" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" size="19">
-                <label for="cc_exp_month">Mes Expiracao</label>
-                <input class="form-control" type="text" name="cc_exp_month" id="cc_exp_month" placeholder="00">
-                <label for="cc_exp_year">Ano Expiracao</label>
-                <input class="form-control" type="text" name="cc_exp_year" id="cc_exp_year" placeholder="00">
-                <label for="cc_name">Nome no Cartao</label>
-                <input class="form-control" type="text" name="cc_name" id="cc_name" placeholder="John Doe">
-                <label for="cc_cvc">CVC</label>
-                <input class="form-control" type="text" name="cc_cvc" id="cc_cvc" placeholder="123" maxlength="3" size="3">
-            </div>
+                <div class="credit-card-input no-js" id="skeuocard">
+                    <label for="cc_type">Bandeira</label>
+                    <select class="form-control" name="cc_type">
+                        <option value="">...</option>
+                        <option value="visa">Visa</option>
+                        <option value="discover">Discover</option>
+                        <option value="mastercard">MasterCard</option>
+                        <option value="maestro">Maestro</option>
+                        <option value="jcb">JCB</option>
+                        <option value="unionpay">China UnionPay</option>
+                        <option value="amex">American Express</option>
+                        <option value="dinersclubintl">Diners Club</option>
+                    </select>
+                    <label for="cc_number">Numero do Cartao</label>
+                    <input class="form-control" type="text" name="cc_number" id="cc_number" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" size="19">
+                    <label for="cc_exp_month">Mes Expiracao</label>
+                    <input class="form-control" type="text" name="cc_exp_month" id="cc_exp_month" placeholder="00">
+                    <label for="cc_exp_year">Ano Expiracao</label>
+                    <input class="form-control" type="text" name="cc_exp_year" id="cc_exp_year" placeholder="00">
+                    <label for="cc_name">Nome no Cartao</label>
+                    <input class="form-control" type="text" name="cc_name" id="cc_name" placeholder="John Doe">
+                    <label for="cc_cvc">CVC</label>
+                    <input class="form-control" type="text" name="cc_cvc" id="cc_cvc" placeholder="123" maxlength="3" size="3">
+                </div>
 
-            <div class="form-row mt-2 float-right">
-                <button class="btn btn-success" id="finishCompra"> Finalizar Compra</button>
+                <div class="form-row mt-2 float-right">
+                    <button type="submit" class="btn btn-success" id="finishCompra"> Finalizar Compra</button>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+
+</form>
 
 <?php
 $this->load->view("footer_cliente.php", array('js' => 'gerenciar_manutencao'))
@@ -234,12 +253,13 @@ $this->load->view("footer_cliente.php", array('js' => 'gerenciar_manutencao'))
         card = new Skeuocard($("#skeuocard"));
     });
     $("#finishCompra").click(function() {
+        // $("form_compra").submit()
         showLoadingModal("Efetuando Compra");
         setTimeout(function() {
             closeLoadingModal();
             showSuccessModal("Parabéns", "A compra de suas passagens foi efetuada com sucesso",
                 function() {
-                    document.location.href = "/rpv";
+                    // document.location.href = "/rpv";
                 });
         }, 1200)
     })
@@ -248,6 +268,11 @@ $this->load->view("footer_cliente.php", array('js' => 'gerenciar_manutencao'))
         var countCheckedCheckboxes = $(".seat input[type=checkbox]").filter(':checked').length;
 
         $('#countSelected').val(countCheckedCheckboxes);
-        $('#totalValue').val("R$" + (countCheckedCheckboxes * 92.27).toFixed(2));
+        $('#totalValue').val("R$" + (countCheckedCheckboxes * <?= $alocacao['precocadeira'] ?>).toFixed(2));
     });
+    $("#form_compra").submit(function(event) {
+        console.log($(this).serializeArray())
+        event.preventDefault();
+        return false;
+    })
 </script>

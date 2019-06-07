@@ -137,7 +137,7 @@ $this->load->view("footer_cliente.php", array('js' => 'gerenciar_manutencao'))
         let td4 = document.createElement("td")
         let td5 = document.createElement("td")
         let td6 = document.createElement("td")
-        let a = document.createElement("a")
+        let a = document.createElement("button")
         let i = document.createElement("i")
         th.append(numLinha);
         let dateSaida = new Date(horaSaida)
@@ -149,10 +149,15 @@ $this->load->view("footer_cliente.php", array('js' => 'gerenciar_manutencao'))
         td5.append(("R$" + parseFloat(precocadeira).toFixed(2)).replace(".", ","))
 
         //todo append a invisible form with hidden field to *td6*
+        $("<form method='POST' action='<?= base_url('clientes/compra_passagem/selecao_acento')?>'id='form_aloc"+idAlocacao+"' class='d-none'><input type='hidden' name='alocacaointermunicipal_id' value='"+idAlocacao+"' /></form>").appendTo(td6)
+        
         $(a).addClass("btn btn-primary")
+        $(a).attr("form","form_aloc"+idAlocacao)
         $(i).addClass("fa fa-rebel")
+
         a.append(i)
         a.append(" Ver Cadeiras")
+
 
         td6.append(a)
 

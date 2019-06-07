@@ -16,10 +16,27 @@ class Gerenciar_venda_passagens_online_controller extends CI_Controller
     {
         // $data['alocacoes'] = $this->alocacoes->getAlocacoesPorCidades(4214, 4174, new DateTime('2019-05-30'))['result'];
         // echo_r($data['alocacoes']);
-        $t = $data['cidades'] = $this->cidades->getCidades()['result'];
+        $data['cidades'] = $this->cidades->getCidades()['result'];
         // echo_r($t);
         $this->load->view('compra_passagem_online_view/tela_inicial', $data);
     }
+
+    public function selecionarAcento()
+    {
+        $this->form_validation->set_rules('alocacaointermunicipal_id', 'ID da alocacao', 'required|trim|numeric|greater_than[0]');
+        if ($this->form_validation->run() !== false) {
+            $id=$this->input->post('alocacaointermunicipal_id');
+            $data['alocacao'] = $this->alocacoes->getAlocacao($id)['result'];
+            $data['cadeirasOcupadas'] = $this->cadeira->getCadeirasOcupadasPorAlocacao($id)['result'];
+            $this->load->view('compra_passagem_online_view/selecao_acento', $data);
+        } else { 
+            $this->session->set_flashdata('error', errorAlert('Algum erro ocorreu, tente novamente'));
+            // redirect('clientes/compra_passagem');
+            echo validation_errors();
+        }
+    }
+
+
 
     public function ajax_db_getAlocacoesPorCidade()
     {
@@ -36,9 +53,9 @@ class Gerenciar_venda_passagens_online_controller extends CI_Controller
             if ($data['success'] === true)
                 $data['alocacoes'] = $this->alocacoes->getAlocacoesPorCidades($origem, $destino,  new DateTime($dataSaida))['result'] ?? null;
             else
-                $data['noresult']=true;
-            
-                // echo_r($data['alocacoes']);
+                $data['noresult'] = true;
+
+            // echo_r($data['alocacoes']);
             // $data['cadeirasdisponiveis'] = $this->countCadeirasDisponiveis($data['alocacoes']);
             echo json_encode($data);
         } else {
