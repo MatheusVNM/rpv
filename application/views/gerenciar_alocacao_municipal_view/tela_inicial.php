@@ -56,7 +56,7 @@ $this->load->view("header2");
                         <td><?= $row['trajetourbano_tempomedio'] ?></td>
                         <td><?= $row['cidade_nome'] ?></td>
                         <td>
-                            <button type="button" class="btn btn-warning btn-sm" id="id_opcao_editar" data-toggle="modal" data-placement="top" title="Editar Alocação" data-target="#id_modal_edit_alocacao">
+                            <button onclick="editar(<?= $row['alocacaomunicipal_id'] ?>)" type="button" class="btn btn-warning btn-sm" id="id_opcao_editar" data-toggle="modal" data-placement="top" title="Editar Alocação" data-target="#id_modal_create_alocacao">
                                 <span class="hvr-icon fa fa-edit mr-1"></span> Editar
                             </button>
                             <button onclick="info(<?= $row['alocacaomunicipal_id'] ?>)" type="button" class="btn btn-primary btn-sm" title="Mais informações sobre a alocação." data-toggle="modal" id="id_opcao_visualizar" data-placement="top" data-target="#id_modal_info">
@@ -80,7 +80,7 @@ $this->load->view("header2");
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><b>Cadastrar Nova Alocação Municipal</b></h5>
+                <h5 class="modal-title" id="exampleModalLabel"><b>Alocação Municipal</b></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -91,12 +91,12 @@ $this->load->view("header2");
                         <div class="form-group col-md-6">
                             <div class="form-row">
                                 <label for="min">Data Início Alocação</label>
-                                <input name="alocacaomunicipal_data_inicio" class="min-today form-control" id="min" type="date" placeholder="YYYY-MM-DD" data-date-split-input="true" required />
+                                <input id = "id_create_data_inicio"name="alocacaomunicipal_data_inicio" class="min-today form-control" id="min" type="date" placeholder="YYYY-MM-DD" data-date-split-input="true" required />
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputEmail4">Data Final da Alocação:</label>
-                            <input name="alocacaomunicipal_data_final" type="date" class="form-control" id="inputEmail4" min="2019-06-03">
+                            <input id="id_create_data" name="alocacaomunicipal_data_final" type="date" class="form-control" id="inputEmail4" min="2019-06-03">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="modal_create_onibus">Selecione o ônibus:</label>
@@ -185,18 +185,18 @@ $this->load->view("header2");
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="modal_create_alocacao_form" class="needs-validation container" novalidate>
+            <form id="modal_edit_alocacao_form" class="needs-validation container" novalidate>
                 <div class="modal-body">
                     <div class="form-row mx-2">
                         <div class="form-group col-md-6">
                             <div class="form-row">
                                 <label for="min">Data Início Alocação</label>
-                                <input name="alocacaomunicipal_data_inicio" class="min-today form-control" id="min" type="date" placeholder="YYYY-MM-DD" data-date-split-input="true" required />
+                                <input id="modal_edit_data_inicio" name="alocacaomunicipal_data_inicio" class="min-today form-control" type="date" placeholder="YYYY-MM-DD" data-date-split-input="true" required />
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputEmail4">Data Final da Alocação:</label>
-                            <input name="alocacaomunicipal_data_final" type="date" class="form-control" id="inputEmail4" min="2019-06-03">
+                            <input id="modal_edit_data_final" name="alocacaomunicipal_data_final" type="date" class="form-control" id="inputEmail4" min="2019-06-03">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="modal_create_onibus">Selecione o ônibus:</label>
@@ -211,7 +211,7 @@ $this->load->view("header2");
                             <label for="modal_create_trajeto fa ">Selecione o trajeto:</label>
                             <div class="input-group mb-3" id="id_trajeto_selecionado">
                                 <div class="input-group-prepend">
-                                    <button class="btn btn-outline-secondary" type="button" data-target="#id_modal_com_listas_trajeto" data-toggle="modal">Trajetos</button>
+                                    <button id="trajeto_selecionado" class="btn btn-outline-secondary" type="button" data-target="#id_modal_com_listas_trajeto" data-toggle="modal">Trajetos</button>
                                 </div>
                                 <input id="trajeto_selecionado" type="text" name="trajetourbano_id" class="form-control" placeholder="Nenhum trajeto selecionado" aria-describedby="basic-addon1" required>
                             </div>
@@ -230,7 +230,7 @@ $this->load->view("header2");
                                         <div class="input-group-prepend">
                                             <button class="btn btn-outline-secondary" type="button" data-target="#id_modal_com_listas_motoristas" data-toggle="modal">Motoristas</button>
                                         </div>
-                                        <input id="motoristas_selecionados" type="text" value="" class="form-control" placeholder="Nenhum motorista selecionado" aria-label="" aria-describedby="basic-addon1" required>
+                                        <input id="motoristas_selecionados" type="text" class="form-control" placeholder="Nenhum motorista selecionado" aria-label="" aria-describedby="basic-addon1" required>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
@@ -270,7 +270,7 @@ $this->load->view("header2");
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             <button type="submit" class="btn btn-primary">Salvar</button>
         </div>
-    </div>
+    </div> 
 </div>
 </div>
 </div>
@@ -311,8 +311,8 @@ $this->load->view("header2");
         </div>
     </div>
 </div>
-<!-- Modal lista de Trajetos-->
 
+<!-- Modal lista de Trajetos-->
 <div class="modal" tabindex="-1" role="dialog" id="id_modal_com_listas_trajeto">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -332,7 +332,10 @@ $this->load->view("header2");
                                         <?= $row['trajetourbano_nome'] ?>
                                     </label>
                                     <div class="form-check">
-                                        <input class="form-check-input float-right" type="radio" data-name="<?= $row['trajetourbano_nome'] ?>" onclick="validarQuantidadeMotorista('<?= $row['trajetourbano_tempomedio'] ?>')" id="id_trajetourbano_nome<?= $row['trajetourbano_id'] ?>" name="trajetourbano_nome" value="<?= $row['trajetourbano_id'] ?>">
+                                        <input class="form-check-input float-right" type="radio"
+                                         data-name="<?= $row['trajetourbano_nome'] ?>" 
+                                         id="id_trajetourbano_nome<?= $row['trajetourbano_id'] ?>" name="trajetourbano_nome" 
+                                         value="<?= $row['trajetourbano_id'] ?>">
                                         <label></label>
                                     </div>
                                 </li>
@@ -378,7 +381,7 @@ $this->load->view("header2");
                     </ul>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="id_botao_selecionar_funcionario" disabled>Selecionar</button>
+                    <button type="submit" class="btn btn-primary" id="id_botao_selecionar_funcionario">Selecionar</button>
                 </div>
             </form>
         </div>
@@ -515,6 +518,9 @@ $this->load->view("footer2.php")
     });
 </script>
 <script>
+     $(".alert").alert('close');
+</script>
+<script>
     $("#form_cobrador_select").submit(function(event) {
         $('#id_mais_cobrador').html("");
         var ultimoCobrador = 0;
@@ -545,25 +551,24 @@ $this->load->view("footer2.php")
             '<div class="form-row" id="mot' + lastInsert + '">' +
             '<div class="form-group col-md-4">' +
             '<label for="appt" id="mot' + lastInsert + '">Horário Inicio:</label>' +
-            '<input type="hidden" id="mot' + lastInsert + '" name="motorista_id[]" value="' + id + '" class="form-control" required>' +
-            '<input type="time" id="mot' + lastInsert + '" name="motorista_appt[]" min="00:00" max="23:59" class="form-control" required>' +
+            '<input type="hidden" id="mot' + lastInsert + '" name="motorista_id[]" value="' + id + '" class="form-control" required/>' +
+            '<input type="time" id="mot' + lastInsert + '" name="motorista_appt[]" min="00:00" max="23:59" class="form-control" required/>' +
             '<span class="note"></span>' +
             '</div>' +
             '<div class="form-group col-md-4">' +
             '<label for="appt" id="mot' + lastInsert + '">Horário Final:</label>' +
-            '<input type="hidden" id="mot' + lastInsert + '" value="' + id + '" class="form-control" required>' +
-            '<input type="time" id="mot' + lastInsert + '" name="motorista_appt[]" min="00:00" max="23:59" class="form-control" required>' +
+            '<input type="hidden" id="mot' + lastInsert++ + '" value="' + id + '" class="form-control" required>' +
+            '<input type="time" id="mot' + lastInsert++ + '" name="motorista_appt[]" min="00:00" max="23:59" class="form-control" required>' +
             '<span class="note"></span>' +
             '</div>' +
             '</div>'
         );
     }
-
     function deletarCampoMotorista(campo) {
         $('#' + campo + '').remove();
         $('#' + campo + '').remove();
-        $('#' + campo + '').remove();
-        $('#' + campo + '').remove();
+        //$('#' + campo + '').remove();
+        //$('#' + campo + '').remove();
         limparChecks("motorista_nome");
         $('#motoristas_selecionados').val("");
     }
@@ -591,14 +596,14 @@ $this->load->view("footer2.php")
             '<div class="form-row" id="cob' + ultimoCobrador + '">' +
             '<div class="form-group col-md-4">' +
             '<label for="appt" id="cob' + ultimoCobrador + '">Horário Inicio:</label>' +
-            '<input type="hidden" id="cob' + ultimoCobrador + '" name="cobrador_id[]" value="' + id + '" class="form-control" required>' +
             '<input type="time" id="cob' + ultimoCobrador + '" name="cobrador_appt[]" min="00:00" max="23:59" class="form-control" required>' +
+            '<input type="hidden" id="cob' + ultimoCobrador + '" name="cobrador_id[]" value="' + id + '" class="form-control" required>' +
             '<span class="note"></span>' +
             '</div>' +
             '<div class="form-group col-md-4">' +
             '<label for="appt" id="cob' + ultimoCobrador + '">Horário Inicio:</label>' +
-            '<input type="hidden" id="cob' + ultimoCobrador + '" value="' + id + '" class="form-control" required>' +
-            '<input type="time" id="cob' + ultimoCobrador + '" name="cobrador_appt[]" min="00:00" max="23:59" class="form-control" required>' +
+            '<input type="time" id="cob' + ultimoCobrador++ + '" name="cobrador_appt[]" min="00:00" max="23:59" class="form-control" required>' +
+            '<input type="hidden" id="cob' + ultimoCobrador++ + '" value="' + id + '" class="form-control" required>' +
             '<span class="note"></span>' +
             '</div>'
         );
@@ -748,7 +753,6 @@ $this->load->view("footer2.php")
 
 <script>
     function info(id) {
-        console.log("ID DA ALOCAÇÃO:" + id);
         $.ajax({
             data: "alocacaomunicipal_id=" + id,
             method: "post",
@@ -791,7 +795,7 @@ $this->load->view("footer2.php")
 
 <script>
     // <!-- Metodo em ajax para fazer o submit do modal edit (id="id_modal_edit_alocacao") -->
-    $("#id_modal_edit_alocacao").submit(function() {
+    $("#form_edit_manutencao_id").submit(function() {
         console.log($(this).serialize())
         $.ajax({
             data: $(this).serialize(),
@@ -807,7 +811,6 @@ $this->load->view("footer2.php")
                     $("#page_message").html(result['message']);
                     $("#id_modal_edit_alocacao").modal('hide');
                     $(".modal-backdrop").removeClass('show');
-                    atualizarTabela()
                     //closemodal
                 } else {
                     $('#modal_edit_warning').html(result['message']);
@@ -842,14 +845,26 @@ $this->load->view("footer2.php")
             success: function(result) {
                 if (result['success']) {
                     console.log('success', result)
-                    $("#form_edit_manutencao_id").val(result['data']['manutencao_id'])
-                    $("#modal_edit_placa").val(result['data']['onibus_id'])
-                    $("#modal_edit_valor").val(result['data']['manutencao_valor'])
-                    $("#modal_edit_dataInicio").val(result['data']['manutencao_dataInicio'])
-                    $("#modal_edit_dataFim").val(result['data']['manutencao_dataFim'])
-                    $("#modal_edit_descricao").val(result['data']['manutencao_descricao'])
-                    $("#modal_edit_estado").trigger('change');
-                    $("#modal_edit_manutencao").modal('show');
+                    $("#id_create_data_inicio").val(result['data'][0]['alocacaomunicipal_data_inicio']);
+                    $("#id_create_data_final").val(result['data'][0]['alocacaomunicipal_data_final']);
+                    //aqui vai pra selecionar os checked
+                    for(var i=0; i<result['data'].length; i++){
+                        addCampoMotorista(result['data'][i]['funcionarios_nome'], result['data'][i]['alocacaomunicipal_motorista_funcionario_id'], i);
+                        //$("input[name=motorista_appt], #mot"+i).val(result['data'][i]['alocacaomunicipal_motorista_expediente_hora_inicio']);
+                        i++
+                        //$("input[name=motorista_appt], #mot"+i).add();
+                        //$("input[name=motorista_appt]);
+                        console.log(motorista_appt[].length);
+                        //$("input[name=motorista_appt], #mot1").val(result['data'][i]['alocacaomunicipal_motorista_expediente_hora_final']);
+                        
+                        addCampoCobrador(result['data'][i]['funcionarios_nome'], result['data'][i]['alocacaomunicipal_cobrador_funcionario_id'], i);
+                        //$("input[name=cobrador_appt], #mot"+i).val(result['data'][i]['funcionarios_nome'], result['data'][i]['alocacaomunicipal_cobrador_expediente_hora_inicio'], i);
+                        //i++
+                    }
+                    $("#onibus_selecionado").val(result['data'][0]['onibus_placa']);
+                    $("#trajeto_selecionado").val(result['data'][0]['trajetourbano_nome']);
+                    $("#motoristas_selecionados").val(result['data'].length/2 + " selecionados");
+                    $("#cobradores_selecionados").val(result['data'].length/2 + " selecionados");
                 } else {
                     alert('Manutenção não encontrada');
                     console.log('false success', result);
@@ -864,7 +879,4 @@ $this->load->view("footer2.php")
             }
         });
     }
-</script>
-<script>
-    $(".alert").alert('close');
 </script>

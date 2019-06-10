@@ -26,6 +26,7 @@ class Gerenciar_alocacao_municipal_controller extends CI_Controller
         $data['motoristas'] = $this->funcionarios->getMotoristasNaoAlocados()['result'];
         $data['cobradores'] = $this->funcionarios->getCobradoresNaoAlocados()['result'];
         $data['trajetourbano'] = $this->trajetourbano->getTrajetos();
+        //$data['cobradores_nao_alocados_editar'] = $this->funcionarios->getCobradoresNaoAlocadosEditar(1)['result'];
         //echo_r( $this->funcionarios->getMotoristasNaoAlocados()['result']);
         //echo_r($this->funcionarios->getCobradoresNaoAlocados()['result']);
         // $data['funcionarios'] = $this->funcionarios->getFuncionarios()['result'];
@@ -51,6 +52,9 @@ class Gerenciar_alocacao_municipal_controller extends CI_Controller
             $retorno['teste'] = $this->input->post();
             echo json_encode($retorno);
         };
+    }
+    public function ajax_db_getAlocacaoParaEditar(){
+        echo json_encode($this->alocacao->getAlocacoes()['result']);
     }
     public function ajax_db_insertAlocacaoMunicipal()
     {
@@ -103,8 +107,8 @@ class Gerenciar_alocacao_municipal_controller extends CI_Controller
             );
             if ($result['success']) {
                 $result['message'] = successAlert('Alocação cadastrada com sucesso');
-                redirect('dashboard/alocacaomunicipal');
                 //header("Refresh: 0; url=tela_inicial.php");
+                header("Refresh: 0");
             } else {
                 //$result['message'] = errorAlert('Erro ao cadastrar a alocação: ' . $result['error'] . '');
                 $result['message'] = errorAlert('Erro ao cadastrar a alocação');

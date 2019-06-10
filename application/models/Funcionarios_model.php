@@ -70,7 +70,38 @@ class Funcionarios_model extends CI_Model
 
     public function getCobradoresNaoAlocados()
     {
-        $sql = "select DISTINCT funcionarios.funcionarios_id, funcionarios.funcionarios_nome from funcionarios JOIN tipofuncionario on tipofuncionario.tipofuncionario_id = funcionarios.funcionarios_tipofuncionario_id WHERE funcionarios.funcionarios_tipofuncionario_id='2' AND funcionarios.funcionarios_id NOT IN(SELECT DISTINCT funcionarios.funcionarios_id from funcionarios join alocacaomunicipal_cobrador on alocacaomunicipal_cobrador.alocacaomunicipal_cobrador_funcionario_id = funcionarios.funcionarios_id JOIN tipofuncionario on tipofuncionario.tipofuncionario_id ='2')";
+        $sql = "select DISTINCT funcionarios.funcionarios_id, 
+        funcionarios.funcionarios_nome from funcionarios JOIN 
+        tipofuncionario on tipofuncionario.tipofuncionario_id = funcionarios.funcionarios_tipofuncionario_id 
+        WHERE funcionarios.funcionarios_tipofuncionario_id='2' AND 
+        funcionarios.funcionarios_id NOT IN(SELECT DISTINCT funcionarios.funcionarios_id 
+        from funcionarios join alocacaomunicipal_cobrador on 
+        alocacaomunicipal_cobrador.alocacaomunicipal_cobrador_funcionario_id = funcionarios.funcionarios_id JOIN tipofuncionario 
+        on tipofuncionario.tipofuncionario_id ='2')";
+        $result = $this->db->query($sql);
+        if (!$result) {
+            $retorno['success'] = false;
+            $retorno['error'] = $this->db->error();
+            return $retorno;
+        }
+        if ($result->num_rows() > 0) {
+            $retorno['success'] = true;
+            $retorno['result'] = $result->result_array();
+            return $retorno;
+        } else {
+            $retorno['success'] = false;
+            return $retorno;
+        }
+    }
+    public function getCobradoresNaoAlocadosEditar($id){
+        $sql = "select DISTINCT funcionarios.funcionarios_id, funcionarios.funcionarios_nome from 
+        funcionarios JOIN tipofuncionario on tipofuncionario.tipofuncionario_id = funcionarios.funcionarios_tipofuncionario_id 
+        WHERE funcionarios.funcionarios_tipofuncionario_id='2' AND funcionarios.funcionarios_id NOT IN(SELECT DISTINCT 
+        funcionarios.funcionarios_id from funcionarios join alocacaomunicipal_cobrador on 
+        alocacaomunicipal_cobrador.alocacaomunicipal_cobrador_funcionario_id = funcionarios.funcionarios_id JOIN 
+        tipofuncionario on tipofuncionario.tipofuncionario_id ='2' JOIN alocacaomunicipal on 
+        alocacaomunicipal.alocacaomunicipal_id != alocacaomunicipal_cobrador.alocacaomunicipal_cobrador_id_alocacao
+         WHERE alocacaomunicipal.alocacaomunicipal_id = 1)";
         $result = $this->db->query($sql);
         if (!$result) {
             $retorno['success'] = false;
