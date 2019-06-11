@@ -26,22 +26,20 @@ $this->load->view("header2");
         </thead>
         <!--Body Frota-->
         <tbody id="id_lista_alocacao">
-            <?php foreach ($passagens_vendidas_total as $passagens) : ?>
-                <?php if ($passagens) : ?>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td><?= $passagens['onibus_placa'] ?></td>
-                        <td><?= $passagens['cidade_nome'] ?></td>
-                        <td><?= $passagens['COUNT(comprapassagem.comprapassagem_id)'] ?></td>
-                        <td>02/05/2019</td>
-                        <td>
-                            <button onclick="info(<?= $passagens['alocacaointermunicipal_id'] ?>)" type="button" class="btn btn-primary btn-sm" title="Mais informações sobre a alocação." data-toggle="modal" id="id_opcao_visualizar" data-placement="top" data-target="#id_modal_info">
-                                <span class="hvr-icon fa fa-eye mr-1"></span>Visualizar Passagens
-                            </button>
-                        </td>
-                    </tr>
-                <?php endif; ?>
-            <?php endforeach; ?>
+            <?php for ($i = 0; $i < count($passagens_vendidas_total); $i++) : ?>
+                <tr>
+                    <th scope="row">1</th>
+                    <td><?= $passagens_vendidas_total[$i]['onibus_placa'] ?></td>
+                    <td><?= $passagens_vendidas_total[$i]['cidade_nome'] ?>/<?= $trajetos_cidade_final[$i]['cidade_nome'] ?></td>
+                    <td><?= $passagens_vendidas_total[$i]['COUNT(comprapassagem.comprapassagem_id)'] ?></td>
+                    <td><?= $passagens_vendidas_total[$i]['alocacaointermunicipal_horaInicio'] ?></td>
+                    <td>
+                        <button onclick="info(<?= $passagens_vendidas_total[$i]['alocacaointermunicipal_id'] ?>, <?= $passagens_vendidas_total[$i]['onibus_id'] ?>)" type="button" class="btn btn-primary btn-sm" title="Mais informações sobre a alocação." data-toggle="modal" id="id_opcao_visualizar" data-placement="top" data-target="#id_modal_info">
+                            <span class="hvr-icon fa fa-eye mr-1"></span>Visualizar Passagens
+                        </button>
+                    </td>
+                </tr>
+            <?php endfor; ?>
         </tbody>
     </table>
 
@@ -85,23 +83,27 @@ $this->load->view("header2");
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
                             <label for="validationCustom03">Mês:</label>
-                            <input type="text" class="form-control" id="validationCustom03" placeholder="Jan/2019" required disabled>
+                            <input type="text" class="form-control" id="id_mes_passagem" placeholder="Jan/2019" disabled>
                             <div class="invalid-feedback">
                                 Please provide a valid city.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationCustom04">Total Geradas:</label>
-                            <input type="text" class="form-control" id="id_total" required disabled>
+                            <input type="text" class="form-control" id="id_total" disabled>
+                            <div class="invalid-feedback">
+                                Please provide a valid state.
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="validationCustom04">Soma total:</label>
+                            <input type="text" class="form-control" id="id_soma_total" disabled>
                             <div class="invalid-feedback">
                                 Please provide a valid state.
                             </div>
                         </div>
 
-
                     </div>
-
-
                 </form>
 
             </div>
