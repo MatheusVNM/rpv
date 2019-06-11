@@ -35,7 +35,7 @@ $this->load->view("header2");
                         <td><?= $passagens['COUNT(comprapassagem.comprapassagem_id)'] ?></td>
                         <td>02/05/2019</td>
                         <td>
-                            <button type="button" class="btn btn-primary btn-sm" title="Mais informações sobre a alocação." data-toggle="modal" id="id_opcao_visualizar" data-placement="top" data-target="#id_modal_info">
+                            <button onclick="info(<?= $passagens['alocacaointermunicipal_id'] ?>)" type="button" class="btn btn-primary btn-sm" title="Mais informações sobre a alocação." data-toggle="modal" id="id_opcao_visualizar" data-placement="top" data-target="#id_modal_info">
                                 <span class="hvr-icon fa fa-eye mr-1"></span>Visualizar Passagens
                             </button>
                         </td>
@@ -58,25 +58,25 @@ $this->load->view("header2");
                 </button>
             </div>
             <div class="modal-body">
-                <form class="needs-validation" novalidate>
+                <form class="needs-validation" id="id_form_info_passagens" novalidate>
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
                             <label for="validationCustom01">Inteiras:</label>
-                            <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="25" required disabled>
+                            <input type="text" class="form-control" id="id_inteiras_quantidade" placeholder="First name" disabled>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationCustom02">Meias:</label>
-                            <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="20" required disabled>
+                            <input type="text" class="form-control" id="id_meias_quantidade" placeholder="Last name" disabled>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationCustom02">Isentas:</label>
-                            <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="5" required disabled>
+                            <input type="text" class="form-control" id="id_isentas_quantidade" placeholder="Last name" disabled>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -92,7 +92,7 @@ $this->load->view("header2");
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationCustom04">Total Geradas:</label>
-                            <input type="text" class="form-control" id="validationCustom04" placeholder="50" required disabled>
+                            <input type="text" class="form-control" id="id_total" required disabled>
                             <div class="invalid-feedback">
                                 Please provide a valid state.
                             </div>
@@ -111,5 +111,5 @@ $this->load->view("header2");
 
 <!-- Body end -->
 <?php
-$this->load->view("footer2.php")
+$this->load->view("footer2.php", array('js' => 'visualizar_passagens'))
 ?>

@@ -107,7 +107,7 @@ $route['categorias/onibus/update'] = 'gerenciar_categoria_onibus_controller/_upd
 
 //aquiiii
 //Rotas para o visualizar passagens vendidas
-$route['ajax/passagens/vendidas/get'] = 'visualizar_passagens_controller/index';
+$route['ajax/passagens/vendidas/getSingle'] = 'visualizar_passagens_controller/ajax_db_getPassagensTrajetoEspecifico';
 
 /*Rotas métodos de controller que exibem alguma tela, sem necessáriamente inserir/atualizar algo no banco de dados*/
 $route['dashboard'] = 'Dashboard';
