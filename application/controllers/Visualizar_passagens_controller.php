@@ -17,4 +17,8 @@ class Visualizar_passagens_controller extends CI_Controller
         echo_r($data);
         //$this->load->view('visualizar_passagens_view/tela_inicial', $data);
     }
+    public function getPassagensTrajetoEspecifico()
+    { 
+        
+    }
 }
