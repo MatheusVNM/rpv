@@ -125,4 +125,4 @@ if ($this->session->userdata('level') !== 'cliente')
                     <i id="navbar-collapse-icon" class="fa fa-arrow-circle-down" id="navbar-toggler-btn"></i>
                 </button>
             </nav>
-            <div class="container-fluid pt-3 overflow-auto h-100 flex-shrink-1 px-5">
+            <div class="container-fluid pt-3 overflow-auto h-100 flex-shrink-1 px-md-5">
