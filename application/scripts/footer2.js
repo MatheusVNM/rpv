@@ -132,7 +132,7 @@ function showErrorModal(title, message, closeAction=function(){}) {
     $("#error_modal").modal({
         keyboard: false, //nem pelo teclado
         show: true //e mostra
-    });
+    }); 
 }
 $('#error_modal').on('hidden.bs.modal', function (e) {
     $("#error_modal_title").html("")

@@ -99,7 +99,8 @@ $this->load->view("footer_cliente.php", array('js' => 'gerenciar_manutencao'))
                 if (result['success'] == true) {
                     let linha = 1;
                     $.each(result['alocacoes'], function(key, alocacao) {
-                        createLinhaAlocacao(key + 1, alocacao['alocacaointermunicipal_hora_saida'], alocacao['alocacaointermunicipal_hora_chegada'], alocacao['categoriaonibus_nome'], alocacao['count_cadeiras_livres'], alocacao['precocadeira'], alocacao['alocacaointermunicipal_id'])
+                        console.log(alocacao)
+                        createLinhaAlocacao(key + 1, alocacao['alocacaointermunicipal_hora_saida'], alocacao['alocacaointermunicipal_hora_chegada'], alocacao['categoriaonibus_nome'], alocacao['count_cadeiras_livres'], alocacao['precocadeira'], alocacao['alocacaointermunicipal_id'], alocacao['rotas_trajetointerurbano_id'])
                         // console.log("alocacao", alocacao)
                         linha++
                     });
@@ -128,7 +129,7 @@ $this->load->view("footer_cliente.php", array('js' => 'gerenciar_manutencao'))
     });
 
 
-    function createLinhaAlocacao(numLinha, horaSaida, horaChegada, tipo, c_restantes, precocadeira, idAlocacao) {
+    function createLinhaAlocacao(numLinha, horaSaida, horaChegada, tipo, c_restantes, precocadeira, idAlocacao, idRota) {
         let tr = document.createElement("tr")
         let th = document.createElement("th")
         let td1 = document.createElement("td")
@@ -149,7 +150,10 @@ $this->load->view("footer_cliente.php", array('js' => 'gerenciar_manutencao'))
         td5.append(("R$" + parseFloat(precocadeira).toFixed(2)).replace(".", ","))
 
         //todo append a invisible form with hidden field to *td6*
-        $("<form method='POST' action='<?= base_url('clientes/compra_passagem/selecao_acento')?>'id='form_aloc"+idAlocacao+"' class='d-none'><input type='hidden' name='alocacaointermunicipal_id' value='"+idAlocacao+"' /></form>").appendTo(td6)
+        $("<form method='POST' action='<?= base_url('clientes/compra_passagem/selecao_acento')?>'id='form_aloc"+idAlocacao+"' class='d-none'>"+
+        "<input type='hidden' name='alocacaointermunicipal_id' value='"+idAlocacao+"' />"+
+        "<input type='hidden' name='rotas_trajetointerurbano_id' value='"+idRota+"' />"+
+        "</form>").appendTo(td6)
         
         $(a).addClass("btn btn-primary")
         $(a).attr("form","form_aloc"+idAlocacao)

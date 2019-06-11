@@ -4,6 +4,13 @@
 class Alocacao_intermunicipal_model extends CI_Model
 {
 
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+
     public function getAlocacoes()
     {
 
@@ -49,7 +56,7 @@ class Alocacao_intermunicipal_model extends CI_Model
         // $result = $this->db->select('trajetointerurbano.*,rotas_trajetointerurbano.rotas_trajetointerurbano_cidade_origem, rotas_trajetointerurbano.rotas_trajetointerurbano_cidade_destino, rotas_trajetointerurbano.rotas_trajetointerurbano_tempo, rotas_trajetointerurbano.rotas_trajetointerurbano_distancia')
 
 
-        $result = $this->db->select('alocacaointermunicipal_id,alocacaointermunicipal_data_hora_inicio,alocacaointermunicipal_trajetointerurbano, categoriaonibus_nome, rotas_trajetointerurbano_tempo,  rotas_trajetointerurbano_tempo_origem, trajetointerurbano_nome, (onibus.onibus_num_lugares-count(ocupacaocadeira.ocupacaocadeira_id)) as count_cadeiras_livres, count(ocupacaocadeira.ocupacaocadeira_id) as cadeiras_ocupadas, (rotas_trajetointerurbano_distancia*categoriaonibus_precokm) as precocadeira')
+        $result = $this->db->select('alocacaointermunicipal_id,alocacaointermunicipal_data_hora_inicio,alocacaointermunicipal_trajetointerurbano, categoriaonibus_nome, rotas_trajetointerurbano_id, rotas_trajetointerurbano_tempo,  rotas_trajetointerurbano_tempo_origem, trajetointerurbano_nome, (onibus.onibus_num_lugares-count(ocupacaocadeira.ocupacaocadeira_id)) as count_cadeiras_livres, count(ocupacaocadeira.ocupacaocadeira_id) as cadeiras_ocupadas, (rotas_trajetointerurbano_distancia*categoriaonibus_precokm) as precocadeira')
             ->distinct()
             ->from('alocacaointermunicipal')
             ->join('trajetointerurbano', 'alocacaointermunicipal_trajetointerurbano=trajetointerurbano_id')
@@ -78,9 +85,9 @@ class Alocacao_intermunicipal_model extends CI_Model
             return $retorno;
         }
         if ($result->num_rows() > 0) {
-            if(is_null($result->result_array()[0]['alocacaointermunicipal_id'])){
+            if (is_null($result->result_array()[0]['alocacaointermunicipal_id'])) {
                 $retorno['success'] = false;
-            }else{
+            } else {
 
                 $retorno['success'] = true;
                 $retorno['result'] = $result->result_array();
@@ -130,10 +137,10 @@ class Alocacao_intermunicipal_model extends CI_Model
 
 
 
-    public function getAlocacao($id)
+    public function getAlocacao($id, $rota)
     {
 
-        $result = $this->db->select('alocacaointermunicipal_id,alocacaointermunicipal_data_hora_inicio,alocacaointermunicipal_trajetointerurbano, categoriaonibus_nome, rotas_trajetointerurbano_tempo,  rotas_trajetointerurbano_tempo_origem, trajetointerurbano_nome, (onibus.onibus_num_lugares-count(ocupacaocadeira.ocupacaocadeira_id)) as count_cadeiras_livres, count(ocupacaocadeira.ocupacaocadeira_id) as cadeiras_ocupadas, (rotas_trajetointerurbano_distancia*categoriaonibus_precokm) as precocadeira, onibus_num_lugares, onibus_quantidade_fileiras')
+        $result = $this->db->select('alocacaointermunicipal_id,alocacaointermunicipal_data_hora_inicio,alocacaointermunicipal_trajetointerurbano, categoriaonibus_nome, rotas_trajetointerurbano_id, rotas_trajetointerurbano_tempo,  rotas_trajetointerurbano_tempo_origem, trajetointerurbano_nome, (onibus.onibus_num_lugares-count(ocupacaocadeira.ocupacaocadeira_id)) as count_cadeiras_livres, count(ocupacaocadeira.ocupacaocadeira_id) as cadeiras_ocupadas, (rotas_trajetointerurbano_distancia*categoriaonibus_precokm) as precocadeira, onibus_num_lugares, onibus_quantidade_fileiras')
             ->distinct()
             ->from('alocacaointermunicipal')
             ->join('trajetointerurbano', 'alocacaointermunicipal_trajetointerurbano=trajetointerurbano_id')
@@ -142,6 +149,7 @@ class Alocacao_intermunicipal_model extends CI_Model
             ->join('ocupacaocadeira', 'ocupacaocadeira_alocacaointermunicipal=alocacaointermunicipal_id')
             ->join('rotas_trajetointerurbano', 'trajetointerurbano_id=rotas_trajetointerurbano_trajeto_id')
             ->where("alocacaointermunicipal_id", $id)
+            ->where('rotas_trajetointerurbano_id', $rota)
             ->get();
 
         if (!$result) {
@@ -160,6 +168,29 @@ class Alocacao_intermunicipal_model extends CI_Model
     }
 
 
+    public function efetuarCompra($alocacaoId, $cadeiras, $rota)
+    {
+        $alocacao = $this->getAlocacao($alocacaoId, $rota)['result'];
+
+        if ($this->session->userdata('dados')['tipo_passagem_id'] == 1) {
+            $precocadeira = $alocacao['precocadeira'] / 2;
+        } elseif ($this->session->userdata('dados')['tipo_passagem_id'] == 2) {
+            $precocadeira = 0;
+        } else
+            $precocadeira = $alocacao['precocadeira'];
+
+
+            $tickets = array();
+        $this->load->model('Ocupacao_cadeira_model'
+        , 'cadeiras');
+        foreach ($cadeiras as $cadeira) {
+            array_push($tickets, 
+            $this->cadeiras->venderCadeiraComUsuario($alocacaoId, $cadeira, $precocadeira)
+        );
+            
+        }
+        return array('success'=> true, 'tickets' => $tickets);
+    }
 
     public function insertAlocacao()
     { }
