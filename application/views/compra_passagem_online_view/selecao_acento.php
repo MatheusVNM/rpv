@@ -102,8 +102,8 @@ $this->load->view("header_cliente");
 
 <?php
 // echo_r($cadeirasOcupadas);
-echo_r($alocacao);
-echo_r($this->session->userdata('dados'));
+// echo_r($alocacao);
+// echo_r($this->session->userdata('dados'));
 $numColunas = $alocacao['onibus_quantidade_fileiras'];
 $numPoltronas = $alocacao['onibus_num_lugares'];
 if ($this->session->userdata('dados')['tipo_passagem_id'] == 1) {
@@ -121,7 +121,12 @@ if ($this->session->userdata('dados')['tipo_passagem_id'] == 1) {
 </style>
 "; ?>
 
-<h2 class="text-center">Compra de Passagem</h2>
+<div class="d-block">
+    <a href="<?= base_url('clientes/compra_passagem') ?>" class="btn btn-hover text-light btn-primary position-absolute">
+        <i class="fa fa-arrow-circle-left"></i>
+    </a>
+    <h2 class="text-center">Compra de Passagem</h2>
+</div>
 <?= $this->session->flashdata('error'); ?>
 <?= $this->session->flashdata('success'); ?>
 <?php
@@ -179,44 +184,16 @@ function isCadeiraOcupada($nCadeira, $cadeirasOcupadas)
 
             <?php endfor; ?>
 
-            <!--                     
-                        <div class="col seat">
-                            <input type="checkbox" id="Cadeira2" />
-                            <label for="Cadeira2">2</label>
-                        </div>
-                        <div class="col seat">
-                            <input type="checkbox" id="Cadeira3" />
-                            <label for="Cadeira3">3</label>
-                        </div>
-                        <div class="col seat">
-                            <input type="checkbox" id="Cadeira4" />
-                            <label for="Cadeira4">4</label>
-                        </div>
-
-                        </li>
-
-                    <li class="row col seats">
-                        <div class="col seat">
-                            <input type="checkbox" id="Cadeira5" />
-                            <label for="Cadeira">5</label>
-                        </div>
-                        <div class="col seat">
-                            <input type="checkbox" id="Cadeira6" />
-                            <label for="Cadeira6">6</label>
-                        </div>
-                        <div class="col seat">
-                            <input type="checkbox" id="Cadeira7" />
-                            <label for="Cadeira7">2C</label>
-                        </div>
-                        <div class="col seat">
-                            <input type="checkbox" id="2D" />
-                            <label for="2D">2D</label>
-                        </div>
-                    </li> -->
         </ol>
     </div>
     <div class="col-md-5 card">
         <div class="card-body">
+
+                <center>
+                <p class="mb-0"><?= $alocacao['cidade_origem'] ?></p>
+                    <i class="fa fa-arrow-down"></i>
+                    <p class=""><?= $alocacao['cidade_destino'] ?></p>
+                </center>
 
             <div class="form-row">
 

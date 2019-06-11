@@ -56,17 +56,17 @@ class Alocacao_intermunicipal_model extends CI_Model
         // $result = $this->db->select('trajetointerurbano.*,rotas_trajetointerurbano.rotas_trajetointerurbano_cidade_origem, rotas_trajetointerurbano.rotas_trajetointerurbano_cidade_destino, rotas_trajetointerurbano.rotas_trajetointerurbano_tempo, rotas_trajetointerurbano.rotas_trajetointerurbano_distancia')
 
 
-        $result = $this->db->select('alocacaointermunicipal_id,alocacaointermunicipal_data_hora_inicio,alocacaointermunicipal_trajetointerurbano, categoriaonibus_nome, rotas_trajetointerurbano_id, rotas_trajetointerurbano_tempo,  rotas_trajetointerurbano_tempo_origem, trajetointerurbano_nome, (onibus.onibus_num_lugares-count(ocupacaocadeira.ocupacaocadeira_id)) as count_cadeiras_livres, count(ocupacaocadeira.ocupacaocadeira_id) as cadeiras_ocupadas, (rotas_trajetointerurbano_distancia*categoriaonibus_precokm) as precocadeira')
+        $result = $this->db->select('alocacaointermunicipal_id,alocacaointermunicipal_data_hora_inicio,alocacaointermunicipal_trajetointerurbano, categoriaonibus_nome, rotas_trajetointerurbano_id, rotas_trajetointerurbano_tempo,  rotas_trajetointerurbano_tempo_origem, trajetointerurbano_nome, (onibus.onibus_num_lugares-sum(case when ocupacaocadeira.ocupacaocadeira_isOcupado then 1 else 0 end)) as count_cadeiras_livres, (rotas_trajetointerurbano_distancia*categoriaonibus_precokm) as precocadeira')
             ->distinct()
             ->from('alocacaointermunicipal')
             ->join('trajetointerurbano', 'alocacaointermunicipal_trajetointerurbano=trajetointerurbano_id')
             ->join('onibus', 'alocacaointermunicipal_onibus=onibus_id')
             ->join('categoriaonibus', 'categoriaonibus_id=onibus_categoria_intermunicipal')
-            ->join('ocupacaocadeira', 'ocupacaocadeira_alocacaointermunicipal=alocacaointermunicipal_id')
+            ->join('ocupacaocadeira', 'ocupacaocadeira_alocacaointermunicipal=alocacaointermunicipal_id', 'left')
             ->join('rotas_trajetointerurbano', 'trajetointerurbano_id=rotas_trajetointerurbano_trajeto_id')
             ->where("(rotas_trajetointerurbano_cidade_origem=$origem_id and rotas_trajetointerurbano_cidade_destino=$destino_id )", null, false)
             ->where("(alocacaointermunicipal_data_hora_inicio >='" . $data->format("Y-m-d") . "' and alocacaointermunicipal_data_hora_inicio<'" . $data->modify('+1 day')->format("Y-m-d") . "' )", null, false)
-            ->where("ocupacaocadeira_isOcupado", "1")
+            // ->where("ocupacaocadeira_isOcupado", "1")
             ->get();
 
         // ->get();
@@ -140,14 +140,16 @@ class Alocacao_intermunicipal_model extends CI_Model
     public function getAlocacao($id, $rota)
     {
 
-        $result = $this->db->select('alocacaointermunicipal_id,alocacaointermunicipal_data_hora_inicio,alocacaointermunicipal_trajetointerurbano, categoriaonibus_nome, rotas_trajetointerurbano_id, rotas_trajetointerurbano_tempo,  rotas_trajetointerurbano_tempo_origem, trajetointerurbano_nome, (onibus.onibus_num_lugares-count(ocupacaocadeira.ocupacaocadeira_id)) as count_cadeiras_livres, count(ocupacaocadeira.ocupacaocadeira_id) as cadeiras_ocupadas, (rotas_trajetointerurbano_distancia*categoriaonibus_precokm) as precocadeira, onibus_num_lugares, onibus_quantidade_fileiras')
+        $result = $this->db->select('c1.cidade_nome as cidade_origem, c2.cidade_nome as cidade_destino, alocacaointermunicipal_id,alocacaointermunicipal_data_hora_inicio,alocacaointermunicipal_trajetointerurbano, categoriaonibus_nome, rotas_trajetointerurbano_id, rotas_trajetointerurbano_tempo,  rotas_trajetointerurbano_tempo_origem, trajetointerurbano_nome, (onibus.onibus_num_lugares-count(ocupacaocadeira.ocupacaocadeira_id)) as count_cadeiras_livres, count(ocupacaocadeira.ocupacaocadeira_id) as cadeiras_ocupadas, (rotas_trajetointerurbano_distancia*categoriaonibus_precokm) as precocadeira, onibus_num_lugares, onibus_quantidade_fileiras')
             ->distinct()
             ->from('alocacaointermunicipal')
-            ->join('trajetointerurbano', 'alocacaointermunicipal_trajetointerurbano=trajetointerurbano_id')
-            ->join('onibus', 'alocacaointermunicipal_onibus=onibus_id')
-            ->join('categoriaonibus', 'categoriaonibus_id=onibus_categoria_intermunicipal')
             ->join('ocupacaocadeira', 'ocupacaocadeira_alocacaointermunicipal=alocacaointermunicipal_id')
+            ->join('trajetointerurbano', 'alocacaointermunicipal_trajetointerurbano=trajetointerurbano_id')
             ->join('rotas_trajetointerurbano', 'trajetointerurbano_id=rotas_trajetointerurbano_trajeto_id')
+            ->join('cidade c1', 'c1.cidade_id=rotas_trajetointerurbano_cidade_origem')
+            ->join('cidade c2', 'c2.cidade_id=rotas_trajetointerurbano_cidade_destino')
+            ->join('categoriaonibus', 'categoriaonibus_id=onibus_categoria_intermunicipal')
+            ->join('onibus', 'alocacaointermunicipal_onibus=onibus_id')
             ->where("alocacaointermunicipal_id", $id)
             ->where('rotas_trajetointerurbano_id', $rota)
             ->get();

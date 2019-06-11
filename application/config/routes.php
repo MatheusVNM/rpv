@@ -158,5 +158,7 @@ $route['dashboard/formas_pagamentos']= 'Gerenciar_formas_pagamento_controller';
 
 /* Rotas para clientes */
 $route['clientes'] = 'dashboard_clientes';
+$route['clientes/meus_pontos'] = 'dashboard_clientes/pontos';
+$route['clientes/minhas_passagens'] = 'dashboard_clientes/minhasPassagens';
 $route['clientes/compra_passagem/selecao_acento']= 'gerenciar_venda_passagens_online_controller/selecionarAcento';
 $route['clientes/compra_passagem']= 'gerenciar_venda_passagens_online_controller';

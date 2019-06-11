@@ -12,7 +12,7 @@ function info(id, idOnibus) {
 				console.log("success", result);
 				console.log(result["data"].length);
 
-				$("#id_total").val(result["data"].length);
+				// $("#id_total").val(result["data"].length);
 				$("#id_mes_passagem").val(
 					result["data"][0]["alocacaointermunicipal_horaInicio"]
 				);
@@ -22,34 +22,34 @@ function info(id, idOnibus) {
 				var meia = 0;
 				for (var i = 0; i < result["data"].length; i++) {
 					if (result["data"][i]["tipo_passagem_nome_tipo"] === "Inteira") {
-						inteira = parseInt(
+						inteira = parseFloat(
 							result["data"][i]["comprapassagem_valor_compra"]
 						);
 						$("#id_inteiras_quantidade").val(
 							result["data"][0][
-								"COUNT(comprapassagem.comprapassagem_tipo_passagem_id)"
+								"COUNT(comprapassagem.comprapassagem_tipo_passagem)"
 							]
 						);
 					}
 					if (result["data"][i]["tipo_passagem_nome_tipo"] === "Isenta") {
-						isenta = parseInt(result["data"][i]["comprapassagem_valor_compra"]);
+						isenta = parseFloat(result["data"][i]["comprapassagem_valor_compra"]);
 						$("#id_isentas_quantidade").val(
 							result["data"][0][
-								"COUNT(comprapassagem.comprapassagem_tipo_passagem_id)"
+								"COUNT(comprapassagem.comprapassagem_tipo_passagem)"
 							]
 						);
 					}
 					if (result["data"][i]["tipo_passagem_nome_tipo"] === "Meia") {
-						meia = parseInt(result["data"][i]["comprapassagem_valor_compra"]);
+						meia = parseFloat(result["data"][i]["comprapassagem_valor_compra"]);
 						$("#id_meias_quantidade").val(
 							result["data"][0][
-								"COUNT(comprapassagem.comprapassagem_tipo_passagem_id)"
+								"COUNT(comprapassagem.comprapassagem_tipo_passagem)"
 							]
 						);
 					}
 				}
 				soma = inteira + isenta + meia;
-				$("#id_soma_total").val("R$" + soma + ",00");
+				$("#id_soma_total").val("R$" + soma.toFixed(2));
 				$("#id_modal_info").modal("show");
 			} else {
 				alert("Informações não encontradas");

@@ -20,7 +20,6 @@ $this->load->view("header2");
                 <th scope="col">Placa do Veículo</th>
                 <th scope="col">Trajeto</th>
                 <th scope="col">Total Vendidas</th>
-                <th scope="col">Data</th>
                 <th scope="col">Opções</th>
             </tr>
         </thead>
@@ -30,9 +29,8 @@ $this->load->view("header2");
                 <tr>
                     <th scope="row">1</th>
                     <td><?= $passagens_vendidas_total[$i]['onibus_placa'] ?></td>
-                    <td><?= $passagens_vendidas_total[$i]['cidade_nome'] ?>/<?= $trajetos_cidade_final[$i]['cidade_nome'] ?></td>
+                    <td><?= $passagens_vendidas_total[$i]['trajetointerurbano_nome'] ?></td>
                     <td><?= $passagens_vendidas_total[$i]['COUNT(comprapassagem.comprapassagem_id)'] ?></td>
-                    <td><?= $passagens_vendidas_total[$i]['alocacaointermunicipal_horaInicio'] ?></td>
                     <td>
                         <button onclick="info(<?= $passagens_vendidas_total[$i]['alocacaointermunicipal_id'] ?>, <?= $passagens_vendidas_total[$i]['onibus_id'] ?>)" type="button" class="btn btn-primary btn-sm" title="Mais informações sobre a alocação." data-toggle="modal" id="id_opcao_visualizar" data-placement="top" data-target="#id_modal_info">
                             <span class="hvr-icon fa fa-eye mr-1"></span>Visualizar Passagens
@@ -81,20 +79,7 @@ $this->load->view("header2");
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="col-md-3 mb-3">
-                            <label for="validationCustom03">Mês:</label>
-                            <input type="text" class="form-control" id="id_mes_passagem" disabled>
-                            <div class="invalid-feedback">
-                                Please provide a valid city.
-                            </div>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label for="validationCustom04">Total Geradas:</label>
-                            <input type="text" class="form-control" id="id_total" disabled>
-                            <div class="invalid-feedback">
-                                Please provide a valid state.
-                            </div>
-                        </div>
+                        
                         <div class="col-md-3 mb-3">
                             <label for="validationCustom04">Soma total:</label>
                             <input type="text" class="form-control" id="id_soma_total" disabled>

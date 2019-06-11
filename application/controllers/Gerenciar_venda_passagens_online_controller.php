@@ -33,7 +33,7 @@ class Gerenciar_venda_passagens_online_controller extends CI_Controller
             if ($resultAlocacao['success'] === true) {
                 $data['pontos']=$this->usuario_model->getPontosUsuarioLogado();
                 $data['alocacao'] = $resultAlocacao['result'];
-                $data['cadeirasOcupadas'] = $this->cadeira->getCadeirasOcupadasPorAlocacao($id)['result'];
+                $data['cadeirasOcupadas'] = $this->cadeira->getCadeirasOcupadasPorAlocacao($id)['result'] ?? array();
                 // $data['configs'] = $this->cadeira->getCadeirasOcupadasPorAlocacao($id)['result'];
                 $this->load->view('compra_passagem_online_view/selecao_acento', $data);
             } else {

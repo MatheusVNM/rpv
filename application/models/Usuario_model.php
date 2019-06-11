@@ -32,29 +32,37 @@ class Usuario_model extends CI_Model
 
     public function somarPontos($userid, $pontos)
     {
-        return $this->db->set('user_pontosTotais', "user_pontosTotais+$pontos", false)
+        $retorno =  $this->db->set('user_pontosTotais', "user_pontosTotais+$pontos", false)
             ->where('user_id', $userid)
             ->update('usuarios');
-    }
+            atualizarPontosNaSessao();
+            return $retorno;
+        }
     public function diminuirPontos($userid, $pontos)
     {
-        return $this->db->set('user_pontosTotais', "user_pontosTotais-$pontos", false)
+        $retorno =  $this->db->set('user_pontosTotais', "user_pontosTotais-$pontos", false)
             ->where('user_id', $userid)
             ->update('usuarios');
-    }
+            atualizarPontosNaSessao();
+            return $retorno;
+        }
 
     public function somarPontosUsuarioLogado($pontos)
     {
-        return $this->db->set('user_pontosTotais', "user_pontosTotais+$pontos", false)
+        $retorno =  $this->db->set('user_pontosTotais', "user_pontosTotais+$pontos", false)
             ->where('user_id', $this->session->userdata('id'))
             ->update('usuarios');
-    }
+            atualizarPontosNaSessao();
+            return $retorno;
+        }
     public function diminuirPontoUsuarioLogados($pontos)
     {
-        return $this->db->set('user_pontosTotais', "user_pontosTotais-$pontos", false)
+        $retorno =  $this->db->set('user_pontosTotais', "user_pontosTotais-$pontos", false)
             ->where('user_id', $this->session->userdata('id'))
             ->update('usuarios');
-    }
+            atualizarPontosNaSessao();
+            return $retorno;
+        }
 
     public function getPontos($userid)
     {
@@ -64,7 +72,7 @@ class Usuario_model extends CI_Model
     }
     public function getPontosUsuarioLogado()
     {
-        return $this->db->select('user_pontosTotais')
+       return  $this->db->select('user_pontosTotais')
             ->where('user_id', $this->session->userdata('id'))
             ->get('usuarios')->row_array()['user_pontosTotais'];
     }
