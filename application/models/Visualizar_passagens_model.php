@@ -14,7 +14,7 @@ class Visualizar_passagens_model extends CI_Model
         ocupacaocadeira on ocupacaocadeira.ocupacaocadeira_alocacaointermunicipal = 
         alocacaointermunicipal.alocacaointermunicipal_id JOIN comprapassagem on 
         comprapassagem.comprapassagem_ocupacaocadeira_id = 
-        ocupacaocadeira.ocupacaocadeira_id";
+        ocupacaocadeira.ocupacaocadeira_id GROUP by alocacaointermunicipal.alocacaointermunicipal_id";
         $result = $this->db->query($sql);
         if (!$result) {
             $retorno['success'] = false;

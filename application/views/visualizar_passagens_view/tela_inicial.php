@@ -60,21 +60,21 @@ $this->load->view("header2");
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
                             <label for="validationCustom01">Inteiras:</label>
-                            <input type="text" class="form-control" id="id_inteiras_quantidade" placeholder="First name" disabled>
+                            <input type="text" class="form-control" id="id_inteiras_quantidade" placeholder="0" disabled>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationCustom02">Meias:</label>
-                            <input type="text" class="form-control" id="id_meias_quantidade" placeholder="Last name" disabled>
+                            <input type="text" class="form-control" id="id_meias_quantidade" placeholder="0" disabled>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="validationCustom02">Isentas:</label>
-                            <input type="text" class="form-control" id="id_isentas_quantidade" placeholder="Last name" disabled>
+                            <input type="text" class="form-control" id="id_isentas_quantidade" placeholder="0" disabled>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -83,7 +83,7 @@ $this->load->view("header2");
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
                             <label for="validationCustom03">Mês:</label>
-                            <input type="text" class="form-control" id="id_mes_passagem" placeholder="Jan/2019" disabled>
+                            <input type="text" class="form-control" id="id_mes_passagem" disabled>
                             <div class="invalid-feedback">
                                 Please provide a valid city.
                             </div>

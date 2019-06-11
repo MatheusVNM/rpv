@@ -11,21 +11,7 @@ function info(id, idOnibus) {
 			if (result["success"]) {
 				console.log("success", result);
 				console.log(result["data"].length);
-				$("#id_inteiras_quantidade").val(
-					result["data"][0][
-						"COUNT(comprapassagem.comprapassagem_tipo_passagem_id)"
-					]
-				);
-				$("#id_isentas_quantidade").val(
-					result["data"][0][
-						"COUNT(comprapassagem.comprapassagem_tipo_passagem_id)"
-					]
-				);
-				$("#id_meias_quantidade").val(
-					result["data"][0][
-						"COUNT(comprapassagem.comprapassagem_tipo_passagem_id)"
-					]
-				);
+
 				$("#id_total").val(result["data"].length);
 				$("#id_mes_passagem").val(
 					result["data"][0]["alocacaointermunicipal_horaInicio"]
@@ -39,12 +25,27 @@ function info(id, idOnibus) {
 						inteira = parseInt(
 							result["data"][i]["comprapassagem_valor_compra"]
 						);
+						$("#id_inteiras_quantidade").val(
+							result["data"][0][
+								"COUNT(comprapassagem.comprapassagem_tipo_passagem_id)"
+							]
+						);
 					}
 					if (result["data"][i]["tipo_passagem_nome_tipo"] === "Isenta") {
 						isenta = parseInt(result["data"][i]["comprapassagem_valor_compra"]);
+						$("#id_isentas_quantidade").val(
+							result["data"][0][
+								"COUNT(comprapassagem.comprapassagem_tipo_passagem_id)"
+							]
+						);
 					}
 					if (result["data"][i]["tipo_passagem_nome_tipo"] === "Meia") {
 						meia = parseInt(result["data"][i]["comprapassagem_valor_compra"]);
+						$("#id_meias_quantidade").val(
+							result["data"][0][
+								"COUNT(comprapassagem.comprapassagem_tipo_passagem_id)"
+							]
+						);
 					}
 				}
 				soma = inteira + isenta + meia;
