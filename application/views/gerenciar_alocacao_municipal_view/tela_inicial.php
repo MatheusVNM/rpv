@@ -91,7 +91,7 @@ $this->load->view("header2");
                         <div class="form-group col-md-6">
                             <div class="form-row">
                                 <label for="min">Data Início Alocação</label>
-                                <input id = "id_create_data_inicio"name="alocacaomunicipal_data_inicio" class="min-today form-control" id="min" type="date" placeholder="YYYY-MM-DD" data-date-split-input="true" required />
+                                <input id="id_create_data_inicio" name="alocacaomunicipal_data_inicio" class="min-today form-control" id="min" type="date" placeholder="YYYY-MM-DD" data-date-split-input="true" required />
                             </div>
                         </div>
                         <div class="form-group col-md-6">
@@ -270,7 +270,7 @@ $this->load->view("header2");
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             <button type="submit" class="btn btn-primary">Salvar</button>
         </div>
-    </div> 
+    </div>
 </div>
 </div>
 </div>
@@ -332,10 +332,7 @@ $this->load->view("header2");
                                         <?= $row['trajetourbano_nome'] ?>
                                     </label>
                                     <div class="form-check">
-                                        <input class="form-check-input float-right" type="radio"
-                                         data-name="<?= $row['trajetourbano_nome'] ?>" 
-                                         id="id_trajetourbano_nome<?= $row['trajetourbano_id'] ?>" name="trajetourbano_nome" 
-                                         value="<?= $row['trajetourbano_id'] ?>">
+                                        <input class="form-check-input float-right" type="radio" data-name="<?= $row['trajetourbano_nome'] ?>" id="id_trajetourbano_nome<?= $row['trajetourbano_id'] ?>" name="trajetourbano_nome" value="<?= $row['trajetourbano_id'] ?>">
                                         <label></label>
                                     </div>
                                 </li>
@@ -518,7 +515,7 @@ $this->load->view("footer2.php")
     });
 </script>
 <script>
-     $(".alert").alert('close');
+    $(".alert").alert('close');
 </script>
 <script>
     $("#form_cobrador_select").submit(function(event) {
@@ -564,6 +561,7 @@ $this->load->view("footer2.php")
             '</div>'
         );
     }
+
     function deletarCampoMotorista(campo) {
         $('#' + campo + '').remove();
         $('#' + campo + '').remove();
@@ -848,23 +846,25 @@ $this->load->view("footer2.php")
                     $("#id_create_data_inicio").val(result['data'][0]['alocacaomunicipal_data_inicio']);
                     $("#id_create_data_final").val(result['data'][0]['alocacaomunicipal_data_final']);
                     //aqui vai pra selecionar os checked
-                    for(var i=0; i<result['data'].length; i++){
-                        addCampoMotorista(result['data'][i]['funcionarios_nome'], result['data'][i]['alocacaomunicipal_motorista_funcionario_id'], i);
+                    for (var i = 0; i < result['data'].length; i++) {
+                        if (result['data'][i]['funcionarios_tipofuncionario_id'] == 1) {
+                            addCampoMotorista(result['data'][i]['funcionarios_nome'], result['data'][i]['alocacaomunicipal_motorista_funcionario_id'], i);
+                        } else {
+                            addCampoCobrador(result['data'][i]['funcionarios_nome'], result['data'][i]['alocacaomunicipal_cobrador_funcionario_id'], i);
+                        }
+
                         //$("input[name=motorista_appt], #mot"+i).val(result['data'][i]['alocacaomunicipal_motorista_expediente_hora_inicio']);
-                        i++
-                        //$("input[name=motorista_appt], #mot"+i).add();
-                        //$("input[name=motorista_appt]);
-                        console.log(motorista_appt[].length);
+                        //i++
+                        //$("input[name=motorista_appt], #mot" + i);
                         //$("input[name=motorista_appt], #mot1").val(result['data'][i]['alocacaomunicipal_motorista_expediente_hora_final']);
-                        
-                        addCampoCobrador(result['data'][i]['funcionarios_nome'], result['data'][i]['alocacaomunicipal_cobrador_funcionario_id'], i);
+
                         //$("input[name=cobrador_appt], #mot"+i).val(result['data'][i]['funcionarios_nome'], result['data'][i]['alocacaomunicipal_cobrador_expediente_hora_inicio'], i);
                         //i++
                     }
                     $("#onibus_selecionado").val(result['data'][0]['onibus_placa']);
                     $("#trajeto_selecionado").val(result['data'][0]['trajetourbano_nome']);
-                    $("#motoristas_selecionados").val(result['data'].length/2 + " selecionados");
-                    $("#cobradores_selecionados").val(result['data'].length/2 + " selecionados");
+                    $("#motoristas_selecionados").val(result['data'].length / 2 + " selecionados");
+                    $("#cobradores_selecionados").val(result['data'].length / 2 + " selecionados");
                 } else {
                     alert('Manutenção não encontrada');
                     console.log('false success', result);
