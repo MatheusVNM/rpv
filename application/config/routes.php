@@ -57,7 +57,7 @@ $route['view/(:any)/(:any)'] = 'views/loadviewwithfolder/$1/$2';
 
 $route['logout'] = 'login/logout';
 
-/*Rotas para métodos de controller que funcionam com ajax*/ 
+/*Rotas para métodos de controller que funcionam com ajax*/
 
 $route['ajax/cidades/por_estado'] = 'data_only/cidade_controller/ajax_db_getCidadesPorEstado';
 $route['ajax/rodoviarias/existe_na_cidade'] = 'gerenciar_rodoviaria_controller/ajax_db_verificarExistenciaRodoviariaCidade';
@@ -106,6 +106,9 @@ $route['categorias/onibus/update'] = 'gerenciar_categoria_onibus_controller/_upd
 
 
 //aquiiii
+//Rotas para o visualizar passagens vendidas
+$route['passagens/vendidas/get'] = 'visualizar_passagens_controller/getPassagensVendidasTotal';
+
 /*Rotas métodos de controller que exibem alguma tela, sem necessáriamente inserir/atualizar algo no banco de dados*/
 $route['dashboard'] = 'Dashboard';
 
