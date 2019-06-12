@@ -51,7 +51,13 @@ class Funcionarios_model extends CI_Model
     }
     public function getMotoristasNaoAlocados()
     {
-        $sql = "select DISTINCT funcionarios.funcionarios_id, funcionarios.funcionarios_nome from funcionarios JOIN tipofuncionario on tipofuncionario.tipofuncionario_id = funcionarios.funcionarios_tipofuncionario_id WHERE funcionarios.funcionarios_tipofuncionario_id='1' AND funcionarios.funcionarios_id NOT IN(SELECT DISTINCT funcionarios.funcionarios_id from funcionarios join alocacaomunicipal_motorista on alocacaomunicipal_motorista.alocacaomunicipal_motorista_funcionario_id = funcionarios.funcionarios_id JOIN tipofuncionario on tipofuncionario.tipofuncionario_id ='1')";
+        $sql = "select DISTINCT funcionarios.funcionarios_id, funcionarios.funcionarios_nome from funcionarios JOIN tipofuncionario on
+        tipofuncionario.tipofuncionario_id = funcionarios.funcionarios_tipofuncionario_id WHERE 
+        funcionarios.funcionarios_tipofuncionario_id='1' AND funcionarios.funcionarios_id NOT IN(SELECT DISTINCT funcionarios.funcionarios_id 
+        from funcionarios join alocacaomunicipal_motorista on alocacaomunicipal_motorista.alocacaomunicipal_motorista_funcionario_id = 
+        funcionarios.funcionarios_id JOIN tipofuncionario on tipofuncionario.tipofuncionario_id ='1' JOIN alocacaomunicipal on 
+        alocacaomunicipal.alocacaomunicipal_id = alocacaomunicipal_motorista.alocacaomunicipal_motorista_id_alocacao WHERE 
+        alocacaomunicipal.alocacaomunicipal_data_final is null or alocacaomunicipal.alocacaomunicipal_data_final = '0000-00-00')";
         $result = $this->db->query($sql);
         if (!$result) {
             $retorno['success'] = false;
@@ -93,7 +99,8 @@ class Funcionarios_model extends CI_Model
             return $retorno;
         }
     }
-    public function getCobradoresNaoAlocadosEditar($id){
+    public function getCobradoresNaoAlocadosEditar($id)
+    {
         $sql = "select DISTINCT funcionarios.funcionarios_id, funcionarios.funcionarios_nome from 
         funcionarios JOIN tipofuncionario on tipofuncionario.tipofuncionario_id = funcionarios.funcionarios_tipofuncionario_id 
         WHERE funcionarios.funcionarios_tipofuncionario_id='2' AND funcionarios.funcionarios_id NOT IN(SELECT DISTINCT 

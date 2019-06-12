@@ -22,7 +22,7 @@ $this->load->view("header2");
 
     </div>
     <div class="col-md-3 mt-auto">
-        <button type="button" class="btn btn-success float-right mr-2" data-toggle="modal" data-target="#id_modal_create_alocacao" title="Adicionar Alocação.">
+        <button onclick="habilitarCampoSalvar()" type="button" class="btn btn-success float-right mr-2" data-toggle="modal" data-target="#id_modal_create_alocacao" title="Adicionar Alocação.">
             <i class="fa fa-plus-circle" data-toggle="tooltip" data-placement="bottom" id="id_button_add"> </i>
             Adicionar Alocação
         </button>
@@ -89,6 +89,7 @@ $this->load->view("header2");
                 <div class="modal-body">
                     <div class="form-row mx-2">
                         <div class="form-group col-md-6">
+                            <input type="hidden" id="id_create_id_alocacao" name="alocacaomunicipal_id">
                             <div class="form-row">
                                 <label for="min">Data Início Alocação</label>
                                 <input id="id_create_data_inicio" name="alocacaomunicipal_data_inicio" class="min-today form-control" id="min" type="date" placeholder="YYYY-MM-DD" data-date-split-input="true" required />
@@ -96,7 +97,7 @@ $this->load->view("header2");
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputEmail4">Data Final da Alocação:</label>
-                            <input id="id_create_data" name="alocacaomunicipal_data_final" type="date" class="form-control" id="inputEmail4" min="2019-06-03">
+                            <input id="id_create_data_final" name="alocacaomunicipal_data_final" type="date" class="min-today form-control" id="min" min="2019-06-11">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="modal_create_onibus">Selecione o ônibus:</label>
@@ -168,107 +169,8 @@ $this->load->view("header2");
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Salvar</button>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-
-<!-- Modal edit alocação -->
-<div class="modal fade" id="id_modal_edit_alocacao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><b>Editar Alocação Municipal</b></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form id="modal_edit_alocacao_form" class="needs-validation container" novalidate>
-                <div class="modal-body">
-                    <div class="form-row mx-2">
-                        <div class="form-group col-md-6">
-                            <div class="form-row">
-                                <label for="min">Data Início Alocação</label>
-                                <input id="modal_edit_data_inicio" name="alocacaomunicipal_data_inicio" class="min-today form-control" type="date" placeholder="YYYY-MM-DD" data-date-split-input="true" required />
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputEmail4">Data Final da Alocação:</label>
-                            <input id="modal_edit_data_final" name="alocacaomunicipal_data_final" type="date" class="form-control" id="inputEmail4" min="2019-06-03">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="modal_create_onibus">Selecione o ônibus:</label>
-                            <div class="input-group mb-3" id="id_onibus_selecionado">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#id_modal_com_listas_onibus">Ônibus</button>
-                                </div>
-                                <input id="onibus_selecionado" type="text" name="onibus_id" class="form-control" placeholder="Nenhum ônibus selecionado" aria-describedby="basic-addon1" required>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="modal_create_trajeto fa ">Selecione o trajeto:</label>
-                            <div class="input-group mb-3" id="id_trajeto_selecionado">
-                                <div class="input-group-prepend">
-                                    <button id="trajeto_selecionado" class="btn btn-outline-secondary" type="button" data-target="#id_modal_com_listas_trajeto" data-toggle="modal">Trajetos</button>
-                                </div>
-                                <input id="trajeto_selecionado" type="text" name="trajetourbano_id" class="form-control" placeholder="Nenhum trajeto selecionado" aria-describedby="basic-addon1" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="alert alert-primary" role="alert">
-                                O trajeto tem duração maior que 8 horas. Por favor, selecione mais de
-                                um motorista e cobrador.
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="modal_create_motorista">Seleciona o Motorista:</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <button class="btn btn-outline-secondary" type="button" data-target="#id_modal_com_listas_motoristas" data-toggle="modal">Motoristas</button>
-                                        </div>
-                                        <input id="motoristas_selecionados" type="text" class="form-control" placeholder="Nenhum motorista selecionado" aria-label="" aria-describedby="basic-addon1" required>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="modal_create_cobrador fa ">Cobrador:</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <button class="btn btn-outline-secondary" type="button" data-target="#id_modal_com_listas_cobrador" data-toggle="modal">Cobrador</button>
-                                        </div>
-                                        <input id="cobradores_selecionados" type="text" class="form-control" placeholder="Nenhum cobrador selecionado" aria-label="" aria-describedby="basic-addon1" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="id_dados_alocacao">
-                                <div class="col-auto">
-                                    <div class="my-2 justify-content-between d-flex">
-                                        <label for="exampleFormControlInput1"><b>Motorista Alocado:</b></label>
-                                    </div>
-                                    <div class="form-group" id="id_mais_motorista">
-
-                                    </div>
-
-                                </div>
-                                <div class="col-auto">
-                                    <div class="my-2 justify-content-between d-flex">
-                                        <label for="exampleFormControlInput1"><b>Cobrador Alocado:</b></label>
-
-                                    </div>
-                                    <div class="form-group" id="id_mais_cobrador">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button type="submit" class="btn btn-primary" id="id_button_salvar" onclick="salvarNoBanco()">Salvar</button>
+            <button type="submit" class="btn btn-primary" id="id_button_salvar_edicao" onclick="salvarNoBancoEdicao()" disabled>Salvar Edicao</button>
         </div>
     </div>
 </div>
@@ -484,6 +386,10 @@ $this->load->view("header2");
                                 Please provide a valid zip.
                             </div>
                         </div>
+                        <div class="col-md-8 mb-3">
+                            <label for="validationCustom05">Status:</label>
+                            <input type="text" class="form-control" id="modal_info_data_final_alocacao" disabled>
+                        </div>
                     </div>
 
 
@@ -535,7 +441,7 @@ $this->load->view("footer2.php")
 </script>,
 
 <script>
-    function addCampoMotorista(nomeFuncionario, id, lastInsert) {
+    function addCampoMotorista(nomeFuncionario, id, lastInsert, horaInicio = "", horaFinal = "") {
         $('#id_mais_motorista').append(
             '<div id="mot' + lastInsert +
             '"class="d-flex flex-row align-center my-1 justify-content-center">' +
@@ -549,13 +455,13 @@ $this->load->view("footer2.php")
             '<div class="form-group col-md-4">' +
             '<label for="appt" id="mot' + lastInsert + '">Horário Inicio:</label>' +
             '<input type="hidden" id="mot' + lastInsert + '" name="motorista_id[]" value="' + id + '" class="form-control" required/>' +
-            '<input type="time" id="mot' + lastInsert + '" name="motorista_appt[]" min="00:00" max="23:59" class="form-control" required/>' +
+            '<input type="time" id="mot' + lastInsert + '" value="' + horaInicio + '" name="motorista_appt[]" min="00:00" max="23:59" class="form-control" required/>' +
             '<span class="note"></span>' +
             '</div>' +
             '<div class="form-group col-md-4">' +
             '<label for="appt" id="mot' + lastInsert + '">Horário Final:</label>' +
             '<input type="hidden" id="mot' + lastInsert++ + '" value="' + id + '" class="form-control" required>' +
-            '<input type="time" id="mot' + lastInsert++ + '" name="motorista_appt[]" min="00:00" max="23:59" class="form-control" required>' +
+            '<input type="time" id="mot' + lastInsert++ + '" value="' + horaFinal + '" name="motorista_appt[]" min="00:00" max="23:59" class="form-control" required>' +
             '<span class="note"></span>' +
             '</div>' +
             '</div>'
@@ -581,7 +487,7 @@ $this->load->view("footer2.php")
         });
     }
 
-    function addCampoCobrador(nomeFuncionario, id, ultimoCobrador) {
+    function addCampoCobrador(nomeFuncionario, id, ultimoCobrador, horarioInicio = "", horarioFim = "") {
         $('#id_mais_cobrador').append(
             '<div id="cob' + ultimoCobrador +
             '"class="d-flex flex-row align-center my-1 justify-content-center">' +
@@ -594,13 +500,13 @@ $this->load->view("footer2.php")
             '<div class="form-row" id="cob' + ultimoCobrador + '">' +
             '<div class="form-group col-md-4">' +
             '<label for="appt" id="cob' + ultimoCobrador + '">Horário Inicio:</label>' +
-            '<input type="time" id="cob' + ultimoCobrador + '" name="cobrador_appt[]" min="00:00" max="23:59" class="form-control" required>' +
-            '<input type="hidden" id="cob' + ultimoCobrador + '" name="cobrador_id[]" value="' + id + '" class="form-control" required>' +
+            '<input type="time" id="cob' + ultimoCobrador + '" name="cobrador_appt[]" value="' + horarioInicio + '" min="00:00" max="23:59" class="form-control" required>' +
+            '<input type="hidden" id="cob' + ultimoCobrador + '" name="cobrador_id[]" value="' + id + '"  class="form-control" required>' +
             '<span class="note"></span>' +
             '</div>' +
             '<div class="form-group col-md-4">' +
-            '<label for="appt" id="cob' + ultimoCobrador + '">Horário Inicio:</label>' +
-            '<input type="time" id="cob' + ultimoCobrador++ + '" name="cobrador_appt[]" min="00:00" max="23:59" class="form-control" required>' +
+            '<label for="appt" id="cob' + ultimoCobrador + '">Horário Fim:</label>' +
+            '<input type="time" id="cob' + ultimoCobrador++ + '" name="cobrador_appt[]" value="' + horarioFim + '" min="00: 00 " max="23: 59 " class="form-control " required>' +
             '<input type="hidden" id="cob' + ultimoCobrador++ + '" value="' + id + '" class="form-control" required>' +
             '<span class="note"></span>' +
             '</div>'
@@ -699,54 +605,106 @@ $this->load->view("footer2.php")
 </script>
 
 <script>
-    //cadastra alocação no banco
-    $("#modal_create_alocacao_form").submit(function() {
-        console.log($(this).serialize())
-        $.ajax({
-            data: $(this).serialize(),
-            type: "POST",
-            url: "<?= base_url('ajax/alocacoesmunicipais/create') ?>",
-            dataType: "json",
-            beforeSend: function() {
-                showLoadingModal('Enviando Dados')
-            },
-            success: function(result) {
-                console.log(result['error_fields'])
-                console.log("result:success:", result);
-                if (result['success']) {
-                    $("#page_message").html(result['message']);
-                    $("#id_modal_create_alocacao").modal('hide');
-                    $("#modal_create_alocacao_form").trigger("reset");
-                    atualizarTabela()
-                } else {
-                    $('#modal_create_warning').html(result['message']);
+    function salvarNoBanco() {
+        $("#modal_create_alocacao_form").submit(function() {
+            $.ajax({
+                data: $(this).serialize(),
+                type: "POST",
+                url: "<?= base_url('ajax/alocacoesmunicipais/create') ?>",
+                dataType: "json",
+                beforeSend: function() {
+                    showLoadingModal('Enviando Dados')
+                },
+                success: function(result) {
+                    console.log(result['error_fields'])
+                    console.log("result:success:", result);
+                    if (result['success']) {
+                        $("#page_message").html(result['message']);
+                        $("#id_modal_create_alocacao").modal('hide');
+                        $("#modal_create_alocacao_form").trigger("reset");
+                        window.location.reload();
+                    } else {
+                        $('#modal_create_warning').html(result['message']);
 
-                    $("#modal_create_alocacao_form").find("input").removeClass("is-valid");
-                    $("#modal_create_alocacao_form").find("select").removeClass("is-valid");
+                        $("#modal_create_alocacao_form").find("input").removeClass("is-valid");
+                        $("#modal_create_alocacao_form").find("select").removeClass("is-valid");
 
-                    $("#modal_create_alocacao_form").find("input").removeClass("is-invalid");
-                    $("#modal_create_alocacao_form").find("select").removeClass("is-invalid");
+                        $("#modal_create_alocacao_form").find("input").removeClass("is-invalid");
+                        $("#modal_create_alocacao_form").find("select").removeClass("is-invalid");
 
-                    $("#modal_create_alocacao_form").find("input").addClass("is-valid");
-                    $("#modal_create_alocacao_form").find("select").addClass("is-valid");
+                        $("#modal_create_alocacao_form").find("input").addClass("is-valid");
+                        $("#modal_create_alocacao_form").find("select").addClass("is-valid");
 
-                    $("#modal_create_alocacao_form").find("input").addClass("is-invalid");
-                    $("#modal_create_alocacao_form").find("select").addClass("is-invalid");
-                    $.each(result['error_fields'], function(key, value) {
-                        $("#modal_create_alocacao_form [name='" + value + "']").addClass('is-invalid').removeClass('is-valid');
-                    })
+                        $("#modal_create_alocacao_form").find("input").addClass("is-invalid");
+                        $("#modal_create_alocacao_form").find("select").addClass("is-invalid");
+                        $.each(result['error_fields'], function(key, value) {
+                            $("#modal_create_alocacao_form [name='" + value + "']").addClass('is-invalid').removeClass('is-valid');
+                        })
+                    }
+                },
+                error: function(error) {
+                    // showWarningModal(JSON.stringify(error));
+                    console.log("ressult:error:", error)
+                },
+                complete: function() {
+                    setTimeout(closeLoadingModal, 500)
                 }
-            },
-            error: function(error) {
-                // showWarningModal(JSON.stringify(error));
-                console.log("ressult:error:", error)
-            },
-            complete: function() {
-                setTimeout(closeLoadingModal, 500)
-            }
+            });
+            return false;
         });
-        return false;
-    });
+    }
+</script>
+
+<script>
+    function salvarNoBancoEdicao() {
+        $("#modal_create_alocacao_form").submit(function() {
+            console.log($(this).serialize());
+            $.ajax({
+                data: $(this).serialize(),
+                type: "POST",
+                url: "<?= base_url('ajax/alocacoesmunicipais/update') ?>",
+                dataType: "json",
+                beforeSend: function() {
+                    showLoadingModal('Enviando Dados')
+                },
+                success: function(result) {
+                    console.log(result['error_fields'])
+                    console.log("result:success:", result);
+                    if (result['success']) {
+                        $("#page_message").html(result['message']);
+                        $("#id_modal_create_alocacao").modal('hide');
+                        $("#modal_create_alocacao_form").trigger("reset");
+                        window.location.reload();
+                    } else {
+                        $('#modal_create_warning').html(result['message']);
+
+                        $("#modal_create_alocacao_form").find("input").removeClass("is-valid");
+                        $("#modal_create_alocacao_form").find("select").removeClass("is-valid");
+
+                        $("#modal_create_alocacao_form").find("input").removeClass("is-invalid");
+                        $("#modal_create_alocacao_form").find("select").removeClass("is-invalid");
+
+                        $("#modal_create_alocacao_form").find("input").addClass("is-valid");
+                        $("#modal_create_alocacao_form").find("select").addClass("is-valid");
+
+                        $("#modal_create_alocacao_form").find("input").addClass("is-invalid");
+                        $("#modal_create_alocacao_form").find("select").addClass("is-invalid");
+                        $.each(result['error_fields'], function(key, value) {
+                            $("#modal_create_alocacao_form [name='" + value + "']").addClass('is-invalid').removeClass('is-valid');
+                        })
+                    }
+                },
+                error: function(error) {
+                    // showWarningModal(JSON.stringify(error));
+                    console.log("ressult:error:", error)
+                },
+                complete: function() {
+                    setTimeout(closeLoadingModal, 500)
+                }
+            });
+            return false;
+        });
+    }
 </script>
 
 <script>
@@ -764,15 +722,23 @@ $this->load->view("footer2.php")
                     console.log('success', result);
                     console.log(result['data'].length);
                     for (var i = 0; i < result['data'].length; ++i) {
-                        $("#modal_info_nome_motorista").val(result['data'][i]['funcionarios_nome'])
-                        $("#modal_info_horaInicio_motorista").val(result['data'][i]['alocacaomunicipal_motorista_expediente_hora_inicio'])
-                        $("#modal_info_horaFinal_motorista").val(result['data'][i]['alocacaomunicipal_motorista_expediente_hora_final'])
-                            ++i
-                        $("#modal_info_nome_cobrador").val(result['data'][i]['funcionarios_nome'])
-                        $("#modal_info_horaInicio_cobrador").val(result['data'][i]['alocacaomunicipal_cobrador_expediente_hora_inicio'])
-                        $("#modal_info_horaFinal_cobrador").val(result['data'][i]['alocacaomunicipal_cobrador_expediente_hora_final'])
+                        if (result['data'][i]['funcionarios_tipofuncionario_id'] == 1) {
+                            $("#modal_info_nome_motorista").val(result['data'][i]['funcionarios_nome'])
+                            $("#modal_info_horaInicio_motorista").val(result['data'][i]['alocacaomunicipal_motorista_expediente_hora_inicio'])
+                            $("#modal_info_horaFinal_motorista").val(result['data'][i]['alocacaomunicipal_motorista_expediente_hora_final'])
+                        } else if (result['data'][i]['funcionarios_tipofuncionario_id'] == 2) {
+                            $("#modal_info_nome_cobrador").val(result['data'][i]['funcionarios_nome'])
+                            $("#modal_info_horaInicio_cobrador").val(result['data'][i]['alocacaomunicipal_cobrador_expediente_hora_inicio'])
+                            $("#modal_info_horaFinal_cobrador").val(result['data'][i]['alocacaomunicipal_cobrador_expediente_hora_final'])
+                        }
                     }
                     $("#modal_info_data_alocacao").val(result['data'][0]['alocacaomunicipal_data_inicio'])
+                    if (result['data'][0]['alocacaomunicipal_data_final'] == null ||
+                        result['data'][0]['alocacaomunicipal_data_final'] == "0000-00-00") {
+                        $("#modal_info_data_final_alocacao").val("Alocação vigente.");
+                    } else {
+                        $("#modal_info_data_final_alocacao").val("Data de finalização: " + result['data'][0]['alocacaomunicipal_data_final']);
+                    }
 
                     $("#id_modal_info").modal('show');
                 } else {
@@ -792,46 +758,15 @@ $this->load->view("footer2.php")
 </script>
 
 <script>
-    // <!-- Metodo em ajax para fazer o submit do modal edit (id="id_modal_edit_alocacao") -->
-    $("#form_edit_manutencao_id").submit(function() {
-        console.log($(this).serialize())
-        $.ajax({
-            data: $(this).serialize(),
-            type: "POST",
-            url: "<?= base_url('ajax/alocacoesmunicipais/update') ?>",
-            dataType: "json",
-            beforeSend: function() {
-                showLoadingModal('Enviando Dados')
-            },
-            success: function(result) {
-                console.log(result['message']);
-                if (result['success']) {
-                    $("#page_message").html(result['message']);
-                    $("#id_modal_edit_alocacao").modal('hide');
-                    $(".modal-backdrop").removeClass('show');
-                    //closemodal
-                } else {
-                    $('#modal_edit_warning').html(result['message']);
-                }
-            },
-            error: function(error) {
-                alert("Ocorreu algum erro, veja o console")
-                // showWarningModal(JSON.stringify(error))
-                console.log(error)
-            },
-            complete: function() {
-                setTimeout(closeLoadingModal, 500)
-                setTimeout(function() {
-                    $(".modal-backdrop").removeClass('show');
-                }, 1200)
-            }
-        });
-        return false;
-    });
+    function habilitarCampoSalvar() {
+        $("#id_button_salvar").prop("disabled", false);
+        $("#id_button_salvar_edicao").prop("disabled", true);
+    }
 </script>
-
 <script>
     function editar(id) {
+        $("#id_button_salvar").prop("disabled", true);
+        $("#id_button_salvar_edicao").prop("disabled", false);
         $.ajax({
             data: "alocacaomunicipal_id=" + id,
             method: "post",
@@ -845,24 +780,19 @@ $this->load->view("footer2.php")
                     console.log('success', result)
                     $("#id_create_data_inicio").val(result['data'][0]['alocacaomunicipal_data_inicio']);
                     $("#id_create_data_final").val(result['data'][0]['alocacaomunicipal_data_final']);
+                    $("#id_create_id_alocacao").val(result['data'][0]['alocacaomunicipal_id'])
                     //aqui vai pra selecionar os checked
                     for (var i = 0; i < result['data'].length; i++) {
                         if (result['data'][i]['funcionarios_tipofuncionario_id'] == 1) {
-                            addCampoMotorista(result['data'][i]['funcionarios_nome'], result['data'][i]['alocacaomunicipal_motorista_funcionario_id'], i);
+                            addCampoMotorista(result['data'][i]['funcionarios_nome'], result['data'][i]['alocacaomunicipal_motorista_funcionario_id'], i, result['data'][i]['alocacaomunicipal_motorista_expediente_hora_inicio'], result['data'][i]['alocacaomunicipal_motorista_expediente_hora_final']);
                         } else {
-                            addCampoCobrador(result['data'][i]['funcionarios_nome'], result['data'][i]['alocacaomunicipal_cobrador_funcionario_id'], i);
+                            addCampoCobrador(result['data'][i]['funcionarios_nome'], result['data'][i]['alocacaomunicipal_cobrador_funcionario_id'], i, result['data'][i]['alocacaomunicipal_cobrador_expediente_hora_inicio'], result['data'][i]['alocacaomunicipal_cobrador_expediente_hora_final']);
                         }
-
-                        //$("input[name=motorista_appt], #mot"+i).val(result['data'][i]['alocacaomunicipal_motorista_expediente_hora_inicio']);
-                        //i++
-                        //$("input[name=motorista_appt], #mot" + i);
-                        //$("input[name=motorista_appt], #mot1").val(result['data'][i]['alocacaomunicipal_motorista_expediente_hora_final']);
-
-                        //$("input[name=cobrador_appt], #mot"+i).val(result['data'][i]['funcionarios_nome'], result['data'][i]['alocacaomunicipal_cobrador_expediente_hora_inicio'], i);
-                        //i++
                     }
                     $("#onibus_selecionado").val(result['data'][0]['onibus_placa']);
+                    addInputInvisivelOnibus(result['data'][0]['onibus_id']);
                     $("#trajeto_selecionado").val(result['data'][0]['trajetourbano_nome']);
+                    addInputInvisivelTrajeto(result['data'][0]['trajetourbano_id']);
                     $("#motoristas_selecionados").val(result['data'].length / 2 + " selecionados");
                     $("#cobradores_selecionados").val(result['data'].length / 2 + " selecionados");
                 } else {
@@ -879,4 +809,12 @@ $this->load->view("footer2.php")
             }
         });
     }
+</script>
+<script>
+    var originalModal = $('#id_modal_create_alocacao').clone();
+    $('#id_modal_create_alocacao').on('hidden.bs.modal', function() {
+        $("#id_modal_create_alocacao").remove();
+        var myClone = originalModal.clone();
+        $('body').append(myClone);
+    });
 </script>
