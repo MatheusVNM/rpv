@@ -76,14 +76,15 @@ class Funcionarios_model extends CI_Model
 
     public function getCobradoresNaoAlocados()
     {
-        $sql = "select DISTINCT funcionarios.funcionarios_id, 
-        funcionarios.funcionarios_nome from funcionarios JOIN 
+        $sql = "select DISTINCT funcionarios.funcionarios_id, funcionarios.funcionarios_nome from funcionarios JOIN 
         tipofuncionario on tipofuncionario.tipofuncionario_id = funcionarios.funcionarios_tipofuncionario_id 
         WHERE funcionarios.funcionarios_tipofuncionario_id='2' AND 
         funcionarios.funcionarios_id NOT IN(SELECT DISTINCT funcionarios.funcionarios_id 
         from funcionarios join alocacaomunicipal_cobrador on 
         alocacaomunicipal_cobrador.alocacaomunicipal_cobrador_funcionario_id = funcionarios.funcionarios_id JOIN tipofuncionario 
-        on tipofuncionario.tipofuncionario_id ='2')";
+        on tipofuncionario.tipofuncionario_id ='2' JOIN alocacaomunicipal on 
+        alocacaomunicipal.alocacaomunicipal_id = alocacaomunicipal_cobrador.alocacaomunicipal_cobrador_id_alocacao WHERE 
+        alocacaomunicipal.alocacaomunicipal_data_final is null or alocacaomunicipal.alocacaomunicipal_data_final = '0000-00-00')";
         $result = $this->db->query($sql);
         if (!$result) {
             $retorno['success'] = false;

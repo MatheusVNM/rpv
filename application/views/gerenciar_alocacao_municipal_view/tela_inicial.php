@@ -99,30 +99,28 @@ $this->load->view("header2");
                             <label for="inputEmail4">Data Final da Alocação:</label>
                             <input id="id_create_data_final" name="alocacaomunicipal_data_final" type="date" class="min-today form-control" id="min" min="2019-06-11">
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="modal_create_onibus">Selecione o ônibus:</label>
-                            <div class="input-group mb-3" id="id_onibus_selecionado">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#id_modal_com_listas_onibus">Ônibus</button>
-                                </div>
-                                <input id="onibus_selecionado" type="text" name="onibus_id" class="form-control" placeholder="Nenhum ônibus selecionado" aria-describedby="basic-addon1" required>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="modal_create_trajeto fa ">Selecione o trajeto:</label>
-                            <div class="input-group mb-3" id="id_trajeto_selecionado">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-outline-secondary" type="button" data-target="#id_modal_com_listas_trajeto" data-toggle="modal">Trajetos</button>
-                                </div>
-                                <input id="trajeto_selecionado" type="text" name="trajetourbano_id" class="form-control" placeholder="Nenhum trajeto selecionado" aria-describedby="basic-addon1" required>
-                            </div>
-                        </div>
                     </div>
-                    <div class="card">
+                    <div class="card" id="id_card">
                         <div class="card-body">
-                            <div class="alert alert-primary" role="alert">
-                                O trajeto tem duração maior que 8 horas. Por favor, selecione mais de
-                                um motorista e cobrador.
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="modal_create_onibus">Selecione o ônibus:</label>
+                                    <div class="input-group mb-3" id="id_onibus_selecionado">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#id_modal_com_listas_onibus" id="id_abrir_lista_onibus">Ônibus</button>
+                                        </div>
+                                        <input id="onibus_selecionado" type="text" name="onibus_id" class="form-control" placeholder="Nenhum ônibus selecionado" aria-describedby="basic-addon1" required>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="modal_create_trajeto fa ">Selecione o trajeto:</label>
+                                    <div class="input-group mb-3" id="id_trajeto_selecionado">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-outline-secondary" type="button" data-target="#id_modal_com_listas_trajeto" data-toggle="modal">Trajetos</button>
+                                        </div>
+                                        <input id="trajeto_selecionado" type="text" name="trajetourbano_id" class="form-control" placeholder="Nenhum trajeto selecionado" aria-describedby="basic-addon1" required>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -234,7 +232,7 @@ $this->load->view("header2");
                                         <?= $row['trajetourbano_nome'] ?>
                                     </label>
                                     <div class="form-check">
-                                        <input class="form-check-input float-right" type="radio" data-name="<?= $row['trajetourbano_nome'] ?>" id="id_trajetourbano_nome<?= $row['trajetourbano_id'] ?>" name="trajetourbano_nome" value="<?= $row['trajetourbano_id'] ?>">
+                                        <input class="form-check-input float-right" type="radio" data-name="<?= $row['trajetourbano_nome'] ?>" id="id_trajetourbano_nome<?= $row['trajetourbano_id'] ?>" name="trajetourbano_nome" tempoDoTrajeto="<?= $row['trajetourbano_tempomedio'] ?>" value="<?= $row['trajetourbano_id'] ?>">
                                         <label></label>
                                     </div>
                                 </li>
@@ -421,9 +419,6 @@ $this->load->view("footer2.php")
     });
 </script>
 <script>
-    $(".alert").alert('close');
-</script>
-<script>
     $("#form_cobrador_select").submit(function(event) {
         $('#id_mais_cobrador').html("");
         var ultimoCobrador = 0;
@@ -521,54 +516,7 @@ $this->load->view("footer2.php")
         limparChecks("cobrador_nome");
         $('#cobradores_selecionados').val("");
     }
-
-    function validarQuantidadeMotorista(trajetourbano_tempo) {
-        this.tempotrajeto = trajetourbano_tempo;
-        $("input[type=checkbox]").change(function() {
-            var checados = $('#id_motorista_nome:checked').length;
-            var cobradorChegado = $('#id_cobrador_nome:checked').length;
-            if (checados > 0) {
-                var valorHoraAtingida = checados * 6;
-                if (valorHoraAtingida >= tempotrajeto) {
-                    $("#id_botao_selecionar_funcionario").prop("disabled", false);
-                } else {
-                    $("#id_botao_selecionar_funcionario").prop("disabled", true);
-                }
-                if (tempotrajeto > 6) {
-                    $(".alert").alert('show');
-                } else {
-                    $(".alert").alert('close');
-                }
-            } else if (cobradorChegado > 0) {
-                var valorHoraAtingida = cobradorChegado * 6;
-                if (valorHoraAtingida >= tempotrajeto) {
-                    $("#id_botao_selecionar_cobrador").prop("disabled", false);
-                } else {
-                    $("#id_botao_selecionar_cobrador").prop("disabled", true);
-                }
-            }
-        });
-    }
 </script>
-
-<script>
-    function validarQuantidadeCobrador(trajetourbano_tempo) {
-        this.tempotrajeto = trajetourbano_tempo;
-        console.log("TEMPO TRAJETO: " + tempotrajeto);
-        $("input[type=checkbox]").change(function() {
-            var checados = $('#id_cobrador_nome:checked').length;
-            var valorHoraAtingida = checados * 6;
-            console.log(checados);
-            console.log("VALOR HORA ATINGIDA: " + valorHoraAtingida);
-            if (valorHoraAtingida >= tempotrajeto) {
-                $("#id_botao_selecionar_cobrador").prop("disabled", false);
-            } else {
-                $("#id_botao_selecionar_cobrador").prop("disabled", true);
-            }
-        });
-    }
-</script>
-
 <script>
     $("#form_trajeto_select").submit(function(event) {
         var nomeTrajeto = $('input[name=trajetourbano_nome]:checked', '#form_trajeto_select').attr("data-name")
@@ -576,6 +524,8 @@ $this->load->view("footer2.php")
         $("#trajeto_selecionado").val(nomeTrajeto)
         addInputInvisivelTrajeto(id);
         $("#id_modal_com_listas_trajeto").modal('hide')
+        var tempoDesseTrajeto = $('input[name=trajetourbano_nome]:checked', '#form_trajeto_select').attr("tempoDoTrajeto");
+        aparecerAvisoDeTrajeto(tempoDesseTrajeto);
         event.preventDefault();
         return false;
     })
@@ -781,6 +731,7 @@ $this->load->view("footer2.php")
                     $("#id_create_data_inicio").val(result['data'][0]['alocacaomunicipal_data_inicio']);
                     $("#id_create_data_final").val(result['data'][0]['alocacaomunicipal_data_final']);
                     $("#id_create_id_alocacao").val(result['data'][0]['alocacaomunicipal_id'])
+
                     //aqui vai pra selecionar os checked
                     for (var i = 0; i < result['data'].length; i++) {
                         if (result['data'][i]['funcionarios_tipofuncionario_id'] == 1) {
@@ -795,6 +746,10 @@ $this->load->view("footer2.php")
                     addInputInvisivelTrajeto(result['data'][0]['trajetourbano_id']);
                     $("#motoristas_selecionados").val(result['data'].length / 2 + " selecionados");
                     $("#cobradores_selecionados").val(result['data'].length / 2 + " selecionados");
+                    if (result['data'][0]['alocacaomunicipal_data_final'] != null &&
+                        result['data'][0]['alocacaomunicipal_data_final'] != "0000-00-00") {
+                        $("#id_card").hide();
+                    }
                 } else {
                     alert('Manutenção não encontrada');
                     console.log('false success', result);
