@@ -58,6 +58,7 @@ class Pager extends CI_Controller
       echo "Access Denied";
     }
   }
+  // funcionario
 
   function dashboardrh()
   {
@@ -69,6 +70,15 @@ class Pager extends CI_Controller
     }
   }
 
+  function dashboardfuncionario()
+  {
+    //Allowing akses to staff only
+    if ($this->session->userdata('level') === 'funcionario') {
+      redirect('dashboard');
+    } else {
+      echo "Access Denied";
+    }
+  }
 
 
 

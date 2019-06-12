@@ -104,6 +104,11 @@ if ($this->session->userdata('logged_in') !== true || $this->session->userdata('
 
                 <?php elseif ($this->session->userdata('level') === 'secretario') : ?>
                     <a href="<?= site_url('dashboard/frotas') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-bus mr-1"></i> Gerenciar Registro de Frotas</a>
+                <?php elseif ($this->session->userdata('level') === 'contador') : ?>
+                    <a href="<?= site_url('dashboard/ver_passagens') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-code mr-1"></i> Contar Passagens</a>
+
+                <?php elseif ($this->session->userdata('level') === 'funcionario') : ?>
+                    <a href="<?= site_url('dashboard/venda/passagens') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-ticket mr-1"></i> Venda de Passagens</a>
 
                 <?php endif; ?>
 

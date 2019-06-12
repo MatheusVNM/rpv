@@ -175,6 +175,7 @@ $this->load->helper('url');
                         <option value="secretario">Secretário</option>
                         <option value="contador">Contador</option>
                         <option value="rh">Gerente de RH</option>
+                        <option value="funcionario">Funcionario Rodoviaria</option>
                     </select>
 
                     <label for="email">Email:</label>

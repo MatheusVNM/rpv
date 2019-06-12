@@ -47,4 +47,26 @@ class Passagens_model extends CI_Model
         $this->usuario_model->somarPontosUsuarioLogado($precocadeira*10);
         return $codigo;
     }
+
+
+    public function criarPassagemSemUsuario($idCadeira, $precocadeira, $tipopassagem)
+    {
+
+        $this->db->select('IFNULL(MAX(`comprapassagem_id`), 0) AS `maxid`', false);
+        $codigo = sprintf('TKT%07d', ($this->db->get('comprapassagem', 1)->result_array()[0]['maxid'] + 1));
+
+        $insertArray = array(
+            'comprapassagem_valor_compra' => $precocadeira,
+            'comprapassagem_data' => date("Y-m-d H:i:s"),
+            'comprapassagem_cadeira' => $idCadeira,
+            'comprapassagem_num_ticket' => $codigo,
+            'comprapassagem_tipo_passagem' => $tipopassagem,
+        );
+        // echo_r($insertArray);
+        $this->db->insert('comprapassagem', $insertArray);
+
+        $this->load->model('usuario_model');
+        // $this->usuario_model->somarPontosUsuarioLogado($precocadeira*10);
+        return $codigo;
+    }
 }

@@ -37,8 +37,12 @@ class Visualizar_passagens_controller extends CI_Controller
             ->from("comprapassagem")
             ->join("tipo_passagem", "comprapassagem_tipo_passagem=tipo_passagem_id" )
             ->join("ocupacaocadeira", "comprapassagem_cadeira=ocupacaocadeira_id")
+            
             ->join("alocacaointermunicipal", "alocacaointermunicipal_id=ocupacaocadeira_alocacaointermunicipal")
-            ->join("onibus","alocacaointermunicipal_onibus=onibus_id")->get()->result_array();
+            ->join("onibus","alocacaointermunicipal_onibus=onibus_id")
+            ->where('alocacaointermunicipal_id', $this->input->post('alocacaointermunicipal_id'))
+            ->where('alocacaointermunicipal_onibus', $this->input->post('onibus_id'))
+            ->group_by('tipo_passagem_nome_tipo')->get()->result_array();
             // echo_r($this->db->error());
             // $retorno['data'] = $this->passagens->getPassagensEspecificas($this->input->post('alocacaointermunicipal_id'), $this->input->post('onibus_id'))['result'];
             echo json_encode($retorno);

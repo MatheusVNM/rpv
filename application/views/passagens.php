@@ -16,9 +16,6 @@ $this->load->view("header_cliente");
 <div class="d-flex justify-content-center flex-column align-items-center pt-3" >
 
 
-
-
-
     <?php foreach ($passagens as $passagem) : ?>
 
         <div class="card shadow-sm p-2 mb-2" style="width:100%; max-width: 400px">

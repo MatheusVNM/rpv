@@ -104,35 +104,6 @@ class Alocacao_intermunicipal_model extends CI_Model
         return $retorno;
 
 
-
-        //
-        //        $this->db->select('alocacaointermunicipal.*, cidade_trajetointerurbano.cidade_trajetointerurbano_distancia_ponto_inicial, cidade_trajetointerurbano.cidade_trajetointerurbano_chegadaNoDestino,
-        //        categoriaonibus.categoriaonibus_nome, categoriaonibus.categoriaonibus_precokm, trajetointerurbano.trajetointerurbano_distanciaTotal');
-        //        $this->db->join('onibus', 'alocacaointermunicipal.alocacaointermunicipal_onibus = onibus.onibus_id');
-        //        $this->db->join('categoriaonibus', 'onibus.onibus_categoria_intermunicipal = categoriaonibus.categoriaonibus_id');
-        //        $this->db->join('trajetointerurbano', 'trajetointerurbano.trajetointerurbano_id = alocacaointermunicipal.alocacaointermunicipal_trajetointerurbano');
-        //        $this->db->join('cidade_trajetointerurbano', 'cidade_trajetointerurbano.cidade_trajetointerurbano_trajeto = trajetointerurbano.trajetointerurbano_id');
-        //        $this->db->join('cidade', 'cidade_trajetointerurbano.cidade_trajetointerurbano_cidade = cidade_id');
-        //        $this->db->from('alocacaointermunicipal');
-        //        $this->db->where($data);
-
-        // $result = $this->db->get();
-        // if (!$result) {
-        //     $retorno['success'] = false;
-        //     $retorno['error'] = $this->db->error();
-        //     return $retorno;
-        // }
-        // if ($result->num_rows() > 0) {
-        //     $retorno['success'] = true;
-        //     $retorno['result'] = $result->result_array();
-        //     return $retorno;
-        // } else {
-        //     $retorno['success'] = false;
-        //     return $retorno;
-        // }
-
-
-
     }
 
 
@@ -148,8 +119,8 @@ class Alocacao_intermunicipal_model extends CI_Model
             ->join('rotas_trajetointerurbano', 'trajetointerurbano_id=rotas_trajetointerurbano_trajeto_id')
             ->join('cidade c1', 'c1.cidade_id=rotas_trajetointerurbano_cidade_origem')
             ->join('cidade c2', 'c2.cidade_id=rotas_trajetointerurbano_cidade_destino')
-            ->join('categoriaonibus', 'categoriaonibus_id=onibus_categoria_intermunicipal')
             ->join('onibus', 'alocacaointermunicipal_onibus=onibus_id')
+            ->join('categoriaonibus', 'categoriaonibus_id=onibus_categoria_intermunicipal')
             ->where("alocacaointermunicipal_id", $id)
             ->where('rotas_trajetointerurbano_id', $rota)
             ->get();
@@ -168,6 +139,32 @@ class Alocacao_intermunicipal_model extends CI_Model
             return $retorno;
         }
     }
+
+
+    public function efetuarVendaRodoviaria($alocacaoId, $cadeiras, $rota, $tipopassagem)
+    {
+        $alocacao = $this->getAlocacao($alocacaoId, $rota)['result'];
+
+        if ($this->session->userdata('dados')['tipo_passagem_id'] == 1) {
+            $precocadeira = $alocacao['precocadeira'] / 2;
+        } elseif ($this->session->userdata('dados')['tipo_passagem_id'] == 2) {
+            $precocadeira = 0;
+        } else
+            $precocadeira = $alocacao['precocadeira'];
+
+
+            $tickets = array();
+        $this->load->model('Ocupacao_cadeira_model'
+        , 'cadeiras');
+        foreach ($cadeiras as $cadeira) {
+            array_push($tickets, 
+            $this->cadeiras->venderCadeiraSemUsuario($alocacaoId, $cadeira, $precocadeira, $tipopassagem)
+        );
+            
+        }
+        return array('success'=> true, 'tickets' => $tickets);
+    }
+
 
 
     public function efetuarCompra($alocacaoId, $cadeiras, $rota)

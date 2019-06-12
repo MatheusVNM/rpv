@@ -34,7 +34,7 @@ class login extends CI_Controller
         'email'     => $email,
         'level'     => $level,
         'logged_in' => true,
-        'dados'=>$dados
+        'dados' => $dados
       );
       $this->session->set_userdata($sesdata);
 
@@ -65,6 +65,9 @@ class login extends CI_Controller
       } elseif ($level === 'rh') {
         echo '<br><br><div style="font-size: 16pt; background: #f55; padding: 10px; border-radius: 16px;" >Logged as role: rh. Hello, ' . $name . '. Your email is: ' . $email . '</div>';
         redirect('pager/dashboardrh');
+      } elseif ($level === 'funcionario') {
+        echo '<br><br><div style="font-size: 16pt; background: #f55; padding: 10px; border-radius: 16px;" >Logged as role: rh. Hello, ' . $name . '. Your email is: ' . $email . '</div>';
+        redirect('pager/dashboardfuncionario');
       } else {
         echo $level;
         echo "HACKER";

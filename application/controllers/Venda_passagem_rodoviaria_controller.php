@@ -1,7 +1,7 @@
 <?php
 
 
-class Gerenciar_venda_passagens_online_controller extends CI_Controller
+class Venda_passagem_rodoviaria_controller extends CI_Controller
 {
     public function __construct()
     {
@@ -9,7 +9,6 @@ class Gerenciar_venda_passagens_online_controller extends CI_Controller
         $this->load->model('alocacao_intermunicipal_model', 'alocacoes');
         $this->load->model('cidade_model', 'cidades');
         $this->load->model('ocupacao_cadeira_model', 'cadeira');
-        $this->load->model('usuario_model');
         // $this->output->enable_profiler(true);
     }
 
@@ -19,7 +18,7 @@ class Gerenciar_venda_passagens_online_controller extends CI_Controller
         // echo_r($data['alocacoes']);
         $data['cidades'] = $this->cidades->getCidades()['result'];
         // echo_r($t);
-        $this->load->view('compra_passagem_online_view/tela_inicial', $data);
+        $this->load->view('venda_passagem_rodoviaria_view/tela_inicial', $data);
     }
 
     public function selecionarAcento()
@@ -31,19 +30,16 @@ class Gerenciar_venda_passagens_online_controller extends CI_Controller
             $rota = $this->input->post('rotas_trajetointerurbano_id');
             $resultAlocacao = $this->alocacoes->getAlocacao($id, $rota);
             if ($resultAlocacao['success'] === true) {
-                $data['pontos']=$this->usuario_model->getPontosUsuarioLogado();
                 $data['alocacao'] = $resultAlocacao['result'];
                 $data['cadeirasOcupadas'] = $this->cadeira->getCadeirasOcupadasPorAlocacao($id)['result'] ?? array();
                 // $data['configs'] = $this->cadeira->getCadeirasOcupadasPorAlocacao($id)['result'];
-                $this->load->view('compra_passagem_online_view/selecao_acento', $data);
+                $this->load->view('venda_passagem_rodoviaria_view/selecao_acento', $data);
             } else {
                 $this->session->set_flashdata('error', errorAlert('Algum erro ocorreu, tente novamente'));
-                // redirect('clientes/compra_passagem');
                 echo_r($resultAlocacao);
             }
         } else {
             $this->session->set_flashdata('error', errorAlert('Algum erro ocorreu, tente novamente'));
-            // redirect('clientes/compra_passagem');
             echo validation_errors();
         }
     }
@@ -83,12 +79,14 @@ class Gerenciar_venda_passagens_online_controller extends CI_Controller
         // echo_r($this->input->post());
         $this->form_validation->set_rules('alocacaointermunicipal_id', 'ID da alocacao', 'required|trim|numeric');
         $this->form_validation->set_rules('rotas_trajetointerurbano_id', 'ID da rota', 'required|trim|numeric');
+        $this->form_validation->set_rules('tipopassagem', 'ID da rota', 'required|trim|numeric');
         $this->form_validation->set_rules('cadeiras[]', 'Cadeiras', 'required');
         if ($this->form_validation->run() !== false) {
             $alocacao_id=$this->input->post("alocacaointermunicipal_id");
             $rota=$this->input->post("rotas_trajetointerurbano_id");
+            $tipopassagem=$this->input->post("tipopassagem");
             $cadeiras=$this->input->post("cadeiras");
-            $result = $this->alocacoes->efetuarCompra($alocacao_id, $cadeiras, $rota);
+            $result = $this->alocacoes->efetuarVendaRodoviaria($alocacao_id, $cadeiras, $rota, $tipopassagem);
             // echo_r($result);
             $data['success'] = $result === null ? false : $result['success'];
             if ($data['success'] === true){

@@ -87,6 +87,12 @@ class Ocupacao_cadeira_model extends CI_Model
         return $this->passagens->criarPassagemComUsuario($idCadeira, $precocadeira);
     }
 
+    public function venderCadeiraSemUsuario($id_alocacao, $num_cadeira, $precocadeira, $tipopassagem)
+    {
+        $this->load->model('passagens_model', 'passagens');
+        $idCadeira = $this->setCadeiraOcupada($id_alocacao, $num_cadeira);
+        return $this->passagens->criarPassagemSemUsuario($idCadeira, $precocadeira, $tipopassagem);
+    }
     public function setCadeiraOcupada($id_alocacao, $num_cadeira)
     {
 
