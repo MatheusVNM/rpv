@@ -35,7 +35,7 @@ class Usuario_model extends CI_Model
         $retorno =  $this->db->set('user_pontosTotais', "user_pontosTotais+$pontos", false)
             ->where('user_id', $userid)
             ->update('usuarios');
-            atualizarPontosNaSessao();
+            $this->atualizarPontosNaSessao();
             return $retorno;
         }
     public function diminuirPontos($userid, $pontos)
@@ -43,7 +43,7 @@ class Usuario_model extends CI_Model
         $retorno =  $this->db->set('user_pontosTotais', "user_pontosTotais-$pontos", false)
             ->where('user_id', $userid)
             ->update('usuarios');
-            atualizarPontosNaSessao();
+            $this->atualizarPontosNaSessao();
             return $retorno;
         }
 
@@ -52,7 +52,7 @@ class Usuario_model extends CI_Model
         $retorno =  $this->db->set('user_pontosTotais', "user_pontosTotais+$pontos", false)
             ->where('user_id', $this->session->userdata('id'))
             ->update('usuarios');
-            atualizarPontosNaSessao();
+            $this->atualizarPontosNaSessao();
             return $retorno;
         }
     public function diminuirPontoUsuarioLogados($pontos)
@@ -60,7 +60,7 @@ class Usuario_model extends CI_Model
         $retorno =  $this->db->set('user_pontosTotais', "user_pontosTotais-$pontos", false)
             ->where('user_id', $this->session->userdata('id'))
             ->update('usuarios');
-            atualizarPontosNaSessao();
+            $this->atualizarPontosNaSessao();
             return $retorno;
         }
 
