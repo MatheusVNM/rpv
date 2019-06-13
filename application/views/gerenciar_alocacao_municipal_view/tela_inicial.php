@@ -268,7 +268,7 @@ $this->load->view("header2");
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <?= $row['funcionarios_nome'] ?>
                                     <div class="form-check">
-                                        <input data-name="<?= $row['funcionarios_nome'] ?>" class="form-check-input" type="checkbox" id="id_motorista_nome" name="motorista_nome" value="<?= $row['funcionarios_id'] ?>">
+                                        <input data-name="<?= $row['funcionarios_nome'] ?>" class="form-check-input" type="radio" id="id_motorista_nome" name="motorista_nome" value="<?= $row['funcionarios_id'] ?>">
                                         <label class="form-check-label" for="defaultCheck1">
                                         </label>
                                     </div>
@@ -303,7 +303,7 @@ $this->load->view("header2");
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <?= $row['funcionarios_nome'] ?>
                                     <div class="form-check">
-                                        <input data-name="<?= $row['funcionarios_nome'] ?>" class="form-check-input" type="checkbox" id="id_cobrador_nome" name="cobrador_nome" value="<?= $row['funcionarios_id'] ?>">
+                                        <input data-name="<?= $row['funcionarios_nome'] ?>" class="form-check-input" type="radio" id="id_cobrador_nome" name="cobrador_nome" value="<?= $row['funcionarios_id'] ?>">
                                         <label class="form-check-label" for="defaultCheck1">
                                         </label>
                                     </div>
@@ -591,7 +591,7 @@ $this->load->view("footer2.php")
                     }
                 },
                 error: function(error) {
-                    showWarningModal(JSON.stringify(error));
+                    //showWarningModal(JSON.stringify(error));
                     console.log("ressult:error:", error)
                 },
                 complete: function() {
