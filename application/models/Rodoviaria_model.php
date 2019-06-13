@@ -37,7 +37,6 @@ class Rodoviaria_model extends CI_Model
         $this->db->join('estado', 'cidade.cidade_estado = estado.estado_id');
         $this->db->from('rodoviaria');
         $this->db->where('rodoviaria_id', $id);
-
         $result = $this->db->get();
         if (!$result) {
             $retorno['success'] = false;
@@ -84,8 +83,7 @@ class Rodoviaria_model extends CI_Model
         $rodoviaria_telefone,
         $rodoviaria_qntdbox,
         $rodoviaria_cidade
-    )
-    {
+    ) {
         $this->db->select('IFNULL(MAX(`rodoviaria_id`), 0) AS `maxid`', false);
         $rodoviaria_codigo = sprintf('RD%03d', $this->db->get('rodoviaria', 1)->row_array()['maxid'] + 1);
 
@@ -120,8 +118,7 @@ class Rodoviaria_model extends CI_Model
         $rodoviaria_telefone,
         $rodoviaria_qntdbox,
         $rodoviaria_cidade
-    )
-    {
+    ) {
         $this->db->select('rodoviaria_codigo');
         $rodoviaria_codigo = $this->db->get('rodoviaria', 1)->row_array()['rodoviaria_codigo'];
 
@@ -144,6 +141,4 @@ class Rodoviaria_model extends CI_Model
 
         return $result;
     }
-
-
 }

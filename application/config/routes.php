@@ -70,6 +70,11 @@ $route['ajax/onibus/create'] = 'gerenciar_frota_controller/ajax_db_insertOnibus'
 $route['ajax/onibus/edit'] = 'gerenciar_frota_controller/ajax_db_updateOnibus';
 $route['ajax/onibus/get'] = 'gerenciar_frota_controller/ajax_db_getOnibus';
 $route['ajax/onibus/getSingle'] = 'gerenciar_frota_controller/ajax_db_getOnibusEspecifico';
+/*Alocação Municipal - H08*/
+$route['ajax/alocacoesmunicipais/create'] = 'gerenciar_alocacao_municipal_controller/ajax_db_insertAlocacaoMunicipal';
+$route['ajax/alocacoesmunicipais/get'] = 'gerenciar_alocacao_municipal_controller/ajax_db_getAlocacoes';
+$route['ajax/alocacoesmunicipais/update'] = 'gerenciar_alocacao_municipal_controller/ajax_db_updateAlocacao';
+$route['ajax/alocacoesmunicipais/getSingle'] = 'gerenciar_alocacao_municipal_controller/ajax_db_getAlocacaoEspecifica';
 
 $route['ajax/manutencao/create'] = 'gerenciar_manutencoes_controller/ajax_db_createManutencao';
 $route['ajax/manutencao/getUnica'] = 'gerenciar_manutencoes_controller/ajax_db_getManutencaoUnica';
@@ -85,6 +90,8 @@ $route['ajax/venda/passagem/vender'] = 'Venda_passagem_rodoviaria_controller/aja
 
 /*Rotas para métodos de controller que apenas inserem/atualizam algo no banco de dados. */
 $route['formas_pagamentos/save']= 'Gerenciar_formas_pagamento_controller/updatePayments';
+
+
 
 
 $route['tarifas/update'] = 'gerenciar_tarifa_controller/atualizarValorTarifa';
@@ -119,9 +126,10 @@ $route['ajax/passagens/vendidas/getSingle'] = 'visualizar_passagens_controller/a
 
 /*Rotas métodos de controller que exibem alguma tela, sem necessáriamente inserir/atualizar algo no banco de dados*/
 $route['dashboard'] = 'Dashboard';
-
 $route['dashboard/categorias/onibus'] = 'gerenciar_categoria_onibus_controller';
 $route['dashboard/categorias/onibus/editar'] = 'gerenciar_categoria_onibus_controller/editarCategoriaOnibus';
+
+$route['dashboard/alocacaomunicipal'] = 'Gerenciar_alocacao_municipal_controller';
 
 $route['dashboard/tarifas/editar'] = 'gerenciar_tarifa_controller/editarTarifa';
 $route['dashboard/tarifas'] = 'gerenciar_tarifa_controller';
@@ -170,3 +178,4 @@ $route['clientes/meus_pontos'] = 'dashboard_clientes/pontos';
 $route['clientes/minhas_passagens'] = 'dashboard_clientes/minhasPassagens';
 $route['clientes/compra_passagem/selecao_acento']= 'Venda_passagens_online_controller/selecionarAcento';
 $route['clientes/compra_passagem']= 'Venda_passagens_online_controller';
+

@@ -1,5 +1,5 @@
 <?php
-class Categoria_passageiros_model extends CI_Model{
+class Categoria_Passageiros_model extends CI_Model{
 
 public function getCatPassageiros(){
 

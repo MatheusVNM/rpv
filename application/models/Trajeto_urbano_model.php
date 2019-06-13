@@ -17,7 +17,7 @@ class Trajeto_Urbano_model extends CI_Model
 
     public function getTrajetos()
     {
-
+        
         $values = $this->db->get('trajetourbano')->result_array();
         return $values;
     }
@@ -53,10 +53,10 @@ class Trajeto_Urbano_model extends CI_Model
             array_push($notInSqlReal, $r['par_traj_parada']);
         }
 
-       $values =  $this->db->select('paradas.*')
+        $values =  $this->db->select('paradas.*')
             ->distinct()
             ->from('paradas')
-            ->join('paradatrajeto', 'par_traj_parada=parada_id', 'left outer' )
+            ->join('paradatrajeto', 'par_traj_parada=parada_id', 'left outer')
             ->where_not_in('parada_id', $notInSqlReal)
             ->get()->result_array();
 
@@ -100,8 +100,6 @@ class Trajeto_Urbano_model extends CI_Model
             }
         }
         $this->db->insert_batch('paradatrajeto', $paradastrajeto);
-
-
     }
 
 
@@ -147,11 +145,10 @@ class Trajeto_Urbano_model extends CI_Model
             }
         }
         $this->db->insert_batch('paradatrajeto', $paradastrajeto);
-
-
     }
 
-    public function changeStatusTrajeto($id){
+    public function changeStatusTrajeto($id)
+    {
         $this->db->set('trajetourbano_isativo', 'NOT trajetourbano_isativo', FALSE);
         $this->db->where('trajetourbano_id', $id);
         $this->db->update('trajetourbano');
