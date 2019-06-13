@@ -33,6 +33,38 @@ class Onibus_model extends CI_Model
         }
     }
 
+    public function getTodosOsOnibusSemContrato()
+    {
+        $sql = "select * FROM onibus WHERE onibus.onibus_contrato_seguro is null";
+        $result = $this->db->query($sql);
+        if (!$result) {
+            $retorno['success'] = false;
+            $retorno['error'] = $this->db->error();
+            return $retorno;
+        }
+        if ($result->num_rows() > 0) {
+            $retorno['success'] = true;
+            $retorno['result'] = $result->result_array();
+            return $retorno;
+        } else {
+            $retorno['success'] = false;
+            return $retorno;
+        }
+    }
+    public function updateContratoOnibus(
+        $onibus_id
+    ) {
+        $resultUpload =   $this->uploadFile('onibus_contrato_seguro');
+        if ($resultUpload['success']) {
+            $uploadedDownloadDir = $resultUpload['path'];
+        }
+        $data = array(
+            'onibus_contrato_seguro' => $uploadedDownloadDir
+        );
+        $result['success'] = $this->db->update('onibus', $data, array('onibus_id' => $onibus_id));
+        if ($result['success'] === false)
+            $result['error'] = $this->db->error();
+    }
     public function getOnibusEspecifico($id)
     {
         $this->db->select('onibus.*, categoriaonibus.categoriaonibus_nome, categoriaonibus.categoriaonibus_precokm, cidade.cidade_nome, estado.estado_uf, estado.estado_id');
@@ -73,8 +105,7 @@ class Onibus_model extends CI_Model
         $onibus_categoria_intermunicipal,
         $onibus_ar_condicionado,
         $onibus_adaptado_deficiente
-    )
-    {
+    ) {
 
         $data = array(
             'onibus_placa' => $onibus_placa,
@@ -121,8 +152,7 @@ class Onibus_model extends CI_Model
         $onibus_cidade,
         $onibus_ar_condicionado,
         $onibus_adaptado_deficiente
-    )
-    {
+    ) {
         $data = array(
             'onibus_placa' => $onibus_placa,
             'onibus_numero' => $onibus_numero,
@@ -164,8 +194,7 @@ class Onibus_model extends CI_Model
         $onibus_categoria_intermunicipal,
         $onibus_ar_condicionado,
         $onibus_adaptado_deficiente
-    )
-    {
+    ) {
         $data = array(
             'onibus_placa' => $onibus_placa,
             'onibus_numero' => $onibus_numero,
@@ -205,7 +234,4 @@ class Onibus_model extends CI_Model
         }
         return $result;
     }
-
-
-
 }

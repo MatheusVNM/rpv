@@ -57,7 +57,7 @@ $route['view/(:any)/(:any)'] = 'views/loadviewwithfolder/$1/$2';
 
 $route['logout'] = 'login/logout';
 
-/*Rotas para métodos de controller que funcionam com ajax*/ 
+/*Rotas para métodos de controller que funcionam com ajax*/
 
 $route['ajax/cidades/por_estado'] = 'data_only/cidade_controller/ajax_db_getCidadesPorEstado';
 $route['ajax/rodoviarias/existe_na_cidade'] = 'gerenciar_rodoviaria_controller/ajax_db_verificarExistenciaRodoviariaCidade';
@@ -70,6 +70,7 @@ $route['ajax/onibus/create'] = 'gerenciar_frota_controller/ajax_db_insertOnibus'
 $route['ajax/onibus/edit'] = 'gerenciar_frota_controller/ajax_db_updateOnibus';
 $route['ajax/onibus/get'] = 'gerenciar_frota_controller/ajax_db_getOnibus';
 $route['ajax/onibus/getSingle'] = 'gerenciar_frota_controller/ajax_db_getOnibusEspecifico';
+$route['ajax/onibus/updateContratoSeguro'] = 'gerenciar_contrato_seguro_controller/ajax_db_updateContratoSeguro';
 
 $route['ajax/manutencao/create'] = 'gerenciar_manutencoes_controller/ajax_db_createManutencao';
 $route['ajax/manutencao/getUnica'] = 'gerenciar_manutencoes_controller/ajax_db_getManutencaoUnica';
@@ -80,7 +81,7 @@ $route['ajax/comprar_passagem/onibus'] = 'gerenciar_venda_passagens_online_contr
 
 
 /*Rotas para métodos de controller que apenas inserem/atualizam algo no banco de dados. */
-$route['formas_pagamentos/save']= 'Gerenciar_formas_pagamento_controller/updatePayments';
+$route['formas_pagamentos/save'] = 'Gerenciar_formas_pagamento_controller/updatePayments';
 
 
 $route['tarifas/update'] = 'gerenciar_tarifa_controller/atualizarValorTarifa';
@@ -150,9 +151,9 @@ $route['dashboard/manutencoes'] = 'gerenciar_manutencoes_controller';
 $route['dashboard/passagens/onibus'] = 'gerenciar_venda_passagens_online_controller';
 //$route['dashboard/passagens/venda'] =
 
-$route['dashboard/formas_pagamentos']= 'Gerenciar_formas_pagamento_controller';
+$route['dashboard/formas_pagamentos'] = 'Gerenciar_formas_pagamento_controller';
 
 /* Rotas para clientes */
 $route['clientes'] = 'dashboard_clientes';
-$route['clientes/compra_passagem/selecao_acento']= 'gerenciar_venda_passagens_online_controller/selecionarAcento';
-$route['clientes/compra_passagem']= 'gerenciar_venda_passagens_online_controller';
+$route['clientes/compra_passagem/selecao_acento'] = 'gerenciar_venda_passagens_online_controller/selecionarAcento';
+$route['clientes/compra_passagem'] = 'gerenciar_venda_passagens_online_controller';

@@ -26,8 +26,10 @@ class Gerenciar_frota_controller extends CI_Controller
         $data['frota'] = $this->onibus->getOnibus()['result'] ?? null;
         $data['estados'] = $this->estados->getEstados()['result'];
         $data['categoriaonibus'] = $this->categoria_onibus->getCategoriaOnibus();
-        // echo_r($data);
-        $this->load->view('gerenciar_frota_view/tela_inicial', $data);
+        $onibusSemContrato['onibus_sem_contrato'] = $this->onibus->getTodosOsOnibusSemContrato()['result'];
+        echo_r($onibusSemContrato);
+        //$this->load->view('gerenciar_frota_view/tela_inicial', $data);
+        //$this->load->view('gerenciar_contratos_seguro_onibus_view/tela_inicial', $onibusSemContrato);
     }
 
     public function ajax_db_getOnibus()
@@ -41,7 +43,7 @@ class Gerenciar_frota_controller extends CI_Controller
 
         if ($this->form_validation->run() !== FALSE) {
             $retorno['success'] = true;
-            $retorno['data'] = $this->onibus->getOnibusEspecifico($this->input->post('onibus_id'))['result']??null;
+            $retorno['data'] = $this->onibus->getOnibusEspecifico($this->input->post('onibus_id'))['result'] ?? null;
             echo json_encode($retorno);
         } else {
             $retorno['success'] = false;
@@ -200,25 +202,25 @@ class Gerenciar_frota_controller extends CI_Controller
                 filter_var($this->input->post('onibus_ar_condicionado'), FILTER_VALIDATE_BOOLEAN);
             $onibus_adaptado_deficiente =
                 filter_var($this->input->post('onibus_adaptado_deficiente'), FILTER_VALIDATE_BOOLEAN);
-                $result = $this->onibus->updateOnibus(
-                    $onibus_id,
-                    $onibus_placa,
-                    $onibus_numero,
-                    $onibus_numero_antt,
-                    $onibus_num_chassis,
-                    $onibus_num_lugares,
-                    $onibus_marca,
-                    $onibus_potencial_motor,
-                    $onibus_propriedade_veiculo,
-                    $onibus_ano_fab,
-                    $onibus_quilometragem,
-                    $isMunicipal,
-                    $onibus_cidade,
-                    $onibus_categoria_intermunicipal,
-                    $onibus_ar_condicionado,
-                    $onibus_adaptado_deficiente
-                );
-           
+            $result = $this->onibus->updateOnibus(
+                $onibus_id,
+                $onibus_placa,
+                $onibus_numero,
+                $onibus_numero_antt,
+                $onibus_num_chassis,
+                $onibus_num_lugares,
+                $onibus_marca,
+                $onibus_potencial_motor,
+                $onibus_propriedade_veiculo,
+                $onibus_ano_fab,
+                $onibus_quilometragem,
+                $isMunicipal,
+                $onibus_cidade,
+                $onibus_categoria_intermunicipal,
+                $onibus_ar_condicionado,
+                $onibus_adaptado_deficiente
+            );
+
             if ($result['success'] === true) {
                 $result['message'] = successAlert('Onibus atualizado com sucesso');
             } else {

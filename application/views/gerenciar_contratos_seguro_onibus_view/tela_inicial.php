@@ -11,30 +11,17 @@ $this->load->view("header2");
 <?= $this->session->flashdata('success'); ?>
 <div class="row pb-1">
     <div class="col-md-9 row">
-        <div class="col-md-3">
-            <label for=""> </label>
-            <select id="" class="form-control custom-select ">
-            </select>
-        </div>
-        <div class="col-md-3 mt-auto">
-            <button disabled id="filter_filter" type="button" class=" btn btn-secondary">Filtrar</button>
-        </div>
-
     </div>
     <div class="col-md-3 mt-auto">
-        <button type="button" class="btn btn-success float-right mr-2" data-toggle="modal"
-            data-target="#id_modal_create_alocacao" title="Adicionar Alocação.">
+        <button type="button" class="btn btn-success float-right mr-2" data-toggle="modal" data-target="#id_modal_cadastro_seguro" title="Adicionar um Seguro.">
             <i class="fa fa-plus-circle" data-toggle="tooltip" data-placement="bottom" id="id_button_add"> </i>
             Adicionar
         </button>
     </div>
-
-
 </div>
 
 <!-- Table init (Ao abrir a tela) -->
 <div class="table-responsive w-100">
-
     <table class="table table-hover table-striped">
         <thead>
             <tr>
@@ -47,7 +34,8 @@ $this->load->view("header2");
             </tr>
         </thead>
         <!--Body Frota-->
-        <tbody id="id_lista_alocacao">
+        <tbody id="id_lista_onibus">
+
             <tr>
                 <th scope="row">1</th>
                 <td>IQU1240</td>
@@ -57,12 +45,10 @@ $this->load->view("header2");
 
 
                 <td>
-                    <button type="button" class="btn btn-warning btn-sm" id="id_opcao_editar" data-toggle="modal"
-                        data-placement="top" title="Editar Alocação" data-target="#id_modal_edit_alocacao">
+                    <button type="button" class="btn btn-warning btn-sm" id="id_opcao_editar" data-toggle="modal" data-placement="top" title="Editar Alocação" data-target="#id_modal_edit_alocacao">
                         <span class="hvr-icon fa fa-edit mr-1"></span> Editar
                     </button>
-                    <button type="button" class="btn btn-primary btn-sm" title="Mais informações sobre a alocação."
-                        data-toggle="modal" id="id_opcao_visualizar" data-placement="top" data-target="#id_modal_info">
+                    <button type="button" class="btn btn-primary btn-sm" title="Mais informações sobre a alocação." data-toggle="modal" id="id_opcao_visualizar" data-placement="top" data-target="#id_modal_info">
                         <span class="hvr-icon fa fa-info mr-1"></span>Info
                     </button>
                 </td>
@@ -71,77 +57,47 @@ $this->load->view("header2");
     </table>
 
 </div>
-
 <!-- Modal create alocação -->
-<div class="modal fade" id="id_modal_create_alocacao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="id_modal_cadastro_seguro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><b>Cadastrar Passagens Geradas</b></h5>
+                <h5 class="modal-title" id="exampleModalLabel"><b>Cadastrar Contrato do Ônibus</b></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form class="needs-validation container" novalidate>
+                <form id="id_form_adicionar_documento" enctype="multipart/form-data">
                     <div class="form-row mx-2">
                         <div class="form-group col-md-6">
                             <label for="modal_create_onibus">Selecione o ônibus:</label>
-                            <div class="input-group mb-3">
+                            <div class="input-group mb-3" id="id_onibus_selecionado">
                                 <div class="input-group-prepend">
-                                    <button class="btn btn-outline-secondary" type="button" data-toggle="modal"
-                                        data-target="#id_modal_com_listas_onibus">Ônibus</button>
+                                    <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#id_modal_com_listas_onibus">Ônibus</button>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Nenhum ônibus selecionado"
-                                    aria-label="" aria-describedby="basic-addon1" disabled>
+                                <input id="onibus_selecionado" type="text" class="form-control" placeholder="Nenhum ônibus selecionado" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Contrato</label>
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                            <input type="file" name="onibus_contrato_seguro" class="form-control-file" id="exampleFormControlFile1" required>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="form-row">
-                                <div class="form-group col-md-3">
-                                    <label for="exampleFormControlInput1">Número Contrato:</label>
-                                    <input type="number" maxlenght="6" min="0" max="9999" class="form-control"
-                                        id="exampleFormControlInput1">
-                                </div>
-
-                                <div class="form-group col-md-3">
-                                    <label for="exampleFormControlInput1">Data:</label>
-                                    <input type="Date" class="form-control" id="exampleFormControlInput1">
-                                </div>
-
-                                <div class="form-group col-md-3">
-                                    <label for="exampleFormControlInput1">Termino:</label>
-                                    <input type="Date" class="form-control" id="exampleFormControlInput1">
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Salvar</button>
+                <button type="submit" class="btn btn-primary">Salvar</button>
             </div>
+            </form>
         </div>
     </div>
-</div>
 </div>
 
 
 
 <!-- Modal Editar -->
-<div class="modal fade" id="id_modal_edit_alocacao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="id_modal_edit_alocacao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -157,11 +113,9 @@ $this->load->view("header2");
                             <label for="modal_create_onibus">Selecione o ônibus:</label>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <button class="btn btn-outline-secondary" type="button" data-toggle="modal"
-                                        data-target="#id_modal_com_listas_onibus">Ônibus</button>
+                                    <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#id_modal_com_listas_onibus">Ônibus</button>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Nenhum ônibus selecionado"
-                                    aria-label="" aria-describedby="basic-addon1" disabled>
+                                <input type="text" class="form-control" placeholder="Nenhum ônibus selecionado" aria-label="" aria-describedby="basic-addon1" disabled>
                             </div>
 
                         </div>
@@ -176,20 +130,17 @@ $this->load->view("header2");
                             <div class="form-row">
                                 <div class="form-group col-md-3">
                                     <label for="exampleFormControlInput1">Número Contrato:</label>
-                                    <input type="number" maxlenght="6" min="0" max="9999" class="form-control"
-                                        id="exampleFormControlInput1" placeholder="25">
+                                    <input type="number" maxlenght="6" min="0" max="9999" class="form-control" id="exampleFormControlInput1" placeholder="25">
                                 </div>
 
                                 <div class="form-group col-md-3">
                                     <label for="exampleFormControlInput1">Data:</label>
-                                    <input type="Date" class="form-control" id="exampleFormControlInput1"
-                                        placeholder="20/04/2018">
+                                    <input type="Date" class="form-control" id="exampleFormControlInput1" placeholder="20/04/2018">
                                 </div>
 
                                 <div class="form-group col-md-3">
                                     <label for="exampleFormControlInput1">Termino:</label>
-                                    <input type="Date" class="form-control" id="exampleFormControlInput1"
-                                        placeholder="06/05/2021">
+                                    <input type="Date" class="form-control" id="exampleFormControlInput1" placeholder="06/05/2021">
                                 </div>
 
                             </div>
@@ -197,20 +148,15 @@ $this->load->view("header2");
                         </div>
 
                     </div>
-                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary">Salvar</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
-
-
-
-
-
 <!-- Modal lista de Onibus-->
 <div class="modal" tabindex="-1" role="dialog" id="id_modal_com_listas_onibus">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -221,40 +167,35 @@ $this->load->view("header2");
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        OQD6328
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="id_onibus_placa"
-                                name="onibus_placa">
-                            <label class="form-check-label" for="defaultCheck1">
-                            </label>
-                        </div>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center" name="onibus_placa">
-                        ICU7845
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">
-                            </label>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="id_botao_selecionar_onibus"
-                    disabled>Selecionar</button>
-            </div>
+            <form id="form_onibus_select">
+                <div class="modal-body">
+                    <ul class="list-group">
+                        <?php if ($onibus_sem_contrato) : ?>
+                            <?php foreach ($onibus_sem_contrato as $row) : ?>
+                                <li class="list-group-item d-flex justify-content-between align-items-center" id="id_lista_onibus_placa">
+                                    <label for="id_onibus_placa<?= $row['onibus_id'] ?>" class="float-left m-0 r-0 mr-auto">
+                                        <?= $row['onibus_placa'] ?>
+                                    </label>
+                                    <div class="form-check">
+                                        <input class="form-check-input float-right" type="radio" data-name="<?= $row['onibus_placa'] ?>" id="id_onibus_placa<?= $row['onibus_id'] ?>" name="onibus_placa" value="<?= $row['onibus_id'] ?>">
+                                        <label></label>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="id_botao_selecionar_onibus">Selecionar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
 
-
 <!-- Modal Info -->
-<div class="modal fade" id="id_modal_info" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
-    aria-hidden="true">
+<div class="modal fade" id="id_modal_info" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -268,16 +209,14 @@ $this->load->view("header2");
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label for="validationCustom01">Data:</label>
-                            <input type="Date" class="form-control" id="validationCustom01" placeholder="First name"
-                                value="20/04/2019" required disabled>
+                            <input type="Date" class="form-control" id="validationCustom01" placeholder="First name" disabled>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="validationCustom02">Término:</label>
-                            <input type="Date" class="form-control" id="validationCustom02" placeholder="Last name"
-                                value="06/05/2021" required disabled>
+                            <input type="Date" class="form-control" id="validationCustom02" placeholder="Last name" disabled>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -285,13 +224,7 @@ $this->load->view("header2");
 
                     </div>
                     <div class="form-row">
-
-
-
-
                     </div>
-
-
                 </form>
 
             </div>
@@ -304,56 +237,72 @@ $this->load->view("header2");
 $this->load->view("footer2.php")
 ?>
 <script>
-var lastInsert = 0;
-$("input[type='checkbox']").change(function() {
-    ++lastInsert
-    $('#id_mais_motorista').append(
-        '<div id="mot' + lastInsert +
-        '"class="d-flex flex-row align-center my-1 justify-content-center">' +
-        '<input required maxlength="255" type="text" name="teste_merda" class="form-control" id="exampleFormControlInput1">' +
-        '<button onclick="deletarCampo(\'mot' + lastInsert +
-        '\')"type="button" id="id_excluir_input_button" class=" btn btn-hover text-dark">' +
-        '<i class="fa fa-trash my-auto ml-2 fa-2x input-group-icon"></i>' +
-        '</button>' +
-        '</div>');
+    $("#form_onibus_select").submit(function(event) {
+        var placa_onibus = $('input[name=onibus_placa]:checked', '#form_onibus_select').attr("data-name")
+        var id_onibus = $('input[name=onibus_placa]:checked', '#form_onibus_select').attr("value")
+        $("#onibus_selecionado").val(placa_onibus)
+        addInputInvisivelOnibus(id_onibus);
+        $("#id_modal_com_listas_onibus").modal('hide')
+        console.log("aqui");
+        event.preventDefault();
+        return false;
+    })
 
-    var quantidadeDeCampos = $('input[name=teste_merda]').length;
-    var funcionariosSelecionados = $('input[type=checkbox]:checked').length;
-    console.log("Funcionarios Selecionados: " + funcionariosSelecionados);
-    console.log("Quantidade de Campos: " + quantidadeDeCampos);
-    console.log("Last Insert: " + lastInsert);
-    if (lastInsert > funcionariosSelecionados) {
-        deletarCampo('mot' + lastInsert);
+    function addInputInvisivelOnibus(id_desse_onibus) {
+        $("#id_onibus_selecionado").append(
+            '<input type="hidden" id="onibus_selecionado" value="' + id_desse_onibus + '" name="onibus_id" class="form-control" placeholder="Nenhum ônibus selecionado" aria-describedby="basic-addon1" required>'
+        );
     }
-
-});
-
-$('#id_add_cobrador').click(function() {
-    ++lastInsert
-    $('#id_mais_cobrador').append(
-        '<div id="mot' + lastInsert +
-        '"class="d-flex flex-row align-center my-1 justify-content-center">' +
-        '<input required maxlength="255" type="text" name="" class="form-control" id="exampleFormControlInput1">' +
-        '<button onclick="deletarCampo(\'mot' + lastInsert +
-        '\')"type="button" id="id_excluir_input_button" class=" btn btn-hover text-dark">' +
-        '<i class="fa fa-trash my-auto ml-2 fa-2x input-group-icon"></i>' +
-        '</button>' +
-        '</div>');
-});
-
-function deletarCampo(campo) {
-    $('#' + campo + '').remove();
-}
 </script>
 <script>
-var quantidadeHorasTrajeto = 2;
-$("input[type='checkbox']").change(function() {
-    var checados = $('input[type=checkbox]:checked').length;
-    console.log(checados);
-    if (checados == quantidadeHorasTrajeto) {
-        $("#id_botao_selecionar_funcionario").prop("disabled", false);
-    } else {
-        $("#id_botao_selecionar_funcionario").prop("disabled", true);
-    }
-});
+    $("#id_form_adicionar_documento").submit(function() {
+        var form = $('#id_form_adicionar_documento')[0];
+        var data = new FormData(form);
+
+        console.log(data);
+        $.ajax({
+            data: data,
+            type: "POST",
+            enctype: 'multipart/form-data',
+            processData: false, // Important!
+            contentType: false,
+            cache: false,
+            url: "<?= base_url('ajax/onibus/updateContratoSeguro') ?>",
+            dataType: "json",
+            beforeSend: function() {
+                showLoadingModal('Enviando Dados')
+            },
+            success: function(result) {
+                console.log(result['error_fields'])
+                console.log("result:success:", result);
+                if (result['success']) {
+                    $("#page_message").html(result['message']);
+                    $("#id_modal_cadastro_seguro").modal('hide');
+                    $("#id_form_adicionar_documento").trigger("reset");
+                    window.location.reload();
+                } else {
+                    $('#modal_create_warning').html(result['message']);
+
+                    $("#id_form_adicionar_documento").find("input").removeClass("is-valid");
+
+                    $("#id_form_adicionar_documento").find("input").removeClass("is-invalid");
+
+                    $("#id_form_adicionar_documento").find("input").addClass("is-valid");
+
+                    $("#id_form_adicionar_documento").find("input").addClass("is-invalid");
+                    $.each(result['error_fields'], function(key, value) {
+                        $("#id_form_adicionar_documento [name='" + value + "']").addClass('is-invalid').removeClass('is-valid');
+                    })
+                }
+            },
+            error: function(error) {
+                // showWarningModal(JSON.stringify(error));
+                console.log("ressult:error:", error)
+            },
+            complete: function() {
+                setTimeout(closeLoadingModal, 500)
+            }
+        });
+        return false;
+    });
 </script>
