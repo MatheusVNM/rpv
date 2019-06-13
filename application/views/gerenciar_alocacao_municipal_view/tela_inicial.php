@@ -524,8 +524,6 @@ $this->load->view("footer2.php")
         $("#trajeto_selecionado").val(nomeTrajeto)
         addInputInvisivelTrajeto(id);
         $("#id_modal_com_listas_trajeto").modal('hide')
-        var tempoDesseTrajeto = $('input[name=trajetourbano_nome]:checked', '#form_trajeto_select').attr("tempoDoTrajeto");
-        aparecerAvisoDeTrajeto(tempoDesseTrajeto);
         event.preventDefault();
         return false;
     })
@@ -593,7 +591,7 @@ $this->load->view("footer2.php")
                     }
                 },
                 error: function(error) {
-                    // showWarningModal(JSON.stringify(error));
+                    showWarningModal(JSON.stringify(error));
                     console.log("ressult:error:", error)
                 },
                 complete: function() {

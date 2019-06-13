@@ -79,25 +79,38 @@ class Alocacao_municipal_model extends CI_Model
         $this->db->select('IFNULL(MAX(`alocacaomunicipal_motorista`), 0) AS `maxid`', false);
 
         $alocacaomunicipal_id_alocacao = $this->db->query('SELECT MAX(alocacaomunicipal_id) AS `maxid` FROM `alocacaomunicipal`')->row()->maxid;
-        $data = array(
-            'alocacaomunicipal_motorista_expediente_hora_inicio' => $alocacaomunicipal_motorista_expediente_hora_inicio,
-            'alocacaomunicipal_motorista_expediente_hora_final' => $alocacaomunicipal_motorista_expediente_hora_final,
-            'alocacaomunicipal_motorista_id_alocacao' => $alocacaomunicipal_id_alocacao,
-            'alocacaomunicipal_motorista_funcionario_id' => $alocacaomunicipal_motorista_funcionario_id
-        );
-        $result['success'] = $this->db->insert('alocacaomunicipal_motorista', $data);
+        $j = 0;
+        $k = 1;
+        for ($i = 0; $i < count($alocacaomunicipal_motorista_funcionario_id); $i++) {
+            $data = array(
+                'alocacaomunicipal_motorista_expediente_hora_inicio' => $alocacaomunicipal_motorista_expediente_hora_inicio[$j],
+                'alocacaomunicipal_motorista_expediente_hora_final' => $alocacaomunicipal_motorista_expediente_hora_final[$k],
+                'alocacaomunicipal_motorista_id_alocacao' => $alocacaomunicipal_id_alocacao,
+                'alocacaomunicipal_motorista_funcionario_id' => $alocacaomunicipal_motorista_funcionario_id[$i]
+            );
+            $result['success'] = $this->db->insert('alocacaomunicipal_motorista', $data);
+            $j = $k + 1;
+            $k = $j + 1;
+        }
+
 
         if (!$result['success']) {
             $result['error'] = $this->db->error();
             return $result;
         } else {
-            $data = array(
-                'alocacaomunicipal_cobrador_expediente_hora_inicio' => $alocacaomunicipal_cobrador_expediente_hora_inicio,
-                'alocacaomunicipal_cobrador_expediente_hora_final' => $alocacaomunicipal_cobrador_expediente_hora_final,
-                'alocacaomunicipal_cobrador_id_alocacao' => $alocacaomunicipal_id_alocacao,
-                'alocacaomunicipal_cobrador_funcionario_id' => $alocacaomunicipal_cobrador_funcionario_id
-            );
-            $result['success'] = $this->db->insert('alocacaomunicipal_cobrador', $data);
+            $j = 0;
+            $k = 1;
+            for ($i = 0; $i < count($alocacaomunicipal_cobrador_funcionario_id); $i++) {
+                $data = array(
+                    'alocacaomunicipal_cobrador_expediente_hora_inicio' => $alocacaomunicipal_cobrador_expediente_hora_inicio[$j],
+                    'alocacaomunicipal_cobrador_expediente_hora_final' => $alocacaomunicipal_cobrador_expediente_hora_final[$k],
+                    'alocacaomunicipal_cobrador_id_alocacao' => $alocacaomunicipal_id_alocacao,
+                    'alocacaomunicipal_cobrador_funcionario_id' => $alocacaomunicipal_cobrador_funcionario_id[$i]
+                );
+                $result['success'] = $this->db->insert('alocacaomunicipal_cobrador', $data);
+                $j = $k + 1;
+                $k = $j + 1;
+            }
             if ($result['success'] === false) {
                 $result['error'] = $this->db->error();
                 return $result;
@@ -132,24 +145,36 @@ class Alocacao_municipal_model extends CI_Model
             $result['error'] = $this->db->error();
             return $result;
         }
-        $data = array(
-            'alocacaomunicipal_motorista_expediente_hora_inicio' => $alocacaomunicipal_motorista_expediente_hora_inicio,
-            'alocacaomunicipal_motorista_expediente_hora_final' => $alocacaomunicipal_motorista_expediente_hora_final,
-            'alocacaomunicipal_motorista_id_alocacao' => $alocacaomunicipal_id,
-            'alocacaomunicipal_motorista_funcionario_id' => $alocacaomunicipal_motorista_funcionario_id
-        );
-        $result['success'] = $this->db->update('alocacaomunicipal_motorista', $data, array('alocacaomunicipal_motorista_id_alocacao' => $alocacaomunicipal_id));
+        $j = 0;
+        $k = 1;
+        for ($i = 0; $i < count($alocacaomunicipal_motorista_funcionario_id); $i++) {
+            $data = array(
+                'alocacaomunicipal_motorista_expediente_hora_inicio' => $alocacaomunicipal_motorista_expediente_hora_inicio[$j],
+                'alocacaomunicipal_motorista_expediente_hora_final' => $alocacaomunicipal_motorista_expediente_hora_final[$k],
+                'alocacaomunicipal_motorista_id_alocacao' => $alocacaomunicipal_id,
+                'alocacaomunicipal_motorista_funcionario_id' => $alocacaomunicipal_motorista_funcionario_id[$i]
+            );
+            $result['success'] = $this->db->update('alocacaomunicipal_motorista', $data, array('alocacaomunicipal_motorista_id_alocacao' => $alocacaomunicipal_id));
+            $j = $k + 1;
+            $k = $j + 1;
+        }
         if ($result['success'] === false) {
             $result['error'] = $this->db->error();
             return $result;
         } else {
-            $data = array(
-                'alocacaomunicipal_cobrador_expediente_hora_inicio' => $alocacaomunicipal_cobrador_expediente_hora_inicio,
-                'alocacaomunicipal_cobrador_expediente_hora_final' => $alocacaomunicipal_cobrador_expediente_hora_final,
-                'alocacaomunicipal_cobrador_id_alocacao' => $alocacaomunicipal_id,
-                'alocacaomunicipal_cobrador_funcionario_id' => $alocacaomunicipal_cobrador_funcionario_id
-            );
-            $result['success'] = $this->db->update('alocacaomunicipal_cobrador', $data, array('alocacaomunicipal_cobrador_id_alocacao' => $alocacaomunicipal_id));
+            $j = 0;
+            $k = 1;
+            for ($i = 0; $i < count($alocacaomunicipal_cobrador_funcionario_id); $i++) {
+                $data = array(
+                    'alocacaomunicipal_cobrador_expediente_hora_inicio' => $alocacaomunicipal_cobrador_expediente_hora_inicio[$j],
+                    'alocacaomunicipal_cobrador_expediente_hora_final' => $alocacaomunicipal_cobrador_expediente_hora_final[$k],
+                    'alocacaomunicipal_cobrador_id_alocacao' => $alocacaomunicipal_id,
+                    'alocacaomunicipal_cobrador_funcionario_id' => $alocacaomunicipal_cobrador_funcionario_id[$i]
+                );
+                $result['success'] = $this->db->update('alocacaomunicipal_cobrador', $data, array('alocacaomunicipal_cobrador_id_alocacao' => $alocacaomunicipal_id));
+                $j = $k + 1;
+                $k = $j + 1;
+            }
             if ($result['success'] === false) {
                 $result['error'] = $this->db->error();
                 return $result;

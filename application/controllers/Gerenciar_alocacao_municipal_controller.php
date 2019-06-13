@@ -85,12 +85,12 @@ class Gerenciar_alocacao_municipal_controller extends CI_Controller
             $alocacaomunicipal_data_final = $this->input->post('alocacaomunicipal_data_final');
             $alocacaomunicipal_onibus_id = $this->input->post('onibus_id');
             $alocacaomunicipal_trajetourbano_id = $this->input->post('trajetourbano_id');
-            $alocacaomunicipal_motorista_funcionario_id = $this->input->post('motorista_id[0]');
-            $alocacaomunicipal_motorista_expediente_hora_inicio = $this->input->post('motorista_appt[0]');
-            $alocacaomunicipal_motorista_expediente_hora_final = $this->input->post('motorista_appt[1]');
-            $alocacaomunicipal_cobrador_funcionario_id =  $this->input->post('cobrador_id[0]');
-            $alocacaomunicipal_cobrador_expediente_hora_inicio = $this->input->post('cobrador_appt[0]');
-            $alocacaomunicipal_cobrador_expediente_hora_final = $this->input->post('cobrador_appt[1]');
+            $alocacaomunicipal_motorista_funcionario_id = $this->input->post('motorista_id[]');
+            $alocacaomunicipal_motorista_expediente_hora_inicio = $this->input->post('motorista_appt[]');
+            $alocacaomunicipal_motorista_expediente_hora_final = $this->input->post('motorista_appt[]');
+            $alocacaomunicipal_cobrador_funcionario_id =  $this->input->post('cobrador_id[]');
+            $alocacaomunicipal_cobrador_expediente_hora_inicio = $this->input->post('cobrador_appt[]');
+            $alocacaomunicipal_cobrador_expediente_hora_final = $this->input->post('cobrador_appt[]');
 
             $result = $this->alocacao->insertAlocacao(
                 $alocacaomunicipal_data_inicio,
@@ -150,12 +150,12 @@ class Gerenciar_alocacao_municipal_controller extends CI_Controller
             $alocacaomunicipal_data_final = $this->input->post('alocacaomunicipal_data_final');
             $alocacaomunicipal_onibus_id = $this->input->post('onibus_id');
             $alocacaomunicipal_trajetourbano_id = $this->input->post('trajetourbano_id');
-            $alocacaomunicipal_motorista_funcionario_id = $this->input->post('motorista_id[0]');
-            $alocacaomunicipal_motorista_expediente_hora_inicio = $this->input->post('motorista_appt[0]');
-            $alocacaomunicipal_motorista_expediente_hora_final = $this->input->post('motorista_appt[1]');
-            $alocacaomunicipal_cobrador_funcionario_id =  $this->input->post('cobrador_id[0]');
-            $alocacaomunicipal_cobrador_expediente_hora_inicio = $this->input->post('cobrador_appt[0]');
-            $alocacaomunicipal_cobrador_expediente_hora_final = $this->input->post('cobrador_appt[1]');
+            $alocacaomunicipal_motorista_funcionario_id = $this->input->post('motorista_id[]');
+            $alocacaomunicipal_motorista_expediente_hora_inicio = $this->input->post('motorista_appt[]');
+            $alocacaomunicipal_motorista_expediente_hora_final = $this->input->post('motorista_appt[]');
+            $alocacaomunicipal_cobrador_funcionario_id =  $this->input->post('cobrador_id[]');
+            $alocacaomunicipal_cobrador_expediente_hora_inicio = $this->input->post('cobrador_appt[]');
+            $alocacaomunicipal_cobrador_expediente_hora_final = $this->input->post('cobrador_appt[]');
             $alocacaomunicipal_id = $this->input->post('alocacaomunicipal_id');
 
             $result = $this->alocacao->updateAlocacao(
