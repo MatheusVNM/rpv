@@ -74,7 +74,7 @@ class login extends CI_Controller
       }
     } else {
       $this->session->set_flashdata('loginerror', '<div class="alert alert-danger">Usuário ou senha incorretos</div>');
-      // redirect('');
+      redirect('');
     }
   }
 

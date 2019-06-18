@@ -32,11 +32,11 @@ $this->load->view("header_cliente");
                 Preço: R$<?= $passagem['comprapassagem_valor_compra'] ?>
             </p>
             <p class="mb-0">
-                Data compra: <?= date("d/m-/Y", strtotime($passagem['comprapassagem_data'])) ?>
+                Data compra: <?= date("d/m/Y", strtotime($passagem['comprapassagem_data'])) ?>
             </p>
 
             <p class="mb-0">
-                Data saída: <?= date("d/m-/Y", strtotime($passagem['alocacaointermunicipal_data_hora_inicio'])) ?>
+                Data saída: <?= date("d/m/Y", strtotime($passagem['alocacaointermunicipal_data_hora_inicio'])) ?>
             </p>
 
             

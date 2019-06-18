@@ -171,6 +171,7 @@ $route['dashboard/passagens/onibus'] = 'Venda_passagens_online_controller';
 //$route['dashboard/passagens/venda'] =
 
 $route['dashboard/formas_pagamentos']= 'Gerenciar_formas_pagamento_controller';
+$route['dashboard/alocacoes/municipal']= 'Gerenciar_alocacao_municipal_controller';
 
 /* Rotas para clientes */
 $route['clientes'] = 'dashboard_clientes';
