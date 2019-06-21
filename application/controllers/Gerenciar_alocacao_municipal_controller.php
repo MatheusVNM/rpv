@@ -21,10 +21,10 @@ class Gerenciar_alocacao_municipal_controller extends CI_Controller
 
     public function index()
     {
-        $data['alocacaomunicipal'] = $this->alocacao->getAlocacoes()['result'];
+        $data['alocacaomunicipal'] = $this->alocacao->getAlocacoes()['result']??array();
         $data['onibus'] = $this->onibus->getOnibusMunicipalNaoAlocado()['result'];
-        $data['motoristas'] = $this->funcionarios->getMotoristasNaoAlocados()['result'];
-        $data['cobradores'] = $this->funcionarios->getCobradoresNaoAlocados()['result'];
+        $data['motoristas'] = $this->funcionarios->getMotoristasNaoAlocados()['result']??array();
+        $data['cobradores'] = $this->funcionarios->getCobradoresNaoAlocados()['result']??array();
         $data['trajetourbano'] = $this->trajetourbano->getTrajetos();
         //$data['cobradores_nao_alocados_editar'] = $this->funcionarios->getCobradoresNaoAlocadosEditar(1)['result'];
         //echo_r( $this->funcionarios->getMotoristasNaoAlocados()['result']);

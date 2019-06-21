@@ -101,6 +101,7 @@ if ($this->session->userdata('logged_in') !== true || $this->session->userdata('
                     <a href="<?= site_url('dashboard/trajetos/urbanos') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-road mr-1"></i> Gerenciar Trajetos Urbanos</a>
                     <a href="<?= site_url('dashboard/paradas') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-hand-paper-o mr-1"></i> Gerenciar Paradas</a>
                     <a href="<?= site_url('dashboard/concessoes') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-paper-plane-o mr-1"></i> Gerenciar Concessões de Trajetos</a>
+                    <a href="<?= site_url('dashboard/alocacoes/municipal') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-object-group mr-1"></i> Gerenciar Alocacoes Municipal</a>
 
                 <?php elseif ($this->session->userdata('level') === 'secretario') : ?>
                     <a href="<?= site_url('dashboard/frotas') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-bus mr-1"></i> Gerenciar Registro de Frotas</a>

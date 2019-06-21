@@ -171,6 +171,9 @@ $this->load->view("footer_cliente.php", array('js' => 'gerenciar_manutencao'))
 </script>
 
 <script>
+    $("#data").prop('min', function(){
+        return new Date().toJSON().split('T')[0];
+    });
     var today = new Date().toISOString().split('T')[0];
     $("#searchDate").prop('min', today);
 
