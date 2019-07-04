@@ -180,3 +180,7 @@ $route['clientes/minhas_passagens'] = 'dashboard_clientes/minhasPassagens';
 $route['clientes/compra_passagem/selecao_acento']= 'Venda_passagens_online_controller/selecionarAcento';
 $route['clientes/compra_passagem']= 'Venda_passagens_online_controller';
 
+/* Rotas para os gerente de RH*/
+$route['dashboard/rh/funcionarios'] = "gerenciar_registro_funcionarios_controller";
+
+

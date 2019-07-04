@@ -14,6 +14,7 @@ class Usuario_model extends CI_Model
         // $this->db->from('usuarios');
         // echo_r($this->db->error());
         // echo $this->db->get_compiled_select();
+
         $result = $this->db->get('usuarios', 1);
         return $result;
     }

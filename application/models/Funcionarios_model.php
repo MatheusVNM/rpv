@@ -28,6 +28,30 @@ class Funcionarios_model extends CI_Model
             return $retorno;
         }
     }
+
+    public function insertFuncionario($nome, $cpf, $telefone, $email, $nomeMae, $cnh){
+
+            $data = array(
+                'funcionario_nome' => $nome,
+                'funcionario_cpf' => $cpf,
+                'funcionario_telefone' => $telefone,
+                'funcionario_email' => $email,
+                'funcionario_nomeMae' => $nomeMae,
+                'funcionario_cnh' => $cnh,
+            );
+            $result['success'] = $this->db->insert('funcionarios', $data);
+            if (!$result['success'])
+                $result['error'] = $this->db->error();
+
+            return $result;
+
+
+
+
+    }
+
+
+
     public function getTipoFuncionario($tipoFuncionario)
     {
         $this->db->select('funcionarios.*, tipofuncionario.tipofuncionario_nome');
