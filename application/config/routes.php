@@ -92,6 +92,8 @@ $route['trajetos/urbanos/create'] = 'gerenciar_trajetos_urbanos_controller/creat
 $route['trajetos/urbanos/edit'] = 'gerenciar_trajetos_urbanos_controller/editTrajeto';
 $route['trajetos/urbanos/changeStatus'] = 'gerenciar_trajetos_urbanos_controller/changeStatus';
 
+$route['funcionario/createContrato'] = 'Gerenciar_funcionarios_controller/ajax_db_updateContratoSeguroFuncionario';
+
 
 $route['rodoviarias/create'] = 'gerenciar_rodoviaria_controller/db_insert';
 $route['rodoviarias/edit'] = 'gerenciar_rodoviaria_controller/db_update';
@@ -126,6 +128,8 @@ $route['dashboard/paradas/editar'] = 'gerenciar_paradas_controller/editarParada'
 
 
 $route['dashboard/concessoes'] = 'gerenciar_concessoes_controller';
+
+$route['dashboard/segurosFuncionarios'] = 'Gerenciar_funcionarios_controller';
 
 $route['dashboard/trajetos/urbanos'] = 'gerenciar_trajetos_urbanos_controller';
 $route['dashboard/trajetos/urbanos/cadastrar'] = 'gerenciar_trajetos_urbanos_controller/cadastrarnovotrajeto';

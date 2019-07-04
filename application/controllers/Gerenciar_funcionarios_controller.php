@@ -23,10 +23,15 @@ class Gerenciar_funcionarios_controller extends CI_Controller
                 $funcionario_id
             );
             if ($result['success']) {
-                $result['message'] = successAlert('Documento de seguro adicionado com sucesso.');
+                $this->session->set_flashdata('success', '<div class="alert alert-success m-2">Ação salva com sucesso.</div>');
+                redirect('dashboard/segurosFuncionarios');
             } else {
-                $result['message'] = errorAlert('Erro ao adicionar documento de seguro.');
+                $this->session->set_flashdata('error',  '<div class="alert alert-success mt-3 mx-auto">Ação salva com sucesso.</div>');
+                redirect('dashboard/segurosFuncionarios');
             }
+        } else {
+            $this->session->set_flashdata('error',  '<div class="alert alert-success mt-3 mx-auto">Erro ao cadastrar a concessão.</div>');
+            redirect('dashboard/segurosFuncionarios');
         }
     }
 }
