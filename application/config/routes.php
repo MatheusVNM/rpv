@@ -87,6 +87,15 @@ $route['ajax/comprar_passagem/comprar'] = 'Venda_passagens_online_controller/aja
 $route['ajax/venda/passagem/alocacao'] = 'Venda_passagem_rodoviaria_controller/ajax_db_getAlocacoesPorCidade';
 $route['ajax/venda/passagem/vender'] = 'Venda_passagem_rodoviaria_controller/ajax_db_comprarPassagem';
 
+$route['ajax/tarifa/encomenda/get'] = "Gerenciar_tarifa_encomenda_controller/ajax_db_getTarifasEncomendas";
+$route['ajax/tarifa/encomenda/create'] = "Gerenciar_tarifa_encomenda_controller/ajax_db_insertTarifaEncomenda";
+$route['ajax/tarifa/encomenda/update'] = "Gerenciar_tarifa_encomenda_controller/ajax_db_updateTarifaEncomenda";
+$route['ajax/tarifa/encomenda/getSingle'] = "Gerenciar_tarifa_encomenda_controller/ajax_db_getTarifaEncomendasEspecifica";
+
+
+
+
+
 
 /*Rotas para métodos de controller que apenas inserem/atualizam algo no banco de dados. */
 $route['formas_pagamentos/save']= 'Gerenciar_formas_pagamento_controller/updatePayments';
@@ -131,9 +140,9 @@ $route['dashboard/categorias/onibus/editar'] = 'gerenciar_categoria_onibus_contr
 
 $route['dashboard/alocacaomunicipal'] = 'Gerenciar_alocacao_municipal_controller';
 
-$route['dashboard/tarifas/editar'] = 'gerenciar_tarifa_controller/editarTarifa';
-$route['dashboard/tarifas'] = 'gerenciar_tarifa_controller';
-$route['dashboard/tarifas/cadastrar'] = 'gerenciar_tarifa_controller/cadastrartarifaview';
+$route['dashboard/tarifas/municipal/editar'] = 'gerenciar_tarifa_controller/editarTarifa';
+$route['dashboard/tarifas/municipal'] = 'gerenciar_tarifa_controller';
+$route['dashboard/tarifas/municipal/cadastrar'] = 'gerenciar_tarifa_controller/cadastrartarifaview';
 
 $route['dashboard/paradas'] = 'gerenciar_paradas_controller';
 $route['dashboard/paradas/editar'] = 'gerenciar_paradas_controller/editarParada';
@@ -172,6 +181,13 @@ $route['dashboard/passagens/onibus'] = 'Venda_passagens_online_controller';
 
 $route['dashboard/formas_pagamentos']= 'Gerenciar_formas_pagamento_controller';
 $route['dashboard/alocacoes/municipal']= 'Gerenciar_alocacao_municipal_controller';
+
+
+
+//Gerenciar tarifa de encomendas
+$route['dashboard/tarifas/encomendas'] = 'Gerenciar_tarifa_encomenda_controller';
+
+
 
 /* Rotas para clientes */
 $route['clientes'] = 'dashboard_clientes';

@@ -75,8 +75,8 @@ $('.numbers-only').bind('keypress blur', function (event) {
     if (keyCode == 8 || (keyCode >= 35 && keyCode <= 40) || keyCode == 116 || keyCode == 9 || keyCode == 8) {
         return;
     }
-    var regex = /[^0-9]/;
-    $(this).attr("pattern", "[0-9]+")
+    var regex = /[^0-9.]/;
+    $(this).attr("pattern", "[0-9.]+")
     var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
     if (regex.test(key)) {
         event.preventDefault();
