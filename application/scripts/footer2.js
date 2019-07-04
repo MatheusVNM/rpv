@@ -13,7 +13,6 @@ $("#menu-toggle").click(function (e) {
     e.preventDefault();
     $("#wrapper").toggleClass("toggled");
 });
-
 $('.dual-collapse').on('shown.bs.collapse', function (e) {
     $(this).parent().find("#navbar-collapse-icon").removeClass("fa-arrow-circle-down").addClass("fa-arrow-circle-up");
 });

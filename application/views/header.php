@@ -185,6 +185,15 @@ $this->load->helper('url');
                     <a href="#" class="btn btn-link">Não possui cadastro? Cadastrar-se</a>
 
                 </div>
+                <div class="modal-body border border-dark rounded mx-2">
+                <h6 style="text-decoration: underline; font-weight: bold">Acesso Rapido: Development only</h6>
+                <button class="fast-access btn btn-outline-dark mb-1" type="button" data-email="jose@teste.com"  data-senha="123456" data-tipo="admlocal">ADM Local</button>
+                <button class="fast-access btn btn-outline-dark mb-1" type="button" data-email="maria@teste.com"  data-senha="123456" data-tipo="adm">ADM</button>
+                <button class="fast-access btn btn-outline-dark mb-1" type="button" data-email="ana@teste.com"  data-senha="123456" data-tipo="secretario">Secretario</button>
+                <button class="fast-access btn btn-outline-dark mb-1" type="button" data-email="lucas@teste.com"  data-senha="123456" data-tipo="cliente">Cliente</button>
+                <button class="fast-access btn btn-outline-dark mb-1" type="button" data-email="claudia@rodoviaria.com"  data-senha="123456" data-tipo="funcionario">Funcionario da Rodoviaria</button>
+                <button class="fast-access btn btn-outline-dark mb-1" type="button" data-email="joana@teste.com"  data-senha="123456" data-tipo="contador">Contador</button>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <!-- <button type="button" form="loginForm" class="btn btn-primary" type="submit">Entrar</button> -->

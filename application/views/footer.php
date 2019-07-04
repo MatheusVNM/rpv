@@ -4,6 +4,12 @@
     <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap-select.min.js"); ?>"></script>
     <script>
         $(document).ready(function() {
+            $(".fast-access").click(function(){
+                $("#email").val($(this).attr("data-email"));
+                $("#password").val($(this).attr("data-senha"));
+                $("#tipoUsuario").val($(this).attr("data-tipo"));
+                $("#loginForm").submit();
+            })
             var func = () => {
                 var d = new Date();
                 var x = d.toLocaleString();

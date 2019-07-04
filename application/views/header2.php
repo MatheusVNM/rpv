@@ -31,6 +31,7 @@ if ($this->session->userdata('logged_in') !== true || $this->session->userdata('
 
     <!-- Icon CSS-->
     <link rel="stylesheet" href="<?php echo base_url("assets/css/font-awesome.min.css"); ?>">
+    <link rel="stylesheet" href="<?php echo base_url("assets/css/all.css"); ?>">
 
     <!-- Hoover CSS -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/hover-min.css"); ?>" media="all" />
@@ -97,10 +98,10 @@ if ($this->session->userdata('logged_in') !== true || $this->session->userdata('
                     <a href="<?= site_url('dashboard/formas_pagamentos') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-paypal mr-1"></i> Gerenciar Formas de pagamento</a>
                 <?php elseif ($this->session->userdata('level') === 'admlocal') : ?>
 
-                    <a href="<?= site_url('dashboard/tarifas') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-money mr-1"></i> Gerenciar Tarifas</a>
-                    <a href="<?= site_url('dashboard/trajetos/urbanos') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-road mr-1"></i> Gerenciar Trajetos Urbanos</a>
-                    <a href="<?= site_url('dashboard/paradas') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-hand-paper-o mr-1"></i> Gerenciar Paradas</a>
-                    <a href="<?= site_url('dashboard/concessoes') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-paper-plane-o mr-1"></i> Gerenciar Concessões de Trajetos</a>
+                    <a href="<?= site_url('dashboard/tarifas') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-money mr-1"></i> <i class="hvr-icon text-warning fa fa-exclamation-triangle mr-1"></i>Gerenciar Tarifas</a>
+                    <a href="<?= site_url('dashboard/trajetos/urbanos') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-road mr-1"></i> <i class="hvr-icon  text-warning fa fa-exclamation-triangle mr-1"></i> Gerenciar Trajetos Urbanos</a>
+                    <a href="<?= site_url('dashboard/paradas') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-hand-paper-o mr-1"></i> <i class="hvr-icon text-warning fa fa-exclamation-triangle mr-1"> </i>Gerenciar Paradas</a>
+                    <a href="<?= site_url('dashboard/concessoes') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-paper-plane mr-1"></i> Gerenciar Concessões de Trajetos</a>
                     <a href="<?= site_url('dashboard/alocacoes/municipal') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-object-group mr-1"></i> Gerenciar Alocacoes Municipal</a>
 
                 <?php elseif ($this->session->userdata('level') === 'secretario') : ?>
@@ -142,13 +143,12 @@ if ($this->session->userdata('logged_in') !== true || $this->session->userdata('
                 <div class="navbar-collapse collapse w-100 order-1 dual-collapse mt-lg-0 mt-sm-3 ">
                     <ul class="navbar-nav ml-auto">
                         <li class="dropdown shownav-item text-light d-flex align-center ml-3">
-                            <a href="#" class="nav-link d-flex row  " role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a href="#" class="nav-link d-flex row  " role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 <i class="fa fa-user-circle fa-2x my-auto"></i>
                                 <div class="px-2 py-1">
                                     <?= $this->session->userdata('username') ?>
                                 </div>
                             </a>
-
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="<?= site_url('logout'); ?>">Sair</a>
                             </div>
