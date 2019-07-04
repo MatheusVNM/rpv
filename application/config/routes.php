@@ -110,6 +110,9 @@ $route['categorias/onibus/changeStatus'] = 'gerenciar_categoria_onibus_controlle
 $route['categorias/onibus/update'] = 'gerenciar_categoria_onibus_controller/_updateCategoriaOnibus';
 
 
+
+$route['categorias/onibus/create_contrato'] = 'Gerenciar_contrato_seguro_controller/ajax_db_updateContratoSeguro';
+
 //aquiiii
 /*Rotas métodos de controller que exibem alguma tela, sem necessáriamente inserir/atualizar algo no banco de dados*/
 $route['dashboard'] = 'Dashboard';
@@ -126,6 +129,9 @@ $route['dashboard/paradas/editar'] = 'gerenciar_paradas_controller/editarParada'
 
 
 $route['dashboard/concessoes'] = 'gerenciar_concessoes_controller';
+
+$route['dashboard/contrato_onibus'] = 'Gerenciar_contrato_seguro_controller';
+
 
 $route['dashboard/trajetos/urbanos'] = 'gerenciar_trajetos_urbanos_controller';
 $route['dashboard/trajetos/urbanos/cadastrar'] = 'gerenciar_trajetos_urbanos_controller/cadastrarnovotrajeto';

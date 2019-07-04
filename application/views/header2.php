@@ -95,6 +95,7 @@ if ($this->session->userdata('logged_in') !== true || $this->session->userdata('
                     <a href="<?= site_url('dashboard/rodoviarias') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-location-arrow mr-1"></i> Gerenciar Rodoviarias</a>
                     <a href="<?= site_url('dashboard/manutencoes') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-wrench mr-1"></i> Gerenciar Manutenções</a>
                     <a href="<?= site_url('dashboard/formas_pagamentos') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-paypal mr-1"></i> Gerenciar Formas de pagamento</a>
+                    <a href="<?= site_url('dashboard/contrato_onibus') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-file mr-1"></i> Gerenciar Contrato de Ônibus</a>
                 <?php elseif ($this->session->userdata('level') === 'admlocal') : ?>
 
                     <a href="<?= site_url('dashboard/tarifas') ?>" class="list-group-item list-group-item-action bg-light hvr-sweep-to-right hvr-icon-grow"><i class="hvr-icon fa fa-money mr-1"></i> Gerenciar Tarifas</a>

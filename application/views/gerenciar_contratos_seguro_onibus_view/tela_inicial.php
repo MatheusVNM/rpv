@@ -27,37 +27,39 @@ $this->load->view("header2");
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Placa do Veículo</th>
-                <th scope="col">Nº Contrato</th>
-                <th scope="col">Documento</th>
-                <th scope="col">Data</th>
+                <th scope="col">Marca do Veículo</th>
+                <th scope="col">Ano de Fabricação</th>
+                <th scope="col">Cidade de Funcionamento</th>
                 <th scope="col">Opções</th>
             </tr>
         </thead>
         <!--Body Frota-->
         <tbody id="id_lista_onibus">
-
-            <tr>
-                <th scope="row">1</th>
-                <td>IQU1240</td>
-                <td>25</td>
-                <td>...</td>
-                <td>20/04/2018</td>
-
-
-                <td>
-                    <button type="button" class="btn btn-warning btn-sm" id="id_opcao_editar" data-toggle="modal" data-placement="top" title="Editar Alocação" data-target="#id_modal_edit_alocacao">
-                        <span class="hvr-icon fa fa-edit mr-1"></span> Editar
-                    </button>
-                    <button type="button" class="btn btn-primary btn-sm" title="Mais informações sobre a alocação." data-toggle="modal" id="id_opcao_visualizar" data-placement="top" data-target="#id_modal_info">
-                        <span class="hvr-icon fa fa-info mr-1"></span>Info
-                    </button>
-                </td>
-            </tr>
+            <?php if ($onibus_com_contrato) : ?>
+                <?php foreach ($onibus_com_contrato as $onibus) : ?>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td><?= $onibus['onibus_placa'] ?></td>
+                        <td><?= $onibus['onibus_marca'] ?></td>
+                        <td><?= $onibus['onibus_ano_fab'] ?></td>
+                        <td><?= $onibus['cidade_nome'] ?></td>
+                        <td>
+                            <button type="button" onclick="editar(<?= $onibus['onibus_id'] ?>)" class="btn btn-warning btn-sm" id="id_opcao_editar" data-toggle="modal" data-placement="top" title="Editar Contrato" data-target="#id_modal_edit_contrato">
+                                <span class="hvr-icon fa fa-edit mr-1"></span> Editar
+                            </button>
+                            <a type="button" class="btn btn-primary btn-sm" href="<?= $onibus['onibus_contrato_seguro'] ?>" title="Mais informações sobre a alocação." id="id_opcao_visualizar" data-placement="top" target="_blank">
+                                <span class="hvr-icon fa fa-file-pdf-o mr-1"></span>Visualizar
+                            </a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif ?>
+            
         </tbody>
     </table>
 
 </div>
-<!-- Modal create alocação -->
+<!-- Modal create contrato -->
 <div class="modal fade" id="id_modal_cadastro_seguro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -68,28 +70,28 @@ $this->load->view("header2");
                 </button>
             </div>
             <div class="modal-body">
-                <form id="id_form_adicionar_documento" enctype="multipart/form-data">
-                    <div class="form-row mx-2">
-                        <div class="form-group col-md-6">
-                            <label for="modal_create_onibus">Selecione o ônibus:</label>
-                            <div class="input-group mb-3" id="id_onibus_selecionado">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#id_modal_com_listas_onibus">Ônibus</button>
-                                </div>
-                                <input id="onibus_selecionado" type="text" class="form-control" placeholder="Nenhum ônibus selecionado" required>
+                <?= form_open_multipart('Gerenciar_contrato_seguro_controller/ajax_db_updateContratoSeguro', array('id' => 'id_form_adicionar_documento')) ?>
+                <div class="form-row mx-2">
+                    <div class="form-group col-md-6">
+                        <label for="modal_create_onibus">Selecione o ônibus:</label>
+                        <div class="input-group mb-3" id="id_onibus_selecionado">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#id_modal_com_listas_onibus">Ônibus</button>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlFile1">Contrato</label>
-                            <input type="file" name="onibus_contrato_seguro" class="form-control-file" id="exampleFormControlFile1" required>
+                            <input id="onibus_selecionado" type="text" class="form-control" placeholder="Nenhum ônibus selecionado" required>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1">Contrato</label>
+                        <input type="file" name="onibus_contrato_seguro" class="form-control-file" id="exampleFormControlFile1">
+                    </div>
+                </div>
+                <?= form_close() ?>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary">Salvar</button>
+                <button onclick="enviando()" type="button" class="btn btn-primary" id="id_button_salvar">Salvar</button>
             </div>
-            </form>
         </div>
     </div>
 </div>
@@ -97,66 +99,33 @@ $this->load->view("header2");
 
 
 <!-- Modal Editar -->
-<div class="modal fade" id="id_modal_edit_alocacao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="id_modal_edit_contrato" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><b>Editar</b></h5>
+                <h5 class="modal-title" id="exampleModalLabel"><b>Editar Contrato do Ônibus</b></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form class="needs-validation container" novalidate>
-                    <div class="form-row mx-2">
-                        <div class="form-group col-md-6">
-                            <label for="modal_create_onibus">Selecione o ônibus:</label>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#id_modal_com_listas_onibus">Ônibus</button>
-                                </div>
-                                <input type="text" class="form-control" placeholder="Nenhum ônibus selecionado" aria-label="" aria-describedby="basic-addon1" disabled>
-                            </div>
-
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlFile1">Contrato</label>
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                        </div>
+                <?= form_open_multipart('Gerenciar_contrato_seguro_controller/ajax_db_updateContratoSeguro', array('id' => 'id_edit_form_adicionar_documento')) ?>
+                <div class="form-row mx-2" id="id_contrato_onibus">
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1">Contrato</label>
+                        <input type="file" name="onibus_contrato_seguro" class="form-control-file" id="exampleFormControlFile1">
                     </div>
-
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="form-row">
-                                <div class="form-group col-md-3">
-                                    <label for="exampleFormControlInput1">Número Contrato:</label>
-                                    <input type="number" maxlenght="6" min="0" max="9999" class="form-control" id="exampleFormControlInput1" placeholder="25">
-                                </div>
-
-                                <div class="form-group col-md-3">
-                                    <label for="exampleFormControlInput1">Data:</label>
-                                    <input type="Date" class="form-control" id="exampleFormControlInput1" placeholder="20/04/2018">
-                                </div>
-
-                                <div class="form-group col-md-3">
-                                    <label for="exampleFormControlInput1">Termino:</label>
-                                    <input type="Date" class="form-control" id="exampleFormControlInput1" placeholder="06/05/2021">
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
+                </div>
+                <?= form_close() ?>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Salvar</button>
+                <button onclick="salvarEdicao()" type="button" class="btn btn-primary" id="id_button_salvar">Salvar</button>
             </div>
-            </form>
         </div>
     </div>
 </div>
+
 <!-- Modal lista de Onibus-->
 <div class="modal" tabindex="-1" role="dialog" id="id_modal_com_listas_onibus">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -194,44 +163,6 @@ $this->load->view("header2");
 </div>
 
 
-<!-- Modal Info -->
-<div class="modal fade" id="id_modal_info" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="TituloModalCentralizado"><b>Informações</b></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form class="needs-validation" novalidate>
-                    <div class="form-row">
-                        <div class="col-md-6 mb-3">
-                            <label for="validationCustom01">Data:</label>
-                            <input type="Date" class="form-control" id="validationCustom01" placeholder="First name" disabled>
-                            <div class="valid-feedback">
-                                Looks good!
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="validationCustom02">Término:</label>
-                            <input type="Date" class="form-control" id="validationCustom02" placeholder="Last name" disabled>
-                            <div class="valid-feedback">
-                                Looks good!
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="form-row">
-                    </div>
-                </form>
-
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Body end -->
 <?php
 $this->load->view("footer2.php")
@@ -240,9 +171,10 @@ $this->load->view("footer2.php")
     $("#form_onibus_select").submit(function(event) {
         var placa_onibus = $('input[name=onibus_placa]:checked', '#form_onibus_select').attr("data-name")
         var id_onibus = $('input[name=onibus_placa]:checked', '#form_onibus_select').attr("value")
+        console.log("ID DO ONIBUS: " + id_onibus);
         $("#onibus_selecionado").val(placa_onibus)
         addInputInvisivelOnibus(id_onibus);
-        $("#id_modal_com_listas_onibus").modal('hide')
+        $("#id_modal_com_listas_onibus").modal('hide');
         console.log("aqui");
         event.preventDefault();
         return false;
@@ -253,56 +185,38 @@ $this->load->view("footer2.php")
             '<input type="hidden" id="onibus_selecionado" value="' + id_desse_onibus + '" name="onibus_id" class="form-control" placeholder="Nenhum ônibus selecionado" aria-describedby="basic-addon1" required>'
         );
     }
+
+    function addInputInvisivelOnibusEdit(id_desse_onibus) {
+        $("#id_contrato_onibus").append(
+            '<input type="hidden" id="onibus_selecionado" value="' + id_desse_onibus + '" name="onibus_id" class="form-control" placeholder="Nenhum ônibus selecionado" aria-describedby="basic-addon1" required>'
+        );
+    }
 </script>
+
 <script>
-    $("#id_form_adicionar_documento").submit(function() {
-        var form = $('#id_form_adicionar_documento')[0];
-        var data = new FormData(form);
+    function enviando() {
+        var item = '<span class="sr-only">Loading...</span>';
+        $("#id_form_adicionar_documento").attr("disabled", true);
+        $("#id_button_salvar").html(item);
+        $("#id_button_salvar").addClass("text-primary");
+        $("#id_button_salvar").addClass("spinner-grow");
+        $("#id_button_salvar").removeClass("btn-success");
+        $("#id_form_adicionar_documento").submit();
+        $(selector).submit();
+    }
 
-        console.log(data);
-        $.ajax({
-            data: data,
-            type: "POST",
-            enctype: 'multipart/form-data',
-            processData: false, // Important!
-            contentType: false,
-            cache: false,
-            url: "<?= base_url('ajax/onibus/updateContratoSeguro') ?>",
-            dataType: "json",
-            beforeSend: function() {
-                showLoadingModal('Enviando Dados')
-            },
-            success: function(result) {
-                console.log(result['error_fields'])
-                console.log("result:success:", result);
-                if (result['success']) {
-                    $("#page_message").html(result['message']);
-                    $("#id_modal_cadastro_seguro").modal('hide');
-                    $("#id_form_adicionar_documento").trigger("reset");
-                    window.location.reload();
-                } else {
-                    $('#modal_create_warning').html(result['message']);
+    function salvarEdicao() {
+        var item = '<span class="sr-only">Loading...</span>';
+        $("#id_edit_form_adicionar_documento").attr("disabled", true);
+        $("#id_button_salvar").html(item);
+        $("#id_button_salvar").addClass("text-primary");
+        $("#id_button_salvar").addClass("spinner-grow");
+        $("#id_button_salvar").removeClass("btn-success");
+        $("#id_edit_form_adicionar_documento").submit();
+        $(selector).submit();
+    }
 
-                    $("#id_form_adicionar_documento").find("input").removeClass("is-valid");
-
-                    $("#id_form_adicionar_documento").find("input").removeClass("is-invalid");
-
-                    $("#id_form_adicionar_documento").find("input").addClass("is-valid");
-
-                    $("#id_form_adicionar_documento").find("input").addClass("is-invalid");
-                    $.each(result['error_fields'], function(key, value) {
-                        $("#id_form_adicionar_documento [name='" + value + "']").addClass('is-invalid').removeClass('is-valid');
-                    })
-                }
-            },
-            error: function(error) {
-                // showWarningModal(JSON.stringify(error));
-                console.log("ressult:error:", error)
-            },
-            complete: function() {
-                setTimeout(closeLoadingModal, 500)
-            }
-        });
-        return false;
-    });
+    function editar(idOnibus) {
+        addInputInvisivelOnibusEdit(idOnibus);
+    }
 </script>

@@ -9,7 +9,8 @@ class Gerenciar_contrato_seguro_controller extends CI_Controller
     }
     public function index()
     {
-        $onibusSemContrato['onibus_sem_contrato'] = $this->onibus->getTodosOsOnibusSemContrato()['result'];
+        $onibusSemContrato['onibus_sem_contrato'] = $this->onibus->getTodosOsOnibusSemContrato()['result'] ?? null;
+        $onibusSemContrato['onibus_com_contrato'] = $this->onibus->getTodosOsOnibusComContrato()['result'] ?? null;
         //echo_r($onibusSemContrato);
         $this->load->view('gerenciar_contratos_seguro_onibus_view/tela_inicial', $onibusSemContrato);
     }
@@ -22,9 +23,12 @@ class Gerenciar_contrato_seguro_controller extends CI_Controller
                 $onibus_id
             );
             if ($result['success']) {
-                $result['message'] = successAlert('Documento de seguro adicionado com sucesso.');
+                $this->session->set_flashdata('success', '<div class="alert alert-success m-2">Ação salva com sucesso</div>');
+                redirect('dashboard/contrato_onibus');
             } else {
                 $result['message'] = errorAlert('Erro ao adicionar documento de seguro.');
+                $this->session->set_flashdata('success', '<div class="alert alert-success m-2">Ação salva com sucesso</div>');
+                redirect('dashboard/contrato_onibus');
             }
         }
     }
