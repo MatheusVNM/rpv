@@ -172,7 +172,7 @@ function editar(id) {
             if (result['success']) {
                 var onibus = result['data']
                 $("#modal_edit_id_hidden").val(onibus['tarifaencomenda_id'])
-                $("#modal_edit_id").val(onibus['tarifaencomenda_id'])
+                $("#modal_edit_id").val("TFE "+onibus['tarifaencomenda_id'])
                 $("#modal_edit_nome").val(onibus['tarifaencomenda_nome'])
                 $("#modal_edit_preco_peso").val(onibus['tarifaencomenda_preco_peso'])
                 $("#modal_edit_preco_volume").val(onibus['tarifaencomenda_preco_volume'])
@@ -209,7 +209,7 @@ function info(id) {
             console.log('R:', result);
             if (result['success']) {
                 var onibus = result['data']
-                $("#modal_info_id").val(onibus['tarifaencomenda_id'])
+                $("#modal_info_id").val("TFE "+onibus['tarifaencomenda_id'])
                 $("#modal_info_nome").val(onibus['tarifaencomenda_nome'])
                 $("#modal_info_preco_peso").val(onibus['tarifaencomenda_preco_peso'])
                 $("#modal_info_preco_volume").val(onibus['tarifaencomenda_preco_volume'])
